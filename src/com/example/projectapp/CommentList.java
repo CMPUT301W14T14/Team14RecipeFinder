@@ -49,6 +49,11 @@ public class CommentList{
 	//Methods:
 	
 	//Constructors:
+	public CommentList(){
+		this.comments=new ArrayList<Comment>();
+	}
+	
+	//Constructor with extra parameters:
 	public CommentList(ArrayList<Comment> comments){
 		this.comments=comments;
 	}

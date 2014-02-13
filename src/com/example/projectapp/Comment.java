@@ -18,7 +18,26 @@ public class Comment{
 	//Methods:
 	
 	//Constructors:
+	public Comment(String text,String userName){
+		this.text=text;
+		this.userName=userName;
+		this.timePosted=(new Date()).getTime();
+		//this.location=getCurrentLocation;
+		this.childReply=new CommentList();
+		this.childReply.setParent(this);
+	}
 	
+	public Comment(String text,String userName,Bitmap picture){
+		this.text=text;
+		this.userName=userName;
+		this.timePosted=(new Date()).getTime();
+		//this.location=getCurrentLocation;
+		this.picture=picture;
+		this.childReply=new CommentList();
+		this.childReply.setParent(this);
+	}
+	
+	//Constructor with extra parameters:
 	public Comment(String text,String userName,CommentList childReply){
 		this.text=text;
 		this.userName=userName;
@@ -28,14 +47,14 @@ public class Comment{
 		this.childReply.setParent(this);
 	}
 	
-	public Comment(String text,String userName,CommentList childReply,Bitmap picture){
+	public Comment(String text,String userName,Bitmap picture,CommentList childReply){
 		this.text=text;
 		this.userName=userName;
 		this.timePosted=(new Date()).getTime();
 		//this.location=getCurrentLocation;
+		this.picture=picture;
 		this.childReply=childReply;
 		this.childReply.setParent(this);
-		this.picture=picture;
 	}
 	
 	//Setters&Getters:
