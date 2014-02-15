@@ -12,24 +12,24 @@ public class Comment{
 	private Long timePosted=null;
 	private Bitmap picture=null;
 	private Location location=null;
-	private Long userId=null;
+	private String userName=null;
 	private CommentList childReply=null;
 	
 	//Methods:
 	
 	//Constructors:
-	public Comment(String text,Long userId){
+	public Comment(String text,String userName){
 		this.text=text;
-		this.userId=userId;
+		this.userName=userName;
 		this.timePosted=(new Date()).getTime();
 		//this.location=getCurrentLocation;
 		this.childReply=new CommentList();
 		this.childReply.setParent(this);
 	}
 	
-	public Comment(String text,Long userId,Bitmap picture){
+	public Comment(String text,String userName,Bitmap picture){
 		this.text=text;
-		this.userId=userId;
+		this.userName=userName;
 		this.timePosted=(new Date()).getTime();
 		//this.location=getCurrentLocation;
 		this.picture=picture;
@@ -38,18 +38,18 @@ public class Comment{
 	}
 	
 	//Constructor with extra parameters:
-	public Comment(String text,Long userId,CommentList childReply){
+	public Comment(String text,String userName,CommentList childReply){
 		this.text=text;
-		this.userId=userId;
+		this.userName=userName;
 		this.timePosted=(new Date()).getTime();
 		//this.location=getCurrentLocation;
 		this.childReply=childReply;
 		this.childReply.setParent(this);
 	}
 	
-	public Comment(String text,Long userId,Bitmap picture,CommentList childReply){
+	public Comment(String text,String userName,Bitmap picture,CommentList childReply){
 		this.text=text;
-		this.userId=userId;
+		this.userName=userName;
 		this.timePosted=(new Date()).getTime();
 		//this.location=getCurrentLocation;
 		this.picture=picture;
@@ -93,8 +93,8 @@ public class Comment{
 		this.childReply.addReply(newReply);
 	}
 	
-	public boolean checkUserId(Long userId){
-		if(this.userId==userId){
+	public boolean checkUserName(String userName){
+		if((this.userName).equals(userName)){
 			return true;
 		}
 		else{
