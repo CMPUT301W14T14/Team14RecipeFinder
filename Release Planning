@@ -10,8 +10,20 @@ Feb 26:
 Martch 4: 
           Models and most activities should be implemented and finished testing,should already started on the features requires the network connectivity.
           Usecases(In Requirenments Specification):
-               Need to finish at least half of the usecases 3,11,12,13,14,15,16,17,18,20. (Additional featrues such as edit,change location of a comment,save the favourite comments,publish comment,etc)
+               Need to finish at least 50% of the usecases 3,13,14,15,16,17,18,20. (Additional featrues such as edit,change location of a comment,save the favourite comments,publish comment,etc)
+===================================================
+Martch 8,9:
+          All of the JUnit tests for every model classes and public methods should be implemented and the Application should pass most of the tests.
+          Usecases(In Requirenments Specification):
+               Need to finish at least 75% of the use cases defined in Martch 4 of this release planning.
 ===================================================
 March 10: Project part 3 duedate.
+===================================================
+          Usecases(In Requirenments Specification) should be done in this period:
+               1,2,8,9: Sorting
+               10: caches
+               11,12: favourite comments
+               19: loading from internet
+               and some other uses cases we may stuck on before part3 due date.
 ===================================================
 April 7: Project part 4 duedate.
