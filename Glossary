@@ -1,17 +1,45 @@
-User - Anyone is who use the app ( Anyone is allowed).
+Location Blog - Name of the App
+
+User - Anyone who uses the app ( Everyone is allowed).
+
+Comment Author - The one who creates a topic or comment.
+
+Comment Reader - The one who reads a topic or comments.
 
 Username - The identity of topics or comments. Reqiured each time at the beggining of the programe.
 
-Topics - Listed in the main page. Each topics may contain pictures. And users comments in topics. (Also can be regarded as TOP-Level Comments)
+Topic - Top-level comment (comment without parents). Listed in the topic page. Each topics may or may not contain a picture, text.
 
-Comments - Comments are added in topics. Comments can reply to comments.
+Comment - Comments are added in topics. Comments can reply to comments.
+
+Thread - Containing a topic and all its children comments.
+
+View - To look at a comment or topic in a thread.
+
+Parent - The comment A is the parent of comment B, if comment B replies to comment A
+
+Child - The comment B is the child of comment A, if comment B replies to comment A
 
 Picture - Bitmap Picture which can be optional include in comment or topic.
 
-Location - The location that located by User's device.
+Location - The real world location that located by User's device, represented by coordinate.
 
 Edit Comment - User are allowed to edit their own comments (Identified by UserName).
 
-Last topic - The topic that added the latest. Would be shown on the top sepcial part.
+Lastest topic - The topic that added the latest. Would be shown on the top special part.
 
-Greatest topic - The most popular topic that has the largest number of comments. Also will be shown on the top sepcial part.
+Greatest topic - The most popular topic that has the largest number of comments. Also will be shown on the top special part.
+
+Most Relevant Topic - The topic that it geo-location is the closest to the user. Also will be shown on the top special part.
+
+Fresh Comments - The most recent comments.
+
+Favorites - List of comments set by the user. All favorite comments and their replies will be locally cached and can be viewed at anytime regardless of network connectivity.
+
+Read Later - List of comments that the user read or comments the user indicated to read later. Will be locally cached and can be read when the user is not on the internet. (Will be cleaned out regularly)
+
+Cache - Store the topics and comments locally on the phone. This makes the cached topics and comments available to the user regardless of network connectivity.
+
+Proximity - Nearness, distance between.
+
+Push - Push the changes in the phone to the server
