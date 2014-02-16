@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#0ffeef"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/tpecontent"
+        android:layout_width="wrap_content"
+        android:layout_height="217dp"
+        android:layout_x="45dp"
+        android:layout_y="26dp"
+        android:scrollbars="vertical" 
+        android:text="type in the tpic or comment or reply contents" 
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/attach"
+        android:layout_width="93dp"
+        android:layout_height="wrap_content"
+        android:layout_x="175dp"
+        android:layout_y="332dp"
+        android:text="attach picture" />
+
+    <Button
+        android:id="@+id/commit"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_x="39dp"
+        android:layout_y="334dp"
+        android:text="commit publish" />
+
+</AbsoluteLayout>

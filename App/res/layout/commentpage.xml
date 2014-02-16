@@ -2,6 +2,7 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0fff0f"    
     android:orientation="vertical" >
 
     <Button
@@ -20,14 +21,6 @@
         android:layout_y="10dp"
         android:text="sort" />
 
-    <Button
-        android:id="@+id/reply"
-        android:layout_width="98dp"
-        android:layout_height="wrap_content"
-        android:layout_x="184dp"
-        android:layout_y="406dp"
-        android:text="reply" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="254dp"
@@ -35,7 +28,7 @@
         android:layout_x="32dp"
         android:layout_y="74dp"
         android:scrollbars="vertical"
-        android:text="Large Text"
+        android:text="comment or topic contents"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
@@ -49,10 +42,26 @@
 
     <Button
         android:id="@+id/edit"
-        android:layout_width="105dp"
+        android:layout_width="84dp"
         android:layout_height="wrap_content"
-        android:layout_x="35dp"
-        android:layout_y="406dp"
+        android:layout_x="6dp"
+        android:layout_y="404dp"
         android:text="edit" />
+
+    <Button
+        android:id="@+id/reply"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_x="214dp"
+        android:layout_y="404dp"
+        android:text="reply" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_x="111dp"
+        android:layout_y="406dp"
+        android:text="delete" />
 
 </AbsoluteLayout>
