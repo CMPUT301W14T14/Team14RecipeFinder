@@ -1,8 +1,6 @@
 Team14RecipeFinder
 ==================
-Team 14
-
-Team Members:
+Team 14 Members:
 
    Xuping Fang (XUPINGI)
 
@@ -13,3 +11,5 @@ Team Members:
    Xiaoran Huang (xiaoran1)
 
 * [License] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/blob/master/License)
+* [Project] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/tree/master/App)
+* [TestProject] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/tree/master/ProjectAppTest)
