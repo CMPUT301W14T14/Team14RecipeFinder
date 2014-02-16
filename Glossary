@@ -1,2 +1,9 @@
 User - Anyone is who use the app ( Anyone is allowed).
-Username - The identity of comments/topics or replies. Reqiured each time at the begging of the programe.
+Username - The identity of topics or comments. Reqiured each time at the beggining of the programe.
+Topics - Listed in the main page. Each topics may contain pictures. And users comments in topics. (Also can be regarded as TOP-Level Comments)
+Comments - Comments are added in topics. Comments can reply to comments.
+Picture - Bitmap Picture which can be optional include in comment or topic.
+Location - The location that located by User's device.
+Edit Comment - User are allowed to edit their own comments (Identified by UserName).
+Last topic - The topic that added the latest. Would be shown on the top sepcial part.
+Greatest topic - The most popular topic that has the largest number of comments. Also will be shown on the top sepcial part.
