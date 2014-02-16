@@ -1,6 +1,8 @@
 Team14RecipeFinder
 ==================
-Team 14:
+Team 14
+
+Team Members:
 
 Xuping Fang (XUPINGI)
 
