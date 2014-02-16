@@ -4,10 +4,10 @@ Team 14
 
 Team Members:
 
-Xuping Fang (XUPINGI)
+  Xuping Fang (XUPINGI)
 
-Yilu Su (YiluSu)
+  Yilu Su (YiluSu)
 
-Ji Cheng (jerrycheng9)
+  Ji Cheng (jerrycheng9)
 
-Xiaoran Huang (xiaoran1)
+  Xiaoran Huang (xiaoran1)
