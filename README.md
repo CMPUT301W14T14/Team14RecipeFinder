@@ -11,3 +11,5 @@ Team Members:
    Ji Cheng (jerrycheng9)
 
    Xiaoran Huang (xiaoran1)
+
+* [Liciense] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/blob/master/License)
