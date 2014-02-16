@@ -12,4 +12,4 @@ Team Members:
 
    Xiaoran Huang (xiaoran1)
 
-* [Liciense] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/blob/master/License)
+* [License] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/blob/master/License)
