@@ -3,6 +3,8 @@ package com.example.projectapp;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import android.location.Location;
+
 
 public class CommentList{
 	//Sub Classes (just skeleton):
@@ -73,9 +75,32 @@ public class CommentList{
 	public void addReply(Comment reply){
 		comments.add(reply);
 	}
-	
-	//public Comment getOneComment(){
-	//}
-	
-	
+    
+	//unimplemented Test Methods, all with incorrect return statement
+	public ArrayList<Comment> getSortedArrayListByProximityForTesting(Location location){
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Comment> getArrayListForTesting()
+	{
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+    //unimplemented Methods
+	public Object getListViewAdapterSortedByTimePosted()
+	{
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Comment getSpecificComment()
+	{
+
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

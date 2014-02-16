@@ -100,4 +100,11 @@ public class Comment{
 			return false;
 		}
 	}
+    //unimplemented methods:
+	public CommentList getChildReply()
+	{
+
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
