@@ -1,2 +1,5 @@
-This release planning is for CMPUT301W14T14. 
------------------------------- First Week -----------------------------
+dog | bird | cat
+----|------|----
+foo | foo  | foo
+bar | bar  | bar
+baz | baz  | baz
