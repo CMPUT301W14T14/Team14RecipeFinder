@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/userinfo"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_x="196dp"
+        android:layout_y="9dp"
+        android:text="userinfo" />
+
+    <Button
+        android:id="@+id/sort"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:layout_x="25dp"
+        android:layout_y="10dp"
+        android:text="sort" />
+
+    <Button
+        android:id="@+id/reply"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_x="184dp"
+        android:layout_y="406dp"
+        android:text="reply" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="254dp"
+        android:layout_height="147dp"
+        android:layout_x="32dp"
+        android:layout_y="74dp"
+        android:scrollbars="vertical"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="256dp"
+        android:layout_height="168dp"
+        android:layout_x="32dp"
+        android:layout_y="236dp"
+        android:scrollbars="vertical" >
+    </ListView>
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_x="35dp"
+        android:layout_y="406dp"
+        android:text="edit" />
+
+</AbsoluteLayout>

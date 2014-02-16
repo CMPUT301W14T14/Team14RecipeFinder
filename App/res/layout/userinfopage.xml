@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/setname"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_x="73dp"
+        android:layout_y="284dp"
+        android:text="reset name" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_x="74dp"
+        android:layout_y="68dp"
+        android:text="Username"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/historytopic"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_x="73dp"
+        android:layout_y="107dp"
+        android:text="viewed topic" />
+
+    <Button
+        android:id="@+id/favourite"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_x="73dp"
+        android:layout_y="195dp"
+        android:text="favourite" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_x="76dp"
+        android:layout_y="359dp"
+        android:text="logout" />
+
+</AbsoluteLayout>
