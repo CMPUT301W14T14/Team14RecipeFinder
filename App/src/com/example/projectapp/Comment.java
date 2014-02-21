@@ -5,67 +5,48 @@ import java.util.Date;
 import android.graphics.Bitmap;
 import android.location.Location;
 
-
-public class Comment{
-	//Attributes
+public class Comment {
+	//Attributes:
 	private String text=null;
-	private Long timePosted=null;
-	private Bitmap picture=null;
 	private Location location=null;
+	private Bitmap picture=null;
+	private Long timePosted=null;
 	private Long userId=null;
-	private CommentList childReply=null;
-	
-	//Methods:
+	private ChildCommentList childReply=null;
 	
 	//Constructors:
-	public Comment(String text,Long userId){
+	public Comment(String text,Location location,Long userId){
 		this.text=text;
-		this.userId=userId;
+		this.location=location;
 		this.timePosted=(new Date()).getTime();
-		//this.location=getCurrentLocation;
-		this.childReply=new CommentList();
-		this.childReply.setParent(this);
+		this.userId=userId;
 	}
 	
-	public Comment(String text,Long userId,Bitmap picture){
+	public Comment(String text,Location location,Bitmap picture,Long userId){
 		this.text=text;
-		this.userId=userId;
-		this.timePosted=(new Date()).getTime();
-		//this.location=getCurrentLocation;
+		this.location=location;
 		this.picture=picture;
-		this.childReply=new CommentList();
-		this.childReply.setParent(this);
-	}
-	
-	//Constructor with extra parameters:
-	public Comment(String text,Long userId,CommentList childReply){
-		this.text=text;
-		this.userId=userId;
 		this.timePosted=(new Date()).getTime();
-		//this.location=getCurrentLocation;
-		this.childReply=childReply;
-		this.childReply.setParent(this);
-	}
-	
-	public Comment(String text,Long userId,Bitmap picture,CommentList childReply){
-		this.text=text;
 		this.userId=userId;
-		this.timePosted=(new Date()).getTime();
-		//this.location=getCurrentLocation;
-		this.picture=picture;
-		this.childReply=childReply;
-		this.childReply.setParent(this);
 	}
 	
-	//Setters&Getters:
+	//Getters&&Setters:
+	//For Text
+	public String getText(){
+		return this.text;
+	}
 	
-	//For text
 	public void setText(String newText){
 		this.text=newText;
 	}
 	
-	public String getText(){
-		return this.text;
+	//For Location
+	public Location getLocation(){
+		return this.location;
+	}
+	
+	public void setLocation(Location newLocation){
+		this.location=newLocation;
 	}
 	
 	//For picture
@@ -73,38 +54,24 @@ public class Comment{
 		return this.picture;
 	}
 	
-	//For time posted
+	//For timePosted
 	public Long getTimePosted(){
 		return this.timePosted;
 	}
-	
-	//For Location
-	public void setLocation(Location newLocation){
-		this.location=newLocation;
+	//For userId
+	public Long getUserId(){
+		return this.userId;
 	}
 	
-	public Location getLocation(){
-		return this.location;
+	//For children
+	public ChildCommentList getReplies(){
+		return this.childReply;
 	}
 	
-	//Operations:
-	public void addReply(Comment newReply){
-		this.childReply.addReply(newReply);
-	}
+	//Methods:
 	
-	public boolean checkUserId(User user){
-		if(this.userId==user.getId()){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-    //unimplemented methods:
-	public CommentList getChildReply()
-	{
-
-		// TODO Auto-generated method stub
-		return null;
+	//Unimplemented Methods:
+	public void addReply(){
+		
 	}
 }

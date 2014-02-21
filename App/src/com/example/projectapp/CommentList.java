@@ -6,101 +6,68 @@ import java.util.Comparator;
 import android.location.Location;
 
 
-public class CommentList{
-	//Sub Classes (just skeleton):
-	class TimePostedComparator implements Comparator<Comment>{
-
-		@Override
-		public int compare(Comment lhs, Comment rhs)
-		{
-
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		
-	}
-	
-	class LocationComparator implements Comparator<Comment>{
-
-		@Override
-		public int compare(Comment lhs, Comment rhs)
-		{
-
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		
-	}
-	
-	class PictureComparator implements Comparator<Comment>{
-
-		@Override
-		public int compare(Comment lhs, Comment rhs)
-		{
-
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		
-	}
-	
+public class CommentList {
 	//Attributes:
-	ArrayList<Comment> comments=null;
-	Comment parent=null;
+	private ArrayList<Comment> comments=null;
+	private TimeComparator timeCmp=new TimeComparator();
+	private PictureComparator picCmp=new PictureComparator();
+	private LocationComparator locCmp=new LocationComparator();
 	
-	//Methods:
-	
-	//Constructors:
-	public CommentList(){
-		this.comments=new ArrayList<Comment>();
-	}
-	
-	//Constructor with extra parameters:
+	//Constructor:
 	public CommentList(ArrayList<Comment> comments){
 		this.comments=comments;
 	}
 	
-	//Getters&Setters:
-	
-	//Parent Comment
-	public void setParent(Comment parent){
-		this.parent=parent;
+	//Methods:
+	public void addComment(Comment comment){
+		this.comments.add(comment);
 	}
 	
-	public Comment getParent(){
-		return this.parent;
+	//Unimplemented Methods:
+	public void getAdapterSortedByTime(){    //Need change!
+		
 	}
 	
-	//Operations:
-	public void addReply(Comment reply){
-		comments.add(reply);
+	public void getAdapterSortedByPicture(){    //Need change!
+		
 	}
-    
-	//unimplemented Test Methods, all with incorrect return statement
-	public ArrayList<Comment> getSortedArrayListByProximityForTesting(Location location){
-
-		// TODO Auto-generated method stub
-		return null;
+	
+	public void getAdapterSortedByLocation(Location location){    //Need change!
+		
 	}
+	
+	//Unimplemented SubClasses:
+	private class TimeComparator implements Comparator<Comment>{
 
-	public ArrayList<Comment> getArrayListForTesting()
-	{
-
-		// TODO Auto-generated method stub
-		return null;
+		@Override
+		public int compare(Comment arg0, Comment arg1) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 	}
-    //unimplemented Methods
-	public Object getListViewAdapterSortedByTimePosted()
-	{
+	
+	private class PictureComparator implements Comparator<Comment>{
 
-		// TODO Auto-generated method stub
-		return null;
+		@Override
+		public int compare(Comment lhs, Comment rhs) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 	}
-
-	public Comment getSpecificComment()
-	{
-
-		// TODO Auto-generated method stub
-		return null;
+	
+	private class LocationComparator implements Comparator<Comment>{
+        private Location center=null;
+        
+		@Override
+		public int compare(Comment lhs, Comment rhs) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
+		public void setCenterLocation(Location location){
+			this.center=location;
+		}
 	}
 }
