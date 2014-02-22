@@ -1,5 +1,6 @@
 package com.example.projectapp;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.graphics.Bitmap;
@@ -20,6 +21,8 @@ public class Comment {
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
 		this.userId=userId;
+		this.childReply=new ChildCommentList(new ArrayList<Comment>());
+		this.childReply.setParent(this);
 	}
 	
 	public Comment(String text,Location location,Bitmap picture,Long userId){
@@ -28,6 +31,8 @@ public class Comment {
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
 		this.userId=userId;
+		this.childReply=new ChildCommentList(new ArrayList<Comment>());
+		this.childReply.setParent(this);
 	}
 	
 	//Getters&&Setters:
