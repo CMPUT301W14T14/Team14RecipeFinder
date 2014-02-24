@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/comment_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/defaultCommentText"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/user_name_and_time_posted"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/defaultUserName_timePosted" />
+
+</LinearLayout>

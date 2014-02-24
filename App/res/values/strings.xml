@@ -7,5 +7,7 @@
     <string name="login_ins">Login</string>
     <string name="userName_ins">User Name:</string>
     <string name="typeUserName_ins">Enter your user name here</string>
+    <string name="defaultCommentText">&quot;Default Text&quot;</string>
+    <string name="defaultUserName_timePosted">Default username &amp;&amp; time posted</string>
 
 </resources>

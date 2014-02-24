@@ -25,7 +25,7 @@
         android:inputType="text"
         android:singleLine="true"
         android:text="@string/typeUserName_ins"
-        android:textSize="18dp" />
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/login_button"
