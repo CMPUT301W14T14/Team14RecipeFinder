@@ -1,5 +1,7 @@
 package com.example.projectapp;
 
+import java.util.Date;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,8 +46,13 @@ public class ListViewAdapter extends BaseAdapter{
 			v = inflater.inflate(R.layout.single_comment_layout,null);
 		}
 		TextView commentText=(TextView)v.findViewById(R.id.comment_text);
-		commentText.setText(this.comments[position].getText());
-		return null;
+		TextView userNameAndTimePosted=(TextView)v.findViewById(R.id.user_name_and_time_posted);
+		
+		Comment c=this.comments[position];
+		commentText.setText(c.getText());
+		//Need to convert the userId in to userName
+		userNameAndTimePosted.setText("Posted by: "+c.getUserId()+"At: "+(new Date(c.getTimePosted())).toString());
+		return v;
 	}
 	
 }
