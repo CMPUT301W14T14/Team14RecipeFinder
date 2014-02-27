@@ -2,7 +2,7 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0fffff"    
+    android:background="#ffffff"    
     android:orientation="vertical" >
 
     <Button
@@ -11,30 +11,38 @@
         android:layout_height="wrap_content"
         android:layout_x="68dp"
         android:layout_y="56dp"
+        android:background="#000000"
+        android:textColor="#ffffff" 
         android:text="sort by my location" />
 
     <Button
         android:id="@+id/generalsort"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
-        android:layout_x="72dp"
-        android:layout_y="154dp"
+        android:layout_x="70dp"
+        android:layout_y="136dp"
+        android:background="#000000"
+        android:textColor="#ffffff" 
         android:text="sort by score" />
-
-    <Button
-        android:id="@+id/sortbyotherlocation"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_x="77dp"
-        android:layout_y="327dp"
-        android:text="sort by other location" />
 
     <Button
         android:id="@+id/sortbypicture"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
-        android:layout_x="72dp"
-        android:layout_y="234dp"
+        android:layout_x="71dp"
+        android:layout_y="211dp"
+        android:background="#000000"
+        android:textColor="#ffffff" 
         android:text="sort by picture" />
+
+    <Button
+        android:id="@+id/sortbyotherlocation"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_x="68dp"
+        android:layout_y="291dp"
+        android:background="#000000"
+        android:text="sort by other location"
+        android:textColor="#ffffff" />
 
 </AbsoluteLayout>
