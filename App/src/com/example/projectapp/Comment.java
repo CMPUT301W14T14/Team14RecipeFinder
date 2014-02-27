@@ -12,25 +12,25 @@ public class Comment {
 	private Location location=null;
 	private Bitmap picture=null;
 	private Long timePosted=null;
-	private Long userId=null;
+	private String userName=null;
 	private ChildCommentList childReply=null;
 	
 	//Constructors:
-	public Comment(String text,Location location,Long userId){
+	public Comment(String text,Location location,String userName){
 		this.text=text;
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
-		this.userId=userId;
+		this.userName=userName;
 		this.childReply=new ChildCommentList(new ArrayList<Comment>());
 		this.childReply.setParent(this);
 	}
 	
-	public Comment(String text,Location location,Bitmap picture,Long userId){
+	public Comment(String text,Location location,Bitmap picture,String userName){
 		this.text=text;
 		this.location=location;
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
-		this.userId=userId;
+		this.userName=userName;
 		this.childReply=new ChildCommentList(new ArrayList<Comment>());
 		this.childReply.setParent(this);
 	}
@@ -64,13 +64,17 @@ public class Comment {
 		return this.timePosted;
 	}
 	//For userId
-	public Long getUserId(){
-		return this.userId;
+	public String getUserName(){
+		return this.userName;
 	}
 	
 	//For children
 	public ChildCommentList getReplies(){
 		return this.childReply;
+	}
+	
+	public void setReplies(ChildCommentList childReply){
+		this.childReply=childReply;
 	}
 	
 	//Methods:

@@ -9,8 +9,8 @@ import android.location.Location;
 public class CommentList {
 	//Attributes:
 	private ArrayList<Comment> comments=null;
-	private TimeComparator timeCmp=new TimeComparator();
-	private PictureComparator picCmp=new PictureComparator();
+	//private TimeComparator timeCmp=new TimeComparator();
+	//private PictureComparator picCmp=new PictureComparator();
 	private LocationComparator locCmp=new LocationComparator();
 	
 	//Constructor:
@@ -23,25 +23,35 @@ public class CommentList {
 		this.comments.add(comment);
 	}
 	
+	public void setComment(Comment before,Comment after){
+		this.comments.set(this.comments.indexOf(before),after);
+	}
+	
 	//Unimplemented Methods:
-	public void getAdapterSortedByTime(){    //Need change!
-		
+	public Comment[] getArraySortedByTime(){    //Need change!
+		return null;
 	}
 	
-	public void getAdapterSortedByPicture(){    //Need change!
-		
+	public Comment[] getArraySortedByPicture(){    //Need change!
+		return null;
 	}
 	
-	public void getAdapterSortedByLocation(Location location){    //Need change!
-		
+	public Comment[] getArraySortedByLocation(Location location){    //Need change!
+		this.locCmp.setCenterLocation(location);
+		return null;
+	}
+	
+	//Method uses for testing temperately:
+	public Comment[] getRandomArray(){
+		return (Comment[]) this.comments.toArray();
 	}
 	
 	//Unimplemented SubClasses:
+	/*
 	private class TimeComparator implements Comparator<Comment>{
 
 		@Override
-		public int compare(Comment arg0, Comment arg1) {
-			// TODO Auto-generated method stub
+		public int compare(Comment arg0,Comment arg1){
 			return 0;
 		}
 		
@@ -50,24 +60,22 @@ public class CommentList {
 	private class PictureComparator implements Comparator<Comment>{
 
 		@Override
-		public int compare(Comment lhs, Comment rhs) {
-			// TODO Auto-generated method stub
+		public int compare(Comment lhs,Comment rhs){
 			return 0;
 		}
 		
 	}
-	
+	*/
 	private class LocationComparator implements Comparator<Comment>{
-        private Location center=null;
+        //private Location center=null;
         
 		@Override
-		public int compare(Comment lhs, Comment rhs) {
-			// TODO Auto-generated method stub
+		public int compare(Comment lhs,Comment rhs){
 			return 0;
 		}
 		
 		public void setCenterLocation(Location location){
-			this.center=location;
+			//this.center=location;
 		}
 	}
 }

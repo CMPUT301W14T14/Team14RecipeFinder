@@ -11,7 +11,6 @@ public class ChildCommentList extends CommentList{
 
 	public ChildCommentList(ArrayList<Comment> comments) {
 		super(comments);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Comment getParent(){

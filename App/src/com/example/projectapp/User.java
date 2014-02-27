@@ -3,22 +3,16 @@ package com.example.projectapp;
 
 public class User {
 	//Attributes:
-	private Long id=null;
 	private String userName=null;
 	private CommentList favourites=null;
 	private CommentList indcatedComments=null;
 	
 	//Constructors
-	public User(Long id,String userName){
-		this.id=id;
+	public User(String userName){
 		this.userName=userName;
 	}
 	
 	//Getters&&Setters
-	public Long getId(){
-		return this.id;
-	}
-	
 	public String getUserName(){
 		return this.userName;
 	}
