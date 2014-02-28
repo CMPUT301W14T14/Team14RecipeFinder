@@ -1,15 +1,16 @@
 package activity;
 
 import com.example.projectapp.R;
-import com.example.projectapp.R.layout;
-import com.example.projectapp.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Button;
 
 public class HomePageActivity extends Activity {
 
+	private Button sort = null;
+	private Button laterlist = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

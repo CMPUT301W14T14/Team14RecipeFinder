@@ -1,8 +1,6 @@
 package activity;
 
 import com.example.projectapp.R;
-import com.example.projectapp.R.layout;
-import com.example.projectapp.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
