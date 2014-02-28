@@ -24,7 +24,7 @@
         android:layout_x="178dp"
         android:layout_y="388dp"
         android:background="#a9a9a9"
-        android:text="@string/go back"
+        android:text="@string/goback"
         android:textStyle="bold" />
 
     <Button
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_x="42dp"
         android:layout_y="15dp"
-        android:text="@string/viewed history"
+        android:text="@string/viewedhistory"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 

@@ -11,12 +11,12 @@
     <string name="defaultUserName_timePosted">Default username &amp;&amp; time posted</string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_user_info_page">UserInfoPage</string>
-    <string name="attach picture">attach picture</string>
-    <string name="type in the tpic or comment or reply contents">type in the tpic or comment or reply contents</string> 
-    <string name="Please enter a new username">Please enter a new username</string>
-    <string name="go back">go back</string> 
+    <string name="attachpicture">attach picture</string>
+    <string name="typeinthecontents">type in the tpic or comment or reply contents</string> 
+    <string name="enternewusername">Please enter a new username</string>
+    <string name="goback">go back</string> 
     <string name="sort">sort</string> 
-    <string name="viewed history">viewed history</string> 
+    <string name="viewedhistory">viewed history</string> 
     <string name="latelist">late list</string>
     <string name="userinfotext">userinfomation</string>
     <string name="userinfobutton">userinfo</string>
@@ -25,7 +25,7 @@
     <string name="viewedhistorybutton">viewed history</string>
     <string name="favouriteselect">favourites</string>
     <string name="logoutbutton">logout</string>
-    <string name="userinfopagetitle">      The User Name</string>
+    <string name="userinfopagetitle">The User Name</string>
     <string name="topiccontenttext">comment or topic contents</string>
     <string name="like">like it</string>
     <string name="edit">edit</string>
@@ -33,7 +33,7 @@
     <string name="authorinfo">author/ publish date/ publish location</string>
     <string name="readlater">read later</string>
     <string name="sortscore">sort by score</string>
-    <string name="sort by other location">sort by other location</string>
-    <string name="sort by picture">sort by picture</string>
-    <string name="sort by my location">sort by my location</string>
+    <string name="sortbyotherlocation">sort by other location</string>
+    <string name="sortbypicture">sort by picture</string>
+    <string name="sortbymylocation">sort by my location</string>
 </resources>

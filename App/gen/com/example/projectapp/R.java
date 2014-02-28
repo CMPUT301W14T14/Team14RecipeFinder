@@ -88,16 +88,16 @@ public final class R {
         public static final int user_info_page=0x7f070002;
     }
     public static final class string {
-        public static final int Please enter a new username=0x7f05000c;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int attach picture=0x7f05000a;
+        public static final int attachpicture=0x7f05000a;
         public static final int authorinfo=0x7f05001d;
         public static final int defaultCommentText=0x7f050006;
         public static final int defaultUserName_timePosted=0x7f050007;
         public static final int edit=0x7f05001b;
+        public static final int enternewusername=0x7f05000c;
         public static final int favouriteselect=0x7f050016;
-        public static final int go back=0x7f05000d;
+        public static final int goback=0x7f05000d;
         public static final int hello_world=0x7f050002;
         public static final int latelist=0x7f050010;
         public static final int like=0x7f05001a;
@@ -108,20 +108,20 @@ public final class R {
         public static final int reply=0x7f05001c;
         public static final int resetnamebutton=0x7f050014;
         public static final int sort=0x7f05000e;
-        public static final int sort by my location=0x7f050022;
-        public static final int sort by other location=0x7f050020;
-        public static final int sort by picture=0x7f050021;
+        public static final int sortbymylocation=0x7f050022;
+        public static final int sortbyotherlocation=0x7f050020;
+        public static final int sortbypicture=0x7f050021;
         public static final int sortscore=0x7f05001f;
         public static final int title_activity_home_page=0x7f050008;
         public static final int title_activity_user_info_page=0x7f050009;
         public static final int topiccontenttext=0x7f050019;
-        public static final int type in the tpic or comment or reply contents=0x7f05000b;
         public static final int typeUserName_ins=0x7f050005;
+        public static final int typeinthecontents=0x7f05000b;
         public static final int userName_ins=0x7f050004;
         public static final int userinfobutton=0x7f050012;
         public static final int userinfopagetitle=0x7f050018;
         public static final int userinfotext=0x7f050011;
-        public static final int viewed history=0x7f05000f;
+        public static final int viewedhistory=0x7f05000f;
         public static final int viewedhistorybutton=0x7f050015;
     }
     public static final class style {

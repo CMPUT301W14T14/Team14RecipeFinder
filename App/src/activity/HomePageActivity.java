@@ -26,13 +26,13 @@ public class HomePageActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.topicpage);
-		sort = (Button)findViewById(R.id.sort);
-		laterList = (Button)findViewById(R.id.LaterList);
-		userInfo = (Button)findViewById(R.id.userinfo);
-		createNew = (Button)findViewById(R.id.createnew);
+		sort = (Button)findViewById(R.id.sort1);
+		laterList = (Button)findViewById(R.id.LaterList1);
+		userInfo = (Button)findViewById(R.id.userbutton1);
+		createNew = (Button)findViewById(R.id.createTopic);
 		greatTopic = (ListView)findViewById(R.id.GreatTopic);
 		topicList = (ListView)findViewById(R.id.TopicList);
-		userInfoText = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);
+		userInfoText = (AutoCompleteTextView)findViewById(R.id.userinfo1);
 		picture = (ImageView)findViewById(R.id.picture);
 	}
 
@@ -62,19 +62,19 @@ public class HomePageActivity extends Activity {
 			// TODO Auto-generated method stub
 			Button button = (Button)v;
 			switch (button.getId()){
-			case R.id.sort:
+			case R.id.sort1:
 				//sort button click
 				
 				break;
-			case R.id.LaterList:
+			case R.id.LaterList1:
 				//laterlist button click
 				
 				break;
-			case R.id.userinfo:
+			case R.id.userinfo1:
 				//userinfo button click
 				
 				break;
-			case R.id.createnew:
+			case R.id.createTopic:
 				//createnew button click
 				
 				break;
