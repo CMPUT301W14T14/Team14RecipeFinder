@@ -4,16 +4,22 @@ package model;
 
 public class User {
 	//Attributes:
+	private Long id=null;
 	private String userName=null;
 	private CommentList favourites=null;
 	private CommentList indcatedComments=null;
 	
 	//Constructors
-	public User(String userName){
+	public User(Long id,String userName){
+		this.id=id;
 		this.userName=userName;
 	}
 	
 	//Getters&&Setters
+	public Long getId(){
+		return this.id;
+	}
+	
 	public String getUserName(){
 		return this.userName;
 	}

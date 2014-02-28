@@ -13,25 +13,25 @@ public class Comment {
 	private Location location=null;
 	private Bitmap picture=null;
 	private Long timePosted=null;
-	private String userName=null;
+	private Long userId=null;
 	private ChildCommentList childReply=null;
 	
 	//Constructors:
-	public Comment(String text,Location location,String userName){
+	public Comment(String text,Location location,Long userId){
 		this.text=text;
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
-		this.userName=userName;
+		this.userId=userId;
 		this.childReply=new ChildCommentList(new ArrayList<Comment>());
 		this.childReply.setParent(this);
 	}
 	
-	public Comment(String text,Location location,Bitmap picture,String userName){
+	public Comment(String text,Location location,Bitmap picture,Long userId){
 		this.text=text;
 		this.location=location;
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
-		this.userName=userName;
+		this.userId=userId;
 		this.childReply=new ChildCommentList(new ArrayList<Comment>());
 		this.childReply.setParent(this);
 	}
@@ -65,8 +65,8 @@ public class Comment {
 		return this.timePosted;
 	}
 	//For userId
-	public String getUserName(){
-		return this.userName;
+	public Long getUserName(){
+		return this.userId;
 	}
 	
 	//For children
@@ -79,9 +79,7 @@ public class Comment {
 	}
 	
 	//Methods:
-	
-	//Unimplemented Methods:
-	public void addReply(){
-		
+	public void addReply(Comment comment){
+		this.childReply.addComment(comment);
 	}
 }
