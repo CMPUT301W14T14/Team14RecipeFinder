@@ -23,8 +23,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.projectapp.HomePageActivity"
+            android:name="activity.HomePageActivity"
             android:label="@string/title_activity_home_page" >
+        </activity>
+        <activity
+            android:name="activity.UserInfoPage"
+            android:label="@string/title_activity_user_info_page" >
         </activity>
     </application>
 
