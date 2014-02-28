@@ -2,8 +2,8 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
     android:orientation="vertical" >
+    
 
     <ListView
         android:id="@+id/GreatTopic"
@@ -12,6 +12,8 @@
         android:layout_x="154dp"
         android:layout_y="75dp"
         android:background="#000000"
+        android:divider="#ffffff"
+        android:dividerHeight="2dp"
         android:textColor="#ffffff" >
 
     </ListView>
@@ -24,62 +26,56 @@
         android:layout_y="235dp"
         android:textColor="#ffffff"
         android:background="#000000"
+        android:divider="#ffffff"
+        android:dividerHeight="2dp"
         android:scrollbars="vertical" >
 
     </ListView>
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView1"
-        android:layout_width="146dp"
-        android:layout_height="35dp"
-        android:layout_x="156dp"
-        android:layout_y="4dp"
-        android:background="#000000"
-        android:ems="10"
-        android:text="        userinfo  text"
-        android:textColor="#ffffff"
-        android:textSize="10dp"
-        android:textStyle="bold" />
-
     <Button
-        android:id="@+id/sort"
-        android:layout_width="110dp"
+        android:id="@+id/sort1"
+        android:layout_width="113dp"
         android:layout_height="30dp"
-        android:layout_x="18dp"
+        android:layout_x="14dp"
         android:layout_y="6dp"
         android:background="#a9a9a9"
         android:text="sort"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
+
 
     <Button
-        android:id="@+id/createnew"
+        android:id="@+id/createTopic"
         android:layout_width="108dp"
         android:layout_height="wrap_content"
         android:layout_x="195dp"
         android:layout_y="406dp"
         android:background="#a9a9a9"
         android:text="create new"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/userinfo"
-        android:layout_width="150dp"
+        android:id="@+id/userbutton1"
+        android:layout_width="148dp"
         android:layout_height="28dp"
-        android:layout_x="154dp"
+        android:layout_x="155dp"
         android:layout_y="40dp"
         android:background="#a9a9a9"
         android:text="userinfo"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/LaterList"
+        android:id="@+id/LaterList1"
         android:layout_width="112dp"
         android:layout_height="28dp"
         android:layout_x="16dp"
         android:layout_y="42dp"
         android:background="#a9a9a9"
         android:text="LaterList"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/picture"
@@ -88,5 +84,18 @@
         android:layout_x="17dp"
         android:layout_y="72dp"
         android:src="@drawable/ic_launcher" />
+
+    <AutoCompleteTextView
+        android:id="@+id/userinfo1"
+        android:layout_width="148dp"
+        android:layout_height="35dp"
+        android:layout_x="155dp"
+        android:layout_y="2dp"
+        android:background="#000000"
+        android:ems="10"
+        android:text="        userinfo  text"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
 </AbsoluteLayout>

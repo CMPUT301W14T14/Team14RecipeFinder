@@ -6,23 +6,25 @@
     android:orientation="vertical" >
 
     <ListView
-        android:id="@+id/listView1"
+        android:id="@+id/commentlist"
         android:layout_width="256dp"
         android:layout_height="132dp"
         android:layout_x="32dp"
         android:layout_y="270dp"
         android:background="#000000"
+        android:divider="#ffffff"
+        android:dividerHeight="2dp"
         android:scrollbars="vertical" >
     </ListView>
 
     <TextView
         android:id="@+id/commentText"
-        android:layout_width="254dp"
+        android:layout_width="253dp"
         android:layout_height="88dp"
         android:layout_x="33dp"
         android:layout_y="139dp"
-        android:scrollbars="vertical"
         android:background="#d3d3d3"
+        android:scrollbars="vertical"
         android:text="       comment or topic         contents"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -33,7 +35,8 @@
         android:layout_x="31dp"
         android:layout_y="406dp"
         android:background="#a9a9a9"
-        android:text="edit" />
+        android:text="edit"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/Like"
@@ -42,7 +45,8 @@
         android:layout_x="113dp"
         android:layout_y="407dp"
         android:background="#d3d3d3"
-        android:text="like it" />
+        android:text="like it"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/reply"
@@ -51,17 +55,19 @@
         android:layout_x="196dp"
         android:layout_y="407dp"
         android:background="#a9a9a9"
-        android:text="reply" />
+        android:text="reply"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/sort"
+        android:id="@+id/sort2"
         android:layout_width="99dp"
         android:layout_height="19dp"
         android:layout_x="32dp"
         android:layout_y="8dp"
         android:background="#a9a9a9"
         android:text="sort"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/SaveForLater"
@@ -69,22 +75,24 @@
         android:layout_height="28dp"
         android:layout_x="33dp"
         android:layout_y="32dp"
-        android:text="read later"
         android:background="#a9a9a9"
-        android:textSize="10dp" />
+        android:text="read later"
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/CommentUser"
+        android:id="@+id/userbutton2"
         android:layout_width="103dp"
         android:layout_height="28dp"
         android:layout_x="187dp"
         android:layout_y="33dp"
         android:background="#a9a9a9"
         android:text="userinfo"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <AutoCompleteTextView
-        android:id="@+id/CommentUserInfo"
+        android:id="@+id/userinfo2"
         android:layout_width="102dp"
         android:layout_height="26dp"
         android:layout_x="187dp"
@@ -106,10 +114,11 @@
         android:text="author/ publish date/ publish location"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/topicImage"
         android:layout_width="87dp"
         android:layout_height="72dp"
         android:layout_x="114dp"

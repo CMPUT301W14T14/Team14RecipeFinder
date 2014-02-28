@@ -2,32 +2,49 @@
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0ffaaf"    
     android:orientation="vertical" >
+
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_width="wrap_content"
-        android:layout_height="385dp"
-        android:layout_x="0dp"
-        android:scrollbars="vertical"        
-        android:layout_y="0dp" >
+        android:layout_width="235dp"
+        android:layout_height="317dp"
+        android:layout_x="40dp"
+        android:layout_y="50dp"
+        android:background="#000000"
+        android:divider="#ffffff"
+        android:dividerHeight="2dp"
+        android:scrollbars="vertical" >
     </ListView>
 
     <Button
         android:id="@+id/goback"
-        android:layout_width="106dp"
+        android:layout_width="97dp"
         android:layout_height="wrap_content"
-        android:layout_x="168dp"
-        android:layout_y="392dp"
-        android:text="go back" />
+        android:layout_x="178dp"
+        android:layout_y="388dp"
+        android:background="#a9a9a9"
+        android:text="go back"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/sort"
-        android:layout_width="92dp"
+        android:layout_width="94dp"
         android:layout_height="wrap_content"
-        android:layout_x="34dp"
-        android:layout_y="396dp"
-        android:text="sort" />
+        android:layout_x="41dp"
+        android:layout_y="388dp"
+        android:background="#a9a9a9"
+        android:text="sort"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/pagename"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_x="42dp"
+        android:layout_y="15dp"
+        android:text="       viewed history"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
 
 </AbsoluteLayout>
