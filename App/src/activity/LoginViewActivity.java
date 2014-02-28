@@ -34,6 +34,7 @@ public class LoginViewActivity extends Activity{
 	@Override
 	protected void onResume(){
 		super.onResume();
+		loginButton.setOnClickListener(listener);
 	}
 
 
@@ -54,11 +55,14 @@ public class LoginViewActivity extends Activity{
 			Button button = (Button)v;
 			switch(button.getId()){
 			case R.id.login_button:
+				// login button click
 				String userName = userNameInput.getText().toString();
 				// Go to sever to check username.
 				// Skip chek whether it resist
 				Intent intent = new Intent();
-				
+				intent.setClass(LoginViewActivity.this, HomePageActivity.class);
+				LoginViewActivity.this.startActivity(intent);
+				break;
 			}
 		}
 		
