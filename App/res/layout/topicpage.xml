@@ -39,8 +39,8 @@
         android:layout_x="14dp"
         android:layout_y="6dp"
         android:background="#a9a9a9"
-        android:text="sort"
-        android:textSize="10dp"
+        android:text="@string/sort"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
 
@@ -51,8 +51,8 @@
         android:layout_x="195dp"
         android:layout_y="406dp"
         android:background="#a9a9a9"
-        android:text="create new"
-        android:textSize="10dp"
+        android:text="@string/publishbutton"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <Button
@@ -62,8 +62,8 @@
         android:layout_x="155dp"
         android:layout_y="40dp"
         android:background="#a9a9a9"
-        android:text="userinfo"
-        android:textSize="10dp"
+        android:text="@string/userinfobutton"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <Button
@@ -73,8 +73,8 @@
         android:layout_x="16dp"
         android:layout_y="42dp"
         android:background="#a9a9a9"
-        android:text="LaterList"
-        android:textSize="10dp"
+        android:text="@string/latelist"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -85,7 +85,7 @@
         android:layout_y="72dp"
         android:src="@drawable/ic_launcher" />
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/userinfo1"
         android:layout_width="148dp"
         android:layout_height="35dp"
@@ -93,9 +93,9 @@
         android:layout_y="2dp"
         android:background="#000000"
         android:ems="10"
-        android:text="        userinfo  text"
+        android:text="@string/userinfotext"
         android:textColor="#ffffff"
-        android:textSize="10dp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
 </AbsoluteLayout>

@@ -12,13 +12,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/typename"
         android:layout_marginTop="108dp"
-        android:text="Please enter a new username"
+        android:text="@string/Please enter a new username"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/typename"
+        android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

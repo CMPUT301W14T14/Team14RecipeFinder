@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-
-    <EditText
-        android:id="@+id/tpecontent"
-        android:layout_width="256dp"
-        android:layout_height="284dp"
-        android:layout_x="32dp"
-        android:layout_y="26dp"
-        android:ems="10"
-        android:scrollbars="vertical"
-        android:background="#d3d3d3"
-        android:text="type in the tpic or comment or reply contents" />
 
     <Button
         android:id="@+id/attach"
         android:layout_width="223dp"
         android:layout_height="wrap_content"
-        android:layout_x="52dp"
-        android:layout_y="324dp"
+        android:layout_below="@+id/tpecontent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
         android:background="#000000"
-        android:text="attach picture"
+        android:text="@string/attach picture"
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
-</AbsoluteLayout>
+    <EditText
+        android:id="@+id/tpecontent"
+        android:layout_width="256dp"
+        android:layout_height="284dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="#d3d3d3"
+        android:ems="10"
+        android:scrollbars="vertical"
+        android:text="@string/type in the tpic or comment or reply contents"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/topictitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tpecontent"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/tpecontent"
+        android:layout_marginTop="26dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

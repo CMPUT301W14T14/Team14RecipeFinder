@@ -24,26 +24,26 @@
         android:layout_x="178dp"
         android:layout_y="388dp"
         android:background="#a9a9a9"
-        android:text="go back"
+        android:text="@string/go back"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/sort"
+        android:id="@+id/sort3"
         android:layout_width="94dp"
         android:layout_height="wrap_content"
         android:layout_x="41dp"
         android:layout_y="388dp"
         android:background="#a9a9a9"
-        android:text="sort"
+        android:text="@string/sort"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/pagename"
-        android:layout_width="230dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="42dp"
         android:layout_y="15dp"
-        android:text="       viewed history"
+        android:text="@string/viewed history"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 

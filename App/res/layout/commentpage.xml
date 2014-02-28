@@ -25,7 +25,7 @@
         android:layout_y="139dp"
         android:background="#d3d3d3"
         android:scrollbars="vertical"
-        android:text="       comment or topic         contents"
+        android:text="@string/topiccontenttext"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -35,7 +35,7 @@
         android:layout_x="31dp"
         android:layout_y="406dp"
         android:background="#a9a9a9"
-        android:text="edit"
+        android:text="@string/edit"
         android:textStyle="bold" />
 
     <Button
@@ -45,7 +45,7 @@
         android:layout_x="113dp"
         android:layout_y="407dp"
         android:background="#d3d3d3"
-        android:text="like it"
+        android:text="@string/like"
         android:textStyle="bold" />
 
     <Button
@@ -55,7 +55,7 @@
         android:layout_x="196dp"
         android:layout_y="407dp"
         android:background="#a9a9a9"
-        android:text="reply"
+        android:text="@string/reply"
         android:textStyle="bold" />
 
     <Button
@@ -65,8 +65,8 @@
         android:layout_x="32dp"
         android:layout_y="8dp"
         android:background="#a9a9a9"
-        android:text="sort"
-        android:textSize="10dp"
+        android:text="@string/sort"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <Button
@@ -76,8 +76,8 @@
         android:layout_x="33dp"
         android:layout_y="32dp"
         android:background="#a9a9a9"
-        android:text="read later"
-        android:textSize="10dp"
+        android:text="@string/readlater"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <Button
@@ -87,11 +87,11 @@
         android:layout_x="187dp"
         android:layout_y="33dp"
         android:background="#a9a9a9"
-        android:text="userinfo"
-        android:textSize="10dp"
+        android:text="@string/userinfobutton"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/userinfo2"
         android:layout_width="102dp"
         android:layout_height="26dp"
@@ -99,9 +99,9 @@
         android:layout_y="5dp"
         android:background="#000000"
         android:ems="10"
-        android:text="      userinfo  text"
+        android:text="@string/userinfotext"
         android:textColor="#ffffff"
-        android:textSize="10dp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <TextView
@@ -111,10 +111,10 @@
         android:layout_x="33dp"
         android:layout_y="237dp"
         android:background="#000000"
-        android:text="author/ publish date/ publish location"
+        android:text="@string/authorinfo"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffff"
-        android:textSize="12dp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <ImageView
