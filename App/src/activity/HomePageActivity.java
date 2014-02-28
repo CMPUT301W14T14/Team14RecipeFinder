@@ -6,11 +6,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class HomePageActivity extends Activity {
 
 	private Button sort = null;
-	private Button laterlist = null;
+	private Button laterList = null;
+	private Button userInfo = null;
+	private Button createNew = null;
+	private ListView greatTopic = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

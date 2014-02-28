@@ -11,32 +11,32 @@ import android.widget.TextView;
 
 public class UserInfoPage extends Activity {
 	
-	private TextView username = null;
-	private Button logout = null;
+	private TextView userName = null;
+	private Button logOut = null;
 	private Button back = null;
 	private Button favorite = null;
-	private Button viewedtopic = null;
-	private Button resetname = null;
+	private Button viewedTopic = null;
+	private Button resetName = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userinfopage);
-		username = (TextView)findViewById(R.id.username);
-		logout = (Button)findViewById(R.id.logout);
+		userName = (TextView)findViewById(R.id.username);
+		logOut = (Button)findViewById(R.id.logout);
 		back = (Button)findViewById(R.id.userinfoBack);
 		favorite = (Button)findViewById(R.id.favourite);
-		viewedtopic = (Button)findViewById(R.id.historytopic);
-		resetname = (Button)findViewById(R.id.setname);
+		viewedTopic = (Button)findViewById(R.id.historytopic);
+		resetName = (Button)findViewById(R.id.setname);
 	}
 	
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		logout.setOnClickListener(listener);
+		logOut.setOnClickListener(listener);
 		favorite.setOnClickListener(listener);
-		viewedtopic.setOnClickListener(listener);
-		resetname.setOnClickListener(listener);
+		viewedTopic.setOnClickListener(listener);
+		resetName.setOnClickListener(listener);
 		back.setOnClickListener(listener);
 	}
 
