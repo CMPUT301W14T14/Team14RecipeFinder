@@ -9,5 +9,6 @@
     <string name="typeUserName_ins">Enter your user name here</string>
     <string name="defaultCommentText">&quot;Default Text&quot;</string>
     <string name="defaultUserName_timePosted">Default username &amp;&amp; time posted</string>
+    <string name="title_activity_home_page">HomePageActivity</string>
 
 </resources>

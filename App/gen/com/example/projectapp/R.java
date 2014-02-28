@@ -67,19 +67,21 @@ public final class R {
         public static final int username=0x7f08001e;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int commentpage=0x7f030001;
-        public static final int history=0x7f030002;
-        public static final int publish=0x7f030003;
-        public static final int resetusername=0x7f030004;
-        public static final int single_comment_layout=0x7f030005;
-        public static final int sortoption=0x7f030006;
-        public static final int topicpage=0x7f030007;
-        public static final int userinfopage=0x7f030008;
-        public static final int welcome_page=0x7f030009;
+        public static final int activity_home_page=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int commentpage=0x7f030002;
+        public static final int history=0x7f030003;
+        public static final int publish=0x7f030004;
+        public static final int resetusername=0x7f030005;
+        public static final int single_comment_layout=0x7f030006;
+        public static final int sortoption=0x7f030007;
+        public static final int topicpage=0x7f030008;
+        public static final int userinfopage=0x7f030009;
+        public static final int welcome_page=0x7f03000a;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int home_page=0x7f070000;
+        public static final int main=0x7f070001;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -88,6 +90,7 @@ public final class R {
         public static final int defaultUserName_timePosted=0x7f050007;
         public static final int hello_world=0x7f050002;
         public static final int login_ins=0x7f050003;
+        public static final int title_activity_home_page=0x7f050008;
         public static final int typeUserName_ins=0x7f050005;
         public static final int userName_ins=0x7f050004;
     }

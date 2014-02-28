@@ -7,6 +7,7 @@ import com.example.projectapp.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,7 +34,6 @@ public class LoginViewActivity extends Activity{
 	@Override
 	protected void onResume(){
 		super.onResume();
-		loginButton.setOnClickListener(new LoginClick());
 	}
 
 
@@ -46,14 +46,22 @@ public class LoginViewActivity extends Activity{
 		return true;
 	}
 	
-	class LoginClick implements OnClickListener{
+	private View.OnClickListener listener = new View.OnClickListener(){
 
 		@Override
-		public void onClick(View v){
-			String inputUserName=userNameInput.getText().toString();
-			//Login / Change Activity
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Button button = (Button)v;
+			switch(button.getId()){
+			case R.id.login_button:
+				String userName = userNameInput.getText().toString();
+				// Go to sever to check username.
+				// Skip chek whether it resist
+				Intent intent = new Intent();
+				
+			}
 		}
 		
-	}
+	};
 
 }
