@@ -1,5 +1,6 @@
-package model;
+package controller;
 
+import model.Comment;
 import android.location.Location;
 
 
