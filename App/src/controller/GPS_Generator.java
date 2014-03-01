@@ -21,7 +21,7 @@ public class GPS_Generator{
 					System.out.println("Location Changed");
 				}
 				else{
-					System.out.println("Error: can not get location.");
+					System.out.println("Error: can not get the location.");
 				}
 			}
 

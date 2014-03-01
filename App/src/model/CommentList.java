@@ -67,16 +67,23 @@ public class CommentList {
 		
 	}
 	*/
+	
+	//implemented SubClasses:
 	private class LocationComparator implements Comparator<Comment>{
-        //private Location center=null;
+        private Location center=null;
         
 		@Override
-		public int compare(Comment lhs,Comment rhs){
-			return 0;
+		public int compare(Comment a,Comment b){
+			if(a.getLocation().distanceTo(this.center)<=b.getLocation().distanceTo(center)){
+				return -1;
+			}
+			else{
+				return 1;
+			}
 		}
 		
 		public void setCenterLocation(Location location){
-			//this.center=location;
+			this.center=location;
 		}
 	}
 }
