@@ -12,11 +12,11 @@
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_user_info_page">UserInfoPage</string>
     <string name="attachpicture">attach picture</string>
-    <string name="typeinthecontents">type in the tpic or comment or reply contents</string> 
+    <string name="typeinthecontents">type in the tpic or comment or reply contents</string>
     <string name="enternewusername">Please enter a new username</string>
-    <string name="goback">go back</string> 
-    <string name="sort">sort</string> 
-    <string name="viewedhistory">viewed history</string> 
+    <string name="goback">go back</string>
+    <string name="sort">sort</string>
+    <string name="viewedhistory">viewed history</string>
     <string name="latelist">late list</string>
     <string name="userinfotext">userinfomation</string>
     <string name="userinfobutton">userinfo</string>
@@ -36,4 +36,6 @@
     <string name="sortbyotherlocation">sort by other location</string>
     <string name="sortbypicture">sort by picture</string>
     <string name="sortbymylocation">sort by my location</string>
+    <string name="title_activity_sort_option">SortOptionActivity</string>
+
 </resources>

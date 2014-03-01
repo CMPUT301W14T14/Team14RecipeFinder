@@ -7,11 +7,11 @@
     <uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="18" />
-    
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
-	<uses-permission android:name="android.permission.CAMERA"/>
-	<uses-permission android:name="android.permission.WRITE_EXTENRAL_STORGE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTENRAL_STORGE" />
 
     <application
         android:allowBackup="true"
@@ -34,6 +34,10 @@
         <activity
             android:name="activity.UserInfoPage"
             android:label="@string/title_activity_user_info_page" >
+        </activity>
+        <activity
+            android:name="com.example.projectapp.SortOptionActivity"
+            android:label="@string/title_activity_sort_option" >
         </activity>
     </application>
 
