@@ -1,11 +1,14 @@
 package controller;
 
+
 import java.util.ArrayList;
 
 import model.Comment;
 import model.CommentList;
 
 import com.google.gson.Gson;
+
+import customed_gson.Gson_Constructor;
 
 import adapter.ListViewAdapter;
 import android.content.Context;
@@ -19,7 +22,7 @@ public class TopLevelViewController{
 	private Context context=null;
 	
 	public TopLevelViewController(Context context){
-		this.gson=new Gson();
+		this.gson=new Gson_Constructor().getGson();
 		this.context=context;
 	}
 	

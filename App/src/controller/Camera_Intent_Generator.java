@@ -21,3 +21,4 @@ public class Camera_Intent_Generator {
 		return intent;
 	}
 }
+// Adapted from https://github.com/baoliangwang/CameraDemo/blob/master/src/ualberta/cmput301/camerademo/CameraDemoActivity.java

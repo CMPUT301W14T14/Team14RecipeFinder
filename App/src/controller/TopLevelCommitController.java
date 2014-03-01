@@ -1,13 +1,16 @@
 package controller;
 
+
 import java.util.ArrayList;
 
 import model.Comment;
 import model.CommentList;
+import customed_gson.Gson_Constructor;
 
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
+
 
 
 public class TopLevelCommitController{
@@ -17,7 +20,7 @@ public class TopLevelCommitController{
 	private SharedPreferences db=null;
 	
 	public TopLevelCommitController(SharedPreferences db){
-		this.gson=new Gson();
+		this.gson=new Gson_Constructor().getGson();
 		this.db=db;
 		this.currentList=this.gson.fromJson(this.db.getString(rootKey,this.gson.toJson(new CommentList(new ArrayList<Comment>()))),CommentList.class);
 	}
