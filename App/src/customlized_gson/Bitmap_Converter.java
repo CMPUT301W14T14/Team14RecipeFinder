@@ -1,4 +1,4 @@
-package customed_gson;
+package customlized_gson;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;

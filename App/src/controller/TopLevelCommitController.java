@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import model.Comment;
 import model.CommentList;
-import customed_gson.Gson_Constructor;
+import customlized_gson.Gson_Constructor;
 
 import android.content.SharedPreferences;
 

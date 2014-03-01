@@ -8,7 +8,7 @@ import model.CommentList;
 
 import com.google.gson.Gson;
 
-import customed_gson.Gson_Constructor;
+import customlized_gson.Gson_Constructor;
 
 import adapter.ListViewAdapter;
 import android.content.Context;

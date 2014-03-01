@@ -1,4 +1,4 @@
-package customed_gson;
+package customlized_gson;
 
 import android.graphics.Bitmap;
 
