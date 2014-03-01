@@ -51,7 +51,7 @@ public class CommentList {
 		return (Comment[]) this.comments.toArray();
 	}
 	
-	//Unimplemented SubClasses:
+	//Comparators:
 	
 	private class TimeComparator implements Comparator<Comment>{
 
