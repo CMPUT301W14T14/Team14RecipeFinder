@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -10,8 +11,8 @@ import android.location.Location;
 public class CommentList {
 	//Attributes:
 	private ArrayList<Comment> comments=null;
-	//private TimeComparator timeCmp=new TimeComparator();
-	//private PictureComparator picCmp=new PictureComparator();
+	private TimeComparator timeCmp=new TimeComparator();
+	private PictureComparator picCmp=new PictureComparator();
 	private LocationComparator locCmp=new LocationComparator();
 	
 	//Constructor:
@@ -30,16 +31,19 @@ public class CommentList {
 	
 	//Unimplemented Methods:
 	public Comment[] getArraySortedByTime(){    //Need change!
-		return null;
+		Collections.sort(this.comments,this.timeCmp);
+		return (Comment[]) this.comments.toArray();
 	}
 	
 	public Comment[] getArraySortedByPicture(){    //Need change!
-		return null;
+		Collections.sort(this.comments,this.picCmp);
+		return (Comment[]) this.comments.toArray();
 	}
 	
 	public Comment[] getArraySortedByLocation(Location location){    //Need change!
 		this.locCmp.setCenterLocation(location);
-		return null;
+		Collections.sort(this.comments,this.locCmp);
+		return (Comment[]) this.comments.toArray();
 	}
 	
 	//Method uses for testing temperately:
@@ -48,12 +52,17 @@ public class CommentList {
 	}
 	
 	//Unimplemented SubClasses:
-	/*
+	
 	private class TimeComparator implements Comparator<Comment>{
 
 		@Override
-		public int compare(Comment arg0,Comment arg1){
-			return 0;
+		public int compare(Comment a,Comment b){
+			if(a.getTimePosted()>=b.getTimePosted()){
+				return -1;
+			}
+			else{
+				return 1;
+			}
 		}
 		
 	}
@@ -61,12 +70,18 @@ public class CommentList {
 	private class PictureComparator implements Comparator<Comment>{
 
 		@Override
-		public int compare(Comment lhs,Comment rhs){
+		public int compare(Comment a,Comment b){
+			if((a.getPicture()!=null)&&(b.getPicture()==null)){
+				return -1;
+			}
+			else if((a.getPicture()==null)&&(b.getPicture()!=null)){
+				return 1;
+			}
 			return 0;
 		}
 		
 	}
-	*/
+	
 	
 	//implemented SubClasses:
 	private class LocationComparator implements Comparator<Comment>{
