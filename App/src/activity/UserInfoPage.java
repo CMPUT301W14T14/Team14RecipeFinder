@@ -4,6 +4,7 @@ import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -74,7 +75,9 @@ public class UserInfoPage extends Activity {
 				break;
 			case R.id.userinfoBack:
 				// back button click
-				
+				Intent intent = new Intent();
+				intent.setClass(UserInfoPage.this, HomePageActivity.class);
+				UserInfoPage.this.startActivity(intent);
 				break;
 			}
 		}
