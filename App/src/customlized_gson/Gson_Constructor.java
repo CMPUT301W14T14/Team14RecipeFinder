@@ -2,6 +2,8 @@ package customlized_gson;
 
 import android.graphics.Bitmap;
 
+//Get from https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/BitmapJsonConverter.java
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
