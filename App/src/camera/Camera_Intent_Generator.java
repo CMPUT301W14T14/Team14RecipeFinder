@@ -1,4 +1,4 @@
-package controller;
+package camera;
 
 import java.io.File;
 

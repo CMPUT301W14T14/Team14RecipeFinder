@@ -1,4 +1,4 @@
-package controller;
+package gps;
 
 import android.location.Location;
 import android.location.LocationListener;
@@ -6,12 +6,12 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 
-public class GPS_Generator{
+public class Location_Generator{
 	private LocationManager lm = null;
 	private Location currentLocation=null;
 	private LocationListener locationListener=null;
 	
-	public GPS_Generator(LocationManager lm){
+	public Location_Generator(LocationManager lm){
 		this.lm=lm;
 		this.locationListener=new LocationListener(){
 
