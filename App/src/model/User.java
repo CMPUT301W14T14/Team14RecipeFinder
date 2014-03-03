@@ -7,7 +7,7 @@ public class User {
 	private Long id=null;
 	private String userName=null;
 	private CommentList favourites=null;
-	private CommentList indcatedComments=null;
+	private CommentList indicatedComments=null;
 	
 	//Constructors
 	public User(Long id,String userName){
@@ -33,7 +33,7 @@ public class User {
 	}
 	
 	public CommentList getIndicatedComments(){
-		return this.indcatedComments;
+		return this.indicatedComments;
 	}
 	
 	//Methods:
@@ -42,6 +42,6 @@ public class User {
 	}
 	
 	public void addIndicatedComment(Comment comment){
-		this.indcatedComments.addComment(comment);
+		this.indicatedComments.addComment(comment);
 	}
 }
