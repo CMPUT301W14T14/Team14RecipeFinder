@@ -50,7 +50,7 @@ public class ListViewAdapter extends BaseAdapter{
 		TextView userNameAndTimePosted=(TextView)v.findViewById(R.id.user_name_and_time_posted);
 		Comment c=this.comments[position];
 		commentText.setText(c.getText());
-		userNameAndTimePosted.setText("Posted by: "+c.getUserName()+"At: "+(new Date(c.getTimePosted())).toString());
+		userNameAndTimePosted.setText("Posted by: "+c.getUserId()+"At: "+(new Date(c.getTimePosted())).toString());
 		return v;
 	}
 	

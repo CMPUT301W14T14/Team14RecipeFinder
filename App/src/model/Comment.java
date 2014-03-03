@@ -65,7 +65,7 @@ public class Comment {
 		return this.timePosted;
 	}
 	//For userId
-	public Long getUserName(){
+	public Long getUserId(){
 		return this.userId;
 	}
 	
