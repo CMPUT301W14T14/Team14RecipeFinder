@@ -22,11 +22,19 @@ public class CommentList {
 	
 	//Methods:
 	public void addComment(Comment comment){
+		comment.setParentList(this);
 		this.comments.add(comment);
 	}
 	
-	public void setComment(Comment before,Comment after){
-		this.comments.set(this.comments.indexOf(before),after);
+	public void updateComment(Comment updatedComment){
+		int index=0;
+		for(Comment c : this.comments){
+			if((c.getUserId().equals(updatedComment.getUserId()))&&(c.getTimePosted().equals(updatedComment.getTimePosted()))){
+				this.comments.set(index, updatedComment);
+				return;
+			}
+			index++;
+		}
 	}
 	
 	public Comment getSpecfic(Long userId,Long timePosted){

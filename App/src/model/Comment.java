@@ -15,6 +15,7 @@ public class Comment {
 	private Long timePosted=null;
 	private Long userId=null;
 	private ChildCommentList childReply=null;
+	private CommentList parentList=null;
 	
 	//Constructors:
 	public Comment(String text,Location location,Long userId){
@@ -76,6 +77,15 @@ public class Comment {
 	
 	public void setReplies(ChildCommentList childReply){
 		this.childReply=childReply;
+	}
+	
+	//For parent
+	public void setParentList(CommentList parentList){
+		this.parentList=parentList;
+	}
+	
+	public CommentList getParentList(){
+		return this.parentList;
 	}
 	
 	//Methods:
