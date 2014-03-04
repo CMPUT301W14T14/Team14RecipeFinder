@@ -36,8 +36,14 @@ public class SubLevelController{
 	}
 	
 	private CommentList ReverseLinkOperation(Comment c,CommentList root,CommentPath path){
+		ChildCommentList current=null;
+		Comment tmp=null;
 		for(int i=0;i<path.getDepth()-1;i++){
-			c=c.getParent();
+			tmp=c.getParent();
+			current=tmp.getReplies();
+			current.updateComment(c);
+			tmp.setReplies(current);
+			c=tmp;
 		}
 		root.updateComment(c);
 		return root;
