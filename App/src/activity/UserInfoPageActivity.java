@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class UserInfoPage extends Activity {
+public class UserInfoPageActivity extends Activity {
 	
 	private TextView userName = null;
 	private Button logOut = null;
@@ -76,8 +76,8 @@ public class UserInfoPage extends Activity {
 			case R.id.userinfoBack:
 				// back button click
 				Intent intent = new Intent();
-				intent.setClass(UserInfoPage.this, HomePageActivity.class);
-				UserInfoPage.this.startActivity(intent);
+				intent.setClass(UserInfoPageActivity.this, HomePageActivity.class);
+				UserInfoPageActivity.this.startActivity(intent);
 				break;
 			}
 		}
