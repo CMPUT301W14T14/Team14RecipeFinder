@@ -1,10 +1,15 @@
 package network_io;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -56,5 +61,32 @@ public class IoStreamHandler { //This class is Not done
 			}
 		};
 		thread.start();
+	}
+	
+	public CommentList loadRoot(){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		String jsonString="";
+		HttpClient client = new DefaultHttpClient();
+		HttpGet request = new HttpGet(SERVER_URL+index);
+		try {
+			HttpResponse response=client.execute(request);
+			HttpEntity entity = response.getEntity();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+			String output = reader.readLine();
+			while (output != null){
+				jsonString+=output;
+				output=reader.readLine();
+			}
+		} 
+		catch (ClientProtocolException e){
+			e.printStackTrace();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		CommentList updatedRoot=gson.fromJson(jsonString,CommentList.class);
+		return updatedRoot;
 	}
 }
