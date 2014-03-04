@@ -22,4 +22,9 @@ public class ChildCommentList extends CommentList{
 	public void setParent(Comment comment){
 		this.parent=comment;
 	}
+	
+	public void addComment(Comment comment){
+		comment.setParent(this.parent);
+		super.addComment(comment);
+	}
 }

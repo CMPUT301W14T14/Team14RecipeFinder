@@ -22,7 +22,6 @@ public class CommentList {
 	
 	//Methods:
 	public void addComment(Comment comment){
-		comment.setParentList(this);
 		this.comments.add(comment);
 	}
 	

@@ -9,7 +9,7 @@ import network_io.IoStreamHandler;
 import adapter.ListViewAdapter;
 import android.content.Context;
 
-//Don't forget add Commit Edit!
+
 public class SubLevelController{
 	private IoStreamHandler io=null;
 	private Context context=null;
@@ -19,7 +19,7 @@ public class SubLevelController{
 		this.context=context;
 	}
 	
-	private Comment pathHandleOperation(CommentList root,CommentPath path){
+	public Comment pathHandleOperation(CommentList root,CommentPath path){
 		CommentList current=root;
 		Comment c=null;
 		for(MapNode mn : path.getMap()){
@@ -35,14 +35,12 @@ public class SubLevelController{
 		return c;
 	}
 	
-	private CommentList ReverseLinkOperation(Comment c,CommentPath path){
-		ChildCommentList current=null;
+	private CommentList ReverseLinkOperation(Comment c,CommentList root,CommentPath path){
 		for(int i=0;i<path.getDepth()-1;i++){
-			current=(ChildCommentList)c.getParentList();
-			c=current.getParent();
+			c=c.getParent();
 		}
-		return c.getParentList();
-		
+		root.updateComment(c);
+		return root;
 	}
 	
 	public ListViewAdapter getUpdatedAdapter(CommentPath path){
@@ -52,16 +50,18 @@ public class SubLevelController{
 	}
 	
 	public void commitReply(Comment reply,CommentPath path){
-		Comment c=pathHandleOperation(this.io.loadRoot(),path);
+		CommentList root=this.io.loadRoot();
+		Comment c=pathHandleOperation(root,path);
 		ChildCommentList current=c.getReplies();
 		current.addComment(reply);
 		c.setReplies(current);
-		CommentList resultRoot=ReverseLinkOperation(c,path);
+		CommentList resultRoot=ReverseLinkOperation(c,root,path);
 		this.io.commitUpdate(resultRoot);
 	}
 	
 	public void commitEdit(Comment after,CommentPath path){
-		CommentList resultRoot=ReverseLinkOperation(after,path);
+		CommentList root=this.io.loadRoot();
+		CommentList resultRoot=ReverseLinkOperation(after,root,path);
 		this.io.commitUpdate(resultRoot);
 	}
 }

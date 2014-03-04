@@ -15,7 +15,7 @@ public class Comment {
 	private Long timePosted=null;
 	private Long userId=null;
 	private ChildCommentList childReply=null;
-	private CommentList parentList=null;
+	private Comment parent=null;
 	
 	//Constructors:
 	public Comment(String text,Location location,Long userId){
@@ -80,12 +80,12 @@ public class Comment {
 	}
 	
 	//For parent
-	public void setParentList(CommentList parentList){
-		this.parentList=parentList;
+	public void setParent(Comment parent){
+		this.parent=parent;
 	}
 	
-	public CommentList getParentList(){
-		return this.parentList;
+	public Comment getParent(){
+		return this.parent;
 	}
 	
 	//Methods:
