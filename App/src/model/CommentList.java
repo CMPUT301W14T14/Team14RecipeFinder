@@ -29,6 +29,15 @@ public class CommentList {
 		this.comments.set(this.comments.indexOf(before),after);
 	}
 	
+	public Comment getSpecfic(Long userId,Long timePosted){
+		for(Comment c : this.comments){
+			if((c.getUserId().equals(userId))&&(c.getTimePosted().equals(timePosted))){
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	//Unimplemented Methods:
 	public Comment[] getArraySortedByTime(){    //Need change!
 		Collections.sort(this.comments,this.timeCmp);

@@ -12,6 +12,7 @@ public class TopLevelController{
 	private Context context=null;
 	
 	public TopLevelController(Context context){
+		this.io=new IoStreamHandler();
 		this.context=context;
 	}
 	
