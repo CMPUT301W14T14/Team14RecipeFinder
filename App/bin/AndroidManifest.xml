@@ -23,6 +23,7 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,11 +32,19 @@
             android:label="@string/title_activity_home_page" >
         </activity>
         <activity
-            android:name="activity.UserInfoPage"
+            android:name="activity.UserInfoPageActivity"
             android:label="@string/title_activity_user_info_page" >
         </activity>
         <activity
             android:name="activity.SortOptionActivity"
+            android:label="@string/title_activity_sort_option" >
+        </activity>
+        <activity
+            android:name="activity.CommentPageActivity"
+            android:label="@string/title_activity_comment_page" >
+        </activity>
+        <activity
+            android:name="activity.SortOption"
             android:label="@string/title_activity_sort_option" >
         </activity>
     </application>

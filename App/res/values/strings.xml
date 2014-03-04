@@ -37,5 +37,6 @@
     <string name="sortbypicture">sort by picture</string>
     <string name="sortbymylocation">sort by my location</string>
     <string name="title_activity_sort_option">SortOptionActivity</string>
+    <string name="title_activity_comment_page">CommentPageActivity</string>
 
 </resources>

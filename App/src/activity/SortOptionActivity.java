@@ -5,6 +5,7 @@ import com.example.projectapp.R;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 
 public class SortOptionActivity extends Activity {
@@ -22,6 +23,20 @@ public class SortOptionActivity extends Activity {
 		sortByAnotherLocation=(Button)findViewById(R.id.sortbyotherlocation);
 		sortByPic=(Button)findViewById(R.id.sortbypicture);
 	}
+	
+	
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		sortByLocation.setOnClickListener(listener);
+		generalSort.setOnClickListener(listener);
+		sortByAnotherLocation.setOnClickListener(listener);
+		sortByPic.setOnClickListener(listener);
+	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
@@ -30,4 +45,30 @@ public class SortOptionActivity extends Activity {
 		return true;
 	}
 
+	private View.OnClickListener listener = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Button button = (Button)v;
+			switch (button.getId()){
+			case R.id.sortbylocation:
+				// sort by location Button click
+				
+				break;
+			case R.id.generalsort:
+				//sort by score Button click
+				
+				break;
+			case R.id.sortbyotherlocation:
+				// sort by other location Button click
+				
+				break;
+			case R.id.sortbypicture:
+				//sort by picture Button click
+				
+				break;
+			}
+		}
+	};
 }
