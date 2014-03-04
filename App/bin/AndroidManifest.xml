@@ -43,6 +43,10 @@
             android:name="activity.CommentPageActivity"
             android:label="@string/title_activity_comment_page" >
         </activity>
+        <activity
+            android:name="activity.SortOption"
+            android:label="@string/title_activity_sort_option" >
+        </activity>
     </application>
 
 </manifest>
