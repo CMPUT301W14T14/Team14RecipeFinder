@@ -7,7 +7,6 @@ import adapter.ListViewAdapter;
 import android.content.Context;
 
 import model.CommentMap;
-import model.UserMap;
 
 
 public class AdapterConstructor{
@@ -17,7 +16,7 @@ public class AdapterConstructor{
 		this.context=context;
 	}
 	
-	public ListViewAdapter getAdapterNotSorted(CommentMap updatedCommentMap,UserMap updatedUserMap){
-		return new ListViewAdapter(this.context,R.layout.single_comment_layout,updatedCommentMap.getCurrentList(),updatedUserMap);
+	public ListViewAdapter getAdapterNotSorted(CommentMap updatedCommentMap){
+		return new ListViewAdapter(this.context,R.layout.single_comment_layout,updatedCommentMap.getCurrentList());
 	}
 }

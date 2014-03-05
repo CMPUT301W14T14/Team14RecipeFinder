@@ -14,27 +14,27 @@ public class Comment {
 	private Location location=null;
 	private Bitmap picture=null;
 	private Long timePosted=null;
-	private String userId=null;
+	private String userName=null;
 	private String parentId=null;
 	private ArrayList<String> replyIdSet=null;
 	
 	//Constructors:
-	public Comment(String text,Location location,String userId){
+	public Comment(String text,Location location,String userName){
 		this.text=text;
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
-		this.userId=userId;
-		this.id=this.userId+this.timePosted;
+		this.userName=userName;
+		this.id=this.userName+this.timePosted;
 		this.replyIdSet=new ArrayList<String>();
 	}
 	
-	public Comment(String text,Location location,Bitmap picture,String userId){
+	public Comment(String text,Location location,Bitmap picture,String userName){
 		this.text=text;
 		this.location=location;
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
-		this.userId=userId;
-		this.id=this.userId+this.timePosted;
+		this.userName=userName;
+		this.id=this.userName+this.timePosted;
 		this.replyIdSet=new ArrayList<String>();
 	}
 	
@@ -71,9 +71,9 @@ public class Comment {
 	public Long getTimePosted(){
 		return this.timePosted;
 	}
-	//For userId
-	public String getUserId(){
-		return this.userId;
+	//For userName
+	public String getUserName(){
+		return this.userName;
 	}
 	
 	//For children
