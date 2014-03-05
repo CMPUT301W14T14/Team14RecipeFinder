@@ -85,8 +85,10 @@ public final class R {
         public static final int comment_page=0x7f070000;
         public static final int home_page=0x7f070001;
         public static final int main=0x7f070002;
-        public static final int sort_option=0x7f070003;
-        public static final int user_info_page=0x7f070004;
+        public static final int publish=0x7f070003;
+        public static final int sort_option=0x7f070004;
+        public static final int user_info_page=0x7f070005;
+        public static final int view_history=0x7f070006;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -115,8 +117,10 @@ public final class R {
         public static final int sortscore=0x7f05001f;
         public static final int title_activity_comment_page=0x7f050024;
         public static final int title_activity_home_page=0x7f050008;
+        public static final int title_activity_publish=0x7f050026;
         public static final int title_activity_sort_option=0x7f050023;
         public static final int title_activity_user_info_page=0x7f050009;
+        public static final int title_activity_view_history=0x7f050025;
         public static final int topiccontenttext=0x7f050019;
         public static final int typeUserName_ins=0x7f050005;
         public static final int typeinthecontents=0x7f05000b;

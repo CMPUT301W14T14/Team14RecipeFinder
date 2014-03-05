@@ -4,6 +4,7 @@ import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -64,7 +65,9 @@ public class HomePageActivity extends Activity {
 			switch (button.getId()){
 			case R.id.sort1:
 				//sort button click
-				
+				Intent intent_sort = new Intent();
+				intent_sort.setClass(HomePageActivity.this, SortOptionActivity.class);
+				HomePageActivity.this.startActivity(intent_sort);
 				break;
 			case R.id.LaterList1:
 				//laterlist button click
