@@ -37,20 +37,6 @@ public class Comment {
 		this.id=this.userId+this.timePosted;
 		this.replyIdSet=new ArrayList<String>();
 	}
-	/**
-	 *Use this method with CAUTION!
-	 */
-	
-	public void update(Comment comment){
-		this.text=comment.getText();
-		this.location=comment.getLocation();
-		this.picture=comment.getPicture();
-		this.timePosted=comment.getTimePosted();
-		this.userId=comment.getUserId();
-		this.id=comment.getId();
-		this.parentId=comment.getParentId();
-		this.replyIdSet=comment.getReplies();
-	}
 	
 	//Getters&&Setters:
 	//ForId

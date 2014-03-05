@@ -1,6 +1,7 @@
 package adapter;
 
 import java.util.Date;
+import java.util.List;
 
 import com.example.projectapp.R;
 
@@ -10,48 +11,34 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 // This class is not done.
-public class ListViewAdapter extends BaseAdapter{
-	Context context=null;
-	private Comment[] comments=null;
-	private static LayoutInflater inflater=null;
+public class ListViewAdapter extends ArrayAdapter<Comment>{
+
+	public ListViewAdapter(Context context,int textViewResourceId,List<Comment> objects) {
+		super(context,textViewResourceId,objects);
+	}
 	
-	public ListViewAdapter(Context context,Comment[] comments){
-		this.context=context;
-		this.comments=comments;
-		inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	}
-
-	@Override
-	public int getCount(){
-		return this.comments.length;
-	}
-
-	@Override
-	public Object getItem(int position){
-		return this.comments[position];
-	}
-
-	@Override
-	public long getItemId(int position){
-		return position;
-	}
-
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){
-		View v=convertView;
-		if(v==null){
-			v=inflater.inflate(R.layout.single_comment_layout,null);
+		if (convertView == null) {
+			LayoutInflater inflater = LayoutInflater.from(this.getContext());
+			convertView = inflater.inflate(R.layout.single_comment_layout, null);
 		}
-		TextView commentText=(TextView)v.findViewById(R.id.comment_text);
-		TextView userNameAndTimePosted=(TextView)v.findViewById(R.id.user_name_and_time_posted);
-		Comment c=this.comments[position];
-		commentText.setText(c.getText());
-		userNameAndTimePosted.setText("Posted by: "+c.getUserId()+"At: "+(new Date(c.getTimePosted())).toString());
-		return v;
+		Comment c = this.getItem(position);
+		
+		if(c!=null){
+			ImageView comment_pic=(ImageView)convertView.findViewById(R.id.comment_pic);
+			comment_pic.setImageBitmap(c.getPicture());
+			TextView comment_text=(TextView)convertView.findViewById(R.id.comment_text);
+			comment_text.setText(c.getText());
+			TextView comment_info=(TextView)convertView.findViewById(R.id.user_name_and_time_posted);
+			comment_info.setText("Posted by: "+c.getId()+" At: "+(new Date(c.getTimePosted()).toString()));
+		}
+		return convertView;
 	}
 	
 }

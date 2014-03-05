@@ -53,8 +53,8 @@ public class LoginViewActivity extends Activity{
 			case R.id.login_button:
 				// login button click
 				String userName = userNameInput.getText().toString();
-				// Go to sever to check username.
-				// Skip chek whether it resist
+				// Go to sever to check user name.
+				// Skip check whether it resist
 				Intent intent = new Intent();
 				intent.setClass(LoginViewActivity.this, HomePageActivity.class);
 				LoginViewActivity.this.startActivity(intent);
