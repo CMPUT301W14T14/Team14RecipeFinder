@@ -1,7 +1,10 @@
 package network_io;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -31,15 +34,32 @@ public class UserInfoHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpPut request = new HttpPut(SERVER_URL+"Comment/"+user.getUserName()+"/");
+				HttpPut request = new HttpPut(SERVER_URL+"User/"+user.getUserName()+"/");
 				try {
 					request.setEntity(new StringEntity(gson.toJson(user)));
 				} 
 				catch (UnsupportedEncodingException e) {
 					Log.w(LOG_TAG, "Error during Encoding: " + e.getMessage());
 					e.printStackTrace();
+					return;
+				}
+				
+				HttpResponse response=null;
+				
+				try {
+					response=client.execute(request);
+					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+				} 
+				catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+				catch (IOException e) {
+					Log.w(LOG_TAG, "Error during Update: " + e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		};
+		thread.start();
 	}
 }
