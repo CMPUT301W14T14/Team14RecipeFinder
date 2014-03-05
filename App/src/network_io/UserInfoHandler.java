@@ -107,7 +107,13 @@ public class UserInfoHandler {
 
 					@Override
 					public void run() {
-						uic.setUser(Data.getSource());
+						User user=Data.getSource();
+						if(user!=null){
+							uic.setUser(user);
+						}
+						else{
+							uic.setUser(new User(userName));
+						}
 					}
 					
 				};

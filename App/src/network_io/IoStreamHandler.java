@@ -106,7 +106,9 @@ public class IoStreamHandler {
 				Runnable getComment = new Runnable() {
 					@Override
 					public void run() {
-						cm.updateComment(Data.getSource());
+						if(Data.getSource()!=null){
+							cm.updateComment(Data.getSource());
+						}
 					}
 				};
 				activity.runOnUiThread(getComment);
