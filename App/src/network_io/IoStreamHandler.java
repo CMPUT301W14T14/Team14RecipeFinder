@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+
+import model.Comment;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -14,26 +17,27 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import model.CommentList;
-
+import activity.CommentPageActivity;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import customlized_gson.Gson_Constructor;
 
 //Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
 
-public class IoStreamHandler { //This class is Not done
+//This class is Not done!!!!!!!!!!!!!!!!!!!!
+
+public class IoStreamHandler {
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
-	public static final String index="ROOT_COMMENTS/";
 	
 	private static Gson gson=null;
 	
 	public IoStreamHandler(){}
 	
-	public void commitUpdate(final CommentList root){
+	public void commitUpdateComment(final Comment comment){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -41,9 +45,9 @@ public class IoStreamHandler { //This class is Not done
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpPut request = new HttpPut(SERVER_URL+index);
+				HttpPut request = new HttpPut(SERVER_URL+"Comment/"+comment.getId()+"/");
 				try{
-					request.setEntity(new StringEntity(gson.toJson(root)));
+					request.setEntity(new StringEntity(gson.toJson(comment)));
 				}
 				catch(UnsupportedEncodingException exception){
 					Log.w(LOG_TAG, "Error during Encoding: " + exception.getMessage());
@@ -63,30 +67,49 @@ public class IoStreamHandler { //This class is Not done
 		thread.start();
 	}
 	
-	public CommentList loadRoot(){
+	public void loadSpecificComment(final String commentId,final Comment comment,final CommentPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
-		String jsonString="";
-		HttpClient client = new DefaultHttpClient();
-		HttpGet request = new HttpGet(SERVER_URL+index);
-		try {
-			HttpResponse response=client.execute(request);
-			HttpEntity entity = response.getEntity();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-			String output = reader.readLine();
-			while (output != null){
-				jsonString+=output;
-				output=reader.readLine();
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable getComment = new Runnable() {
+					@Override
+					public void run() {
+						comment.update(Data.getSource());
+					}
+				};
+				
+				activity.runOnUiThread(getComment);
 			}
-		} 
-		catch (ClientProtocolException e){
-			e.printStackTrace();
-		} 
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		CommentList updatedRoot=gson.fromJson(jsonString,CommentList.class);
-		return updatedRoot;
+		};
+		thread.start();
 	}
 }

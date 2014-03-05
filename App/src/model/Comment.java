@@ -9,35 +9,55 @@ import android.location.Location;
 
 public class Comment {
 	//Attributes:
+	private String id=null;
 	private String text=null;
 	private Location location=null;
 	private Bitmap picture=null;
 	private Long timePosted=null;
-	private Long userId=null;
-	private ChildCommentList childReply=null;
-	private Comment parent=null;
+	private String userId=null;
+	private String parentId=null;
+	private ArrayList<String> replyIdSet=null;
 	
 	//Constructors:
-	public Comment(String text,Location location,Long userId){
+	public Comment(String text,Location location,String userId){
 		this.text=text;
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
 		this.userId=userId;
-		this.childReply=new ChildCommentList(new ArrayList<Comment>());
-		this.childReply.setParent(this);
+		this.id=this.userId+this.timePosted;
+		this.replyIdSet=new ArrayList<String>();
 	}
 	
-	public Comment(String text,Location location,Bitmap picture,Long userId){
+	public Comment(String text,Location location,Bitmap picture,String userId){
 		this.text=text;
 		this.location=location;
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
 		this.userId=userId;
-		this.childReply=new ChildCommentList(new ArrayList<Comment>());
-		this.childReply.setParent(this);
+		this.id=this.userId+this.timePosted;
+		this.replyIdSet=new ArrayList<String>();
+	}
+	/**
+	 *Use this method with CAUTION!
+	 */
+	
+	public void update(Comment comment){
+		this.text=comment.getText();
+		this.location=comment.getLocation();
+		this.picture=comment.getPicture();
+		this.timePosted=comment.getTimePosted();
+		this.userId=comment.getUserId();
+		this.id=comment.getId();
+		this.parentId=comment.getParentId();
+		this.replyIdSet=comment.getReplies();
 	}
 	
 	//Getters&&Setters:
+	//ForId
+	public String getId(){
+		return this.id;
+	}
+	
 	//For Text
 	public String getText(){
 		return this.text;
@@ -66,30 +86,35 @@ public class Comment {
 		return this.timePosted;
 	}
 	//For userId
-	public Long getUserId(){
+	public String getUserId(){
 		return this.userId;
 	}
 	
 	//For children
-	public ChildCommentList getReplies(){
-		return this.childReply;
+	public ArrayList<String> getReplies(){
+		return this.replyIdSet;
 	}
 	
-	public void setReplies(ChildCommentList childReply){
-		this.childReply=childReply;
+	//For parentId
+	public String getParentId(){
+		return this.parentId;
 	}
 	
-	//For parent
 	public void setParent(Comment parent){
-		this.parent=parent;
+		this.parentId=parent.getId();
 	}
 	
-	public Comment getParent(){
-		return this.parent;
+	public void setParent(String parentId){
+		this.parentId=parentId;
 	}
 	
 	//Methods:
+	
 	public void addReply(Comment comment){
-		this.childReply.addComment(comment);
+		this.replyIdSet.add(comment.getId());
+	}
+	
+	public void addReply(String replyId){
+		this.replyIdSet.add(replyId);
 	}
 }

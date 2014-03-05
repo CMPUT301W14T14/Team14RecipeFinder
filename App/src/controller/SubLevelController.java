@@ -1,10 +1,6 @@
 package controller;
 
-import model.ChildCommentList;
 import model.Comment;
-import model.CommentList;
-import model.CommentPath;
-import model.MapNode;
 import network_io.IoStreamHandler;
 import adapter.ListViewAdapter;
 import android.content.Context;
@@ -35,7 +31,7 @@ public class SubLevelController{
 		return c;
 	}
 	
-	private CommentList ReverseLinkOperation(Comment c,CommentList root,CommentPath path){
+	private CommentList reverseLinkOperation(Comment c,CommentList root,CommentPath path){
 		ChildCommentList current=null;
 		Comment tmp=null;
 		for(int i=0;i<path.getDepth()-1;i++){
@@ -58,16 +54,17 @@ public class SubLevelController{
 	public void commitReply(Comment reply,CommentPath path){
 		CommentList root=this.io.loadRoot();
 		Comment c=pathHandleOperation(root,path);
-		ChildCommentList current=c.getReplies();
-		current.addComment(reply);
-		c.setReplies(current);
-		CommentList resultRoot=ReverseLinkOperation(c,root,path);
+		//ChildCommentList current=c.getReplies();
+		//current.addComment(reply);
+		//c.setReplies(current);
+		c.addReply(reply);
+		CommentList resultRoot=reverseLinkOperation(c,root,path);
 		this.io.commitUpdate(resultRoot);
 	}
 	
 	public void commitEdit(Comment after,CommentPath path){
 		CommentList root=this.io.loadRoot();
-		CommentList resultRoot=ReverseLinkOperation(after,root,path);
+		CommentList resultRoot=reverseLinkOperation(after,root,path);
 		this.io.commitUpdate(resultRoot);
 	}
 }
