@@ -38,5 +38,7 @@
     <string name="sortbymylocation">sort by my location</string>
     <string name="title_activity_sort_option">SortOptionActivity</string>
     <string name="title_activity_comment_page">CommentPageActivity</string>
+    <string name="title_activity_view_history">ViewHistoryActivity</string>
+    <string name="title_activity_publish">PublishActivity</string>
 
 </resources>
