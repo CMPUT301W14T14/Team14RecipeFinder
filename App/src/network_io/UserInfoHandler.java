@@ -1,6 +1,15 @@
 package network_io;
 
+import java.io.UnsupportedEncodingException;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import model.User;
+
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -21,7 +30,15 @@ public class UserInfoHandler {
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
-				
+				HttpClient client=new DefaultHttpClient();
+				HttpPut request = new HttpPut(SERVER_URL+"Comment/"+user.getUserName()+"/");
+				try {
+					request.setEntity(new StringEntity(gson.toJson(user)));
+				} 
+				catch (UnsupportedEncodingException e) {
+					Log.w(LOG_TAG, "Error during Encoding: " + e.getMessage());
+					e.printStackTrace();
+				}
 			}
 		};
 	}
