@@ -19,7 +19,6 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import activity.CommentPageActivity;
 import activity.HomePageActivity;
 import android.util.Log;
 
@@ -79,7 +78,7 @@ public class IoStreamHandler {
 	 * get a comment with a specific id from the web server
 	 */
 	
-	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
+	public void loadSpecificComment(final String commentId,final CommentMap cm,final HomePageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -138,7 +137,7 @@ public class IoStreamHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpPut request = new HttpPut(SERVER_URL+"ArrayList<String>/topLevelId/");
+				HttpPut request = new HttpPut(SERVER_URL+"ArrayList/topLevelId/");
 				try {
 					request.setEntity(new StringEntity(gson.toJson(topLevelIdSet)));
 				} 
@@ -174,7 +173,7 @@ public class IoStreamHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"ArrayList<String>/topLevelId/");
+				HttpGet request = new HttpGet(SERVER_URL+"ArrayList/topLevelId/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try {
@@ -202,7 +201,10 @@ public class IoStreamHandler {
 					@Override
 					public void run() {
 						topLevelIdSet.clear();
-						topLevelIdSet.addAll(Data.getSource());
+						ArrayList<String> idSet=Data.getSource();
+						if(idSet!=null){
+							topLevelIdSet.addAll(idSet);
+						}
 					}
 				};
 				activity.runOnUiThread(getIdSet);
