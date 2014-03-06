@@ -2,6 +2,10 @@ package controller;
 
 import model.User;
 
+/**
+ * a controller used with UserInfoHandler to get user object from the server
+ */
+
 public class UserInfoController {
 	private User currentUser=null;
 	

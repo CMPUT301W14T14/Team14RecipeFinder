@@ -27,14 +27,21 @@ import controller.UserInfoController;
 
 import customlized_gson.Gson_Constructor;
 
-//Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
 
+/**
+ * a network controller which control userinfomation's io from the server
+ * Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
+ */
 public class UserInfoHandler {
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
 	private static Gson gson=null;
 	
 	public UserInfoHandler(){}
+	
+	/**
+	 * update a user object with its own id to the web server
+	 */
 	
 	public void commitUpdateUserInfo(final User user){
 		if(gson==null){
@@ -61,7 +68,6 @@ public class UserInfoHandler {
 					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
 				} 
 				catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} 
 				catch (IOException e) {
@@ -72,6 +78,10 @@ public class UserInfoHandler {
 		};
 		thread.start();
 	}
+	
+	/**
+	 * get a comment with its own id from the web server, null if not exist
+	 */
 	
 	public void getUserInfo(final String userName,final UserInfoController uic,final LoginViewActivity activity){
 		if(gson==null){

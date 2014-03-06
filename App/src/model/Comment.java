@@ -19,6 +19,9 @@ public class Comment {
 	private ArrayList<String> replyIdSet=null;
 	
 	//Constructors:
+	/**
+	 * construct a comment object without an attached picture
+	 */
 	public Comment(String text,Location location,String userName){
 		this.text=text;
 		this.location=location;
@@ -27,6 +30,9 @@ public class Comment {
 		this.id=this.userName+this.timePosted;
 		this.replyIdSet=new ArrayList<String>();
 	}
+	/**
+	 * construct a comment object with an attached picture
+	 */
 	
 	public Comment(String text,Location location,Bitmap picture,String userName){
 		this.text=text;
@@ -95,10 +101,16 @@ public class Comment {
 	}
 	
 	//Methods:
+	/**
+	 * add a comment id of the reply comment to the reply id set.
+	 */
 	
 	public void addReply(Comment comment){
 		this.replyIdSet.add(comment.getId());
 	}
+	/**
+	 * add a comment id of the reply comment to the reply id set.
+	 */
 	
 	public void addReply(String replyId){
 		this.replyIdSet.add(replyId);

@@ -28,10 +28,11 @@ import com.google.gson.reflect.TypeToken;
 
 import customlized_gson.Gson_Constructor;
 
-//Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
 
-//This class is Not done!!!!!!!!!!!!!!!!!!!!
-
+/**
+ * a network controller used to get and update comment from/to the server.
+ * Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
+ */
 public class IoStreamHandler {
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
@@ -39,6 +40,10 @@ public class IoStreamHandler {
 	private static Gson gson=null;
 	
 	public IoStreamHandler(){}
+	
+	/**
+	 * update a comment with its own id to the web server
+	 */
 	
 	public void commitUpdateComment(final Comment comment){
 		if(gson==null){
@@ -69,6 +74,10 @@ public class IoStreamHandler {
 		};
 		thread.start();
 	}
+	
+	/**
+	 * get a comment with a specific id from the web server
+	 */
 	
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
 		if(gson==null){
@@ -117,6 +126,10 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
+	/**
+	 * update a set of top level comment id to the web server
+	 */
+	
 	public void updateTopLevelIdSet(final ArrayList<String> topLevelIdSet){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -149,6 +162,9 @@ public class IoStreamHandler {
 		};
 		thread.start();
 	}
+	/**
+	 * get the top level comment id set from the web server
+	 */
 	
 	public void loadTopLevelIdSet(final ArrayList<String> topLevelIdSet,final HomePageActivity activity){
 		if(gson==null){
