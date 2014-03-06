@@ -27,7 +27,8 @@ import controller.UserInfoController;
 
 import customlized_gson.Gson_Constructor;
 
-//Don't modify, NOT DONE!
+//Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
+
 public class UserInfoHandler {
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
