@@ -33,8 +33,6 @@ public class HomePageActivity extends Activity {
 		createNew = (Button)findViewById(R.id.createTopic);
 		greatTopic = (ListView)findViewById(R.id.GreatTopic);
 		topicList = (ListView)findViewById(R.id.TopicList);
-		userInfoText = (AutoCompleteTextView)findViewById(R.id.userinfo1);
-		picture = (ImageView)findViewById(R.id.picture);
 	}
 
 	@Override
@@ -71,10 +69,6 @@ public class HomePageActivity extends Activity {
 				break;
 			case R.id.LaterList1:
 				//laterlist button click
-				
-				break;
-			case R.id.userinfo1:
-				//userinfo button click
 				
 				break;
 			case R.id.createTopic:
