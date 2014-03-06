@@ -22,13 +22,14 @@ import android.widget.ListView;
 public class HomePageActivity extends Activity {
 	//private Button sort=null;
 	//private Button laterList=null;
-	private Button userinfo=null;
+	//private Button userInfo=null;
 	//private ListView greatTopic=null;
 	private ListView topicList=null;
 	private Button createTopic=null;
 	private Button refresh=null;
 	
 	private CommentMap allTopics=null;
+	private String userJson=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +37,14 @@ public class HomePageActivity extends Activity {
 		setContentView(R.layout.topicpage);
 		//sort=(Button)findViewById(R.id.sort1);
 		//laterList=(Button)findViewById(R.id.laterList1);
-		userinfo=(Button)findViewById(R.id.userButton1);
+		//userInfo=(Button)findViewById(R.id.userButton1);
 		//greatTopic=(ListView)findViewById(R.id.greatTopic);
 		topicList=(ListView)findViewById(R.id.topicList);
 		createTopic=(Button)findViewById(R.id.createTopic);
 		refresh=(Button)findViewById(R.id.refresh);
+		
+		Intent intent=getIntent();
+		userJson=intent.getStringExtra("user");
 	}
 
 	@Override
@@ -48,6 +52,7 @@ public class HomePageActivity extends Activity {
 		super.onResume();
 		this.refresh();
 		refresh.setOnClickListener(new RefreshClick());
+		createTopic.setOnClickListener(new PublishClick());
 	}
 
 
@@ -81,7 +86,10 @@ public class HomePageActivity extends Activity {
 	class PublishClick implements OnClickListener{
 	      @Override
 		public void onClick(View v){
-			Intent intent=new Intent(HomePageActivity.this,PublishActivity.class);
+			Intent push_intent=new Intent(HomePageActivity.this,PublishActivity.class);
+			push_intent.putExtra("user",userJson);
+			push_intent.putExtra("isTopLevel",true);
+			startActivity(push_intent);
 		}
 	}
 }
