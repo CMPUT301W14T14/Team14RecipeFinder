@@ -132,6 +132,7 @@ public class PublishActivity extends Activity {
 					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),currentUser.getUserName());
 				}
 				else{
+					System.out.print(gson.toJson(attached_pic));
 					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),attached_pic,currentUser.getUserName());
 				}
 				

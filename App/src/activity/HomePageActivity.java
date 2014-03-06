@@ -6,8 +6,6 @@ import model.CommentMap;
 
 import com.example.projectapp.R;
 
-import controller.AdapterConstructor;
-
 import adapter.ListViewAdapter;
 import android.os.Bundle;
 import android.app.Activity;
@@ -47,7 +45,7 @@ public class HomePageActivity extends Activity {
 		userJson=intent.getStringExtra("user");
 		
 		allTopics=new CommentMap();
-		lva=(new AdapterConstructor(this)).getAdapterNotSorted(allTopics);
+		lva=new ListViewAdapter(this,R.layout.single_comment_layout,allTopics.getCurrentList());
 		topicList.setAdapter(lva);
 		allTopics.setArrayAdapter(lva);
 		
@@ -72,7 +70,7 @@ public class HomePageActivity extends Activity {
 	
 	public void refresh(){
 		IoStreamHandler io=new IoStreamHandler();
-		io.loadTopLevelComments(allTopics, this);
+		io.loadTopLevelComments(allTopics,this);
 	}
 	
 	class RefreshClick implements OnClickListener{

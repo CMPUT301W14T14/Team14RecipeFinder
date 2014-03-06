@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 
 public class CommentMap{
 	private Map<String,Comment> comments=null;
+	private ArrayList<Comment> comments_list=null;
 	private ArrayAdapter<Comment> adapter=null;
 	
 	/**
@@ -19,6 +20,7 @@ public class CommentMap{
 	
 	public CommentMap(){
 		this.comments=new HashMap<String,Comment>();
+		this.comments_list=new ArrayList<Comment>();
 	}
 	
 	/**
@@ -26,6 +28,7 @@ public class CommentMap{
 	 */
 	public void updateComment(Comment comment){
 		this.comments.put(comment.getId(),comment);
+		this.comments_list.add(comment);
 		this.adapter.notifyDataSetChanged();
 	}
 	
@@ -42,8 +45,7 @@ public class CommentMap{
 	 */
 	
 	public List<Comment> getCurrentList(){
-		List<Comment> list= new ArrayList<Comment>(this.comments.values());
-		return Collections.unmodifiableList(list);
+		return Collections.unmodifiableList(this.comments_list);
 	}
 	
 	public void setArrayAdapter(ArrayAdapter<Comment> adapter){
@@ -52,6 +54,7 @@ public class CommentMap{
 	
 	public void clear(){
 		this.comments.clear();
+		this.comments_list.clear();
 		this.adapter.notifyDataSetChanged();
 	}
 }
