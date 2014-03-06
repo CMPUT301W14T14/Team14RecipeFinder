@@ -90,7 +90,7 @@ public class UserInfoHandler {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
 					while (output != null) {
-						responseJson+= output;
+						responseJson+=output;
 						output = reader.readLine();
 					}
 				} 
@@ -110,9 +110,6 @@ public class UserInfoHandler {
 						User user=Data.getSource();
 						if(user!=null){
 							uic.setUser(user);
-						}
-						else{
-							uic.setUser(new User(userName));
 						}
 					}
 					

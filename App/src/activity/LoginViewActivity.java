@@ -70,6 +70,10 @@ public class LoginViewActivity extends Activity{
 				String userName = userNameInput.getText().toString();
 				getUserInfo(userName);
 				User user=uic.getUser();
+				if(user==null){
+					user=new User(userName);
+					uih.commitUpdateUserInfo(user);
+				}
 				// Go to sever to check user name.
 				// Skip check whether it resist
 				Intent intent = new Intent();
