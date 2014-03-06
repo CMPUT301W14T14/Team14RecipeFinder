@@ -1,44 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/attach"
-        android:layout_width="223dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tpecontent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:background="#000000"
-        android:text="@string/attachpicture"
-        android:textColor="#ffffff"
+    <TextView
+        android:id="@+id/publish"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_weight="0.1"
+        android:gravity="center"
+        android:text="@string/title_activity_publish"
         android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/tpecontent"
-        android:layout_width="256dp"
-        android:layout_height="284dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:background="#d3d3d3"
-        android:ems="10"
-        android:scrollbars="vertical"
-        android:text="@string/typeinthecontents"
-        android:textSize="12sp" />
-
-    <EditText
+    
+	<EditText
         android:id="@+id/topictitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tpecontent"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/tpecontent"
-        android:layout_marginTop="26dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_weight="0.1"
+		android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:text="@string/titlename"
         android:ems="10" >
 
         <requestFocus />
     </EditText>
+    
+    <EditText
+        android:id="@+id/typecontent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginTop="6dp"
+		android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="#d3d3d3"
+        android:scrollbars="vertical"
+        android:text="@string/typeinthecontents"
+        android:ems="10" >
+        <requestFocus />
+    </EditText>
 
-</RelativeLayout>
+
+    <Button
+        android:id="@+id/attach"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_weight="0.09"
+        android:background="#000000"
+        android:text="@string/attachpicture"
+        android:textColor="#ffffff"
+        android:layout_marginTop="6dp"
+        android:textStyle="bold" />
+    
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_weight="0.1"
+       android:orientation="horizontal" >
+
+	<Button
+	    android:id="@+id/button2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:text="@string/cancel" />
+
+	<Button
+	    android:id="@+id/button1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentTop="true"
+	    android:text="@string/commit" />
+
+    </RelativeLayout>
+    
+   	<TextView
+        android:id="@+id/publishblank1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"/>
+
+
+</LinearLayout>

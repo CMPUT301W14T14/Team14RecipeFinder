@@ -1,50 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+	<TextView
+	    android:id="@+id/pagename"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_marginLeft="6dp"
+	    android:layout_marginRight="6dp"
+	    android:layout_weight="0.20"
+	    android:gravity="center_horizontal"
+	    android:text="@string/viewedhistory"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textStyle="bold" />
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_width="235dp"
-        android:layout_height="317dp"
-        android:layout_x="40dp"
-        android:layout_y="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:background="#000000"
+        android:layout_weight="0.7"
         android:divider="#ffffff"
         android:dividerHeight="2dp"
+		android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:scrollbars="vertical" >
     </ListView>
 
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_weight="0.1"
+       android:orientation="horizontal" >
     <Button
         android:id="@+id/goback"
-        android:layout_width="97dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="178dp"
-        android:layout_y="388dp"
         android:background="#a9a9a9"
         android:text="@string/goback"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/sort3"
-        android:layout_width="94dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="41dp"
-        android:layout_y="388dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:background="#a9a9a9"
         android:text="@string/sort"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/pagename"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="42dp"
-        android:layout_y="15dp"
-        android:text="@string/viewedhistory"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+	</RelativeLayout>
 
-</AbsoluteLayout>
+
+</LinearLayout>
