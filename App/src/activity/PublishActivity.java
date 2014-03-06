@@ -94,7 +94,8 @@ public class PublishActivity extends Activity {
 				Bitmap bm = (Bitmap)data.getExtras().getParcelable("data");
 				attached_pic=bm;
 			}
-			else if (resultCode == RESULT_CANCELED){}
+			else if (resultCode == RESULT_CANCELED){
+			}
 		}
 		else{
 			String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/tmp";
@@ -132,7 +133,6 @@ public class PublishActivity extends Activity {
 					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),currentUser.getUserName());
 				}
 				else{
-					System.out.print(gson.toJson(attached_pic));
 					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),attached_pic,currentUser.getUserName());
 				}
 				
