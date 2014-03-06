@@ -1,128 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"    
     android:orientation="vertical" >
+    
+    
+  <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_weight="0.1"
+       android:orientation="horizontal" >
+    
+	<Button
+        android:id="@+id/sort2"
+        style="@style/AppBaseTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#a9a9a9"
+        android:layout_weight="0.3"
+        android:text="@string/sort"
+        android:layout_marginRight="6dp"
+        android:textStyle="bold" />
+	
+	<Button
+	    android:id="@+id/SaveForLater"
+	    style="@style/AppBaseTheme"
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:background="#d3d3d3"
+	    android:layout_weight="0.3"
+	    android:text="@string/readlater"
+	    android:layout_marginRight="6dp"
+	    android:textStyle="bold" />
+	
+	<Button
+        android:id="@+id/userbutton2"
+        style="@style/AppBaseTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#a9a9a9"
+        android:layout_weight="0.4"
+        android:text="@string/userinfobutton"
+        android:textStyle="bold" />
+    </LinearLayout>
 
-    <ListView
+  <TextView
+      android:id="@+id/commentText"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginLeft="6dp"
+      android:layout_marginRight="6dp"
+      android:layout_marginTop="6dp"
+      android:layout_weight="0.54"
+      android:background="#d3d3d3"
+      android:scrollbars="vertical"
+      android:text="@string/topiccontenttext"
+      android:textAppearance="?android:attr/textAppearanceLarge" />
+  
+	<TextView
+	    android:id="@+id/authorinfo"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_marginLeft="6dp"
+	    android:layout_marginRight="6dp"
+	    android:layout_marginTop="6dp"
+	    android:layout_weight="0.1"
+	    android:background="#000000"
+	    android:text="@string/authorinfo"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="#ffffff"
+	    android:textSize="13sp"
+	    android:textStyle="bold" />
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="0.4" >
+	
+	<ImageView
+	    android:id="@+id/topicImage"
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.4"
+	    android:src="@drawable/ic_launcher" />
+
+	<ListView
         android:id="@+id/commentlist"
-        android:layout_width="256dp"
-        android:layout_height="132dp"
-        android:layout_x="32dp"
-        android:layout_y="270dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:background="#000000"
         android:divider="#ffffff"
         android:dividerHeight="2dp"
+        android:layout_weight="0.6"
         android:scrollbars="vertical" >
     </ListView>
-
-    <TextView
-        android:id="@+id/commentText"
-        android:layout_width="253dp"
-        android:layout_height="88dp"
-        android:layout_x="33dp"
-        android:layout_y="139dp"
-        android:background="#d3d3d3"
-        android:scrollbars="vertical"
-        android:text="@string/topiccontenttext"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
+	</LinearLayout>
+	
+	<LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_marginBottom="6dp"
+       android:layout_weight="0.1"
+       android:orientation="horizontal" >
+	
     <Button
         android:id="@+id/edit"
+        style="@style/AppBaseTheme"
         android:layout_width="84dp"
         android:layout_height="wrap_content"
-        android:layout_x="31dp"
-        android:layout_y="406dp"
         android:background="#a9a9a9"
         android:text="@string/edit"
+        android:layout_weight="0.3"
+        android:layout_marginRight="6dp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/Like"
+        style="@style/AppBaseTheme"
         android:layout_width="85dp"
         android:layout_height="wrap_content"
-        android:layout_x="113dp"
-        android:layout_y="407dp"
         android:background="#d3d3d3"
         android:text="@string/like"
+        android:layout_weight="0.3"
+        android:layout_marginRight="6dp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/reply"
+        style="@style/AppBaseTheme"
         android:layout_width="96dp"
         android:layout_height="wrap_content"
-        android:layout_x="196dp"
-        android:layout_y="407dp"
         android:background="#a9a9a9"
         android:text="@string/reply"
+        android:layout_weight="0.4"
         android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/sort2"
-        android:layout_width="99dp"
-        android:layout_height="19dp"
-        android:layout_x="32dp"
-        android:layout_y="8dp"
-        android:background="#a9a9a9"
-        android:text="@string/sort"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/SaveForLater"
-        android:layout_width="100dp"
-        android:layout_height="28dp"
-        android:layout_x="33dp"
-        android:layout_y="32dp"
-        android:background="#a9a9a9"
-        android:text="@string/readlater"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/userbutton2"
-        android:layout_width="103dp"
-        android:layout_height="28dp"
-        android:layout_x="187dp"
-        android:layout_y="33dp"
-        android:background="#a9a9a9"
-        android:text="@string/userinfobutton"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/userinfo2"
-        android:layout_width="102dp"
-        android:layout_height="26dp"
-        android:layout_x="187dp"
-        android:layout_y="5dp"
-        android:background="#000000"
-        android:ems="10"
-        android:text="@string/userinfotext"
-        android:textColor="#ffffff"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/authorinfo"
-        android:layout_width="254dp"
-        android:layout_height="27dp"
-        android:layout_x="33dp"
-        android:layout_y="237dp"
-        android:background="#000000"
-        android:text="@string/authorinfo"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffffff"
-        android:textSize="13sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/topicImage"
-        android:layout_width="87dp"
-        android:layout_height="72dp"
-        android:layout_x="114dp"
-        android:layout_y="66dp"
-        android:src="@drawable/ic_launcher" />
-
-</AbsoluteLayout>
+	</LinearLayout>
+	
+</LinearLayout>

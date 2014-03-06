@@ -21,7 +21,6 @@ public class CommentPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.commentpage);
 		sort = (Button)findViewById(R.id.sort2);
-		userInfo = (Button)findViewById(R.id.userinfo2);
 		readLater = (Button)findViewById(R.id.SaveForLater);
 		edit = (Button)findViewById(R.id.edit);
 		like = (Button)findViewById(R.id.Like);
@@ -58,10 +57,6 @@ public class CommentPageActivity extends Activity {
 			switch (button.getId()){
 			case R.id.sort2:
 				// sort Button click
-				
-				break;
-			case R.id.userinfo2:
-				// user info Button click
 				
 				break;
 			case R.id.SaveForLater:

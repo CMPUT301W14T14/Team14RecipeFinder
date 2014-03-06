@@ -39,6 +39,7 @@
     <string name="title_activity_sort_option">SortOptionActivity</string>
     <string name="title_activity_comment_page">CommentPageActivity</string>
     <string name="title_activity_view_history">ViewHistoryActivity</string>
-    <string name="title_activity_publish">PublishActivity</string>
+    <string name="thenewslist">The News List</string>
+    <string name="thegreatest">The Greatest News</string>
 
 </resources>
