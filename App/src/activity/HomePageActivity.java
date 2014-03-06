@@ -4,45 +4,35 @@ import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 public class HomePageActivity extends Activity {
-
-	private Button sort = null;
-	private Button laterList = null;
-	private Button userInfo = null;
-	private Button createNew = null;
-	private ListView greatTopic = null;
-	private ListView topicList = null;
-	private AutoCompleteTextView userInfoText = null;
-	private ImageView picture = null;
+	Button sort=null;
+	Button laterList=null;
+	Button userinfo=null;
+	ListView greatTopic=null;
+	ListView topicList=null;
+	Button createTopic=null;
+	Button refresh=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.topicpage);
-		sort = (Button)findViewById(R.id.sort1);
-		laterList = (Button)findViewById(R.id.LaterList1);
-		userInfo = (Button)findViewById(R.id.userbutton1);
-		createNew = (Button)findViewById(R.id.createTopic);
-		greatTopic = (ListView)findViewById(R.id.GreatTopic);
-		topicList = (ListView)findViewById(R.id.TopicList);
+		sort=(Button)findViewById(R.id.sort1);
+		laterList=(Button)findViewById(R.id.laterList1);
+		userinfo=(Button)findViewById(R.id.userButton1);
+		greatTopic=(ListView)findViewById(R.id.greatTopic);
+		topicList=(ListView)findViewById(R.id.topicList);
+		createTopic=(Button)findViewById(R.id.createTopic);
+		refresh=(Button)findViewById(R.id.refresh);
 	}
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		sort.setOnClickListener(listener);
-		userInfo.setOnClickListener(listener);
-		laterList.setOnClickListener(listener);
-		createNew.setOnClickListener(listener);
 	}
 
 
@@ -53,29 +43,8 @@ public class HomePageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.home_page, menu);
 		return true;
 	}
-
-	private View.OnClickListener listener = new View.OnClickListener() {
+	
+	public void loadAll(){
 		
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Button button = (Button)v;
-			switch (button.getId()){
-			case R.id.sort1:
-				//sort button click
-				Intent intent_sort = new Intent();
-				intent_sort.setClass(HomePageActivity.this, SortOptionActivity.class);
-				HomePageActivity.this.startActivity(intent_sort);
-				break;
-			case R.id.LaterList1:
-				//laterlist button click
-				
-				break;
-			case R.id.createTopic:
-				//createnew button click
-				
-				break;
-			}
-		}
-	};
+	}
 }

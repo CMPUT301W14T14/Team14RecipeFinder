@@ -42,5 +42,6 @@
     <string name="thenewslist">The News List</string>
     <string name="thegreatest">The Greatest News</string>
     <string name="title_activity_publish">Publish a new Comment</string>
+    <string name="refresh_ins">Refresh</string>
 
 </resources>

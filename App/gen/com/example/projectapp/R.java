@@ -24,12 +24,9 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int GreatTopic=0x7f080020;
-        public static final int LaterList1=0x7f08001c;
         public static final int Like=0x7f080008;
         public static final int SaveForLater=0x7f080001;
-        public static final int TopicList=0x7f080022;
-        public static final int action_settings=0x7f08002e;
+        public static final int action_settings=0x7f08002f;
         public static final int attach=0x7f08000e;
         public static final int authorinfo=0x7f080004;
         public static final int commentText=0x7f080003;
@@ -38,21 +35,24 @@ public final class R {
         public static final int commentlist=0x7f080006;
         public static final int createTopic=0x7f080023;
         public static final int edit=0x7f080007;
-        public static final int favourite=0x7f080026;
+        public static final int favourite=0x7f080027;
         public static final int foo=0x7f08001b;
         public static final int foo1=0x7f08001d;
         public static final int foo2=0x7f08001f;
         public static final int generalsort=0x7f080016;
         public static final int goback=0x7f08000b;
-        public static final int historytopic=0x7f080029;
+        public static final int greatTopic=0x7f080020;
+        public static final int historytopic=0x7f08002a;
+        public static final int laterList1=0x7f08001c;
         public static final int listView1=0x7f08000a;
-        public static final int login_button=0x7f08002d;
-        public static final int login_layout=0x7f08002a;
-        public static final int login_userName_input_ins=0x7f08002b;
-        public static final int logout=0x7f080025;
+        public static final int login_button=0x7f08002e;
+        public static final int login_layout=0x7f08002b;
+        public static final int login_userName_input_ins=0x7f08002c;
+        public static final int logout=0x7f080026;
         public static final int pagename=0x7f08000d;
+        public static final int refresh=0x7f080024;
         public static final int reply=0x7f080009;
-        public static final int setname=0x7f080028;
+        public static final int setname=0x7f080029;
         public static final int sort1=0x7f08001a;
         public static final int sort2=0x7f080000;
         public static final int sort3=0x7f08000c;
@@ -62,15 +62,16 @@ public final class R {
         public static final int textView1=0x7f080011;
         public static final int thenewslisttext=0x7f080021;
         public static final int topicImage=0x7f080005;
+        public static final int topicList=0x7f080022;
         public static final int topictitle=0x7f080010;
         public static final int tpecontent=0x7f08000f;
         public static final int typename=0x7f080012;
+        public static final int userButton1=0x7f08001e;
         public static final int user_name_and_time_posted=0x7f080015;
-        public static final int user_name_input=0x7f08002c;
-        public static final int userbutton1=0x7f08001e;
+        public static final int user_name_input=0x7f08002d;
         public static final int userbutton2=0x7f080002;
-        public static final int userinfoBack=0x7f080027;
-        public static final int username=0x7f080024;
+        public static final int userinfoBack=0x7f080028;
+        public static final int username=0x7f080025;
     }
     public static final class layout {
         public static final int commentpage=0x7f030000;
@@ -110,6 +111,7 @@ public final class R {
         public static final int logoutbutton=0x7f050017;
         public static final int publishbutton=0x7f050013;
         public static final int readlater=0x7f05001e;
+        public static final int refresh_ins=0x7f050029;
         public static final int reply=0x7f05001c;
         public static final int resetnamebutton=0x7f050014;
         public static final int sort=0x7f05000e;

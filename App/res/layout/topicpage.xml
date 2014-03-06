@@ -28,12 +28,12 @@
            android:layout_weight="0.05"/>  
 
 	  <Button
-        android:id="@+id/LaterList1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="#a9a9a9"
-        android:layout_weight="0.25"
-        android:text="@string/latelist" />
+	      android:id="@+id/laterList1"
+	      android:layout_width="0dp"
+	      android:layout_height="match_parent"
+	      android:layout_weight="0.25"
+	      android:background="#a9a9a9"
+	      android:text="@string/latelist" />
 	 
 	 	<TextView
            android:id="@+id/foo1"
@@ -42,12 +42,12 @@
            android:layout_weight="0.05"/> 
 	 	
 	 <Button
-        android:id="@+id/userbutton1"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="#a9a9a9"
-        android:layout_weight="0.4"
-        android:text="@string/userinfobutton" />
+	     android:id="@+id/userButton1"
+	     android:layout_width="0dp"
+	     android:layout_height="match_parent"
+	     android:layout_weight="0.4"
+	     android:background="#a9a9a9"
+	     android:text="@string/userinfobutton" />
 
    </LinearLayout>
 
@@ -70,7 +70,7 @@
     </LinearLayout>
 
    <ListView
-       android:id="@+id/GreatTopic"
+       android:id="@+id/greatTopic"
        android:layout_width="wrap_content"
        android:layout_height="0dp"
        android:layout_marginLeft="6dp"
@@ -93,12 +93,12 @@
 	    android:textStyle="bold" />
    
     <ListView
-        android:id="@+id/TopicList"
+        android:id="@+id/topicList"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="0.4"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
+        android:layout_weight="0.4"
         android:background="#000000"
         android:divider="#ffffff"
         android:dividerHeight="2dp"
@@ -120,11 +120,18 @@
         android:id="@+id/createTopic"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="#a9a9a9"
         android:text="@string/publishbutton" />
+
+    <Button
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/refresh_ins" />
 
 	</RelativeLayout>
 </LinearLayout>
