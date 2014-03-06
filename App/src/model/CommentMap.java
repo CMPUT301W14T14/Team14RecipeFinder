@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.widget.ArrayAdapter;
+
 
 public class CommentMap{
 	private Map<String,Comment> comments=null;
+	private ArrayAdapter<Comment> adapter=null;
 	
 	/**
 	 * construct a commentMap object 
@@ -23,6 +26,7 @@ public class CommentMap{
 	 */
 	public void updateComment(Comment comment){
 		this.comments.put(comment.getId(),comment);
+		this.adapter.notifyDataSetChanged();
 	}
 	
 	/**
@@ -40,5 +44,14 @@ public class CommentMap{
 	public List<Comment> getCurrentList(){
 		List<Comment> list= new ArrayList<Comment>(this.comments.values());
 		return Collections.unmodifiableList(list);
+	}
+	
+	public void setArrayAdapter(ArrayAdapter<Comment> adapter){
+		this.adapter=adapter;
+	}
+	
+	public void clear(){
+		this.comments.clear();
+		this.adapter.notifyDataSetChanged();
 	}
 }

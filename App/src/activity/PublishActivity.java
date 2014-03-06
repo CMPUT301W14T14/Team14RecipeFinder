@@ -5,7 +5,6 @@ import java.io.File;
 import network_io.IoStreamHandler;
 import gps.Location_Generator;
 import model.Comment;
-import model.IdSet;
 import model.User;
 
 import camera.Camera_Intent_Generator;
@@ -46,8 +45,6 @@ public class PublishActivity extends Activity {
 	private Location_Generator location_generator=null;
 	private boolean isTopLevel;
 	
-	private IdSet idSet=null;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -83,13 +80,6 @@ public class PublishActivity extends Activity {
 		return true;
 	}
 	
-	//Function get the TopLevelIdset in a case
-	
-	public void loadIdSet(){
-		idSet=new IdSet();
-		io.loadTopLevelIdSet(idSet,this);
-	}
-	
 	//Function related to photo:
 	
 	public void takeAPhoto(){
@@ -117,6 +107,10 @@ public class PublishActivity extends Activity {
 	}	
 	//--------------------------------------------------------------
 	
+	public void updateTopIdSet(Comment comment){
+		io.load_update_TopLevelIdSet(comment.getId(),this);
+	}
+	
 	class CancelClick implements OnClickListener{
         @Override
 		public void onClick(View v){
@@ -142,9 +136,7 @@ public class PublishActivity extends Activity {
 				}
 				
 				if(isTopLevel){
-					loadIdSet();
-					idSet.add(comment.getId());
-					io.updateTopLevelIdSet(idSet);
+					updateTopIdSet(comment);
 				}
 				io.commitUpdateComment(comment);
 			}

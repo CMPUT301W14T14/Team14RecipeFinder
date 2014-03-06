@@ -99,11 +99,11 @@
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:layout_weight="0.4"
-        android:background="#000000"
+        android:background="#ffffff"
         android:divider="#ffffff"
         android:dividerHeight="2dp"
         android:scrollbars="vertical"
-        android:textColor="#ffffff" >
+        android:textColor="#d3d3d3" >
 
     </ListView>
 

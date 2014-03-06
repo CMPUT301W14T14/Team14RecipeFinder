@@ -3,7 +3,6 @@ package activity;
 import network_io.IoStreamHandler;
 
 import model.CommentMap;
-import model.IdSet;
 
 import com.example.projectapp.R;
 
@@ -29,7 +28,6 @@ public class HomePageActivity extends Activity {
 	private Button refresh=null;
 	
 	private String userJson=null;
-	private IdSet IdSet=null;
 	private CommentMap allTopics=null;
 	private ListViewAdapter lva=null;
 	
@@ -47,6 +45,12 @@ public class HomePageActivity extends Activity {
 		
 		Intent intent=getIntent();
 		userJson=intent.getStringExtra("user");
+		
+		allTopics=new CommentMap();
+		lva=(new AdapterConstructor(this)).getAdapterNotSorted(allTopics);
+		topicList.setAdapter(lva);
+		allTopics.setArrayAdapter(lva);
+		
 	}
 
 	@Override
@@ -67,17 +71,8 @@ public class HomePageActivity extends Activity {
 	}
 	
 	public void refresh(){
-		IdSet=new IdSet();
 		IoStreamHandler io=new IoStreamHandler();
-		io.loadTopLevelIdSet(IdSet,this);
-		allTopics=new CommentMap();
-		System.out.println(IdSet.getSet());
-		for(String commentId : IdSet.getSet()){
-			io.loadSpecificComment(commentId,allTopics,this);
-		}
-		AdapterConstructor adapterConstructor=new AdapterConstructor(this);
-		lva=adapterConstructor.getAdapterNotSorted(allTopics);
-		topicList.setAdapter(lva);
+		io.loadTopLevelComments(allTopics, this);
 	}
 	
 	class RefreshClick implements OnClickListener{

@@ -166,7 +166,7 @@ public class IoStreamHandler {
 	 * get the top level comment id set from the web server
 	 */
 	
-	public void loadTopLevelIdSet(final IdSet topLevelIdSet,final HomePageActivity activity){
+	public void loadTopLevelComments(final CommentMap topLevelComments,final HomePageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -201,9 +201,12 @@ public class IoStreamHandler {
 				Runnable getIdSet = new Runnable() {
 					@Override
 					public void run() {
-						topLevelIdSet.clear();
-						if(Data.getSource()!=null){
-							topLevelIdSet.addAll(Data.getSource().getSet());
+						topLevelComments.clear();
+						IdSet idSet=Data.getSource();
+						if(idSet!=null){
+							for(String id : idSet.getSet()){
+								loadSpecificComment(id,topLevelComments,activity);
+							}
 						}
 					}
 				};
@@ -213,7 +216,7 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	public void loadTopLevelIdSet(final IdSet topLevelIdSet,final PublishActivity activity){
+	public void load_update_TopLevelIdSet(final String id,final PublishActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -248,10 +251,12 @@ public class IoStreamHandler {
 				Runnable getIdSet = new Runnable() {
 					@Override
 					public void run() {
-						topLevelIdSet.clear();
-						if(Data.getSource()!=null){
-							topLevelIdSet.addAll(Data.getSource().getSet());
+						IdSet idSet=Data.getSource();
+						if(idSet==null){
+							idSet=new IdSet();
 						}
+						idSet.add(id);
+						updateTopLevelIdSet(idSet);
 					}
 				};
 				activity.runOnUiThread(getIdSet);
