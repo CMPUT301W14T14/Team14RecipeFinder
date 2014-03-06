@@ -12,7 +12,7 @@
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_user_info_page">UserInfoPage</string>
     <string name="attachpicture">attach picture</string>
-    <string name="typeinthecontents">type in the tpic or comment or reply contents</string>
+    <string name="typeinthecontents">type in the topic or comment or reply contents</string>
     <string name="enternewusername">Please enter a new username</string>
     <string name="goback">go back</string>
     <string name="sort">sort</string>
@@ -43,5 +43,9 @@
     <string name="thegreatest">The Greatest News</string>
     <string name="title_activity_publish">Publish a new Comment</string>
     <string name="refresh_ins">Refresh</string>
+    <string name="sync">Sync</string>
+    <string name="cancel">Cancel</string>
+    <string name="commit">Commit</string>
+    <string name="titlename">type in the title</string>
 
 </resources>

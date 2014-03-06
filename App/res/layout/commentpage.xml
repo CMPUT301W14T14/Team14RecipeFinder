@@ -117,34 +117,46 @@
     <Button
         android:id="@+id/edit"
         style="@style/AppBaseTheme"
-        android:layout_width="84dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
         android:background="#a9a9a9"
         android:text="@string/edit"
-        android:layout_weight="0.3"
-        android:layout_marginRight="6dp"
+        android:layout_weight="0.25"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/Like"
         style="@style/AppBaseTheme"
-        android:layout_width="85dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
         android:background="#d3d3d3"
         android:text="@string/like"
-        android:layout_weight="0.3"
-        android:layout_marginRight="6dp"
+        android:layout_weight="0.25"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/reply"
         style="@style/AppBaseTheme"
-        android:layout_width="96dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
         android:background="#a9a9a9"
         android:text="@string/reply"
-        android:layout_weight="0.4"
+        android:layout_weight="0.25"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/sync"
+        style="@style/AppBaseTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25"
+        android:background="#d3d3d3"
+        android:text="@string/sync"
+        android:textStyle="bold" />
+
 	</LinearLayout>
 	
 </LinearLayout>

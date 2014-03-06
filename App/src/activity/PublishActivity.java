@@ -21,7 +21,7 @@ public class PublishActivity extends Activity {
 		setContentView(R.layout.publish);
 		attach = (Button)findViewById(R.id.attach);
 		topic = (EditText)findViewById(R.id.topictitle);
-		content = (EditText)findViewById(R.id.tpecontent);
+		content = (EditText)findViewById(R.id.typecontent);
 	}
 
 	@Override
