@@ -20,6 +20,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import activity.HomePageActivity;
+import activity.PublishActivity;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -166,6 +167,54 @@ public class IoStreamHandler {
 	 */
 	
 	public void loadTopLevelIdSet(final ArrayList<String> topLevelIdSet,final HomePageActivity activity){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"ArrayList/topLevelId/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try {
+					response=client.execute(request);
+					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} 
+				catch (IOException e) {
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<ArrayList<String>>>(){}.getType();
+				final ElasticSearchResponse<ArrayList<String>> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Runnable getIdSet = new Runnable() {
+					@Override
+					public void run() {
+						topLevelIdSet.clear();
+						ArrayList<String> idSet=Data.getSource();
+						if(idSet!=null){
+							topLevelIdSet.addAll(idSet);
+						}
+					}
+				};
+				activity.runOnUiThread(getIdSet);
+			}
+		};
+		thread.start();
+	}
+	
+	public void loadTopLevelIdSet(final ArrayList<String> topLevelIdSet,final PublishActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}

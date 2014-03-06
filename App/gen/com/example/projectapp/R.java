@@ -29,12 +29,12 @@ public final class R {
         public static final int action_settings=0x7f080034;
         public static final int attach=0x7f080012;
         public static final int authorinfo=0x7f080004;
-        public static final int button1=0x7f080014;
-        public static final int button2=0x7f080013;
+        public static final int cancelPublish=0x7f080013;
         public static final int commentText=0x7f080003;
         public static final int comment_pic=0x7f080019;
         public static final int comment_text=0x7f080018;
         public static final int commentlist=0x7f080006;
+        public static final int commitPublish=0x7f080014;
         public static final int createTopic=0x7f080028;
         public static final int edit=0x7f080007;
         public static final int favourite=0x7f08002c;

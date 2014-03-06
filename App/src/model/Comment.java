@@ -9,6 +9,7 @@ import android.location.Location;
 
 public class Comment {
 	//Attributes:
+	private String title=null;
 	private String id=null;
 	private String text=null;
 	private Location location=null;
@@ -22,7 +23,8 @@ public class Comment {
 	/**
 	 * construct a comment object without an attached picture
 	 */
-	public Comment(String text,Location location,String userName){
+	public Comment(String title,String text,Location location,String userName){
+		this.title=title;
 		this.text=text;
 		this.location=location;
 		this.timePosted=(new Date()).getTime();
@@ -34,7 +36,8 @@ public class Comment {
 	 * construct a comment object with an attached picture
 	 */
 	
-	public Comment(String text,Location location,Bitmap picture,String userName){
+	public Comment(String title,String text,Location location,Bitmap picture,String userName){
+		this.title=title;
 		this.text=text;
 		this.location=location;
 		this.picture=picture;
@@ -48,6 +51,11 @@ public class Comment {
 	//ForId
 	public String getId(){
 		return this.id;
+	}
+	
+	//For Title
+	public String getTitle(){
+		return this.title;
 	}
 	
 	//For Text

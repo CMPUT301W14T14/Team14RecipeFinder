@@ -36,7 +36,7 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 				comment_pic.setImageBitmap(c.getPicture());
 			}
 			TextView comment_text=(TextView)convertView.findViewById(R.id.comment_text);
-			comment_text.setText(c.getText());
+			comment_text.setText(c.getTitle());
 			TextView comment_info=(TextView)convertView.findViewById(R.id.user_name_and_time_posted);
 			comment_info.setText("Posted by: "+c.getUserName()+" At: "+(new Date(c.getTimePosted()).toString()));
 		}
