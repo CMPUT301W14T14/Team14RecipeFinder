@@ -1,15 +1,15 @@
 package activity;
 
-import java.util.ArrayList;
-
 import network_io.IoStreamHandler;
 
 import model.CommentMap;
+import model.IdSet;
 
 import com.example.projectapp.R;
 
 import controller.AdapterConstructor;
 
+import adapter.ListViewAdapter;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,8 +28,10 @@ public class HomePageActivity extends Activity {
 	private Button createTopic=null;
 	private Button refresh=null;
 	
-	private CommentMap allTopics=null;
 	private String userJson=null;
+	private IdSet IdSet=null;
+	private CommentMap allTopics=null;
+	private ListViewAdapter lva=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +67,17 @@ public class HomePageActivity extends Activity {
 	}
 	
 	public void refresh(){
-		ArrayList<String> TopicIdSet=new ArrayList<String>();
+		IdSet=new IdSet();
 		IoStreamHandler io=new IoStreamHandler();
-		io.loadTopLevelIdSet(TopicIdSet,this);
+		io.loadTopLevelIdSet(IdSet,this);
 		allTopics=new CommentMap();
-		for(String commentId : TopicIdSet){
+		System.out.println(IdSet.getSet());
+		for(String commentId : IdSet.getSet()){
 			io.loadSpecificComment(commentId,allTopics,this);
 		}
 		AdapterConstructor adapterConstructor=new AdapterConstructor(this);
-		topicList.setAdapter(adapterConstructor.getAdapterNotSorted(allTopics));
+		lva=adapterConstructor.getAdapterNotSorted(allTopics);
+		topicList.setAdapter(lva);
 	}
 	
 	class RefreshClick implements OnClickListener{
@@ -84,7 +88,7 @@ public class HomePageActivity extends Activity {
 	}
 	
 	class PublishClick implements OnClickListener{
-	      @Override
+	    @Override
 		public void onClick(View v){
 			Intent push_intent=new Intent(HomePageActivity.this,PublishActivity.class);
 			push_intent.putExtra("user",userJson);

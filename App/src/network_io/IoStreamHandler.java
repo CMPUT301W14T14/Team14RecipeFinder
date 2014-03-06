@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import model.Comment;
 import model.CommentMap;
+import model.IdSet;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -65,7 +65,7 @@ public class IoStreamHandler {
 				HttpResponse response=null;
 				try{
 					response = client.execute(request);
-					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					Log.i(LOG_TAG, "CommentUpdate: " + response.getStatusLine().toString());
 				}
 				catch(IOException exception){
 					Log.w(LOG_TAG, "Error during Update: " + exception.getMessage());
@@ -92,7 +92,7 @@ public class IoStreamHandler {
 				String responseJson = "";
 				try{
 					response=client.execute(request);
-					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
 					HttpEntity entity = response.getEntity();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
@@ -130,7 +130,7 @@ public class IoStreamHandler {
 	 * update a set of top level comment id to the web server
 	 */
 	
-	public void updateTopLevelIdSet(final ArrayList<String> topLevelIdSet){
+	public void updateTopLevelIdSet(final IdSet topLevelIdSet){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -138,7 +138,7 @@ public class IoStreamHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpPut request = new HttpPut(SERVER_URL+"ArrayList/topLevelId/");
+				HttpPut request = new HttpPut(SERVER_URL+"IdSet/topLevelId/");
 				try {
 					request.setEntity(new StringEntity(gson.toJson(topLevelIdSet)));
 				} 
@@ -149,7 +149,7 @@ public class IoStreamHandler {
 				HttpResponse response=null;
 				try {
 					response = client.execute(request);
-					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					Log.i(LOG_TAG, "SetUpdate: " + response.getStatusLine().toString());
 				} 
 				catch (ClientProtocolException e) {
 					e.printStackTrace();
@@ -166,7 +166,7 @@ public class IoStreamHandler {
 	 * get the top level comment id set from the web server
 	 */
 	
-	public void loadTopLevelIdSet(final ArrayList<String> topLevelIdSet,final HomePageActivity activity){
+	public void loadTopLevelIdSet(final IdSet topLevelIdSet,final HomePageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -174,12 +174,12 @@ public class IoStreamHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"ArrayList/topLevelId/");
+				HttpGet request = new HttpGet(SERVER_URL+"IdSet/topLevelId/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try {
 					response=client.execute(request);
-					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					Log.i(LOG_TAG, "SetLoad: " + response.getStatusLine().toString());
 					HttpEntity entity = response.getEntity();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
@@ -196,15 +196,14 @@ public class IoStreamHandler {
 					e.printStackTrace();
 				}
 				
-				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<ArrayList<String>>>(){}.getType();
-				final ElasticSearchResponse<ArrayList<String>> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<IdSet>>(){}.getType();
+				final ElasticSearchResponse<IdSet> Data = gson.fromJson(responseJson,elasticSearchResponseType);
 				Runnable getIdSet = new Runnable() {
 					@Override
 					public void run() {
 						topLevelIdSet.clear();
-						ArrayList<String> idSet=Data.getSource();
-						if(idSet!=null){
-							topLevelIdSet.addAll(idSet);
+						if(Data.getSource()!=null){
+							topLevelIdSet.addAll(Data.getSource().getSet());
 						}
 					}
 				};
@@ -214,7 +213,7 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	public void loadTopLevelIdSet(final ArrayList<String> topLevelIdSet,final PublishActivity activity){
+	public void loadTopLevelIdSet(final IdSet topLevelIdSet,final PublishActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -222,12 +221,12 @@ public class IoStreamHandler {
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"ArrayList/topLevelId/");
+				HttpGet request = new HttpGet(SERVER_URL+"IdSet/topLevelId/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try {
 					response=client.execute(request);
-					Log.i(LOG_TAG, "Response: " + response.getStatusLine().toString());
+					Log.i(LOG_TAG, "SetLoad: " + response.getStatusLine().toString());
 					HttpEntity entity = response.getEntity();
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
@@ -244,15 +243,14 @@ public class IoStreamHandler {
 					e.printStackTrace();
 				}
 				
-				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<ArrayList<String>>>(){}.getType();
-				final ElasticSearchResponse<ArrayList<String>> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<IdSet>>(){}.getType();
+				final ElasticSearchResponse<IdSet> Data = gson.fromJson(responseJson,elasticSearchResponseType);
 				Runnable getIdSet = new Runnable() {
 					@Override
 					public void run() {
 						topLevelIdSet.clear();
-						ArrayList<String> idSet=Data.getSource();
-						if(idSet!=null){
-							topLevelIdSet.addAll(idSet);
+						if(Data.getSource()!=null){
+							topLevelIdSet.addAll(Data.getSource().getSet());
 						}
 					}
 				};

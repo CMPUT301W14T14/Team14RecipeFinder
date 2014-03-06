@@ -1,11 +1,14 @@
 package activity;
 
-import java.util.ArrayList;
+import java.io.File;
 
 import network_io.IoStreamHandler;
 import gps.Location_Generator;
 import model.Comment;
+import model.IdSet;
 import model.User;
+
+import camera.Camera_Intent_Generator;
 
 import com.example.projectapp.R;
 import com.google.gson.Gson;
@@ -13,11 +16,14 @@ import com.google.gson.Gson;
 import customlized_gson.Gson_Constructor;
 
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,6 +45,8 @@ public class PublishActivity extends Activity {
 	private Bitmap attached_pic=null;
 	private Location_Generator location_generator=null;
 	private boolean isTopLevel;
+	
+	private IdSet idSet=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,8 @@ public class PublishActivity extends Activity {
 	protected void onResume(){
 		super.onResume();
 		cancel.setOnClickListener(new CancelClick());
+		commit.setOnClickListener(new CommitClick());
+		attach_pic.setOnClickListener(new AttachClick());
 		location_generator=new Location_Generator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 	}
 
@@ -73,11 +83,39 @@ public class PublishActivity extends Activity {
 		return true;
 	}
 	
-	public ArrayList<String> getIdSet(){
-		ArrayList<String> idSet=new ArrayList<String>();
+	//Function get the TopLevelIdset in a case
+	
+	public void loadIdSet(){
+		idSet=new IdSet();
 		io.loadTopLevelIdSet(idSet,this);
-		return idSet;
 	}
+	
+	//Function related to photo:
+	
+	public void takeAPhoto(){
+		Camera_Intent_Generator cig=new Camera_Intent_Generator();
+		Intent cam_intent=cig.getCamIntent();
+		startActivityForResult(cam_intent,0);
+	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (data != null){
+			if(resultCode == RESULT_OK){
+				Bitmap bm = (Bitmap)data.getExtras().getParcelable("data");
+				attached_pic=bm;
+			}
+			else if (resultCode == RESULT_CANCELED){}
+		}
+		else{
+			String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/tmp";
+			String date=String.valueOf(System.currentTimeMillis())+".jpeg";
+			File filepic=new File(path+date);
+			Uri imageFileUri=Uri.fromFile(filepic);
+			Bitmap bm = (Bitmap)BitmapFactory.decodeFile(imageFileUri.getPath());
+			attached_pic=bm;
+		}
+	}	
+	//--------------------------------------------------------------
 	
 	class CancelClick implements OnClickListener{
         @Override
@@ -104,13 +142,21 @@ public class PublishActivity extends Activity {
 				}
 				
 				if(isTopLevel){
-					ArrayList<String> idSet=getIdSet();
+					loadIdSet();
 					idSet.add(comment.getId());
 					io.updateTopLevelIdSet(idSet);
 				}
 				io.commitUpdateComment(comment);
 			}
+			finish();
 		}
 		
+	}
+	
+	class AttachClick implements OnClickListener{
+        @Override
+		public void onClick(View v){
+        	takeAPhoto();
+		}
 	}
 }
