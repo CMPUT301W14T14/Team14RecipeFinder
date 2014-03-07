@@ -1,13 +1,9 @@
 package activity;
 
-import java.io.File;
-
 import network_io.IoStreamHandler;
 import gps.Location_Generator;
 import model.Comment;
 import model.User;
-
-import camera.Camera_Intent_Generator;
 
 import com.example.projectapp.R;
 import com.google.gson.Gson;
@@ -15,14 +11,12 @@ import com.google.gson.Gson;
 import customlized_gson.Gson_Constructor;
 
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +25,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class PublishActivity extends Activity {
+	public static final int OBTAIN_PIC_REQUEST_CODE=252;
+	
 	private EditText title=null;
 	private EditText content=null;
 	private Button attach_pic=null;
@@ -83,27 +79,13 @@ public class PublishActivity extends Activity {
 	//Function related to photo:
 	
 	public void takeAPhoto(){
-		Camera_Intent_Generator cig=new Camera_Intent_Generator();
-		Intent cam_intent=cig.getCamIntent();
-		startActivityForResult(cam_intent,0);
+		Intent cam_intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(cam_intent, OBTAIN_PIC_REQUEST_CODE);
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (data != null){
-			if(resultCode == RESULT_OK){
-				Bitmap bm = (Bitmap)data.getExtras().getParcelable("data");
-				attached_pic=bm;
-			}
-			else if (resultCode == RESULT_CANCELED){
-			}
-		}
-		else{
-			String path=Environment.getExternalStorageDirectory().getAbsolutePath()+"/tmp";
-			String date=String.valueOf(System.currentTimeMillis())+".jpeg";
-			File filepic=new File(path+date);
-			Uri imageFileUri=Uri.fromFile(filepic);
-			Bitmap bm = (Bitmap)BitmapFactory.decodeFile(imageFileUri.getPath());
-			attached_pic=bm;
+		if (requestCode == OBTAIN_PIC_REQUEST_CODE && resultCode == RESULT_OK) {
+			attached_pic = (Bitmap)data.getExtras().get("data");
 		}
 	}	
 	//--------------------------------------------------------------
