@@ -1,17 +1,11 @@
 package activity;
 
-import model.User;
 import network_io.UserInfoHandler;
 
 import com.example.projectapp.R;
-import com.google.gson.Gson;
-
-import controller.UserInfoController;
-import customlized_gson.Gson_Constructor;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +15,6 @@ public class LoginViewActivity extends Activity{
 	//Attributes:
 	private EditText userNameInput=null;
 	private Button loginButton=null;
-	private UserInfoController uic=null;
 	private UserInfoHandler uih=null;
 
 	@Override
@@ -32,7 +25,6 @@ public class LoginViewActivity extends Activity{
 		
 		userNameInput=(EditText)findViewById(R.id.user_name_input);
 		loginButton=(Button)findViewById(R.id.login_button);
-		uic=new UserInfoController();
 		uih=new UserInfoHandler();
 	}
 	
@@ -54,8 +46,8 @@ public class LoginViewActivity extends Activity{
 		return true;
 	}
 	
-	public void getUserInfo(String userName){
-		uih.getUserInfo(userName, uic, this);
+	public void loginProcess(String userName){
+		uih.loginWithInternet(userName, this);
 	}
 	
 	private View.OnClickListener listener = new View.OnClickListener(){
@@ -68,19 +60,7 @@ public class LoginViewActivity extends Activity{
 			case R.id.login_button:
 				// login button click
 				String userName = userNameInput.getText().toString();
-				getUserInfo(userName);
-				User user=uic.getUser();
-				if(user==null){
-					user=new User(userName);
-					uih.commitUpdateUserInfo(user);
-				}
-				// Go to sever to check user name.
-				// Skip check whether it resist
-				Intent intent = new Intent();
-				Gson gson=(new Gson_Constructor()).getGson();
-				intent.putExtra("user", gson.toJson(user));
-				intent.setClass(LoginViewActivity.this, HomePageActivity.class);
-				LoginViewActivity.this.startActivity(intent);
+				loginProcess(userName);
 				break;
 			}
 		}

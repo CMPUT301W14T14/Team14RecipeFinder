@@ -17,13 +17,13 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import model.User;
 
+import activity.HomePageActivity;
 import activity.LoginViewActivity;
+import android.content.Intent;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import controller.UserInfoController;
 
 import customlized_gson.Gson_Constructor;
 
@@ -83,7 +83,7 @@ public class UserInfoHandler {
 	 * get a comment with its own id from the web server, null if not exist
 	 */
 	
-	public void getUserInfo(final String userName,final UserInfoController uic,final LoginViewActivity activity){
+	public void loginWithInternet(final String userName,final LoginViewActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -119,9 +119,13 @@ public class UserInfoHandler {
 					@Override
 					public void run() {
 						User user=Data.getSource();
-						if(user!=null){
-							uic.setUser(user);
+						if(user==null){
+							user=new User(userName);
+							commitUpdateUserInfo(user);
 						}
+						Intent intent = new Intent(activity,HomePageActivity.class);
+						intent.putExtra("user", gson.toJson(user));
+						activity.startActivity(intent);
 					}
 					
 				};
