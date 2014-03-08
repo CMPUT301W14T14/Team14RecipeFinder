@@ -82,6 +82,7 @@ public class CommentPageActivity extends Activity {
 		reply.setOnClickListener(new ReplyClick());
 		sync.setOnClickListener(new SyncClick());
 		commentList.setOnItemClickListener(new RecurViewClick());
+		edit.setOnClickListener(new EditClick());
 	}
 	
 	protected void sync(){
@@ -130,6 +131,20 @@ public class CommentPageActivity extends Activity {
 			Intent view_intent=new Intent(CommentPageActivity.this,CommentPageActivity.class);
 			view_intent.putExtra("comment_id",c.getId());
 			startActivity(view_intent);
+		}
+		
+	}
+	
+	class EditClick implements OnClickListener{
+
+		@Override
+		public void onClick(View v){
+			if(userName==null){
+				Toast.makeText(getApplicationContext(),"Guest cannot edit comment.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				io.checkEditSpecificComment(comment_id, userName,CommentPageActivity.this);
+			}
 		}
 		
 	}

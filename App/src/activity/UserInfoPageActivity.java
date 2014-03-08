@@ -15,7 +15,6 @@ public class UserInfoPageActivity extends Activity {
 	
 	private TextView userName = null;
 	private Button logOut = null;
-	private Button back = null;
 	private Button favorite = null;
 	private Button viewedTopic = null;
 	private Button resetName = null;
@@ -30,7 +29,6 @@ public class UserInfoPageActivity extends Activity {
 		userName.setText(pageUseName);
 		
 		logOut = (Button)findViewById(R.id.logout);
-		back = (Button)findViewById(R.id.userinfoBack);
 		favorite = (Button)findViewById(R.id.favourite);
 		viewedTopic = (Button)findViewById(R.id.historytopic);
 		resetName = (Button)findViewById(R.id.setname);
@@ -44,7 +42,6 @@ public class UserInfoPageActivity extends Activity {
 		favorite.setOnClickListener(listener);
 		viewedTopic.setOnClickListener(listener);
 		resetName.setOnClickListener(listener);
-		back.setOnClickListener(listener);
 	}
 
 
@@ -74,7 +71,7 @@ public class UserInfoPageActivity extends Activity {
 				//favorite button click
 				Intent favouriteintent = new Intent();
 				favouriteintent.setClass(UserInfoPageActivity.this, ViewHistoryActivity.class);
-				UserInfoPageActivity.this.startActivity(favouriteintent);	
+				UserInfoPageActivity.this.startActivity(favouriteintent);
 				break;
 				
 			case R.id.historytopic:
@@ -89,13 +86,6 @@ public class UserInfoPageActivity extends Activity {
 				Intent setnameintent = new Intent();
 				setnameintent.setClass(UserInfoPageActivity.this, ResetUserNameActivity.class);
 				UserInfoPageActivity.this.startActivity(setnameintent);	
-				break;
-				
-			case R.id.userinfoBack:
-				// back button click
-				Intent intent = new Intent();
-				intent.setClass(UserInfoPageActivity.this, HomePageActivity.class);
-				UserInfoPageActivity.this.startActivity(intent);
 				break;
 			}
 		}

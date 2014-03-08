@@ -21,12 +21,15 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import activity.CommentPageActivity;
+import activity.EditPageActivity;
 import activity.HomePageActivity;
 import activity.PublishActivity;
 //import android.location.Location;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -404,6 +407,62 @@ public class IoStreamHandler {
 				Comment c=Data.getSource();
 				c.addReply(replyId);
 				commitUpdateComment(c);
+			}
+		};
+		thread.start();
+	}
+	
+	
+	
+	public void checkEditSpecificComment(final String commentId,final String userName,final CommentPageActivity activity){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable editCommand = new Runnable() {
+					@Override
+					public void run() {
+						Comment c=Data.getSource();
+						if(c.getUserName().equals(userName)==false){
+							Toast.makeText(activity.getApplicationContext(),"Only Author can edit the comment.",Toast.LENGTH_SHORT).show();
+						}
+						else{
+							Intent edit_intent=new Intent(activity,EditPageActivity.class);
+							edit_intent.putExtra("comment_id",commentId);
+							activity.startActivity(edit_intent);
+						}
+						
+					}
+				};
+				activity.runOnUiThread(editCommand);
 			}
 		};
 		thread.start();

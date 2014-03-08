@@ -37,17 +37,6 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/userinfoBack"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_x="89dp"
-        android:layout_y="345dp"
-        android:background="#000000"
-        android:text="@string/goback"
-        android:textColor="#ffffff"
-        android:textStyle="bold" />
-
-    <Button
         android:id="@+id/setname"
         android:layout_width="164dp"
         android:layout_height="wrap_content"

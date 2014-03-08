@@ -26,7 +26,7 @@ public final class R {
     public static final class id {
         public static final int Like=0x7f080008;
         public static final int SaveForLater=0x7f080001;
-        public static final int action_settings=0x7f080038;
+        public static final int action_settings=0x7f080037;
         public static final int attach=0x7f080013;
         public static final int authorInfo=0x7f080004;
         public static final int button1=0x7f08001b;
@@ -45,13 +45,13 @@ public final class R {
         public static final int generalsort=0x7f08001f;
         public static final int goback=0x7f08000d;
         public static final int greatTopic=0x7f080029;
-        public static final int historytopic=0x7f080033;
+        public static final int historytopic=0x7f080032;
         public static final int imagePreview=0x7f080012;
         public static final int laterList1=0x7f080025;
         public static final int listView1=0x7f08000c;
-        public static final int login_button=0x7f080037;
-        public static final int login_layout=0x7f080034;
-        public static final int login_userName_input_ins=0x7f080035;
+        public static final int login_button=0x7f080036;
+        public static final int login_layout=0x7f080033;
+        public static final int login_userName_input_ins=0x7f080034;
         public static final int logout=0x7f08002f;
         public static final int pagename=0x7f08000b;
         public static final int publish=0x7f08000f;
@@ -61,7 +61,7 @@ public final class R {
         public static final int setNameNo=0x7f08001a;
         public static final int setNameOk=0x7f080019;
         public static final int setNameTitle=0x7f080017;
-        public static final int setname=0x7f080032;
+        public static final int setname=0x7f080031;
         public static final int sort1=0x7f080023;
         public static final int sort2=0x7f080000;
         public static final int sort3=0x7f08000e;
@@ -77,9 +77,8 @@ public final class R {
         public static final int typename=0x7f080018;
         public static final int userButton1=0x7f080027;
         public static final int user_name_and_time_posted=0x7f08001e;
-        public static final int user_name_input=0x7f080036;
+        public static final int user_name_input=0x7f080035;
         public static final int userbutton2=0x7f080002;
-        public static final int userinfoBack=0x7f080031;
         public static final int username=0x7f08002e;
     }
     public static final class layout {
