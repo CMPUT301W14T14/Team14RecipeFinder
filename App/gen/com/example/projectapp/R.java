@@ -26,11 +26,27 @@ public final class R {
     public static final class id {
         public static final int Like=0x7f080008;
         public static final int SaveForLater=0x7f080001;
+<<<<<<< HEAD
         public static final int action_settings=0x7f080038;
         public static final int attach=0x7f080013;
         public static final int authorInfo=0x7f080004;
         public static final int button1=0x7f08001b;
         public static final int cancelPublish=0x7f080014;
+=======
+<<<<<<< HEAD
+        public static final int action_settings=0x7f080038;
+        public static final int attach=0x7f080013;
+        public static final int authorinfo=0x7f080004;
+        public static final int button1=0x7f08001b;
+        public static final int cancelPublish=0x7f080014;
+=======
+        public static final int action_settings=0x7f080037;
+        public static final int attach=0x7f080012;
+        public static final int authorInfo=0x7f080004;
+        public static final int button1=0x7f08001a;
+        public static final int cancelPublish=0x7f080013;
+>>>>>>> c5a1a3af9df762088ae3b127447d5fa5e7f49331
+>>>>>>> 516307241475ac9f3559d4af54ff212e8ed5f343
         public static final int commentText=0x7f080003;
         public static final int comment_pic=0x7f08001d;
         public static final int comment_text=0x7f08001c;
