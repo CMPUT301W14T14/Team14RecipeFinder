@@ -93,14 +93,15 @@
 	    android:src="@drawable/ic_launcher" />
 
 	<ListView
-        android:id="@+id/commentlist"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="#000000"
-        android:divider="#ffffff"
-        android:dividerHeight="2dp"
-        android:layout_weight="0.6"
-        android:scrollbars="vertical" >
+	    android:id="@+id/commentList"
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.6"
+	    android:background="#000000"
+	    android:divider="#ffffff"
+	    android:dividerHeight="2dp"
+	    android:scrollbars="vertical" >
+
     </ListView>
 	</LinearLayout>
 	

@@ -38,6 +38,8 @@ public class PublishActivity extends Activity {
 	private Location_Generator location_generator=null;
 	private boolean isTopLevel;
 	private ImageView preview=null;
+
+	private String comment_id=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class PublishActivity extends Activity {
 		attach_pic.setOnClickListener(new AttachClick());
 		location_generator=new Location_Generator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 		userName=((UserNameInfo)this.getApplication()).getUserName();
+		Intent intent=getIntent();
+		comment_id=intent.getStringExtra("comment_id");
 	}
 
 
@@ -122,10 +126,13 @@ public class PublishActivity extends Activity {
 				if(isTopLevel){
 					updateTopIdSet(comment);
 				}
+				else if(comment_id!=null){
+					io.replySpecificComment(comment_id,comment.getId());
+				}
 				io.commitUpdateComment(comment);
+				attached_pic=null;
+				finish();
 			}
-			attached_pic=null;
-			finish();
 		}
 		
 	}
