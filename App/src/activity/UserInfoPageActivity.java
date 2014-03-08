@@ -59,15 +59,20 @@ public class UserInfoPageActivity extends Activity {
 			switch(button.getId()){
 			case R.id.logout:
 				//logout button click
-				
+				Intent logoutintent = new Intent();
+				logoutintent.setClass(UserInfoPageActivity.this, LoginViewActivity.class);
+				UserInfoPageActivity.this.startActivity(logoutintent);
 				break;
+				
 			case R.id.favourite:
 				//favorite button click
 				
 				break;
 			case R.id.historytopic:
 				//Viewed Topic button click
-				
+				Intent historyintent = new Intent();
+				historyintent.setClass(UserInfoPageActivity.this, ViewHistoryActivity.class);
+				UserInfoPageActivity.this.startActivity(historyintent);				
 				break;
 			case R.id.setname:
 				// reset name button click
