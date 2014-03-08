@@ -35,7 +35,7 @@ public class Location_Generator{
 			public void onStatusChanged(String provider,int status,Bundle extras){}
 			
 		};
-		this.lm.requestLocationUpdates("gps",1000,1,this.locationListener);
+		this.lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,1,this.locationListener);
 	}
 
 	public Location getCurrentLocation(){

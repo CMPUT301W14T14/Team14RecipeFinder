@@ -28,7 +28,7 @@ public final class R {
         public static final int SaveForLater=0x7f080001;
         public static final int action_settings=0x7f080036;
         public static final int attach=0x7f080012;
-        public static final int authorinfo=0x7f080004;
+        public static final int authorInfo=0x7f080004;
         public static final int button1=0x7f080018;
         public static final int button2=0x7f080019;
         public static final int cancelPublish=0x7f080013;

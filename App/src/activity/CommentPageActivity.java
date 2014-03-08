@@ -1,43 +1,60 @@
 package activity;
 
+import network_io.IoStreamHandler;
+import model.User;
+
 import com.example.projectapp.R;
+import com.google.gson.Gson;
+
+import customlized_gson.Gson_Constructor;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class CommentPageActivity extends Activity {
 
-	private Button sort = null;
-	private Button userInfo = null;
-	private Button readLater = null;
-	private Button edit = null;
-	private Button like = null;
-	private Button reply = null;
+	//private Button sort=null;
+	//private Button userInfo=null;
+	private Button readLater=null;
+	private Button edit=null;
+	private Button like=null;
+	private Button reply=null;
+	
+	private TextView commentText=null;
+	private TextView authorInfo=null;
+	
+	private User currentUser=null;
+	
+	private Gson gson=null;
+	private IoStreamHandler io=null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.commentpage);
-		sort = (Button)findViewById(R.id.sort2);
-		readLater = (Button)findViewById(R.id.SaveForLater);
-		edit = (Button)findViewById(R.id.edit);
-		like = (Button)findViewById(R.id.Like);
-		reply = (Button)findViewById(R.id.reply);
+		//sort=(Button)findViewById(R.id.sort2);
+		//userInfo=(Button)findViewById(R.id.userbutton2);
+		readLater=(Button)findViewById(R.id.SaveForLater);
+		edit=(Button)findViewById(R.id.edit);
+		like=(Button)findViewById(R.id.Like);
+		reply=(Button)findViewById(R.id.reply);
+		commentText=(TextView)findViewById(R.id.commentText);
+		authorInfo=(TextView)findViewById(R.id.authorInfo);
+		gson=new Gson_Constructor().getGson();
+		io=new IoStreamHandler();
 	}
 
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		sort.setOnClickListener(listener);
-		userInfo.setOnClickListener(listener);
-		readLater.setOnClickListener(listener);
-		edit.setOnClickListener(listener);
-		like.setOnClickListener(listener);
-		reply.setOnClickListener(listener);
+		Intent intent=getIntent();
+		currentUser=gson.fromJson(intent.getStringExtra("user"),User.class);
+		io.loadAndSetSpecificComment(intent.getStringExtra("comment_id"),commentText,authorInfo,this);
 	}
 
 
@@ -47,36 +64,5 @@ public class CommentPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.comment_page, menu);
 		return true;
 	}
-	
-	private View.OnClickListener listener = new View.OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Button button = (Button)v;
-			switch (button.getId()){
-			case R.id.sort2:
-				// sort Button click
-				
-				break;
-			case R.id.SaveForLater:
-				// read later Button click
-				
-				break;
-			case R.id.edit:
-				// edit Button click
-				
-				break;
-			case R.id.Like:
-				// like it Button click
-				
-				break;
-			case R.id.reply:
-				// reply Button click
-				
-				break;
-			}
-		}
-	};
 
 }
