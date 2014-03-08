@@ -1,12 +1,9 @@
 package activity;
 
 import network_io.IoStreamHandler;
-import model.User;
 
 import com.example.projectapp.R;
-import com.google.gson.Gson;
-
-import customlized_gson.Gson_Constructor;
+import com.example.projectapp.UserNameInfo;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -27,10 +24,8 @@ public class CommentPageActivity extends Activity {
 	private TextView commentText=null;
 	private TextView authorInfo=null;
 	
-	private User currentUser=null;
-	
-	private Gson gson=null;
 	private IoStreamHandler io=null;
+	private String userName=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +39,6 @@ public class CommentPageActivity extends Activity {
 		reply=(Button)findViewById(R.id.reply);
 		commentText=(TextView)findViewById(R.id.commentText);
 		authorInfo=(TextView)findViewById(R.id.authorInfo);
-		gson=new Gson_Constructor().getGson();
 		io=new IoStreamHandler();
 	}
 
@@ -52,8 +46,8 @@ public class CommentPageActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		userName=((UserNameInfo)this.getApplication()).getUserName();
 		Intent intent=getIntent();
-		currentUser=gson.fromJson(intent.getStringExtra("user"),User.class);
 		io.loadAndSetSpecificComment(intent.getStringExtra("comment_id"),commentText,authorInfo,this);
 	}
 

@@ -23,7 +23,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import activity.CommentPageActivity;
 import activity.HomePageActivity;
 import activity.PublishActivity;
-import android.location.Location;
+//import android.location.Location;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -302,9 +302,9 @@ public class IoStreamHandler {
 						Comment c=Data.getSource();
 						if(c!=null){
 							commentView.setText(c.getText());
-							Location loc=c.getLocation();
-							double lat=loc.getLatitude();
-							double lng=loc.getLongitude();
+							//Location loc=c.getLocation();
+							//double lat=loc.getLatitude();
+							//double lng=loc.getLongitude();
 							authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString()));
 						}
 					}

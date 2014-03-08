@@ -6,6 +6,7 @@ import model.Comment;
 import model.CommentMap;
 
 import com.example.projectapp.R;
+import com.example.projectapp.UserNameInfo;
 
 import adapter.ListViewAdapter;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class HomePageActivity extends Activity {
 	//private Button sort=null;
@@ -28,9 +30,10 @@ public class HomePageActivity extends Activity {
 	private Button createTopic=null;
 	private Button refresh=null;
 	
-	private String userJson=null;
 	private CommentMap allTopics=null;
 	private ListViewAdapter lva=null;
+	
+	private String userName=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +47,6 @@ public class HomePageActivity extends Activity {
 		createTopic=(Button)findViewById(R.id.createTopic);
 		refresh=(Button)findViewById(R.id.refresh);
 		
-		Intent intent=getIntent();
-		userJson=intent.getStringExtra("user");
-		
 		allTopics=new CommentMap();
 		lva=new ListViewAdapter(this,R.layout.single_comment_layout,allTopics.getCurrentList());
 		topicList.setAdapter(lva);
@@ -59,6 +59,7 @@ public class HomePageActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		this.refresh();
+		userName=((UserNameInfo)this.getApplication()).getUserName();
 		refresh.setOnClickListener(new RefreshClick());
 		createTopic.setOnClickListener(new PublishClick());
 	}
@@ -88,10 +89,14 @@ public class HomePageActivity extends Activity {
 	class PublishClick implements OnClickListener{
 	    @Override
 		public void onClick(View v){
-			Intent push_intent=new Intent(HomePageActivity.this,PublishActivity.class);
-			push_intent.putExtra("user",userJson);
-			push_intent.putExtra("isTopLevel",true);
-			startActivity(push_intent);
+	    	if(userName==null){
+	    		Toast.makeText(getApplicationContext(),"Guest cannot publish comment.",Toast.LENGTH_SHORT).show();
+	    	}
+	    	else{
+	    		Intent push_intent=new Intent(HomePageActivity.this,PublishActivity.class);
+				push_intent.putExtra("isTopLevel",true);
+				startActivity(push_intent);
+	    	}
 		}
 	}
 	
@@ -102,7 +107,6 @@ public class HomePageActivity extends Activity {
 			Comment c=(Comment)arg0.getItemAtPosition(pos);
 			Intent view_intent=new Intent(HomePageActivity.this,CommentPageActivity.class);
 			view_intent.putExtra("comment_id",c.getId());
-			view_intent.putExtra("user",userJson);
 			startActivity(view_intent);
 		}
 		

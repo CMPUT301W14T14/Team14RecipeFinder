@@ -3,12 +3,9 @@ package activity;
 import network_io.IoStreamHandler;
 import gps.Location_Generator;
 import model.Comment;
-import model.User;
 
 import com.example.projectapp.R;
-import com.google.gson.Gson;
-
-import customlized_gson.Gson_Constructor;
+import com.example.projectapp.UserNameInfo;
 
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -22,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class PublishActivity extends Activity {
@@ -35,11 +33,11 @@ public class PublishActivity extends Activity {
 	
 	private IoStreamHandler io=null;
 	
-	private Gson gson=(new Gson_Constructor()).getGson();
-	private User currentUser=null;
+	private String userName=null;
 	private Bitmap attached_pic=null;
 	private Location_Generator location_generator=null;
 	private boolean isTopLevel;
+	private ImageView preview=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +45,8 @@ public class PublishActivity extends Activity {
 		setContentView(R.layout.publish);
 		title=(EditText)findViewById(R.id.topictitle);
 		content=(EditText)findViewById(R.id.typecontent);
+		preview=(ImageView)findViewById(R.id.imagePreview);
+		preview.setImageBitmap(null);
 		attach_pic=(Button)findViewById(R.id.attach);
 		commit=(Button)findViewById(R.id.commitPublish);
 		cancel=(Button)findViewById(R.id.cancelPublish);
@@ -54,7 +54,6 @@ public class PublishActivity extends Activity {
 		io=new IoStreamHandler();
 		
 		Intent intent=getIntent();
-		currentUser=gson.fromJson(intent.getStringExtra("user"),User.class);
 		isTopLevel=intent.getBooleanExtra("isTopLevel",false);
 	}
 	
@@ -66,6 +65,7 @@ public class PublishActivity extends Activity {
 		commit.setOnClickListener(new CommitClick());
 		attach_pic.setOnClickListener(new AttachClick());
 		location_generator=new Location_Generator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
+		userName=((UserNameInfo)this.getApplication()).getUserName();
 	}
 
 
@@ -86,6 +86,7 @@ public class PublishActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == OBTAIN_PIC_REQUEST_CODE && resultCode == RESULT_OK) {
 			attached_pic = (Bitmap)data.getExtras().get("data");
+			preview.setImageBitmap(attached_pic);
 		}
 	}	
 	//--------------------------------------------------------------
@@ -112,10 +113,10 @@ public class PublishActivity extends Activity {
 			else{
 				Comment comment=null;
 				if(attached_pic==null){
-					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),currentUser.getUserName());
+					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),userName);
 				}
 				else{
-					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),attached_pic,currentUser.getUserName());
+					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),attached_pic,userName);
 				}
 				
 				if(isTopLevel){
