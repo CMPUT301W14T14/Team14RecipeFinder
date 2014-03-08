@@ -19,7 +19,7 @@
 		android:id="@+id/sort1"
 		android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:background="#a9a9a9"
+        
         android:layout_weight="0.25"
         android:text="@string/sort" />
       
@@ -34,7 +34,6 @@
 	      android:layout_width="0dp"
 	      android:layout_height="match_parent"
 	      android:layout_weight="0.25"
-	      android:background="#a9a9a9"
 	      android:text="@string/latelist" />
 	 
 	<TextView
@@ -48,7 +47,6 @@
 	     android:layout_width="0dp"
 	     android:layout_height="match_parent"
 	     android:layout_weight="0.4"
-	     android:background="#a9a9a9"
 	     android:text="@string/userinfobutton" />
 
    </LinearLayout>
@@ -122,10 +120,10 @@
     <Button
         android:id="@+id/createTopic"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="#a9a9a9"
+        
         android:text="@string/publishbutton" />
 
     <Button
