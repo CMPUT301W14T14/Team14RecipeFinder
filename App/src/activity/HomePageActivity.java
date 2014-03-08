@@ -70,6 +70,7 @@ public class HomePageActivity extends Activity {
 	
 	public void refresh(){
 		IoStreamHandler io=new IoStreamHandler();
+		allTopics.clear();
 		io.loadTopLevelComments(allTopics,this);
 	}
 	

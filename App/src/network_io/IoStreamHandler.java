@@ -117,6 +117,7 @@ public class IoStreamHandler {
 					public void run() {
 						if(Data.getSource()!=null){
 							cm.updateComment(Data.getSource());
+							//System.out.println(Data.getSource().getId());
 						}
 					}
 				};
@@ -198,19 +199,12 @@ public class IoStreamHandler {
 				
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<IdSet>>(){}.getType();
 				final ElasticSearchResponse<IdSet> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				Runnable getIdSet = new Runnable() {
-					@Override
-					public void run() {
-						topLevelComments.clear();
-						IdSet idSet=Data.getSource();
-						if(idSet!=null){
-							for(String id : idSet.getSet()){
-								loadSpecificComment(id,topLevelComments,activity);
-							}
-						}
+				IdSet idSet=Data.getSource();
+				if(idSet!=null){
+					for(String id : idSet.getSet()){
+						loadSpecificComment(id,topLevelComments,activity);
 					}
-				};
-				activity.runOnUiThread(getIdSet);
+				}
 			}
 		};
 		thread.start();

@@ -30,6 +30,7 @@ public class CommentMap{
 		this.comments.put(comment.getId(),comment);
 		this.comments_list.add(comment);
 		this.adapter.notifyDataSetChanged();
+		//System.out.println(comment.getId());
 	}
 	
 	/**

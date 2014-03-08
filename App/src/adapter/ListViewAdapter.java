@@ -35,6 +35,9 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 			if(c.getPicture()!=null){
 				comment_pic.setImageBitmap(c.getPicture());
 			}
+			else{
+				comment_pic.setImageBitmap(null);
+			}
 			TextView comment_text=(TextView)convertView.findViewById(R.id.comment_text);
 			comment_text.setText(c.getTitle());
 			TextView comment_info=(TextView)convertView.findViewById(R.id.user_name_and_time_posted);
