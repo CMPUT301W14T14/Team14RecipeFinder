@@ -62,7 +62,7 @@
       android:textAppearance="?android:attr/textAppearanceLarge" />
   
 	<TextView
-	    android:id="@+id/authorinfo"
+	    android:id="@+id/authorInfo"
 	    android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:layout_marginLeft="6dp"

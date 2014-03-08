@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.Date;
 
 import model.Comment;
 import model.CommentMap;
@@ -19,9 +20,12 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import activity.CommentPageActivity;
 import activity.HomePageActivity;
 import activity.PublishActivity;
+import android.location.Location;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -254,6 +258,58 @@ public class IoStreamHandler {
 					}
 				};
 				activity.runOnUiThread(getIdSet);
+			}
+		};
+		thread.start();
+	}
+	
+	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final CommentPageActivity activity){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoadAndSet: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable getAndSetComment = new Runnable() {
+					@Override
+					public void run() {
+						Comment c=Data.getSource();
+						if(c!=null){
+							commentView.setText(c.getText());
+							Location loc=c.getLocation();
+							double lat=loc.getLatitude();
+							double lng=loc.getLongitude();
+							authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString()));
+						}
+					}
+				};
+				activity.runOnUiThread(getAndSetComment);
 			}
 		};
 		thread.start();

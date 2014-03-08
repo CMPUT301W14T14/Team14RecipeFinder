@@ -2,6 +2,7 @@ package activity;
 
 import network_io.IoStreamHandler;
 
+import model.Comment;
 import model.CommentMap;
 
 import com.example.projectapp.R;
@@ -13,6 +14,8 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -48,6 +51,7 @@ public class HomePageActivity extends Activity {
 		lva=new ListViewAdapter(this,R.layout.single_comment_layout,allTopics.getCurrentList());
 		topicList.setAdapter(lva);
 		allTopics.setArrayAdapter(lva);
+		topicList.setOnItemClickListener(new ViewClick());
 		
 	}
 
@@ -89,5 +93,18 @@ public class HomePageActivity extends Activity {
 			push_intent.putExtra("isTopLevel",true);
 			startActivity(push_intent);
 		}
+	}
+	
+	class ViewClick implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
+			Comment c=(Comment)arg0.getItemAtPosition(pos);
+			Intent view_intent=new Intent(HomePageActivity.this,CommentPageActivity.class);
+			view_intent.putExtra("comment_id",c.getId());
+			view_intent.putExtra("user",userJson);
+			startActivity(view_intent);
+		}
+		
 	}
 }
