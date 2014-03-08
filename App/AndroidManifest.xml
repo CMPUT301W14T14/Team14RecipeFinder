@@ -57,6 +57,10 @@
             android:name="activity.PublishActivity"
             android:label="@string/title_activity_publish" >
         </activity>
+                <activity
+            android:name="activity.ResetUserNameActivity"
+            android:label="@string/title_activity_ResetUserName" >
+        </activity>
     </application>
 
 </manifest>

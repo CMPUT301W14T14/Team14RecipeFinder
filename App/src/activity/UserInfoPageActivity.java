@@ -1,6 +1,7 @@
 package activity;
 
 import com.example.projectapp.R;
+import com.example.projectapp.UserNameInfo;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -18,11 +19,16 @@ public class UserInfoPageActivity extends Activity {
 	private Button favorite = null;
 	private Button viewedTopic = null;
 	private Button resetName = null;
+	private String pageUseName = null;
+	UserNameInfo userinfoglobol = ((UserNameInfo)this.getApplication());
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.userinfopage);
 		userName = (TextView)findViewById(R.id.username);
+		pageUseName = userinfoglobol.getUserName();
+		userName.setText(pageUseName);
+		
 		logOut = (Button)findViewById(R.id.logout);
 		back = (Button)findViewById(R.id.userinfoBack);
 		favorite = (Button)findViewById(R.id.favourite);
@@ -66,18 +72,25 @@ public class UserInfoPageActivity extends Activity {
 				
 			case R.id.favourite:
 				//favorite button click
-				
+				Intent favouriteintent = new Intent();
+				favouriteintent.setClass(UserInfoPageActivity.this, ViewHistoryActivity.class);
+				UserInfoPageActivity.this.startActivity(favouriteintent);	
 				break;
+				
 			case R.id.historytopic:
 				//Viewed Topic button click
 				Intent historyintent = new Intent();
 				historyintent.setClass(UserInfoPageActivity.this, ViewHistoryActivity.class);
 				UserInfoPageActivity.this.startActivity(historyintent);				
 				break;
+				
 			case R.id.setname:
 				// reset name button click
-				
+				Intent setnameintent = new Intent();
+				setnameintent.setClass(UserInfoPageActivity.this, ResetUserNameActivity.class);
+				UserInfoPageActivity.this.startActivity(setnameintent);	
 				break;
+				
 			case R.id.userinfoBack:
 				// back button click
 				Intent intent = new Intent();
