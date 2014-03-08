@@ -123,6 +123,7 @@ public class PublishActivity extends Activity {
 				}
 				io.commitUpdateComment(comment);
 			}
+			attached_pic=null;
 			finish();
 		}
 		
