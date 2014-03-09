@@ -27,6 +27,7 @@ import activity.PublishActivity;
 //import android.location.Location;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -463,6 +464,97 @@ public class IoStreamHandler {
 					}
 				};
 				activity.runOnUiThread(editCommand);
+			}
+		};
+		thread.start();
+	}
+	
+	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final EditPageActivity activity){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable editSetup = new Runnable(){
+                    @Override
+					public void run(){
+						Comment c=Data.getSource();
+						title.setText(c.getTitle());
+						content.setText(c.getText());
+						if(c.getPicture()!=null){
+							pic.setImageBitmap(c.getPicture());
+						}
+					}
+					
+				};
+				
+				activity.runOnUiThread(editSetup);
+			}
+		};
+		
+		thread.start();
+	}
+	
+	public void commit_edit_comment(final String commentId,final String newTitle,final String newContent){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Comment c=Data.getSource();
+				c.setTitle(newTitle);
+				c.setText(newContent);
+				commitUpdateComment(c);
 			}
 		};
 		thread.start();

@@ -40,6 +40,7 @@
     <string name="title_activity_comment_page">CommentPageActivity</string>
     <string name="title_activity_view_history">ViewHistoryActivity</string>
     <string name="title_activity_ResetUserName">Reset the usename</string>
+    <string name="title_activity_EditPage">Edit Page</string>
     <string name="thenewslist">The News List</string>
     <string name="thegreatest">The Greatest News</string>
     <string name="title_activity_publish">Publish a new Comment</string>

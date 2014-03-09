@@ -58,6 +58,10 @@ public class Comment {
 		return this.title;
 	}
 	
+	public void setTitle(String newTitle){
+		this.title=newTitle;
+	}
+	
 	//For Text
 	public String getText(){
 		return this.text;
