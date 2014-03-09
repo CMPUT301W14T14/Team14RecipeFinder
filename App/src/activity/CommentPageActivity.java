@@ -26,9 +26,9 @@ public class CommentPageActivity extends Activity {
 
 	//private Button sort=null;
 	//private Button userInfo=null;
-	private Button readLater=null;
+	//private Button readLater=null;
 	private Button edit=null;
-	private Button like=null;
+	//private Button like=null;
 	private Button reply=null;
 	private Button sync=null;
 	
@@ -52,9 +52,9 @@ public class CommentPageActivity extends Activity {
 		userName=((UserNameInfo)this.getApplication()).getUserName();
 		//sort=(Button)findViewById(R.id.sort2);
 		//userInfo=(Button)findViewById(R.id.userbutton2);
-		readLater=(Button)findViewById(R.id.SaveForLater);
+		//readLater=(Button)findViewById(R.id.SaveForLater);
 		edit=(Button)findViewById(R.id.edit);
-		like=(Button)findViewById(R.id.Like);
+		//like=(Button)findViewById(R.id.Like);
 		reply=(Button)findViewById(R.id.reply);
 		sync=(Button)findViewById(R.id.sync);
 		commentText=(TextView)findViewById(R.id.commentText);

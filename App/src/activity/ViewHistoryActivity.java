@@ -1,22 +1,18 @@
 package activity;
 
 import com.example.projectapp.R;
-import com.example.projectapp.R.layout;
-import com.example.projectapp.R.menu;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 public class ViewHistoryActivity extends Activity {
 	
 	private Button goBack = null;
 	private Button sort = null;
-	private ListView list = null;
+	//private ListView list = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +20,7 @@ public class ViewHistoryActivity extends Activity {
 		setContentView(R.layout.history);
 		goBack = (Button)findViewById(R.id.goback);
 		sort = (Button)findViewById(R.id.sort3);
-		list = (ListView)findViewById(R.id.listView1);
+		//list = (ListView)findViewById(R.id.listView1);
 		
 	}
 	
