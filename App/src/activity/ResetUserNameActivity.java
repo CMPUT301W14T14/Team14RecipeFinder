@@ -15,24 +15,26 @@ public class ResetUserNameActivity extends Activity{
 	private EditText typename = null;
 	private Button setNameCommit = null;
 	private Button setNameCancel = null;
-	private String newusername = null;
-	UserNameInfo resetnameglobol = ((UserNameInfo)this.getApplication());
+	
+	
+	protected void setUserName(String userName){
+		((UserNameInfo)this.getApplication()).setUserName(userName);
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.resetusername);
 		
-		typename = (EditText)findViewById(R.id.typename);
-		newusername = typename.getText().toString(); 
+		typename = (EditText)findViewById(R.id.type_new_user_name); 
 		
 		setNameCommit = (Button)findViewById(R.id.setNameOk);
 		setNameCommit.setOnClickListener(new View.OnClickListener()
 		{
 			public void onClick(View v)
 			{
-				//commit reset user name button click
-				resetnameglobol.setUserName(newusername);
+				String newUserName = typename.getText().toString();
+				setUserName(newUserName);
 				finish();
 			}
 		});
@@ -42,7 +44,6 @@ public class ResetUserNameActivity extends Activity{
 		{
 			public void onClick(View v)
 			{
-				//don't reset the user name and close this activity
 				finish();
 			}
 		});

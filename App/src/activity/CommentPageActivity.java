@@ -25,7 +25,7 @@ import android.widget.AdapterView.OnItemClickListener;
 public class CommentPageActivity extends Activity {
 
 	//private Button sort=null;
-	//private Button userInfo=null;
+	private Button userInfo=null;
 	//private Button readLater=null;
 	private Button edit=null;
 	//private Button like=null;
@@ -51,7 +51,7 @@ public class CommentPageActivity extends Activity {
 		setContentView(R.layout.commentpage);
 		userName=((UserNameInfo)this.getApplication()).getUserName();
 		//sort=(Button)findViewById(R.id.sort2);
-		//userInfo=(Button)findViewById(R.id.userbutton2);
+		userInfo=(Button)findViewById(R.id.userbutton2);
 		//readLater=(Button)findViewById(R.id.SaveForLater);
 		edit=(Button)findViewById(R.id.edit);
 		//like=(Button)findViewById(R.id.Like);
@@ -83,6 +83,7 @@ public class CommentPageActivity extends Activity {
 		sync.setOnClickListener(new SyncClick());
 		commentList.setOnItemClickListener(new RecurViewClick());
 		edit.setOnClickListener(new EditClick());
+		userInfo.setOnClickListener(new UserInfoClick());
 	}
 	
 	protected void sync(){
@@ -147,6 +148,14 @@ public class CommentPageActivity extends Activity {
 			}
 		}
 		
+	}
+	
+	class UserInfoClick implements OnClickListener{
+		@Override
+		public void onClick(View v){
+			Intent push_intent=new Intent(CommentPageActivity.this,UserInfoPageActivity.class);
+			startActivity(push_intent);
+		}
 	}
 
 }

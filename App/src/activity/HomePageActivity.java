@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 public class HomePageActivity extends Activity {
 	//private Button sort=null;
-	//private Button logOut=null;
-	//private Button userInfo=null;
+	private Button logOut=null;
+	private Button userInfo=null;
 	//private ListView greatTopic=null;
 	private ListView topicList=null;
 	private Button createTopic=null;
@@ -40,8 +40,8 @@ public class HomePageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.topicpage);
 		//sort=(Button)findViewById(R.id.sort1);
-		//laterList=(Button)findViewById(R.id.logOut);
-		//userInfo=(Button)findViewById(R.id.userButton1);
+		logOut=(Button)findViewById(R.id.logOut);
+		userInfo=(Button)findViewById(R.id.userButton1);
 		//greatTopic=(ListView)findViewById(R.id.greatTopic);
 		topicList=(ListView)findViewById(R.id.topicList);
 		createTopic=(Button)findViewById(R.id.createTopic);
@@ -62,6 +62,8 @@ public class HomePageActivity extends Activity {
 		userName=((UserNameInfo)this.getApplication()).getUserName();
 		refresh.setOnClickListener(new RefreshClick());
 		createTopic.setOnClickListener(new PublishClick());
+		userInfo.setOnClickListener(new UserInfoClick());
+		logOut.setOnClickListener(new LogOutClick());
 	}
 
 
@@ -110,5 +112,20 @@ public class HomePageActivity extends Activity {
 			startActivity(view_intent);
 		}
 		
+	}
+	
+	class UserInfoClick implements OnClickListener{
+		@Override
+		public void onClick(View v){
+			Intent push_intent=new Intent(HomePageActivity.this,UserInfoPageActivity.class);
+			startActivity(push_intent);
+		}
+	}
+	
+	class LogOutClick implements OnClickListener{
+		@Override
+		public void onClick(View v){
+			finish();
+		}
 	}
 }
