@@ -29,11 +29,11 @@
            android:layout_weight="0.05"/>  
 
 	  <Button
-	      android:id="@+id/laterList1"
+	      android:id="@+id/logOut"
 	      android:layout_width="0dp"
 	      android:layout_height="match_parent"
 	      android:layout_weight="0.25"
-	      android:text="@string/latelist" />
+	      android:text="@string/logoutbutton" />
 	 
 	<TextView
            android:id="@+id/foo1"

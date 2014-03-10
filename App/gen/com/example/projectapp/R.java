@@ -47,12 +47,12 @@ public final class R {
         public static final int greatTopic=0x7f080029;
         public static final int historytopic=0x7f080032;
         public static final int imagePreview=0x7f080012;
-        public static final int laterList1=0x7f080025;
+        public static final int laterList1=0x7f08002f;
         public static final int listView1=0x7f08000c;
+        public static final int logOut=0x7f080025;
         public static final int login_button=0x7f080036;
         public static final int login_layout=0x7f080033;
         public static final int login_userName_input_ins=0x7f080034;
-        public static final int logout=0x7f08002f;
         public static final int pagename=0x7f08000b;
         public static final int publish=0x7f08000f;
         public static final int publishblank1=0x7f080016;
@@ -117,7 +117,7 @@ public final class R {
         public static final int goback=0x7f05000c;
         public static final int hello_world=0x7f050002;
         public static final int image_preview_ins=0x7f050030;
-        public static final int latelist=0x7f05000f;
+        public static final int laterlist=0x7f05000f;
         public static final int like=0x7f050019;
         public static final int login_ins=0x7f050003;
         public static final int logoutbutton=0x7f050016;

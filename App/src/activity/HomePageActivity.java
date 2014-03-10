@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 public class HomePageActivity extends Activity {
 	//private Button sort=null;
-	//private Button laterList=null;
+	//private Button logOut=null;
 	//private Button userInfo=null;
 	//private ListView greatTopic=null;
 	private ListView topicList=null;
@@ -40,7 +40,7 @@ public class HomePageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.topicpage);
 		//sort=(Button)findViewById(R.id.sort1);
-		//laterList=(Button)findViewById(R.id.laterList1);
+		//laterList=(Button)findViewById(R.id.logOut);
 		//userInfo=(Button)findViewById(R.id.userButton1);
 		//greatTopic=(ListView)findViewById(R.id.greatTopic);
 		topicList=(ListView)findViewById(R.id.topicList);

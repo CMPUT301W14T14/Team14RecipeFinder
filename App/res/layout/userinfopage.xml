@@ -17,13 +17,13 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/laterList1"
         android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:layout_x="89dp"
         android:layout_y="76dp"
         android:background="#000000"
-        android:text="@string/logoutbutton"
+        android:text="@string/laterlist"
         android:textColor="#ffffff"
         android:textStyle="bold" />
 
