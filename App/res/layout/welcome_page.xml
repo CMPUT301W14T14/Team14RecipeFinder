@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_userName_input_ins"
         android:layout_marginTop="10dp"
+        android:hint="@string/enter_userName_ins"
         android:inputType="text"
         android:singleLine="true"
-        android:text="@string/typeUserName_ins"
         android:textSize="18sp" />
 
     <Button
