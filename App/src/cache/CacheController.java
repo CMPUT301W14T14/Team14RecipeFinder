@@ -48,4 +48,20 @@ public class CacheController{
 		String newJson=gson.toJson(cl);
 		caches.edit().putString(favSubKey,newJson).commit();
 	}
+	
+	public void AddCacheReply(Activity activity,String parentId,Comment reply){
+		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
+		String replyJson=caches.getString(parentId,null);
+		CommentList cl=null;
+		if(replyJson==null){
+			cl=new CommentList();
+		}
+		else{
+			cl=gson.fromJson(replyJson,CommentList.class);
+		}
+		cl.add(reply);
+		System.out.println(cl.getCurrentList());
+		String newJson=gson.toJson(cl);
+		caches.edit().putString(parentId,newJson).commit();
+	}
 }

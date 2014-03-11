@@ -50,7 +50,7 @@ public class UserInfoPageActivity extends Activity {
 
 		@Override
 		public void onClick(View v){
-			Intent push_intent=new Intent(UserInfoPageActivity.this,ViewCacheActivity.class);
+			Intent push_intent=new Intent(UserInfoPageActivity.this,ViewFavActivity.class);
 			push_intent.putExtra("TAG","FAV");
 			startActivity(push_intent);
 		}

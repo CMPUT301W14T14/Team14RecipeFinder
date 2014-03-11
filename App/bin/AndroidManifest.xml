@@ -50,8 +50,8 @@
             android:label="@string/title_activity_sort_option" >
         </activity>
         <activity
-            android:name="activity.ViewCacheActivity"
-            android:label="@string/title_activity_view_history" >
+            android:name="activity.ViewFavActivity"
+            android:label="title_activity_view_fav" >
         </activity>
         <activity
             android:name="activity.PublishActivity"

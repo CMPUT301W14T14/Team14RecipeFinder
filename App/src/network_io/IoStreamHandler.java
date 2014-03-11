@@ -600,13 +600,71 @@ public class IoStreamHandler {
 				Runnable getComment = new Runnable() {
 					@Override
 					public void run() {
-						if(Data.getSource()!=null){
-							cc.AddFav(activity,Data.getSource());
+						Comment c=Data.getSource();
+						if(c!=null){
+							cc.AddFav(activity,c);
+							//String id=c.getId();
+							//for(String replyId : c.getReplies()){
+								//loadSpecificCommentForCacheReply(replyId,id,cc,activity);
+							//}
 							Toast.makeText(activity.getApplicationContext(),"Like Success.",Toast.LENGTH_SHORT).show();
 						}
 					}
 				};
 				activity.runOnUiThread(getComment);
+			}
+		};
+		thread.start();
+	}
+	
+	
+	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final CommentPageActivity activity){
+		if(gson==null){
+			gson=(new Gson_Constructor()).getGson();
+		}
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+=output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable getCacheReply = new Runnable() {
+					@Override
+					public void run() {
+						Comment c=Data.getSource();
+						String id=c.getId();
+						if(c!=null){
+							cc.AddCacheReply(activity,parentId,c);
+							for(String replyId : c.getReplies()){
+								loadSpecificCommentForCacheReply(replyId,id,cc,activity);
+							}
+						}
+					}
+				};
+				activity.runOnUiThread(getCacheReply);
 			}
 		};
 		thread.start();
