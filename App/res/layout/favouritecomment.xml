@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"    
+    android:orientation="vertical" >
+    
+    
+  <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_weight="0.1"
+       android:orientation="horizontal" >
+    
+	<Button
+        android:id="@+id/sort2"
+        style="@style/AppBaseTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#a9a9a9"
+        android:layout_weight="0.3"
+        android:text="@string/sort"
+        android:layout_marginRight="6dp"
+        android:textStyle="bold" />
+    </LinearLayout>
+
+  <TextView
+      android:id="@+id/commentText"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginLeft="6dp"
+      android:layout_marginRight="6dp"
+      android:layout_marginTop="6dp"
+      android:layout_weight="0.54"
+      android:background="#d3d3d3"
+      android:scrollbars="vertical"
+      android:text="@string/topiccontenttext"
+      android:textAppearance="?android:attr/textAppearanceLarge" />
+  
+	<TextView
+	    android:id="@+id/authorInfo"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_marginLeft="6dp"
+	    android:layout_marginRight="6dp"
+	    android:layout_marginTop="6dp"
+	    android:layout_weight="0.1"
+	    android:background="#000000"
+	    android:text="@string/authorinfo"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="#ffffff"
+	    android:textSize="13sp"
+	    android:textStyle="bold" />
+	
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="0.45" >
+	
+	<ImageView
+	    android:id="@+id/topicImage"
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.4"
+	    android:contentDescription="@string/attached_pic_dis"
+	    android:src="@drawable/ic_launcher" />
+
+	<ListView
+	    android:id="@+id/commentList"
+	    android:layout_width="0dp"
+	    android:layout_height="173dp"
+	    android:layout_weight="0.60"
+	    android:background="#000000"
+	    android:divider="#ffffff"
+	    android:dividerHeight="2dp"
+	    android:scrollbars="vertical" >
+
+    </ListView>
+	</LinearLayout>
+	
+	<LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_marginLeft="6dp"
+       android:layout_marginRight="6dp"
+       android:layout_marginTop="6dp"
+       android:layout_marginBottom="6dp"
+       android:layout_weight="0.05"
+       android:orientation="horizontal" >
+
+	</LinearLayout>
+	
+</LinearLayout>
+

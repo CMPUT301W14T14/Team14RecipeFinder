@@ -81,14 +81,15 @@ public final class R {
     }
     public static final class layout {
         public static final int commentpage=0x7f030000;
-        public static final int history=0x7f030001;
-        public static final int publish=0x7f030002;
-        public static final int resetusername=0x7f030003;
-        public static final int single_comment_layout=0x7f030004;
-        public static final int sortoption=0x7f030005;
-        public static final int topicpage=0x7f030006;
-        public static final int userinfopage=0x7f030007;
-        public static final int welcome_page=0x7f030008;
+        public static final int favouritecomment=0x7f030001;
+        public static final int history=0x7f030002;
+        public static final int publish=0x7f030003;
+        public static final int resetusername=0x7f030004;
+        public static final int single_comment_layout=0x7f030005;
+        public static final int sortoption=0x7f030006;
+        public static final int topicpage=0x7f030007;
+        public static final int userinfopage=0x7f030008;
+        public static final int welcome_page=0x7f030009;
     }
     public static final class menu {
         public static final int comment_page=0x7f070000;
