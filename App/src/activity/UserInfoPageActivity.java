@@ -23,7 +23,7 @@ public class UserInfoPageActivity extends Activity {
 	 protected void onCreate(Bundle savedInstanceState) {
 	 	super.onCreate(savedInstanceState);
 	    setContentView(R.layout.userinfopage);
-	    userName=(TextView)findViewById(R.id.username);
+	    userName=(TextView)findViewById(R.id.usernameView);
 	    favourite=(Button)findViewById(R.id.favourite);
 	    setName=(Button)findViewById(R.id.setname);
 	}

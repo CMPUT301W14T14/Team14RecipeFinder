@@ -50,7 +50,7 @@
             android:label="@string/title_activity_sort_option" >
         </activity>
         <activity
-            android:name="activity.ViewHistoryActivity"
+            android:name="activity.ViewCacheActivity"
             android:label="@string/title_activity_view_history" >
         </activity>
         <activity

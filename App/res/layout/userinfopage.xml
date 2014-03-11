@@ -5,60 +5,55 @@
     android:background="#ffffff"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/favourite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignRight="@+id/username"
-        android:layout_below="@+id/username"
-        android:layout_marginTop="19dp"
-        android:text="@string/favouriteselect"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/laterList1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/favourite"
-        android:layout_alignRight="@+id/favourite"
-        android:layout_below="@+id/favourite"
-        android:layout_marginTop="19dp"
-        android:text="@string/laterlist"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/setname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/historytopic"
-        android:layout_alignRight="@+id/historytopic"
-        android:layout_below="@+id/historytopic"
-        android:layout_marginTop="19dp"
-        android:text="@string/resetnamebutton"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/historytopic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/laterList1"
-        android:layout_alignRight="@+id/laterList1"
-        android:layout_below="@+id/laterList1"
-        android:layout_marginTop="19dp"
-        android:text="@string/viewedhistory"
-        android:textStyle="bold" />
-
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/usernameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
         android:gravity="center"
         android:text="@string/userinfopagetitle"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/laterList1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/setname"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="40dp"
+        android:text="@string/laterlist"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/historytopic"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="73dp"
+        android:text="@string/viewedhistory"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/setname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/historytopic"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="42dp"
+        android:text="@string/resetnamebutton"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/favourite"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/laterList1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="38dp"
+        android:text="@string/favouriteselect"
         android:textStyle="bold" />
 
 </RelativeLayout>

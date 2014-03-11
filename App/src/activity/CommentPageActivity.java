@@ -4,8 +4,11 @@ import model.Comment;
 import model.CommentMap;
 import network_io.IoStreamHandler;
 
+import cache.CacheController;
+
 import com.example.projectapp.R;
 import com.example.projectapp.UserNameInfo;
+
 
 import adapter.ListViewAdapter;
 import android.os.Bundle;
@@ -23,12 +26,15 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CommentPageActivity extends Activity {
+	
+	public static final String cacheKey="CACHES";
+	public static final String favSubKey="FAVOURITES";
 
 	//private Button sort=null;
 	private Button userInfo=null;
 	//private Button readLater=null;
 	private Button edit=null;
-	//private Button like=null;
+	private Button like=null;
 	private Button reply=null;
 	private Button sync=null;
 	
@@ -45,6 +51,8 @@ public class CommentPageActivity extends Activity {
 	private ListViewAdapter lva=null;
 	private CommentMap cm=null;
 	
+	private CacheController cc=null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,7 +62,7 @@ public class CommentPageActivity extends Activity {
 		userInfo=(Button)findViewById(R.id.userbutton2);
 		//readLater=(Button)findViewById(R.id.SaveForLater);
 		edit=(Button)findViewById(R.id.edit);
-		//like=(Button)findViewById(R.id.Like);
+		like=(Button)findViewById(R.id.Like);
 		reply=(Button)findViewById(R.id.reply);
 		sync=(Button)findViewById(R.id.sync);
 		commentText=(TextView)findViewById(R.id.commentText);
@@ -63,6 +71,8 @@ public class CommentPageActivity extends Activity {
 		pic.setImageBitmap(null);
 		commentList=(ListView)findViewById(R.id.commentList);
 		io=new IoStreamHandler();
+		
+		cc=new CacheController();
 		
 		cm=new CommentMap();
 		lva=new ListViewAdapter(this,R.layout.single_comment_layout,cm.getCurrentList());
@@ -78,7 +88,7 @@ public class CommentPageActivity extends Activity {
 		Intent intent=getIntent();
 		comment_id=intent.getStringExtra("comment_id");
 		this.sync();
-		
+		like.setOnClickListener(new LikeClick());
 		reply.setOnClickListener(new ReplyClick());
 		sync.setOnClickListener(new SyncClick());
 		commentList.setOnItemClickListener(new RecurViewClick());
@@ -97,6 +107,15 @@ public class CommentPageActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.comment_page, menu);
 		return true;
+	}
+	
+	class LikeClick implements OnClickListener{
+
+		@Override
+		public void onClick(View v){
+			io.loadSpecificCommentForCache(comment_id,cc,CommentPageActivity.this);
+		}
+		
 	}
 	
 	class ReplyClick implements OnClickListener{

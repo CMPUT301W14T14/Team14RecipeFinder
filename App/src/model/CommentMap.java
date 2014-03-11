@@ -29,8 +29,9 @@ public class CommentMap{
 	public void updateComment(Comment comment){
 		this.comments.put(comment.getId(),comment);
 		this.comments_list.add(comment);
-		this.adapter.notifyDataSetChanged();
-		//System.out.println(comment.getId());
+		if(this.adapter!=null){
+			this.adapter.notifyDataSetChanged();
+		}
 	}
 	
 	/**
@@ -56,6 +57,8 @@ public class CommentMap{
 	public void clear(){
 		this.comments.clear();
 		this.comments_list.clear();
-		this.adapter.notifyDataSetChanged();
+		if(this.adapter!=null){
+			this.adapter.notifyDataSetChanged();
+		}
 	}
 }

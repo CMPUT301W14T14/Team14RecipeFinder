@@ -38,15 +38,15 @@ public final class R {
         public static final int commitPublish=0x7f080014;
         public static final int createTopic=0x7f08002a;
         public static final int edit=0x7f080007;
-        public static final int favourite=0x7f08002c;
+        public static final int favourite=0x7f080030;
         public static final int foo=0x7f080022;
         public static final int foo1=0x7f080024;
         public static final int foo2=0x7f080026;
         public static final int generalsort=0x7f08001d;
         public static final int greatTopic=0x7f080027;
-        public static final int historytopic=0x7f080030;
+        public static final int historytopic=0x7f08002f;
         public static final int imagePreview=0x7f080011;
-        public static final int laterList1=0x7f08002e;
+        public static final int laterList1=0x7f08002d;
         public static final int logOut=0x7f080023;
         public static final int login_button=0x7f080034;
         public static final int login_layout=0x7f080031;
@@ -59,7 +59,7 @@ public final class R {
         public static final int setNameNo=0x7f080018;
         public static final int setNameOk=0x7f080019;
         public static final int setNameTitle=0x7f080016;
-        public static final int setname=0x7f08002f;
+        public static final int setname=0x7f08002e;
         public static final int sort1=0x7f080021;
         public static final int sort2=0x7f080000;
         public static final int sort3=0x7f08000d;
@@ -77,7 +77,7 @@ public final class R {
         public static final int user_name_and_time_posted=0x7f08001c;
         public static final int user_name_input=0x7f080033;
         public static final int userbutton2=0x7f080002;
-        public static final int username=0x7f08002d;
+        public static final int usernameView=0x7f08002c;
     }
     public static final class layout {
         public static final int commentpage=0x7f030000;
@@ -102,6 +102,7 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int attached_pic_dis=0x7f050032;
         public static final int attachpicture=0x7f050009;
         public static final int authorinfo=0x7f05001c;
         public static final int cancel=0x7f05002c;

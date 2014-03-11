@@ -1,6 +1,7 @@
 package cache;
 
-import model.CommentMap;
+import model.Comment;
+import model.CommentList;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -20,16 +21,31 @@ public class CacheController{
 		this.gson=(new Gson_Constructor()).getGson();
 	}
 	
-	public CommentMap loadFav(Activity activity){
+	public CommentList loadFav(Activity activity){
 		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
 		String favJson=caches.getString(favSubKey,null);
-		CommentMap fav=null;
+		CommentList cl=null;
 		if(favJson==null){
-			fav=new CommentMap();
+			cl=new CommentList();
 		}
 		else{
-			fav=gson.fromJson(favJson,CommentMap.class);
+			cl=gson.fromJson(favJson,CommentList.class);
 		}
-		return fav;
+		return cl;
+	}
+	
+	public void AddFav(Activity activity,Comment comment){
+		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
+		String favJson=caches.getString(favSubKey,null);
+		CommentList cl=null;
+		if(favJson==null){
+			cl=new CommentList();
+		}
+		else{
+			cl=gson.fromJson(favJson,CommentList.class);
+		}
+		cl.add(comment);
+		String newJson=gson.toJson(cl);
+		caches.edit().putString(favSubKey,newJson).commit();
 	}
 }
