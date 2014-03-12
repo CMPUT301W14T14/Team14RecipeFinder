@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.app.Activity;
 import android.content.Intent;
 
-//Just for test right now!
 public class ViewFavActivity extends Activity {
 	
 	private ListView cacheView=null;

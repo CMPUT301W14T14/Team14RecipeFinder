@@ -51,6 +51,9 @@ public class ViewCacheCommentActivity extends Activity{
 		SharedPreferences caches=getSharedPreferences(cacheKey,0);
 		CommentList replies=gson.fromJson(caches.getString(c.getId(),null),CommentList.class);
 		ListViewAdapter lva=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
+		if(c.getPicture()!=null){
+			pic.setImageBitmap(c.getPicture());
+		}
 		reply.setAdapter(lva);
 	}
 }
