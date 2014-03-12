@@ -140,6 +140,7 @@ public final class R {
         public static final int sync=0x7f05002c;
         public static final int thegreatest=0x7f050029;
         public static final int thenewslist=0x7f050028;
+        public static final int title_activity_CacheComment=0x7f050034;
         public static final int title_activity_EditPage=0x7f050027;
         public static final int title_activity_ResetUserName=0x7f050026;
         public static final int title_activity_comment_page=0x7f050023;

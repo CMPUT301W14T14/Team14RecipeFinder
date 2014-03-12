@@ -66,6 +66,10 @@
             android:name="activity.EditPageActivity"
             android:label="@string/title_activity_EditPage" >
         </activity>
+        <activity
+            android:name="activity.ViewCacheCommentActivity"
+            android:label="@string/title_activity_CacheComment" >
+        </activity>
     </application>
 
 </manifest>

@@ -53,5 +53,6 @@
     <string name="image_preview_ins">Image preview</string>
     <string name="reset_user_name_ins">Enter your new User Name here</string>
     <string name="attached_pic_dis">Preview</string>
+    <string name="title_activity_CacheComment">ViewCacheCommentPage</string>
 
 </resources>
