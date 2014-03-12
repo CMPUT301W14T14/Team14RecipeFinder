@@ -16,13 +16,7 @@ public class CommentList{
 	}
 	
 	public void add(Comment comment){
-		int index=0;
-		for(Comment c : this.comments){
-			if(c.getId().equals(comment.getId())){
-				this.comments.remove(index);
-			}
-			index++;
-		}
+		this.comments.remove(comment);
 		this.comments.add(comment);
 	}
 	

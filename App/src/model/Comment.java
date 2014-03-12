@@ -127,4 +127,14 @@ public class Comment {
 	public void addReply(String replyId){
 		this.replyIdSet.add(replyId);
 	}
+	
+	@Override
+	public boolean equals(Object o){
+		if(this.id.equals(((Comment)o).getId())){
+			return true;
+		}
+		return false;
+	}
+	
+	
 }

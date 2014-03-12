@@ -39,7 +39,7 @@ public class Location_Generator{
 	}
 
 	public Location getCurrentLocation(){
-		this.currentLocation=this.lm.getLastKnownLocation("gps");
+		this.currentLocation=this.lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		return this.currentLocation;
 	}
 	

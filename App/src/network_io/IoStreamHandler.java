@@ -603,10 +603,10 @@ public class IoStreamHandler {
 						Comment c=Data.getSource();
 						if(c!=null){
 							cc.AddFav(activity,c);
-							//String id=c.getId();
-							//for(String replyId : c.getReplies()){
-								//loadSpecificCommentForCacheReply(replyId,id,cc,activity);
-							//}
+							String id=c.getId();
+							for(String replyId : c.getReplies()){
+								loadSpecificCommentForCacheReply(replyId,id,cc,activity);
+							}
 							Toast.makeText(activity.getApplicationContext(),"Like Success.",Toast.LENGTH_SHORT).show();
 						}
 					}

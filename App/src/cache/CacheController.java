@@ -60,7 +60,6 @@ public class CacheController{
 			cl=gson.fromJson(replyJson,CommentList.class);
 		}
 		cl.add(reply);
-		System.out.println(cl.getCurrentList());
 		String newJson=gson.toJson(cl);
 		caches.edit().putString(parentId,newJson).commit();
 	}
