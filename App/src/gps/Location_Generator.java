@@ -35,11 +35,14 @@ public class Location_Generator{
 			public void onStatusChanged(String provider,int status,Bundle extras){}
 			
 		};
-		this.lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,1,this.locationListener);
+		this.lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,0,this.locationListener);
 	}
 
 	public Location getCurrentLocation(){
 		this.currentLocation=this.lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) != true) {
+			throw new RuntimeException("GPS isn't running!");
+		}
 		return this.currentLocation;
 	}
 	

@@ -115,7 +115,6 @@ public class PublishActivity extends Activity {
 				Toast.makeText(getApplicationContext(),"Title cannot longer than 20 characters.",Toast.LENGTH_SHORT).show();
 			}
 			else{
-				System.out.println(location_generator.getCurrentLocation());
 				Comment comment=null;
 				if(attached_pic==null){
 					comment=new Comment(commentTitle,commentContent,location_generator.getCurrentLocation(),userName);

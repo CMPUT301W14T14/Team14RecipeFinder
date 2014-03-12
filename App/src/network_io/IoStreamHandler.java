@@ -26,6 +26,7 @@ import activity.HomePageActivity;
 import activity.PublishActivity;
 //import android.location.Location;
 import android.content.Intent;
+import android.location.Location;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -359,10 +360,17 @@ public class IoStreamHandler {
 						if(c!=null){
 							commentView.setText(c.getText());
 							pic.setImageBitmap(c.getPicture());
-							//Location loc=c.getLocation();
-							//double lat=loc.getLatitude();
-							//double lng=loc.getLongitude();
-							authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString()));
+							Location loc=c.getLocation();
+							if(loc!=null){
+								double lat=loc.getLatitude();
+								double lng=loc.getLongitude();
+								String lngS=String.valueOf(lng);
+								String latS=String.valueOf(lat);
+								authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+							}
+							else{
+								authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString()));
+							}
 							for(String id : c.getReplies()){
 								loadSpecificComment(id,cm,activity);
 							}
