@@ -16,6 +16,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.widget.Button;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,5 +58,19 @@ public class ViewCacheCommentActivity extends Activity{
 			pic.setImageBitmap(c.getPicture());
 		}
 		reply.setAdapter(lva);
+		//reply.setOnItemClickListener(new ViewClick());
+	}
+	
+	class ViewClick implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1,int pos,long arg3){
+			Comment c=(Comment)arg0.getItemAtPosition(pos);
+			Intent view_intent=new Intent(ViewCacheCommentActivity.this,ViewCacheCommentActivity.class);
+			Gson gson=(new Gson_Constructor()).getGson();
+			view_intent.putExtra("comment",gson.toJson(c));
+			startActivity(view_intent);
+		}
+		
 	}
 }
