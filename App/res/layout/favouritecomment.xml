@@ -16,15 +16,15 @@
        android:orientation="horizontal" >
     
 	<Button
-        android:id="@+id/sort2"
-        style="@style/AppBaseTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="#a9a9a9"
-        android:layout_weight="0.3"
-        android:text="@string/sort"
-        android:layout_marginRight="6dp"
-        android:textStyle="bold" />
+	    android:id="@+id/sort2"
+	    style="@style/AppBaseTheme"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_marginRight="6dp"
+	    android:background="#a9a9a9"
+	    android:text="@string/sort"
+	    android:textStyle="bold" />
+
     </LinearLayout>
 
   <TextView
@@ -62,21 +62,28 @@
         android:layout_marginRight="6dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="6dp"
-        android:layout_weight="0.45" >
+        android:layout_weight="0.65" >
 	
 	<ImageView
 	    android:id="@+id/topicImage"
 	    android:layout_width="0dp"
-	    android:layout_height="match_parent"
-	    android:layout_weight="0.4"
+	    android:layout_height="232dp"
+	    android:layout_weight="0.34"
+	    android:background="#a9a9a9"
 	    android:contentDescription="@string/attached_pic_dis"
 	    android:src="@drawable/ic_launcher" />
 
+	<TextView
+           android:id="@+id/foo"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="0.02"/> 
+	
 	<ListView
 	    android:id="@+id/commentList"
 	    android:layout_width="0dp"
-	    android:layout_height="173dp"
-	    android:layout_weight="0.60"
+	    android:layout_height="match_parent"
+	    android:layout_weight="0.44"
 	    android:background="#000000"
 	    android:divider="#ffffff"
 	    android:dividerHeight="2dp"
