@@ -1,6 +1,8 @@
 package activity;
 
 
+//import network_io.IoStreamHandler;
+
 import com.example.projectapp.R;
 import com.example.projectapp.UserNameInfo;
 
@@ -22,6 +24,9 @@ public class LoginViewActivity extends Activity{
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_page);
+		
+		//IoStreamHandler io=new IoStreamHandler();
+		//io.Clean();
 		
 		userNameInput=(EditText)findViewById(R.id.user_name_input);
 		loginButton=(Button)findViewById(R.id.login_button);

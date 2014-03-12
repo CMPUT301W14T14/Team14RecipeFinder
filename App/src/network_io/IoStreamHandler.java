@@ -15,6 +15,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -130,7 +131,6 @@ public class IoStreamHandler {
 					public void run() {
 						if(Data.getSource()!=null){
 							cm.updateComment(Data.getSource());
-							//System.out.println(Data.getSource().getId());
 						}
 					}
 				};
@@ -673,6 +673,26 @@ public class IoStreamHandler {
 					}
 				};
 				activity.runOnUiThread(getCacheReply);
+			}
+		};
+		thread.start();
+	}
+	
+	//This method is just for test delete!!!!
+	public void Clean(){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpDelete request = new HttpDelete(SERVER_URL);
+				HttpResponse response=null;
+				try{
+					response = client.execute(request);
+					Log.i(LOG_TAG, "Clean: " + response.getStatusLine().toString());
+				}
+				catch(IOException exception){
+					Log.w(LOG_TAG, "Error during Clean: " + exception.getMessage());
+				}
 			}
 		};
 		thread.start();

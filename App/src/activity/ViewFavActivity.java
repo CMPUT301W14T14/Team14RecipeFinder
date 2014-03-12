@@ -46,6 +46,7 @@ public class ViewFavActivity extends Activity {
 		cl=cc.loadFav(this);
 		lva=new ListViewAdapter(this,R.layout.single_comment_layout,cl.getCurrentList());
 		cacheView.setAdapter(lva);
+		cacheView.setOnItemClickListener(new ViewClick());
 	}
 	
 	class ViewClick implements OnItemClickListener{
