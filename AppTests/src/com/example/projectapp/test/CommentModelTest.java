@@ -6,6 +6,7 @@ package com.example.projectapp.test;
 
 import java.util.Date;
 import activity.PublishActivity;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.test.ActivityInstrumentationTestCase2;
 import model.Comment;
@@ -91,8 +92,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * Test getPicture method
 	 */
 	public void testGetPicture(){
-		Comment comment = new Comment("title","text", null, null,"userName");
-		assertEquals(comment.getPicture(), null);
+		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
+		Comment comment = new Comment("title","text", null, pic,"userName");
+		assertEquals(comment.getPicture(), pic);
 	}
 	
 	/**
@@ -152,15 +154,15 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	}
 	
 	
-//	/**
-//	 * Test getParentId method
-//	 */
-//	public void testGetParentId(){
-//		Comment comment = new Comment("title","text", null,"userName");
-//		Comment rp1 = new Comment("title1","text1", null,"userName1");
-//		comment.addReply(rp1);
-//		assertTrue(rp1.getParentId().equals(comment.getId()));
-//	}
+	/**
+	 * Test getParentId method
+	 */
+	public void testGetParentId(){
+		Comment comment = new Comment("title","text", null,"userName");
+		Comment rp1 = new Comment("title1","text1", null,"userName1");
+		rp1.setParent(comment);
+		assertEquals("equal", rp1.getParentId(), comment.getId());
+	}
 
 }
 
