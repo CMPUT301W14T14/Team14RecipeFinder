@@ -14,9 +14,9 @@ import model.Comment;
  * @author Yilu
  *
  */
-public class CommentTest extends ActivityInstrumentationTestCase2<PublishActivity> {
+public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishActivity> {
 
-	public CommentTest() {
+	public CommentModelTest() {
 		super(PublishActivity.class);
 		// TODO Auto-generated constructor stub
 	}
@@ -26,7 +26,9 @@ public class CommentTest extends ActivityInstrumentationTestCase2<PublishActivit
 	 */
 	public void testGetId() {
 		Comment comment = new Comment("title","text", null,"userName");
-		assertEquals(comment.getId(), "userName"+(new Date()).getTime());
+		Long timestamp = (new Date()).getTime();
+//		assertEquals(comment.getId(), "userName"+(new Date()).getTime());
+		assertEquals(comment.getId(), "userName"+timestamp);
 	}
 	
 	/**
@@ -57,7 +59,7 @@ public class CommentTest extends ActivityInstrumentationTestCase2<PublishActivit
 	/**
 	 * Test setText method
 	 */
-	public void testSetText(String newText){
+	public void testSetText(){
 		Comment comment = new Comment("title","text", null,"userName");
 		comment.setText("new text");
 		assertEquals(comment.getText(), "new text");
@@ -118,21 +120,21 @@ public class CommentTest extends ActivityInstrumentationTestCase2<PublishActivit
 		Comment rp2 = new Comment("title2","text2", null,"userName2");
 		comment.addReply(rp1);
 		comment.addReply(rp2);
-		assertTrue(comment.getReplies().get(0).equals(rp1)&&comment.getReplies().get(1).equals(rp2));
+		assertTrue( (comment.getReplies().get(0).equals(rp1.getId())) 
+		        && (comment.getReplies().get(1).equals(rp2.getId())) );
 	}
 
 	/**
 	 * Test addReply methods
 	 */
-	public void addReply(){
+	public void testAddReply(){
 		Comment comment = new Comment("title","text", null,"userName");
 		Comment rp1 = new Comment("title1","text1", null,"userName1");
 		comment.addReply(rp1);
-		assertTrue(comment.getReplies().get(0).equals(rp1));
-		
+		assertTrue(comment.getReplies().get(0).equals(rp1.getId()));
 		Comment rp2 = new Comment("title2","text2", null,"userName2");
 		comment.addReply(rp2.getId());
-		assertTrue(comment.getReplies().get(1).equals(rp2));
+		assertTrue(comment.getReplies().get(1).equals(rp2.getId()));
 	}
 	
 	/**
@@ -150,15 +152,15 @@ public class CommentTest extends ActivityInstrumentationTestCase2<PublishActivit
 	}
 	
 	
-	/**
-	 * Test getParentId method
-	 */
-	public void testGetParentId(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Comment rp1 = new Comment("title1","text1", null,"userName1");
-		comment.addReply(rp1);
-		assertTrue(rp1.getParentId().equals(comment.getId()));
-	}
+//	/**
+//	 * Test getParentId method
+//	 */
+//	public void testGetParentId(){
+//		Comment comment = new Comment("title","text", null,"userName");
+//		Comment rp1 = new Comment("title1","text1", null,"userName1");
+//		comment.addReply(rp1);
+//		assertTrue(rp1.getParentId().equals(comment.getId()));
+//	}
 
 }
 
