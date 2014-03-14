@@ -7,6 +7,12 @@ import java.util.Date;
 import android.graphics.Bitmap;
 import android.location.Location;
 
+/**
+ * A Comment object which contains the title,id,text,location,a picture may attached,time posted ,a userName which published this comment,
+ * and all of it's reply's comment id.
+ * @author xuping
+ *
+ */
 public class Comment {
 	//Attributes:
 	private String title=null;
@@ -21,7 +27,7 @@ public class Comment {
 	
 	//Constructors:
 	/**
-	 * construct a comment object without an attached picture
+	 * Construct a Comment object without an attached picture
 	 */
 	public Comment(String title,String text,Location location,String userName){
 		this.title=title;
@@ -33,7 +39,7 @@ public class Comment {
 		this.replyIdSet=new ArrayList<String>();
 	}
 	/**
-	 * construct a comment object with an attached picture
+	 * Construct a Comment object with an attached picture
 	 */
 	
 	public Comment(String title,String text,Location location,Bitmap picture,String userName){
@@ -114,20 +120,23 @@ public class Comment {
 	
 	//Methods:
 	/**
-	 * add a comment id of the reply comment to the reply id set.
+	 * Add the comment id of a reply Comment object to the reply id set.
 	 */
 	
 	public void addReply(Comment comment){
 		this.replyIdSet.add(comment.getId());
 	}
 	/**
-	 * add a comment id of the reply comment to the reply id set.
+	 * Add the comment id of a reply Comment object to the reply id set.
 	 */
 	
 	public void addReply(String replyId){
 		this.replyIdSet.add(replyId);
 	}
 	
+	/**
+	 * override the equals method in order to make a Comment with the same id equals each other
+	 */
 	@Override
 	public boolean equals(Object o){
 		if(this.id.equals(((Comment)o).getId())){
