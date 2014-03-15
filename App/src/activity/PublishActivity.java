@@ -81,12 +81,16 @@ public class PublishActivity extends Activity {
 	}
 	
 	//Function related to photo:
-	
+	/**
+	 * Direct user to camera in order to take the attached photo.
+	 */
 	public void takeAPhoto(){
 		Intent cam_intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(cam_intent, OBTAIN_PIC_REQUEST_CODE);
 	}
-	
+	/**
+	 * Set the image preview if the photo has been taken.
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == OBTAIN_PIC_REQUEST_CODE && resultCode == RESULT_OK) {
 			attached_pic = (Bitmap)data.getExtras().get("data");
@@ -98,14 +102,20 @@ public class PublishActivity extends Activity {
 	public void updateTopIdSet(Comment comment){
 		io.load_update_TopLevelIdSet(comment.getId(),this);
 	}
-	
+	/**
+	 * This click listener finishes the current activity.
+	 * @author xuping
+	 */
 	class CancelClick implements OnClickListener{
         @Override
 		public void onClick(View v){
         	finish();
 		}
 	}
-	
+	/**
+	 * This click listener creates a new comment and commit it to the server,if this comment is a top level comment,add its id to the topLevelIdSet.Otherwise add its id to the comment it replies to.
+	 * @author xuping
+	 */
 	class CommitClick implements OnClickListener{
         @Override
 		public void onClick(View v){

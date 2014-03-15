@@ -11,7 +11,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-
+/**
+ * An Activity allows user view his own profile including guest.
+ * @author xuping
+ */
 public class UserInfoPageActivity extends Activity {
 	private TextView userName=null;
 	//private Button laterList=null;
@@ -35,7 +38,10 @@ public class UserInfoPageActivity extends Activity {
 		favourite.setOnClickListener(new FavClick());
 		setName.setOnClickListener(new ResetNameClick());
 	}
-	
+	/**
+	 * Direct user to the page which can reset the userName(ReserUserNameActivity).
+	 * @author xuping
+	 */
 	class ResetNameClick implements OnClickListener{
 
 		@Override
@@ -45,7 +51,10 @@ public class UserInfoPageActivity extends Activity {
 		}
 		
 	}
-	
+	/**
+	 * Direct user to the page which can view the comment as favorites locally.
+	 * @author xuping
+	 */
 	class FavClick implements OnClickListener{
 
 		@Override

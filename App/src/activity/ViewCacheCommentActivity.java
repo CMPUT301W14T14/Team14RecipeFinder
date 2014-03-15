@@ -23,7 +23,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
+/**
+ * Provide the user view content of any comments he set as favorite and the comment's all replies.
+ * @author xuping
+ */
 public class ViewCacheCommentActivity extends Activity{
 	
 	public static final String cacheKey="CACHES";
@@ -63,7 +66,10 @@ public class ViewCacheCommentActivity extends Activity{
 		reply.setAdapter(lva);
 		reply.setOnItemClickListener(new ViewClick());
 	}
-	
+	/**
+	 * Starts the same Activity, with a different content, with the current comment changed to the reply comment which user click on.
+	 * @author xuping
+	 */
 	class ViewClick implements OnItemClickListener{
 
 		@Override

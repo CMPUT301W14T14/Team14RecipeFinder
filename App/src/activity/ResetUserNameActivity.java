@@ -9,7 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+/**
+ * An Activity which allows the user reset his user name.
+ * @author xuping
+ */
 public class ResetUserNameActivity extends Activity{
 	
 	private EditText typename = null;
@@ -20,7 +23,9 @@ public class ResetUserNameActivity extends Activity{
 	protected void setUserName(String userName){
 		((UserNameInfo)this.getApplication()).setUserName(userName);
 	}
-	
+	/**
+	 * Setup the content required to reset userName.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

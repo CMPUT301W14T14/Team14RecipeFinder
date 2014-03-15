@@ -21,7 +21,10 @@ import android.widget.ListView;
 
 import android.app.Activity;
 import android.content.Intent;
-
+/**
+ * Provide the user view a list of the comments he set as favorite.
+ * @author xuping
+ */
 public class ViewFavActivity extends Activity {
 	
 	private ListView cacheView=null;
@@ -47,7 +50,10 @@ public class ViewFavActivity extends Activity {
 		cacheView.setAdapter(lva);
 		cacheView.setOnItemClickListener(new ViewClick());
 	}
-	
+	/**
+	 * Direct user to the ViewCacheCommentActivity and allow user the view the content of the comment he clicked on there.
+	 * @author xuping
+	 */
 	class ViewClick implements OnItemClickListener{
 
 		@Override
