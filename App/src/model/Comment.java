@@ -135,7 +135,7 @@ public class Comment {
 	}
 	
 	/**
-	 * override the equals method in order to make a Comment with the same id equals each other
+	 * overrides the equals method in order to make a Comment with the same id equals each other
 	 */
 	@Override
 	public boolean equals(Object o){

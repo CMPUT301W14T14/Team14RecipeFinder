@@ -56,7 +56,7 @@ public class IoStreamHandler {
 	public IoStreamHandler(){}
 	
 	/**
-	 * update a comment with its own id to the web server
+	 * update a comment with its own id to the web server, if the comment with the same id doesnot exist, then this comment will be added to the server.
 	 */
 	
 	public void commitUpdateComment(final Comment comment){
@@ -90,7 +90,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * get a comment with a specific id from the web server
+	 * put A Comment with the specific id into the CommentMap from the web server in the HomePageActivity(toplevel).
 	 */
 	
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final HomePageActivity activity){
@@ -140,7 +140,9 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	
+	/**
+	 * put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sublevel).
+	 */
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -179,7 +181,6 @@ public class IoStreamHandler {
 					public void run() {
 						if(Data.getSource()!=null){
 							cm.updateComment(Data.getSource());
-							//System.out.println(Data.getSource().getId());
 						}
 					}
 				};
@@ -190,7 +191,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * update a set of top level comment id to the web server
+	 * update the top level comment's IdSet which stored in the server, if there's nothing in the server, then add it to the server.
 	 */
 	
 	public void updateTopLevelIdSet(final IdSet topLevelIdSet){
@@ -226,7 +227,7 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	/**
-	 * get the top level comment id set from the web server
+	 * Load all of the top level comments in to the CommentMap
 	 */
 	
 	public void loadTopLevelComments(final CommentMap topLevelComments,final HomePageActivity activity){
@@ -271,6 +272,11 @@ public class IoStreamHandler {
 		};
 		thread.start();
 	}
+	/**
+	 * Add a comment id to the top level IdSet and update the IdSet in the server while publish a new top level comment.
+	 * @param id
+	 * @param activity
+	 */
 	
 	public void load_update_TopLevelIdSet(final String id,final PublishActivity activity){
 		if(gson==null){
@@ -320,6 +326,17 @@ public class IoStreamHandler {
 		};
 		thread.start();
 	}
+	
+	/**
+	 * Load a specfic Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment
+	 * into another TextView;Set picture of this comment(if not null) in to an imageView, and all of this comment's replies in to a list view. In the UI: CommentPageActivity.
+	 * @param commentId
+	 * @param commentView
+	 * @param authorInfo
+	 * @param pic
+	 * @param cm
+	 * @param activity
+	 */
 	
 	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final ImageView pic,final CommentMap cm,final CommentPageActivity activity){
 		if(gson==null){
@@ -383,7 +400,11 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	
+	/**
+	 * Load a specifc Comment by it's id and add an reply Comment's id to this comment's reply IdSet.
+	 * @param commentId
+	 * @param replyId
+	 */
 	public void replySpecificComment(final String commentId,final String replyId){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -425,7 +446,13 @@ public class IoStreamHandler {
 	}
 	
 	
-	
+	/**
+	 * check if the given userName is the same of the author of the comment with the given comment id, if it is, direct the user to the EditPage in the UI thread(CommentPageActivity).
+	 * Otherwise, make a toast tell the user he/she can't edit that comment.
+	 * @param commentId
+	 * @param userName
+	 * @param activity
+	 */
 	public void checkEditSpecificComment(final String commentId,final String userName,final CommentPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -479,7 +506,15 @@ public class IoStreamHandler {
 		};
 		thread.start();
 	}
-	
+	/**
+	 * Load a specifc comment, Set the content of this comment in to a EditText, Set the title of this comment in to a EditText, set the author info ,time posted,and the location
+	 * (if not null) into a TextView, set the Picture of this comment(if not null) in to an ImageView in the EditPageActivity.
+	 * @param commentId
+	 * @param title
+	 * @param content
+	 * @param pic
+	 * @param activity
+	 */
 	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final EditPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -533,6 +568,12 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
+	/**
+	 * Update a edited comment in to the server.
+	 * @param commentId
+	 * @param newTitle
+	 * @param newContent
+	 */
 	public void commit_edit_comment(final String commentId,final String newTitle,final String newContent){
 		Thread thread=new Thread(){
 			@Override
@@ -571,7 +612,12 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	
+	/**
+	 * Load a comment specfied by id as favourite and store the comment and all its replies in to the sharedpreferences. with key "FAVOURITES"
+	 * @param commentId
+	 * @param cc
+	 * @param activity
+	 */
 	public void loadSpecificCommentForCache(final String commentId,final CacheController cc,final CommentPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -625,7 +671,13 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	
+	/**
+	 * Load a comment for cache ,store it in the sharedpreferences with the key value equals to this comment's parent Id.
+	 * @param commentId
+	 * @param parentId
+	 * @param cc
+	 * @param activity
+	 */
 	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final CommentPageActivity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
@@ -678,7 +730,9 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
-	//This method is just for test delete!!!!
+	/**
+	 * testing method used to trash all stuff on the server.
+	 */
 	public void Clean(){
 		Thread thread=new Thread(){
 			@Override
