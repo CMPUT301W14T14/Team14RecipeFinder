@@ -23,7 +23,9 @@ public class LoginViewActivity extends Activity{
 	//Attributes:
 	private EditText userNameInput=null;
 	private Button loginButton=null;
-
+    /**
+     * Create the LoginViewActivity
+     */
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 
@@ -46,7 +48,7 @@ public class LoginViewActivity extends Activity{
 	}
 	/**
 	 * A method used to set the userName through the whole Application.
-	 * @param userName
+	 * @param userName a String which is userName
 	 */
 	protected void setUserName(String userName){
 		((UserNameInfo)this.getApplication()).setUserName(userName);
@@ -62,10 +64,12 @@ public class LoginViewActivity extends Activity{
 		return true;
 	}
 	/**
-	 * Click Listener Sets the user name which user typed into then login into the Application after click, if there's no userName typed, user will login as a guest.
+	 * Click Listener manages the login action.
 	 */
 	private View.OnClickListener listener = new View.OnClickListener(){
-
+		/**
+		 * Sets the user name which user typed into then login into the Application after click, if there's no userName typed, user will login as a guest.
+		 */
 		@Override
 		public void onClick(View v) {
 			Button button = (Button)v;

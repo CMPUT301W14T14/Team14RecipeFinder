@@ -95,7 +95,9 @@ public class CommentPageActivity extends Activity {
 		edit.setOnClickListener(new EditClick());
 		userInfo.setOnClickListener(new UserInfoClick());
 	}
-	
+	/**
+	 * A function which downloads and refresh the reply comments then shows them in the list view.
+	 */
 	protected void sync(){
 		cm.clear();
 		io.loadAndSetSpecificComment(comment_id,commentText,authorInfo,pic,cm,this);
@@ -108,18 +110,29 @@ public class CommentPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.comment_page, menu);
 		return true;
 	}
-	
+	/**
+	 * A click Listener which will load the specific comment and all it's replies in to sharedpreferences as favorite after click the button.
+	 * @author xuping
+	 */
 	class LikeClick implements OnClickListener{
 
 		@Override
+		/**
+		 * Load the specific comment and all it's replies in to sharedpreferences as favorite.
+		 */
 		public void onClick(View v){
 			io.loadSpecificCommentForCache(comment_id,cc,CommentPageActivity.this);
 		}
 		
 	}
-	
+	/**
+	 * A click listener will direct user to reply the current comment after click the button.
+	 * @author xuping
+	 */
 	class ReplyClick implements OnClickListener{
-
+		/**
+		 * Direct user to PublishActivity in order to reply the current comment, if the user logged in in as guest, then it will notify user that he cannot reply as a guest.
+		 */
 		@Override
 		public void onClick(View v){
 			if(userName==null){
@@ -133,7 +146,10 @@ public class CommentPageActivity extends Activity {
 		}
 		
 	}
-	
+	/**
+	 * A click listener will refresh the current comment and its own replies after click the button.
+	 * @author xuping
+	 */
 	class SyncClick implements OnClickListener{
 
 		@Override
@@ -142,9 +158,14 @@ public class CommentPageActivity extends Activity {
 		}
 		
 	}
-	
+	/**
+	 * A click listener will direct user to view the reply comment he/she clicked on.
+	 * @author xuping
+	 */
 	class RecurViewClick implements OnItemClickListener{
-
+		/**
+		 * Start the same Activity but with a different content as the current comment will become the reply comment user clicked on.
+		 */
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
 			Comment c=(Comment)arg0.getItemAtPosition(pos);
@@ -154,7 +175,10 @@ public class CommentPageActivity extends Activity {
 		}
 		
 	}
-	
+	/**
+	 * A click listener will direct user to the edit page if the current user's user name is equal to the current comment's author, other wise user will be notified that he cannot edit the comment.
+	 * @author xuping
+	 */
 	class EditClick implements OnClickListener{
 
 		@Override
@@ -168,7 +192,10 @@ public class CommentPageActivity extends Activity {
 		}
 		
 	}
-	
+	/**
+	 * A click listener will direct user to the profile page(UserInfoPageActivity) after click.
+	 * @author xuping
+	 */
 	class UserInfoClick implements OnClickListener{
 		@Override
 		public void onClick(View v){
