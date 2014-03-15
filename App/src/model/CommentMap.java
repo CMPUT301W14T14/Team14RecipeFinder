@@ -8,9 +8,8 @@ import java.util.Map;
 
 import android.widget.ArrayAdapter;
 /**
- * A class used to store Comment Objects downloaded from the server and able to return a list which can used by list view adapter construct
+ * A class used to store Comment Objects loaded from the server and able to return a list which can used by list view adapter construct
  * @author xuping
- *
  */
 
 public class CommentMap{
@@ -30,6 +29,7 @@ public class CommentMap{
 	/**
 	 * Update a Comment object in the CommentMap with its own id, if no Comment with the same ID exists, then added the Comment object to the CommentMap, notify the ArrayAdapter<Comment> the data set has changed
 	 * after update if the ArrayAdapter<Comment> has been set.
+	 * @param comment a Comment object.
 	 */
 	public void updateComment(Comment comment){
 		this.comments.put(comment.getId(),comment);
@@ -41,6 +41,8 @@ public class CommentMap{
 	
 	/**
 	 * Get a specific Comment with its own id from the CommentMap.
+	 * @param id a String which is the comment id.
+	 * @return the Comment object pointed by the comment id.
 	 */
 	
 	public Comment getComment(String id){
@@ -48,7 +50,7 @@ public class CommentMap{
 	}
 	
 	/**
-	 * Get a unmodifiable list which contains all Comment objects in this CommentMap which can be used to construct a list view adapter.
+	 * @return a unmodifiable list which contains all Comment objects in this CommentMap which can be used to construct a list view adapter.
 	 */
 	
 	public List<Comment> getCurrentList(){
@@ -56,7 +58,7 @@ public class CommentMap{
 	}
 	/**
 	 * Set this CommentMap's ArrayAdapter.
-	 * @param adapter
+	 * @param adapter which is a ArrayAdapter object.
 	 */
 	public void setArrayAdapter(ArrayAdapter<Comment> adapter){
 		this.adapter=adapter;

@@ -26,7 +26,7 @@ public class IdSet{
 	}
 	/**
 	 * Add an Comment id to this IdSet
-	 * @param id
+	 * @param id a String which is a comment id.
 	 */
 	public void add(String id){
 		this.set.add(id);
@@ -34,7 +34,7 @@ public class IdSet{
 	
 	/**
 	 * Add a set of Comment ids to this IdSet.
-	 * @param c
+	 * @param c which is a Collection of Strings.
 	 */
 	public void addAll(Collection<String> c){
 		this.set.addAll(c);
