@@ -5,12 +5,18 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-
+/**
+ * A class produce current or custom Location.
+ * Adapted from https://github.com/baoliangwang/CurrentLocation
+ */
 public class Location_Generator{
 	private LocationManager lm = null;
 	private Location currentLocation=null;
 	private LocationListener locationListener=null;
-	
+	/**
+	 * construct a Location_Generator with a LocationManager and create a new Location Listener.
+	 * @param lm
+	 */
 	public Location_Generator(LocationManager lm){
 		this.lm=lm;
 		this.locationListener=new LocationListener(){
@@ -37,7 +43,10 @@ public class Location_Generator{
 		};
 		this.lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,0,this.locationListener);
 	}
-
+    /**
+     * 
+     * @return the current Location, or raise Exception if GPS is not running.
+     */
 	public Location getCurrentLocation(){
 		this.currentLocation=this.lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER) != true) {
@@ -45,6 +54,12 @@ public class Location_Generator{
 		}
 		return this.currentLocation;
 	}
+	/**
+	 * 
+	 * @param latitude
+	 * @param longitude
+	 * @return the custom setted location by given latitude, and the given longitude
+	 */
 	
 	public Location getCustomLocation(double latitude,double longitude){
 		Location l=new Location(this.currentLocation);
