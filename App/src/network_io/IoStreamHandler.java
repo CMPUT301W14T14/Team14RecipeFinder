@@ -52,7 +52,9 @@ public class IoStreamHandler {
 	public static final String favSubKey="FAVOURITES";
 	
 	private static Gson gson=null;
-	
+	/**
+	 * Constructs a IOStreamHandler object.
+	 */
 	public IoStreamHandler(){}
 	
 	/**
