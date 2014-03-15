@@ -61,7 +61,9 @@ public class LoginViewActivity extends Activity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+	/**
+	 * Click Listener Sets the user name which user typed into then login into the Application after click, if there's no userName typed, user will login as a guest.
+	 */
 	private View.OnClickListener listener = new View.OnClickListener(){
 
 		@Override
