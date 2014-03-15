@@ -10,10 +10,12 @@ import com.google.gson.GsonBuilder;
  * getted from https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
  */
 public class Gson_Constructor {
+	/**
+	 * Construct a Gson_Constructor object.
+	 */
 	public Gson_Constructor(){}
 	/**
-	 * 
-	 * @return a Gson with a custom serializer / desserializer registered for Bitmaps.
+	 * @return a Gson object with a custom serializer / desserializer registered for Bitmaps.
 	 */
 	public Gson getGson(){
 		GsonBuilder builder = new GsonBuilder();

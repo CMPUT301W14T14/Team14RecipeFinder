@@ -23,7 +23,7 @@ import com.google.gson.JsonSerializer;
 
 public class Bitmap_Converter implements JsonDeserializer<Bitmap>,JsonSerializer<Bitmap>{
     /**
-     * encode the Bitmap
+     * Encode the Bitmap.
      */
 	@Override
 	public JsonElement serialize(Bitmap src,Type typeOfSrc,JsonSerializationContext context) {
@@ -33,7 +33,7 @@ public class Bitmap_Converter implements JsonDeserializer<Bitmap>,JsonSerializer
 		return new JsonPrimitive(base64Encoded);
 	}
     /**
-     * decode the Bitmap
+     * Decode the Bitmap.
      */
 	@Override
 	public Bitmap deserialize(JsonElement src,Type typeOfSrc,JsonDeserializationContext context) throws JsonParseException {

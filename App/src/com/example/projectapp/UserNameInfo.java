@@ -12,14 +12,14 @@ public class UserNameInfo extends Application{
 	private String userName=null;
 	/**
 	 * 
-	 * @return the current userName
+	 * @return the current userName.
 	 */
 	public String getUserName(){
 		return this.userName;
 	}
 	/**
-	 * set the current userName
-	 * @param userName
+	 * Set the current userName.
+	 * @param userName aString which is the new userName.
 	 */
 	public void setUserName(String userName){
 		this.userName=userName;

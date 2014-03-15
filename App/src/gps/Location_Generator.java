@@ -14,8 +14,8 @@ public class Location_Generator{
 	private Location currentLocation=null;
 	private LocationListener locationListener=null;
 	/**
-	 * construct a Location_Generator with a LocationManager and create a new Location Listener.
-	 * @param lm
+	 * Construct a Location_Generator with a LocationManager and create a new Location Listener.
+	 * @param lm a LocationManager
 	 */
 	public Location_Generator(LocationManager lm){
 		this.lm=lm;
@@ -56,9 +56,9 @@ public class Location_Generator{
 	}
 	/**
 	 * 
-	 * @param latitude
-	 * @param longitude
-	 * @return the custom setted location by given latitude, and the given longitude
+	 * @param latitude custom latitude in double.
+	 * @param longitude custom longitude in double.
+	 * @return the custom setted location by given latitude, and the given longitude.
 	 */
 	
 	public Location getCustomLocation(double latitude,double longitude){

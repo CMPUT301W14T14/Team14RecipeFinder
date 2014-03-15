@@ -24,17 +24,20 @@ import android.widget.TextView;
 public class ListViewAdapter extends ArrayAdapter<Comment>{
 	
 	/**
-	 * Construct a ListViewAdapter
-	 * @param context
-	 * @param textViewResourceId
-	 * @param objects
+	 * Construct a ListViewAdapter.
+	 * @param context a Context.
+	 * @param textViewResourceId id of the Layout.
+	 * @param objects a list of the Comment objects.
 	 */
 
 	public ListViewAdapter(Context context,int textViewResourceId,List<Comment> objects) {
 		super(context,textViewResourceId,objects);
 	}
 	/**
-	 * Maps different components of the comment object to the views of the CustomListView layout
+	 * Maps different components of the comment object to the views of the CustomListView layout.
+	 * @param position of the Object in the list.
+	 * @param convertView the view will be set.
+	 * @param parent the parent view.
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){

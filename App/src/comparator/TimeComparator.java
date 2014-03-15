@@ -6,7 +6,9 @@ import model.Comment;
 
 public class TimeComparator implements Comparator<Comment>{
     /**
-     * A method which compares the difference between 2 comment's post time while sorting
+     * A method which compares the difference between 2 comment's post time while sorting.
+     * @param a a Comment object.
+     * @param b a Comment object.
      */
 	@Override
 	public int compare(Comment a, Comment b) {
