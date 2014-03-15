@@ -43,7 +43,7 @@ import customlized_gson.Gson_Constructor;
 
 
 /**
- * a network controller used to get and update comment from/to the server.
+ * A network controller used to get and update comment from/to the server.
  * Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
  */
 public class IoStreamHandler {
@@ -56,7 +56,8 @@ public class IoStreamHandler {
 	public IoStreamHandler(){}
 	
 	/**
-	 * update a comment with its own id to the web server, if the comment with the same id doesn't exist, then this comment will be added to the server.
+	 * Update a comment with its own id to the web server, if the comment with the same id doesn't exist, then this comment will be added to the server.
+	 * @param comment a single comment object.
 	 */
 	
 	public void commitUpdateComment(final Comment comment){
@@ -90,7 +91,10 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * put A Comment with the specific id into the CommentMap from the web server in the HomePageActivity(top level).
+	 * Put a Comment with the specific id into the CommentMap from the web server in the HomePageActivity(top level).
+	 * @param commentId a String which is the comment id.
+	 * @param cm a CommentMap to be update.
+	 * @param activity HomePageActivity where the function will be called.
 	 */
 	
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final HomePageActivity activity){
@@ -141,7 +145,10 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sub level).
+	 * Put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sub level).
+	 * @param commentId String which is the comment id.
+	 * @param cm a CommentMap to be update.
+	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
 		if(gson==null){
@@ -191,7 +198,8 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * update the top level comment's IdSet which stored in the server, if there's nothing in the server, then add it to the server.
+	 * Update the top level comment's IdSet which stored in the server, if there's nothing in the server, then add it to the server.
+	 * @param topLevelIdSet top level comment's IdSet.
 	 */
 	
 	public void updateTopLevelIdSet(final IdSet topLevelIdSet){
@@ -227,7 +235,9 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	/**
-	 * Load all of the top level comments in to the CommentMap
+	 * Load all of the top level comments in to the CommentMap.
+	 * @param topLevelComments a CommentMap.
+	 * @param activity HomePageActivity where the function will be called.
 	 */
 	
 	public void loadTopLevelComments(final CommentMap topLevelComments,final HomePageActivity activity){
@@ -274,8 +284,8 @@ public class IoStreamHandler {
 	}
 	/**
 	 * Add a comment id to the top level IdSet and update the IdSet in the server while publish a new top level comment.
-	 * @param id
-	 * @param activity
+	 * @param id a String which is the comment id to be add to the IdSet.
+	 * @param activity PublishActivity where the function will be called.
 	 */
 	
 	public void load_update_TopLevelIdSet(final String id,final PublishActivity activity){
@@ -328,14 +338,14 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * Load a specific Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment
+	 * Load a specific Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment.
 	 * into another TextView;Set picture of this comment(if not null) in to an imageView, and all of this comment's replies in to a list view. In the UI: CommentPageActivity.
-	 * @param commentId
-	 * @param commentView
-	 * @param authorInfo
-	 * @param pic
-	 * @param cm
-	 * @param activity
+	 * @param commentId a String which is the comment id.
+	 * @param commentView a TextView will contain the content of the specific comment.
+	 * @param authorInfo a TextView will contain the author, publish date, location(if not null).
+	 * @param pic a ImageView will contain the picture attached to this comment(if not null).
+	 * @param cm a CommentMap will load all of the replies of the specific comment.
+	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	
 	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final ImageView pic,final CommentMap cm,final CommentPageActivity activity){
@@ -402,8 +412,8 @@ public class IoStreamHandler {
 	
 	/**
 	 * Load a specific Comment by it's id and add an reply Comment's id to this comment's reply IdSet.
-	 * @param commentId
-	 * @param replyId
+	 * @param commentId a String which is the comment id of the comment has been replied.
+	 * @param replyId a String which is the comment id of the reply comment.
 	 */
 	public void replySpecificComment(final String commentId,final String replyId){
 		if(gson==null){
@@ -447,11 +457,11 @@ public class IoStreamHandler {
 	
 	
 	/**
-	 * check if the given userName is the same of the author of the comment with the given comment id, if it is, direct the user to the EditPage in the UI thread(CommentPageActivity).
+	 * Check if the given userName is the same of the author of the comment with the given comment id, if it is, direct the user to the EditPage in the UI thread(CommentPageActivity).
 	 * Otherwise, make a toast tell the user he/she can't edit that comment.
-	 * @param commentId
-	 * @param userName
-	 * @param activity
+	 * @param commentId a String which is the comment id.
+	 * @param userName a String which is the user name of the current user.
+	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	public void checkEditSpecificComment(final String commentId,final String userName,final CommentPageActivity activity){
 		if(gson==null){
@@ -471,7 +481,7 @@ public class IoStreamHandler {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
 					while (output != null) {
-						responseJson+= output;
+						responseJson+=output;
 						output = reader.readLine();
 					}
 				} 
@@ -509,11 +519,11 @@ public class IoStreamHandler {
 	/**
 	 * Load a specific comment, Set the content of this comment in to a EditText, Set the title of this comment in to a EditText, set the author info ,time posted,and the location
 	 * (if not null) into a TextView, set the Picture of this comment(if not null) in to an ImageView in the EditPageActivity.
-	 * @param commentId
-	 * @param title
-	 * @param content
-	 * @param pic
-	 * @param activity
+	 * @param commentId a String which is the comment id.
+	 * @param title an EditText which will contain the title of the comment.
+	 * @param content an EditText which will contain the content of the comment.
+	 * @param pic a ImageView which will contain the attached picture of this comment(if exist).
+	 * @param activity EditPageActivity where the function will be called.
 	 */
 	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final EditPageActivity activity){
 		if(gson==null){
@@ -570,9 +580,9 @@ public class IoStreamHandler {
 	
 	/**
 	 * Update a edited comment in to the server.
-	 * @param commentId
-	 * @param newTitle
-	 * @param newContent
+	 * @param commentId a String which is commentId
+	 * @param newTitle a String which is the title of the comment after edit.
+	 * @param newContent a String which is the content of the comment after edit.
 	 */
 	public void commit_edit_comment(final String commentId,final String newTitle,final String newContent){
 		Thread thread=new Thread(){
@@ -614,9 +624,9 @@ public class IoStreamHandler {
 	
 	/**
 	 * Load a comment specified by id as favorite and store the comment and all its replies in to the sharedpreferences. with key "FAVOURITES"
-	 * @param commentId
-	 * @param cc
-	 * @param activity
+	 * @param commentId a String which is the comment id.
+	 * @param cc a CacheController object.
+	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	public void loadSpecificCommentForCache(final String commentId,final CacheController cc,final CommentPageActivity activity){
 		if(gson==null){
@@ -673,10 +683,10 @@ public class IoStreamHandler {
 	
 	/**
 	 * Load a comment for cache ,store it in the sharedpreferences with the key value equals to this comment's parent Id.
-	 * @param commentId
-	 * @param parentId
-	 * @param cc
-	 * @param activity
+	 * @param commentId a String which is the comment id.
+	 * @param parentId a String which is the parent comment id.
+	 * @param cc a CacheController object.
+	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final CommentPageActivity activity){
 		if(gson==null){
@@ -731,7 +741,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * testing method used to trash all stuff on the server.
+	 * Testing method used to trash all stuff on the server.
 	 */
 	public void Clean(){
 		Thread thread=new Thread(){
