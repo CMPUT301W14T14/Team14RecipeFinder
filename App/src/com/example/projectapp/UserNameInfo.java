@@ -18,7 +18,7 @@ public class UserNameInfo extends Application{
 		return this.userName;
 	}
 	/**
-	 * set the userName
+	 * set the current userName
 	 * @param userName
 	 */
 	public void setUserName(String userName){
