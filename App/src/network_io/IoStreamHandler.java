@@ -56,7 +56,7 @@ public class IoStreamHandler {
 	public IoStreamHandler(){}
 	
 	/**
-	 * update a comment with its own id to the web server, if the comment with the same id doesnot exist, then this comment will be added to the server.
+	 * update a comment with its own id to the web server, if the comment with the same id doesn't exist, then this comment will be added to the server.
 	 */
 	
 	public void commitUpdateComment(final Comment comment){
@@ -90,7 +90,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * put A Comment with the specific id into the CommentMap from the web server in the HomePageActivity(toplevel).
+	 * put A Comment with the specific id into the CommentMap from the web server in the HomePageActivity(top level).
 	 */
 	
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final HomePageActivity activity){
@@ -141,7 +141,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sublevel).
+	 * put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sub level).
 	 */
 	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
 		if(gson==null){
@@ -328,7 +328,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * Load a specfic Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment
+	 * Load a specific Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment
 	 * into another TextView;Set picture of this comment(if not null) in to an imageView, and all of this comment's replies in to a list view. In the UI: CommentPageActivity.
 	 * @param commentId
 	 * @param commentView
@@ -401,7 +401,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * Load a specifc Comment by it's id and add an reply Comment's id to this comment's reply IdSet.
+	 * Load a specific Comment by it's id and add an reply Comment's id to this comment's reply IdSet.
 	 * @param commentId
 	 * @param replyId
 	 */
@@ -507,7 +507,7 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	/**
-	 * Load a specifc comment, Set the content of this comment in to a EditText, Set the title of this comment in to a EditText, set the author info ,time posted,and the location
+	 * Load a specific comment, Set the content of this comment in to a EditText, Set the title of this comment in to a EditText, set the author info ,time posted,and the location
 	 * (if not null) into a TextView, set the Picture of this comment(if not null) in to an ImageView in the EditPageActivity.
 	 * @param commentId
 	 * @param title
@@ -613,7 +613,7 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * Load a comment specfied by id as favourite and store the comment and all its replies in to the sharedpreferences. with key "FAVOURITES"
+	 * Load a comment specified by id as favorite and store the comment and all its replies in to the sharedpreferences. with key "FAVOURITES"
 	 * @param commentId
 	 * @param cc
 	 * @param activity

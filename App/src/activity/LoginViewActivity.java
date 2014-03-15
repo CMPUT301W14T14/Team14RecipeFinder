@@ -14,6 +14,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * An Activity which allows user type their userName and login in to the App.
+ * @author xuping
+ */
+
 public class LoginViewActivity extends Activity{
 	//Attributes:
 	private EditText userNameInput=null;
@@ -39,7 +44,10 @@ public class LoginViewActivity extends Activity{
 		super.onResume();
 		loginButton.setOnClickListener(listener);
 	}
-	
+	/**
+	 * A method used to set the userName through the whole Application.
+	 * @param userName
+	 */
 	protected void setUserName(String userName){
 		((UserNameInfo)this.getApplication()).setUserName(userName);
 	}

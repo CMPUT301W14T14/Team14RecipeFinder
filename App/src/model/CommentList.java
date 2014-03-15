@@ -39,7 +39,7 @@ public class CommentList{
 	}
 	/**
 	 * 
-	 * @return a unmodifiable list which can be used to contruct a list view adapter
+	 * @return a unmodifiable list which can be used to construct a list view adapter
 	 */
 	public List<Comment> getCurrentList(){
 		return Collections.unmodifiableList(this.comments);

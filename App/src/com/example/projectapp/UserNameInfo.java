@@ -3,7 +3,7 @@ package com.example.projectapp;
 import android.app.Application;
 
 /**
- * A class can let the userName String be set/get from any acitivity from this application
+ * A class can let the userName String be set/get from any activity from this application
  * @author xuping
  *
  */

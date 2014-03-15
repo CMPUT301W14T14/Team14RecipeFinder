@@ -29,7 +29,7 @@ public class CacheController{
 	/**
 	 * 
 	 * @param activity
-	 * @return a CommentList Contains all comments which local cached as favourite comment(a CommentList pointed by key "FAVOURITES"), if there's no such CommentList,method returns an empty CommentList.
+	 * @return a CommentList Contains all comments which local cached as favorite comment(a CommentList pointed by key "FAVOURITES"), if there's no such CommentList,method returns an empty CommentList.
 	 */
 	public CommentList loadFav(Activity activity){
 		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
@@ -44,7 +44,7 @@ public class CacheController{
 		return cl;
 	}
 	/**
-	 * Add a new comment in to sharedpreferences as favourite comment,(into a CommentList pointed by key "FAVOURITES") if the CommentList not exist, a new CommentList will be created and the
+	 * Add a new comment in to sharedpreferences as favorite comment,(into a CommentList pointed by key "FAVOURITES") if the CommentList not exist, a new CommentList will be created and the
 	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by key "FAVOURITES".
 	 * @param activity
 	 * @param comment

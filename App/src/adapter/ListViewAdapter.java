@@ -17,12 +17,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 // This class is not done.
+/**
+ * A List View Adapter which maps information from the comment model to the view
+ * Adapted from https://github.com/XUPINGI/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/view/PicPostModelAdapter.java
+ */
 public class ListViewAdapter extends ArrayAdapter<Comment>{
+	
+	/**
+	 * Construct a ListViewAdapter
+	 * @param context
+	 * @param textViewResourceId
+	 * @param objects
+	 */
 
 	public ListViewAdapter(Context context,int textViewResourceId,List<Comment> objects) {
 		super(context,textViewResourceId,objects);
 	}
-	
+	/**
+	 * Maps different components of the comment object to the views of the CustomListView layout
+	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent){
 		if (convertView == null) {

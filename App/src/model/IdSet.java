@@ -12,7 +12,7 @@ public class IdSet{
 	private ArrayList<String> set=null;
 	
 	/**
-	 * contruct an empty IdSet class.
+	 * Construct an empty IdSet class.
 	 */
 	public IdSet(){
 		this.set=new ArrayList<String>();
