@@ -44,7 +44,7 @@ public class CacheController{
 		return cl;
 	}
 	/**
-	 * Add a new comment in to sharedpreferences as favourite comment,(a CommentList pointed by key "FAVOURITES") if the CommentList not exist, a new CommentList will be created and the
+	 * Add a new comment in to sharedpreferences as favourite comment,(into a CommentList pointed by key "FAVOURITES") if the CommentList not exist, a new CommentList will be created and the
 	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by key "FAVOURITES".
 	 * @param activity
 	 * @param comment
@@ -64,8 +64,8 @@ public class CacheController{
 		caches.edit().putString(favSubKey,newJson).commit();
 	}
 	/**
-	 * Add a new comment in to sharedpreferences,(a CommentList pointed by a key which is the same as the given comment's parent's id) if the CommentList not exist, a new CommentList will be created and the
-	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by key equals the given comment's parent's id.
+	 * Add a new comment in to sharedpreferences,(into a CommentList pointed by a key which is the same as the given comment's parent's id) if the CommentList not exist, a new CommentList will be created and the
+	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by a key equals the given comment's parent's id.
 	 * @param activity
 	 * @param parentId
 	 * @param reply
