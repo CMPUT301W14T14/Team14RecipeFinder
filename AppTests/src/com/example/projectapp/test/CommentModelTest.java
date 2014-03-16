@@ -12,150 +12,159 @@ import android.test.ActivityInstrumentationTestCase2;
 import model.Comment;
 
 /**
+ * JUnit test cases for Comment model.
+ * 
  * @author Yilu
  *
  */
 public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishActivity> {
 
+	/**
+	 * Constructor 
+	 */
 	public CommentModelTest() {
 		super(PublishActivity.class);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * Test getId method
+	 * Test whether the Id of a comment can be retrieved.
+	 * Create a comment, and check if the Id retrieved by getId method is correct.
 	 */
 	public void testGetId() {
 		Comment comment = new Comment("title","text", null,"userName");
 		Long timestamp = (new Date()).getTime();
-//		assertEquals(comment.getId(), "userName"+(new Date()).getTime());
 		assertEquals(comment.getId(), "userName"+timestamp);
 	}
 	
 	/**
-	 * Test getTitle method
+	 * Test whether the title of a comment can be retrieved and edited. <br>
+	 * First, create a comment and check if the title retrieved by getTitle method is correct. 
+	 * Then, use the setTitle method to change the title and check if the new title is correct. 
 	 */
-	public void testGetTitle(){
+	public void testGetAndSetTitle(){
 		Comment comment = new Comment("title","text", null,"userName");
 		assertEquals(comment.getTitle(), "title");
-	}
-	
-	/**
-	 * Test setTitle method
-	 */
-	public void testSetTitle(){
-		Comment comment = new Comment("title","text", null,"userName");
+		
 		comment.setTitle("new title");
 		assertEquals(comment.getTitle(), "new title");
 	}
 	
-	/** 
-	 * Test getText method
+	/**
+	 * Test whether the text of a comment can be retrieved and edited. <br>
+	 * First, create a comment and check if the text retrieved by getText method is correct. 
+	 * Then, use the setText method to change the text and check if the new text is correct. 
 	 */
-	public void testGetText(){
+	public void testGetAndSetText(){
 		Comment comment = new Comment("title","text", null,"userName");
 		assertEquals(comment.getText(), "text");
-	}
-	
-	/**
-	 * Test setText method
-	 */
-	public void testSetText(){
-		Comment comment = new Comment("title","text", null,"userName");
+		
 		comment.setText("new text");
 		assertEquals(comment.getText(), "new text");
 	}
 	
 	/**
-	 * Test getLocation method
+	 * Test whether the text of a comment can be retrieved and changed. <br>
+	 * First, create a comment and check if the location retrieved by getLocation 
+	 * method is correct by comparing both latitude and longitude. 
+	 * Then, use the setLocation method to change the location of the comment to a 
+	 * different place and check if the new text is correct by comparing both 
+	 * latitude and longitude. 
 	 */
-	public void testGetLocation(){
-		Location location = new Location("GPS_PROVIDER");
-		Comment comment = new Comment("title","text", location,"userName");
-		Location lc = comment.getLocation();
-		double lat = lc.getLatitude();
-		double lng = lc.getLongitude();
-		assertTrue(lat==0&&lng==0);
+	public void testGetAndSetLocation(){
+		Location location1 = new Location("mock");
+		location1.setLatitude(10);
+		location1.setLongitude(20);
+		Comment comment = new Comment("title","text", location1,"userName");
+		assertEquals(comment.getLocation(), location1);
+		assertTrue(comment.getLocation().getLatitude()==10 
+				&& comment.getLocation().getLongitude()==20);
+		
+		Location location2 = new Location("new mock");
+		location2.setLatitude(100);
+		location2.setLongitude(200);
+		comment.setLocation(location2);
+		assertEquals(comment.getLocation(), location2);
+		assertTrue(comment.getLocation().getLatitude()==100 
+				&& comment.getLocation().getLongitude()==200);
 	}
 	
 	/**
-	 * Test setLocation method
+	 * Test whether the picture, timePosted, and userName of a comment can be retrieved. <br>
+	 * First, create a comment with picture, and then check if the retrieved picture, 
+	 * timePosted, and userName by their corresponding getter methods are correct. 
 	 */
-	public void testSetLocation(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Location location = new Location("GPS_PROVIDER");
-		comment.setLocation(location);
-		assertTrue(comment.getLocation()!=null);
-	}
-	
-	/**
-	 * Test getPicture method
-	 */
-	public void testGetPicture(){
+	public void testMoreGetters(){
 		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
 		Comment comment = new Comment("title","text", null, pic,"userName");
+		
 		assertEquals(comment.getPicture(), pic);
-	}
-	
-	/**
-	 * Test getTimePosted method
-	 */
-	public void testGetTimePosted(){
-		Comment comment = new Comment("title","text", null,"userName");
-		assertTrue(comment.getTimePosted().equals((new Date()).getTime()));
-	}
-	
-	/**
-	 * Test getUserName method
-	 */
-	public void testGetUserName(){
-		Comment comment = new Comment("title","text", null,"userName");
+		
+		assertEquals((long)comment.getTimePosted(), (new Date()).getTime());
+		
 		assertEquals(comment.getUserName(), "userName");
 	}
 	
 	/**
-	 * Test getReplies method
+	 * Test whether comments can be added as replies of another comment,
+	 * and whether the replies of a comment can be retrieved.  <br>
+	 * First, create three comments and use addReply method to add two of them as replies 
+	 * of the other comment. 
+	 * Then, use the getReplies method to retrieve the replies and check the correctness. 
 	 */
-	public void testGetReplies(){
+	public void testGetAndAddReplies(){
 		Comment comment = new Comment("title","text", null,"userName");
 		Comment rp1 = new Comment("title1","text1", null,"userName1");
 		Comment rp2 = new Comment("title2","text2", null,"userName2");
 		comment.addReply(rp1);
 		comment.addReply(rp2);
-		assertTrue( (comment.getReplies().get(0).equals(rp1.getId())) 
-		        && (comment.getReplies().get(1).equals(rp2.getId())) );
+		assertEquals(comment.getReplies().get(0), rp1.getId());
+		assertEquals(comment.getReplies().get(1), rp2.getId());
+//		assertTrue( (comment.getReplies().get(0).equals(rp1.getId())) 
+//		        && (comment.getReplies().get(1).equals(rp2.getId())) );
 	}
 
-	/**
-	 * Test addReply methods
-	 */
-	public void testAddReply(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Comment rp1 = new Comment("title1","text1", null,"userName1");
-		comment.addReply(rp1);
-		assertTrue(comment.getReplies().get(0).equals(rp1.getId()));
-		Comment rp2 = new Comment("title2","text2", null,"userName2");
-		comment.addReply(rp2.getId());
-		assertTrue(comment.getReplies().get(1).equals(rp2.getId()));
-	}
+//	/**
+//	 * Test whether the replies of a comment can be retrieved, 
+//	 * and comments can be added as reply of another comment. <br>
+//	 * First, create a comment and check if the text retrieved by getText method is correct. 
+//	 * Then, use the setText method to change the text and check if the new text is correct. 
+//	 */
+//	public void testAddReply(){
+//		Comment comment = new Comment("title","text", null,"userName");
+//		Comment rp1 = new Comment("title1","text1", null,"userName1");
+//		comment.addReply(rp1);
+//		assertTrue(comment.getReplies().get(0).equals(rp1.getId()));
+//		Comment rp2 = new Comment("title2","text2", null,"userName2");
+//		comment.addReply(rp2.getId());
+//		assertTrue(comment.getReplies().get(1).equals(rp2.getId()));
+//	}
 	
 	/**
-	 * Test setParent methods
+	 * Test whether a comment can be assigned as parent of another comment 
+	 * using either comment or comment id as the parameter. <br>
+	 * First, create some comments and assign a comment as parent of another 
+	 * comment using both comment and comment id as the parameter, and then 
+	 * check both cases by comparing the Id.
 	 */
 	public void testSetParent(){
 		Comment comment = new Comment("title","text", null,"userName");
 		Comment rp1 = new Comment("title1","text1", null,"userName1");
 		rp1.setParent(comment);
-		assertTrue(rp1.getParentId().equals(comment.getId()));
+		assertEquals(rp1.getParentId(), comment.getId());
 		
 		Comment rp2 = new Comment("title2","text2", null,"userName2");
 		rp2.setParent(comment.getId());
-		assertTrue(rp2.getParentId().equals(comment.getId()));
+		assertEquals(rp2.getParentId(), comment.getId());
 	}
 	
 	
 	/**
-	 * Test getParentId method
+	 * Test whether the parentId of a comment can be retrieved.
+	 * First, assign a comment as parent of another comment, 
+	 * and then check if the Id retrieved by getParentId method is correct 
+	 * by comparing the Id of the parent comment and the parentId returned 
+	 * from the getParentId method.
 	 */
 	public void testGetParentId(){
 		Comment comment = new Comment("title","text", null,"userName");
