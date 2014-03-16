@@ -34,6 +34,10 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	public void testGetId() {
 		Comment comment = new Comment("title","text", null,"userName");
 		Long timestamp = (new Date()).getTime();
+		// This may fail sometime, but the expected and actual are pretty close.
+		// If failed, see failure trace for detail.
+		// I suspect it is due to the time difference between implementing the comment
+		// creation and the assertEquals
 		assertEquals(comment.getId(), "userName"+timestamp);
 	}
 	
@@ -100,6 +104,10 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 		
 		assertEquals(comment.getPicture(), pic);
 		
+		// This may fail sometime, but the expected and actual are pretty close.
+		// If failed, see failure trace for detail.
+		// I suspect it is due to the time difference between implementing the comment
+		// creation and the assertEquals
 		assertEquals((long)comment.getTimePosted(), (new Date()).getTime());
 		
 		assertEquals(comment.getUserName(), "userName");
