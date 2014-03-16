@@ -1,6 +1,7 @@
 package customlized_gson;
 
 import android.graphics.Bitmap;
+import android.location.Location;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,6 +21,7 @@ public class Gson_Constructor {
 	public Gson getGson(){
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Bitmap.class,new Bitmap_Converter());
+		builder.registerTypeAdapter(Location.class,new Location_Converter());
 		return builder.create();
 	}
 }
