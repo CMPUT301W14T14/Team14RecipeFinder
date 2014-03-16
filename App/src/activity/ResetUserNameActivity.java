@@ -20,7 +20,7 @@ public class ResetUserNameActivity extends Activity{
 	private Button setNameCancel = null;
 	
 	
-	protected void setUserName(String userName){
+	public void setUserName(String userName){
 		((UserNameInfo)this.getApplication()).setUserName(userName);
 	}
 	/**
