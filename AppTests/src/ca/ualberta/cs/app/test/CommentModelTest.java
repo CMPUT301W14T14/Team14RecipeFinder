@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.example.projectapp.test;
+package ca.ualberta.cs.app.test;
 
 
 import java.util.Date;
