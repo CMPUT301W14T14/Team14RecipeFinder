@@ -14,7 +14,7 @@ import model.Comment;
 /**
  * JUnit test cases for Comment model.
  * 
- * @author Yilu
+ * @author Yilu Su
  *
  */
 public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishActivity> {
@@ -120,25 +120,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 		comment.addReply(rp2);
 		assertEquals(comment.getReplies().get(0), rp1.getId());
 		assertEquals(comment.getReplies().get(1), rp2.getId());
-//		assertTrue( (comment.getReplies().get(0).equals(rp1.getId())) 
-//		        && (comment.getReplies().get(1).equals(rp2.getId())) );
 	}
-
-//	/**
-//	 * Test whether the replies of a comment can be retrieved, 
-//	 * and comments can be added as reply of another comment. <br>
-//	 * First, create a comment and check if the text retrieved by getText method is correct. 
-//	 * Then, use the setText method to change the text and check if the new text is correct. 
-//	 */
-//	public void testAddReply(){
-//		Comment comment = new Comment("title","text", null,"userName");
-//		Comment rp1 = new Comment("title1","text1", null,"userName1");
-//		comment.addReply(rp1);
-//		assertTrue(comment.getReplies().get(0).equals(rp1.getId()));
-//		Comment rp2 = new Comment("title2","text2", null,"userName2");
-//		comment.addReply(rp2.getId());
-//		assertTrue(comment.getReplies().get(1).equals(rp2.getId()));
-//	}
 	
 	/**
 	 * Test whether a comment can be assigned as parent of another comment 
