@@ -3,8 +3,6 @@
  */
 package ca.ualberta.cs.app.test;
 
-import java.util.List;
-
 import model.Comment;
 import model.CommentMap;
 import activity.CommentPageActivity;
