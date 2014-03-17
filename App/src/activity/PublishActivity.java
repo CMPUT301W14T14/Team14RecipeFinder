@@ -22,6 +22,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * An activity which allows user to publish a new top level comment or reply to a specific comment.
+ * @author xuping
+ */
 public class PublishActivity extends Activity {
 	public static final int OBTAIN_PIC_REQUEST_CODE=252;
 	

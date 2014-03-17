@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * An activity will allow user to choose the sort option for list of comments.
+ * @author xuping
+ */
 public class SortOptionActivity extends Activity {
 	private Button sortByLocation=null;
 	private Button generalSort=null;

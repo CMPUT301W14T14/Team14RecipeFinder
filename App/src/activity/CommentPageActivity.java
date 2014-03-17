@@ -24,7 +24,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
-
+/**
+ * An activity will display the content and other info of an specific comment object.
+ * @author xuping
+ */
 public class CommentPageActivity extends Activity {
 	
 	public static final String cacheKey="CACHES";

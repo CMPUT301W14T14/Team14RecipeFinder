@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-
+/**
+ * An activity will allow user to edit a specific comment
+ * @author xuping
+ */
 public class EditPageActivity extends Activity{
 	
 	private EditText title=null;

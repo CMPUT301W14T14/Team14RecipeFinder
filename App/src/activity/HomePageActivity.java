@@ -23,7 +23,6 @@ import android.widget.Toast;
 /**
  * Activity which mostly contains the view of top level comments
  * @author xuping
- *
  */
 public class HomePageActivity extends Activity {
 	//private Button sort=null;
