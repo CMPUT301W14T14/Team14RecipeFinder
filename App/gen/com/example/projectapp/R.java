@@ -21,7 +21,34 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int android=0x7f020000;
+        public static final int bin=0x7f020001;
+        public static final int book=0x7f020002;
+        public static final int book_2=0x7f020003;
+        public static final int bookmark=0x7f020004;
+        public static final int circle_delete=0x7f020005;
+        public static final int circle_ok=0x7f020006;
+        public static final int close=0x7f020007;
+        public static final int cloud=0x7f020008;
+        public static final int cog=0x7f020009;
+        public static final int globe=0x7f02000a;
+        public static final int home=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int instagram=0x7f02000d;
+        public static final int iphone=0x7f02000e;
+        public static final int link=0x7f02000f;
+        public static final int login=0x7f020010;
+        public static final int logout=0x7f020011;
+        public static final int map=0x7f020012;
+        public static final int pen_3=0x7f020013;
+        public static final int picture=0x7f020014;
+        public static final int pin_2=0x7f020015;
+        public static final int plus=0x7f020016;
+        public static final int star=0x7f020017;
+        public static final int tag=0x7f020018;
+        public static final int text_left=0x7f020019;
+        public static final int tick=0x7f02001a;
+        public static final int user=0x7f02001b;
     }
     public static final class id {
         public static final int Like=0x7f080009;
@@ -32,14 +59,14 @@ public final class R {
         public static final int authorInfo2=0x7f08000e;
         public static final int cachePic=0x7f08000f;
         public static final int cacheView=0x7f080013;
-        public static final int cancelPublish=0x7f08001c;
+        public static final int cancelPublish=0x7f08001d;
         public static final int commentList=0x7f080007;
         public static final int commentText=0x7f080003;
         public static final int commentTitle=0x7f080016;
         public static final int comment_content_container=0x7f080015;
         public static final int comment_pic=0x7f080027;
         public static final int comment_text=0x7f080026;
-        public static final int commitPublish=0x7f08001d;
+        public static final int commitPublish=0x7f08001c;
         public static final int contentText=0x7f08000d;
         public static final int createTopic=0x7f080032;
         public static final int edit=0x7f080008;
@@ -51,8 +78,8 @@ public final class R {
         public static final int historytopic=0x7f080037;
         public static final int imagePreview=0x7f08001b;
         public static final int laterList1=0x7f080035;
-        public static final int location=0x7f080019;
-        public static final int locationButton=0x7f08001a;
+        public static final int location=0x7f08001a;
+        public static final int locationButton=0x7f080019;
         public static final int logOut=0x7f08002e;
         public static final int login_button=0x7f08003c;
         public static final int login_layout=0x7f080039;

@@ -27,35 +27,37 @@
         <requestFocus />
     </EditText>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imagePreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:contentDescription="@string/image_preview_ins"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/instagram" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/commitPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="@string/commit"
-            android:textStyle="bold" />
+            android:contentDescription="@string/commit"
+            android:src="@drawable/tick" />
 
-        <Button
+        <ImageButton
             android:id="@+id/cancelPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/cancel"
-            android:textStyle="bold" />
+            android:contentDescription="@string/cancel"
+            android:src="@drawable/close" />
 
     </RelativeLayout>
 

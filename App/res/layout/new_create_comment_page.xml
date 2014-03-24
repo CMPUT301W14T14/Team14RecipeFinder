@@ -29,54 +29,62 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp" >
+
+        <ImageButton
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/location"
+            android:src="@drawable/pin_2" >
+        </ImageButton>
 
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/locationButton"
             android:text="@string/defaultLocation" />
 
-        <Button
-            android:id="@+id/locationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/location" />
     </RelativeLayout>
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imagePreview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:contentDescription="@string/image_preview_ins"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/instagram" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:orientation="horizontal" >
 
-        <Button
+        <ImageButton
             android:id="@+id/commitPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="@string/commit"
-            android:textStyle="bold" />
-
-        <Button
+            android:src="@drawable/tick" />
+        <ImageButton
             android:id="@+id/cancelPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="@string/cancel"
-            android:textStyle="bold" />
+            android:src="@drawable/close" />
     </RelativeLayout>
 
 </LinearLayout>
