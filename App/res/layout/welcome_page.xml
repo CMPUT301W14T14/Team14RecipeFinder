@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>  
   <RelativeLayout  
+      
           xmlns:android="http://schemas.android.com/apk/res/android"  
           android:id="@+id/login_layout"  
           android:layout_width="fill_parent"  
           android:layout_height="fill_parent"  
           android:padding="15dip"  
-          android:layout_margin="15dip" >
+          android:layout_margin="15dip"
+           >
           
     <TextView
         android:id="@+id/login_userName_input_ins"
@@ -34,6 +36,7 @@
         android:layout_below="@+id/user_name_input"
         android:layout_marginTop="22dp"
         android:text="@string/login_ins" />
+    
   
   </RelativeLayout>
  
