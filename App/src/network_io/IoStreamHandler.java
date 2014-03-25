@@ -21,11 +21,8 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import activity.CommentPageActivity;
-import activity.EditPageActivity;
-import activity.HomePageActivity;
-import activity.PublishActivity;
 //import android.location.Location;
+import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
 import android.util.Log;
@@ -93,66 +90,13 @@ public class IoStreamHandler {
 	}
 	
 	/**
-	 * Put a Comment with the specific id into the CommentMap from the web server in the HomePageActivity(top level).
+	 * Put a Comment with the specific id into the CommentMap from the web server in the Activity.
 	 * @param commentId a String which is the comment id.
 	 * @param cm a CommentMap to be update.
 	 * @param activity HomePageActivity where the function will be called.
 	 */
 	
-	public void loadSpecificComment(final String commentId,final CommentMap cm,final HomePageActivity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
-		Thread thread=new Thread(){
-			@Override
-			public void run(){
-				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
-				HttpResponse response=null;
-				String responseJson = "";
-				try{
-					response=client.execute(request);
-					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
-					HttpEntity entity = response.getEntity();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-					String output = reader.readLine();
-					while (output != null) {
-						responseJson+= output;
-						output = reader.readLine();
-					}
-				} 
-				catch (ClientProtocolException e){
-					e.printStackTrace();
-				} 
-				catch (IOException e){
-					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
-					e.printStackTrace();
-				}
-				
-				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
-				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				
-				Runnable getComment = new Runnable() {
-					@Override
-					public void run() {
-						if(Data.getSource()!=null){
-							cm.updateComment(Data.getSource());
-						}
-					}
-				};
-				activity.runOnUiThread(getComment);
-			}
-		};
-		thread.start();
-	}
-	
-	/**
-	 * Put a Comment in to the CommentMap with the specific id from the web server in the CommentPageActivity(sub level).
-	 * @param commentId String which is the comment id.
-	 * @param cm a CommentMap to be update.
-	 * @param activity CommentPageActivity where the function will be called.
-	 */
-	public void loadSpecificComment(final String commentId,final CommentMap cm,final CommentPageActivity activity){
+	public void loadSpecificComment(final String commentId,final CommentMap cm,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -242,7 +186,7 @@ public class IoStreamHandler {
 	 * @param activity HomePageActivity where the function will be called.
 	 */
 	
-	public void loadTopLevelComments(final CommentMap topLevelComments,final HomePageActivity activity){
+	public void loadTopLevelComments(final CommentMap topLevelComments,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -290,7 +234,7 @@ public class IoStreamHandler {
 	 * @param activity PublishActivity where the function will be called.
 	 */
 	
-	public void load_update_TopLevelIdSet(final String id,final PublishActivity activity){
+	public void load_update_TopLevelIdSet(final String id,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -350,7 +294,7 @@ public class IoStreamHandler {
 	 * @param activity CommentPageActivity where the function will be called.
 	 */
 	
-	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final ImageView pic,final CommentMap cm,final CommentPageActivity activity){
+	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final ImageView pic,final CommentMap cm,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -465,7 +409,7 @@ public class IoStreamHandler {
 	 * @param userName a String which is the user name of the current user.
 	 * @param activity CommentPageActivity where the function will be called.
 	 */
-	public void checkEditSpecificComment(final String commentId,final String userName,final CommentPageActivity activity){
+	public void checkEditSpecificComment(final String commentId,final String userName,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -506,7 +450,7 @@ public class IoStreamHandler {
 							Toast.makeText(activity.getApplicationContext(),"Only Author can edit the comment.",Toast.LENGTH_SHORT).show();
 						}
 						else{
-							Intent edit_intent=new Intent(activity,EditPageActivity.class);
+							Intent edit_intent=new Intent(activity,Activity.class);
 							edit_intent.putExtra("comment_id",commentId);
 							activity.startActivity(edit_intent);
 						}
@@ -527,7 +471,7 @@ public class IoStreamHandler {
 	 * @param pic a ImageView which will contain the attached picture of this comment(if exist).
 	 * @param activity EditPageActivity where the function will be called.
 	 */
-	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final EditPageActivity activity){
+	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -630,7 +574,7 @@ public class IoStreamHandler {
 	 * @param cc a CacheController object.
 	 * @param activity CommentPageActivity where the function will be called.
 	 */
-	public void loadSpecificCommentForCache(final String commentId,final CacheController cc,final CommentPageActivity activity){
+	public void loadSpecificCommentForCache(final String commentId,final CacheController cc,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
@@ -690,7 +634,7 @@ public class IoStreamHandler {
 	 * @param cc a CacheController object.
 	 * @param activity CommentPageActivity where the function will be called.
 	 */
-	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final CommentPageActivity activity){
+	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final Activity activity){
 		if(gson==null){
 			gson=(new Gson_Constructor()).getGson();
 		}
