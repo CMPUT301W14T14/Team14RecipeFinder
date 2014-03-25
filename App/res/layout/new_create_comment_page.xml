@@ -40,7 +40,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:contentDescription="@string/location"
-            android:src="@drawable/pin_2" >
+            android:src="@drawable/location" >
         </ImageButton>
 
         <TextView
@@ -77,14 +77,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/tick" />
+            android:src="@drawable/commit_1" />
         <ImageButton
             android:id="@+id/cancelPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/close" />
+            android:src="@drawable/cancel_1" />
     </RelativeLayout>
 
 </LinearLayout>
