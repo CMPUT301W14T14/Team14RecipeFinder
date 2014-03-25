@@ -8,10 +8,12 @@
     <string name="userName_ins">User Name:</string>
     <string name="defaultCommentText">&quot;Default Text&quot;</string>
     <string name="defaultUserName_timePosted">Default username &amp;&amp; time posted</string>
+    <string name="defaultLocation">Latitude \nLongitude</string>
+    <string name="location">Location</string>
     <string name="title_activity_home_page">HomePageActivity</string>
     <string name="title_activity_user_info_page">UserInfoPage</string>
     <string name="attachpicture">Attach \npicture</string>
-    <string name="typeinthecontents">Type in the topic or comment or reply contents</string>
+    <string name="typeinthecontents">Type in the contents</string>
     <string name="enternewusername">Please enter a new username</string>
     <string name="goback">go back</string>
     <string name="sort">Sort</string>
