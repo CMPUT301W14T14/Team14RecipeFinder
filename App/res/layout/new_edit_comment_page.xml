@@ -27,6 +27,32 @@
         <requestFocus />
     </EditText>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" >
+
+        <ImageButton
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/location"
+            android:src="@drawable/location" >
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@+id/locationButton"
+            android:text="@string/defaultLocation" />
+    </RelativeLayout>
+
     <ImageButton
         android:id="@+id/imagePreview"
         android:layout_width="wrap_content"
@@ -58,7 +84,6 @@
             android:layout_alignParentTop="true"
             android:contentDescription="@string/cancel"
             android:src="@drawable/cancel_1" />
-
     </RelativeLayout>
 
 </LinearLayout>
