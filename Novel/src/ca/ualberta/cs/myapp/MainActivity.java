@@ -16,14 +16,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-//		Math math = new Math();
 		// Initialize ActionBar
 		initView();
-		
-		
-		
-//		Button button = (Button)findViewById(R.id.dummy_button);
-//		button.setText("aha");
+
 
 	}
 
