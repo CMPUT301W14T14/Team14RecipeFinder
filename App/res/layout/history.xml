@@ -4,17 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/pagename"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
-        android:layout_weight="0.1"
-        android:gravity="center_horizontal"
-        android:text="@string/viewedhistory"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+	<Spinner
+	    android:id="@+id/sorthistory"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="0.1"
+	    android:layout_marginTop="6dp"
+	    android:layout_marginBottom="6dp"
+	    android:layout_marginLeft="6dp"
+	    android:layout_marginRight="6dp"
+	    android:background="#808080" />
 
     <ListView
         android:id="@+id/cacheView"
@@ -38,16 +37,6 @@
         android:layout_marginTop="6dp"
         android:layout_weight="0.1"
         android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/sort3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="#a9a9a9"
-            android:text="@string/sort"
-            android:textStyle="bold" />
     </RelativeLayout>
 
 </LinearLayout>
