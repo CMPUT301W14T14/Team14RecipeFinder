@@ -19,8 +19,7 @@
         android:allowBackup="true"
         android:icon="@drawable/applications_internet"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo" 
-        android:name="UserNameInfo">
+        android:theme="@android:style/Theme.Holo">
         <activity
             android:name="activity.LoginViewActivity"
             android:label="@string/app_name" >
@@ -33,42 +32,6 @@
         <activity
             android:name="activity.HomePageActivity"
             android:label="@string/title_activity_home_page" >
-        </activity>
-        <activity
-            android:name="activity.UserInfoPageActivity"
-            android:label="@string/title_activity_user_info_page" >
-        </activity>
-        <activity
-            android:name="activity.SortOptionActivity"
-            android:label="@string/title_activity_sort_option" >
-        </activity>
-        <activity
-            android:name="activity.CommentPageActivity"
-            android:label="@string/title_activity_comment_page" >
-        </activity>
-        <activity
-            android:name="activity.SortOption"
-            android:label="@string/title_activity_sort_option" >
-        </activity>
-        <activity
-            android:name="activity.ViewFavActivity"
-            android:label="title_activity_view_fav" >
-        </activity>
-        <activity
-            android:name="activity.PublishActivity"
-            android:label="@string/title_activity_publish" >
-        </activity>
-        <activity
-            android:name="activity.ResetUserNameActivity"
-            android:label="@string/title_activity_ResetUserName" >
-        </activity>
-        <activity
-            android:name="activity.EditPageActivity"
-            android:label="@string/title_activity_EditPage" >
-        </activity>
-        <activity
-            android:name="activity.ViewCacheCommentActivity"
-            android:label="@string/title_activity_CacheComment" >
         </activity>
     </application>
 

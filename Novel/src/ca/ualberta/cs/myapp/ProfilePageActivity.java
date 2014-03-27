@@ -1,8 +1,6 @@
 package ca.ualberta.cs.myapp;
 
 import com.example.myapp.R;
-import com.example.myapp.R.layout;
-import com.example.myapp.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
