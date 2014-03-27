@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class CommentPageActivity extends Activity {
+public class EditCommentPageActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_comment_page);
+		setContentView(R.layout.activity_edit_comment_page);
 	}
 
 	@Override

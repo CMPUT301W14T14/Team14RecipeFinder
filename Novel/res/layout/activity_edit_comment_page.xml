@@ -21,11 +21,38 @@
         android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:hint="@string/content"
         android:scrollbars="vertical" >
 
         <requestFocus />
     </EditText>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" >
+
+        <ImageButton
+            android:id="@+id/location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/location"
+            android:src="@drawable/location" >
+        </ImageButton>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/location_button"
+            android:text="@string/default_location" />
+
+    </RelativeLayout>
 
     <ImageButton
         android:id="@+id/edit_preview"

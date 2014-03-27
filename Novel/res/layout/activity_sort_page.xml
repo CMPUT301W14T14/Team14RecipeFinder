@@ -25,7 +25,7 @@
         android:layout_marginTop="12dp"
         android:layout_below="@+id/sort_by_picture_button"
         android:layout_centerHorizontal="true"
-        android:text="@string/sort_by_proximity_to_another_location" />
+        android:text="@string/sort_by_other_location" />
 
     <Button
         android:id="@+id/sort_by_promixity_to_me_button"
@@ -34,7 +34,7 @@
         android:layout_marginTop="12dp"
         android:layout_below="@+id/sort_by_promixity_to_anotion_location_button"
         android:layout_centerHorizontal="true"
-        android:text="@string/sort_by_proximity" />
+        android:text="@string/sort_by_my_location" />
 
     <Button
         android:id="@+id/sort_by_date_button"

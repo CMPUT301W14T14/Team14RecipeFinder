@@ -36,6 +36,18 @@
             android:name="ca.ualberta.cs.myapp.ProfilePageActivity"
             android:label="@string/title_activity_profile_page" >
         </activity>
+        <activity
+            android:name="ca.ualberta.cs.myapp.FavoritePageActivity"
+            android:label="@string/title_activity_favorite_page" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.myapp.MyCommentPageActivity"
+            android:label="@string/title_activity_my_comment_page" >
+        </activity>
+        <activity
+            android:name="ca.ualberta.cs.myapp.CreateCommentPageActivity"
+            android:label="@string/title_activity_create_comment_page" >
+        </activity>
     </application>
 
 </manifest>
