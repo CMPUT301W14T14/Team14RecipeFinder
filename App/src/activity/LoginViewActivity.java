@@ -39,7 +39,7 @@ public class LoginViewActivity extends Activity{
 		super.onResume();
 		
 		if(userNameHandler.getUserName(caches)!=null){
-			Intent pushIntent=new Intent(LoginViewActivity.this,HomePageActivity.class);
+			Intent pushIntent=new Intent(LoginViewActivity.this,AllTopicPageActivity.class);
 			startActivity(pushIntent);
 			finish();
 		}
@@ -54,7 +54,7 @@ public class LoginViewActivity extends Activity{
 		public void onClick(View v){
 			String userName=userNameInput.getText().toString();
 			userNameHandler.setUserName(caches,userName);
-			Intent pushIntent=new Intent(LoginViewActivity.this,HomePageActivity.class);
+			Intent pushIntent=new Intent(LoginViewActivity.this,AllTopicPageActivity.class);
 			startActivity(pushIntent);
 			finish();
 		}
