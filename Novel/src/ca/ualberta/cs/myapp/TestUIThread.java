@@ -6,10 +6,11 @@ import android.support.v4.app.Fragment;
 public class TestUIThread {
 	
 	MathMap mathMap = new MathMap();
+	Boolean status = false;
 	
 	public TestUIThread(){}
 	
-	public void test (final MathMap maths) {
+	public void test () {
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -34,11 +35,16 @@ public class TestUIThread {
 			}
 		};
 		thread.start();
+		status = true;
 //		return thread;
 	}
 	
 	public MathMap getMathMap() {
 		return mathMap;
+	}
+	
+	public Boolean getStatus() {
+		return status;
 	}
 
 }

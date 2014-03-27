@@ -19,22 +19,26 @@ public class FragmentAllTopicPage extends Fragment{
 		mView = inflater.inflate(R.layout.fragment_all_topic, null);
 
 		
-		MathMap maths = new MathMap();
+		MathMap mathMap = new MathMap();
 		TestUIThread tt = new TestUIThread();
-		tt.test(maths);
+		tt.test();
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		try {
+//			Thread.sleep(500);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		while (tt.getStatus() == false) {
+			
 		}
 		
-		maths = tt.getMathMap();
+		mathMap = tt.getMathMap();
 		
 		Button button = (Button)mView.findViewById(R.id.dummy_button);
 
-		if (maths.getCurrentList().isEmpty()) {
+		if (mathMap.getCurrentList().isEmpty()) {
 			button.setText("Empty");
 			return mView;
 		} 
@@ -48,7 +52,7 @@ public class FragmentAllTopicPage extends Fragment{
 //		button.setText(maths.getMath(0+"").getNum()+"");
 //		button.setText(maths.getMath(1+"").getNum()+"");
 //		button.setText(maths.getMath(2+"").getNum()+"");
-		button.setText(maths.getMath(3+"").getNum()+"");
+		button.setText(mathMap.getMath(3+"").getNum()+"");
 		
 		return mView;
 		

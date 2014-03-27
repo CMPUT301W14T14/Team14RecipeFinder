@@ -24,8 +24,6 @@
         android:layout_marginTop="12dp"
         android:hint="@string/content"
         android:scrollbars="vertical" >
-
-        <requestFocus />
     </EditText>
     
     <RelativeLayout
