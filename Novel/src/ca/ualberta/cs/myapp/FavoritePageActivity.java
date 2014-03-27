@@ -40,7 +40,7 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		// Spinner for sort options
 		spinnerOsversions = (Spinner) findViewById(R.id.welcome_button);
 		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, MainActivity.sortOption);
+				android.R.layout.simple_spinner_item, AllTopicPageActivity.sortOption);
 		sortArray
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOsversions.setAdapter(sortArray);
@@ -76,13 +76,13 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
-		if (sortSelect == MainActivity.sortByDate) {
+		if (sortSelect == AllTopicPageActivity.sortByDate) {
 
-		} else if (sortSelect == MainActivity.sortByMyLocation) {
+		} else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
 
-		} else if (sortSelect == MainActivity.sortByOtherLocation) {
+		} else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
 
-		} else if (sortSelect == MainActivity.sortByPicture) {
+		} else if (sortSelect == AllTopicPageActivity.sortByPicture) {
 
 		}
 	}

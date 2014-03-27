@@ -1,6 +1,6 @@
-package ca.ualberta.cs.myapp;
+package activity;
 
-import com.example.myapp.R;
+import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -14,7 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MyCommentPageActivity extends Activity implements OnItemSelectedListener {
+public class FavoritePageActivity extends Activity implements OnItemSelectedListener {
 
 	Spinner spinnerOsversions;
 	
@@ -59,7 +59,7 @@ public class MyCommentPageActivity extends Activity implements OnItemSelectedLis
 		Intent intent;
 		switch (item.getItemId()) {
 
-		case R.id.action_favorite:
+		case R.id.action_my_comment:
 			intent = new Intent(this, MyCommentPageActivity.class);
 			startActivity(intent);
 			return true;

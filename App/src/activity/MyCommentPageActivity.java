@@ -1,6 +1,6 @@
-package ca.ualberta.cs.myapp;
+package activity;
 
-import com.example.myapp.R;
+import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.ActionBar;

@@ -1,6 +1,6 @@
-package ca.ualberta.cs.myapp;
+package activity;
 
-import com.example.myapp.R;
+import com.example.projectapp.R;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends Activity implements OnItemSelectedListener {
+public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {
 
 	Spinner spinnerOsversions;
 	static String sortByDate = "Sort By Date";

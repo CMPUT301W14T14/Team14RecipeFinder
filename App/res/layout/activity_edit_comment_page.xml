@@ -9,31 +9,30 @@
     android:paddingTop="16dp" >
 
     <EditText
-        android:id="@+id/topictitle"
+        android:id="@+id/edit_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/titlename" >
+        android:hint="@string/title" >
 
         <requestFocus />
     </EditText>
 
     <EditText
-        android:id="@+id/typecontent"
+        android:id="@+id/edit_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/typeinthecontents"
+        android:layout_marginTop="12dp"
+        android:hint="@string/content"
         android:scrollbars="vertical" >
-
-        <requestFocus />
     </EditText>
-
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp" >
 
         <ImageButton
-            android:id="@+id/locationButton"
+            android:id="@+id/location_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -46,19 +45,19 @@
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="3dp"
-            android:layout_toRightOf="@+id/locationButton"
-            android:text="@string/defaultLocation" />
+            android:layout_marginLeft="6dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/location_button"
+            android:text="@string/default_location" />
+
     </RelativeLayout>
 
     <ImageButton
-        android:id="@+id/imagePreview"
+        android:id="@+id/edit_preview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:contentDescription="@string/image_preview_ins"
+        android:contentDescription="@string/preview"
         android:src="@drawable/instagram" />
 
     <RelativeLayout
@@ -68,7 +67,7 @@
         android:orientation="horizontal" >
 
         <ImageButton
-            android:id="@+id/commitPublish"
+            android:id="@+id/edit_commit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -77,13 +76,14 @@
             android:src="@drawable/commit_1" />
 
         <ImageButton
-            android:id="@+id/cancelPublish"
+            android:id="@+id/edit_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:contentDescription="@string/cancel"
             android:src="@drawable/cancel_1" />
+
     </RelativeLayout>
 
 </LinearLayout>
