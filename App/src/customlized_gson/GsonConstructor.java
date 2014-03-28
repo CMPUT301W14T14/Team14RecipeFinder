@@ -10,18 +10,18 @@ import com.google.gson.GsonBuilder;
  * A class able to Constructs a Gson with a custom serializer / deserializer registered for Bitmap/Location.
  * getted from https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
  */
-public class Gson_Constructor {
+public class GsonConstructor {
 	/**
 	 * Construct a Gson_Constructor object.
 	 */
-	public Gson_Constructor(){}
+	public GsonConstructor(){}
 	/**
 	 * @return a Gson object with a custom serializer / desserializer registered for Bitmaps.
 	 */
 	public Gson getGson(){
 		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(Bitmap.class,new Bitmap_Converter());
-		builder.registerTypeAdapter(Location.class,new Location_Converter());
+		builder.registerTypeAdapter(Bitmap.class,new BitmapConverter());
+		builder.registerTypeAdapter(Location.class,new LocationConverter());
 		return builder.create();
 	}
 }

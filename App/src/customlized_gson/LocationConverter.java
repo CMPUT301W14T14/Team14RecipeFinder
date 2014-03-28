@@ -17,7 +17,7 @@ import com.google.gson.JsonSerializer;
  * Adapted from http://stackoverflow.com/questions/13944346/runtimeexception-in-gson-parsing-json-failed-to-invoke-protected-java-lang-class
  *
  */
-public class Location_Converter implements JsonSerializer<Location>,JsonDeserializer<Location>{
+public class LocationConverter implements JsonSerializer<Location>,JsonDeserializer<Location>{
 	@Override
 	public JsonElement serialize(Location t,Type type,JsonSerializationContext jsc){
 		JsonObject jo = new JsonObject();
