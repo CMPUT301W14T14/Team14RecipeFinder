@@ -10,6 +10,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -257,6 +258,27 @@ public class IoStreamHandler {
 					}
 				};
 				activity.runOnUiThread(updateIdSet);
+			}
+		};
+		thread.start();
+	}
+	
+	
+	
+	public void clean(){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpDelete request = new HttpDelete(SERVER_URL);
+				HttpResponse response=null;
+				try{
+					response = client.execute(request);
+					Log.i(LOG_TAG, "Clean: " + response.getStatusLine().toString());
+				}
+				catch(IOException exception){
+					Log.w(LOG_TAG, "Error during Clean: " + exception.getMessage());
+				}
 			}
 		};
 		thread.start();

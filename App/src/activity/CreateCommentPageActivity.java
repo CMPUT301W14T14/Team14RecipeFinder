@@ -95,8 +95,9 @@ public class CreateCommentPageActivity extends Activity {
 		}
 	}
 	/**
-	 * This click listener creates a new comment and commit it to the server,if this comment is a top level comment,add its id to the topLevelIdSet.Otherwise add its id to the comment it replies to.
-	 * @author xuping
+	 * This click listener creates a new comment and commit it to the server,
+	 * if this comment is a top level comment,add its id to the topLevelIdSet.
+	 * Otherwise add its id to the comment it replies to.
 	 */
 	class CommitClick implements OnClickListener{
         @Override

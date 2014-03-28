@@ -51,7 +51,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		listView = (ListView)findViewById(R.id.topic_list);
 		
 		io=new IoStreamHandler();
-		
+		//io.clean();
 		topics=new CommentMap();
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,topics.getCurrentList());
 		listView.setAdapter(listViewAdapter);
