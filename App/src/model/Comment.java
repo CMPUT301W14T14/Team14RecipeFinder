@@ -23,23 +23,7 @@ public class Comment {
 	private String parentId=null;
 	private ArrayList<String> replyIdSet=null;
 	
-	//Constructors:
-	/**
-	 * Construct a Comment object without an attached picture
-	 * @param title a String which is the title of the comment.
-	 * @param text a String which is the content of the comment.
-	 * @param location a Location object which is the location of this comment.
-	 * @param userName a String which is the userNAme of the author.
-	 */
-	public Comment(String title,String text,Location location,String userName){
-		this.title=title;
-		this.text=text;
-		this.location=location;
-		this.timePosted=(new Date()).getTime();
-		this.userName=userName;
-		this.id=this.userName+this.timePosted;
-		this.replyIdSet=new ArrayList<String>();
-	}
+	//Constructor:
 	/**
 	 * Construct a Comment object with an attached picture
 	 * @param title a String which is the title of the comment.

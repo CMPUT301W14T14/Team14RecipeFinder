@@ -161,8 +161,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }
