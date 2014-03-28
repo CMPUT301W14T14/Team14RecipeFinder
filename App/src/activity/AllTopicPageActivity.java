@@ -1,6 +1,7 @@
 package activity;
 
 import network_io.IoStreamHandler;
+import model.Comment;
 import model.CommentMap;
 
 import com.example.projectapp.R;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -56,6 +58,19 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,topics.getCurrentList());
 		listView.setAdapter(listViewAdapter);
 		topics.setArrayAdapter(listViewAdapter);
+		listView.setOnItemClickListener(new ViewClick());
+	}
+	
+	class ViewClick implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0,View arg1,int pos,long arg3){
+			Comment comment=(Comment)arg0.getItemAtPosition(pos);
+			Intent viewIntent=new Intent(AllTopicPageActivity.this,CommentPageActivity.class);
+			viewIntent.putExtra("commentID",comment.getId());
+			startActivity(viewIntent);
+		}
+		
 	}
 	
 	@Override
