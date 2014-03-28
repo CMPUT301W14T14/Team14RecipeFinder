@@ -37,6 +37,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="@string/comment_info" />
+        
+        <ImageView
+            android:id="@+id/topic_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/preview" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -75,13 +83,6 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/topic_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/preview" />
     </LinearLayout>
 
     <LinearLayout
