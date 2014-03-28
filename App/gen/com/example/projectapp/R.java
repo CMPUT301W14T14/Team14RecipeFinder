@@ -111,6 +111,7 @@ public final class R {
         public static final int activity_sort_page=0x7f030007;
         public static final int single_comment_layout=0x7f030008;
         public static final int welcome_page=0x7f030009;
+        public static final int welcomeimage=0x7f03000a;
     }
     public static final class menu {
         public static final int comment_page=0x7f070000;
