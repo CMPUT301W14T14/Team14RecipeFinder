@@ -26,7 +26,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	
 	static String sortByDate = "Sort By Date";
 	static String sortByMyLocation = "Sort By My Location";
-	static String sortByOtherLocation = "Sort By Ohter Location";
+	static String sortByOtherLocation = "Sort By Other Location";
 	static String sortByPicture = "Sort By Picture";
 	static String[] sortOption = { sortByDate, sortByMyLocation,
 			sortByOtherLocation, sortByPicture };
