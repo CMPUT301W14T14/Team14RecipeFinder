@@ -9,7 +9,7 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTENRAL_STORGE" />
@@ -63,7 +63,10 @@
             android:name="activity.CreateCommentPageActivity"
             android:label="@string/title_activity_create_comment_page" >
         </activity>
-        
+        <activity
+            android:name="activity.LocalCommentPageActivity"
+            android:label="@string/title_activity_local_comment_page" >
+        </activity>
     </application>
 
 </manifest>

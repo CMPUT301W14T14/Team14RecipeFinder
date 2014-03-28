@@ -47,8 +47,6 @@
     <string name="title_activity_favorite_page">FavoritePageActivity</string>
     <string name="title_activity_my_comment_page">MyCommentPageActivity</string>
     <string name="title_activity_create_comment_page">CreateCommentPageActivity</string>
-    
-
     <string name="login_ins">Login</string>
     <string name="userName_ins">User Name:</string>
     <string name="defaultCommentText">&quot;Default Text&quot;</string>
@@ -96,5 +94,6 @@
     <string name="attached_pic_dis">Preview</string>
     <string name="title_activity_CacheComment">ViewCacheCommentPage</string>
     <string name="welcome_image_description">Welcome Image</string>
+    <string name="title_activity_local_comment_page">LocalCommentPageActivity</string>
 
 </resources>
