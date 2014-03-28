@@ -62,9 +62,11 @@ public class LocationGenerator{
 	 */
 	
 	public Location getCustomLocation(double latitude,double longitude){
-		Location l=new Location(this.currentLocation);
-		l.setLatitude(latitude);
-		l.setLongitude(longitude);
+		Location l=this.lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		if(l!=null){
+			l.setLatitude(latitude);
+			l.setLongitude(longitude);
+		}
 		return l;
 	}
 	

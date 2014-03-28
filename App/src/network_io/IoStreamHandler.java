@@ -25,7 +25,6 @@ import android.app.Activity;
 import android.location.Location;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -376,7 +375,7 @@ public class IoStreamHandler {
 		return thread;
 	}
 	
-	public Thread setupEditPage(final String commentID,final EditText title,final EditText content,final EditText latitude,final EditText longitude,final ImageButton picture,final Activity activity){
+	public Thread setupEditPage(final String commentID,final EditText title,final EditText content,final EditText latitude,final EditText longitude,final ImageView picture,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -421,6 +420,53 @@ public class IoStreamHandler {
 					
 				};
 				activity.runOnUiThread(getAndSetEditComment);
+			}
+		};
+		thread.start();
+		return thread;
+	}
+	
+
+	/**
+	 * Update a edited comment in to the server.
+	 * @param commentID a String which is commentId
+	 * @param editedTitle a String which is the title of the comment after edit.
+	 * @param editedText a String which is the content of the comment after edit.
+	 */
+	public Thread commitEdit(final String commentID,final String editedTitle,final String editedText,final Location editedLocation,final Activity activity){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Comment comment=Data.getSource();
+				comment.setTitle(editedTitle);
+				comment.setText(editedText);
+				comment.setLocation(editedLocation);
+				addOrUpdateComment(comment);
 			}
 		};
 		thread.start();

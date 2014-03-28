@@ -6,6 +6,8 @@ import network_io.IoStreamHandler;
 import model.Comment;
 import model.CommentMap;
 
+import cache.CacheController;
+
 import com.example.projectapp.R;
 
 import adapter.ListViewAdapter;
@@ -16,6 +18,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -69,6 +72,10 @@ public class CommentPageActivity extends Activity {
 		commentID=((getIntent()).getStringExtra("commentID"));
 		
 		listView.setOnItemClickListener(new RecurViewClick());
+		
+		edit.setOnClickListener(new EditClick());
+		like.setOnClickListener(new LikeClick());
+		bookmark.setOnClickListener(new MarkClick());
 	}
 	
 	
@@ -77,7 +84,34 @@ public class CommentPageActivity extends Activity {
 		super.onResume();
 		refresh();
 	}
+	
+	class EditClick implements OnClickListener{
 
+		@Override
+		public void onClick(View v){
+			Intent pushIntent=new Intent(CommentPageActivity.this,EditCommentPageActivity.class);
+			pushIntent.putExtra("commentID",commentID);
+			startActivity(pushIntent);
+		}
+		
+	}
+	
+	class LikeClick implements OnClickListener{
+		@Override
+		public void onClick(View v){
+			CacheController cc=new CacheController();
+			io.addCache(commentID,null,cc,"fav",CommentPageActivity.this);
+			Toast.makeText(getApplicationContext(),"Liked.",Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	class MarkClick implements OnClickListener{
+		@Override
+		public void onClick(View v){
+			CacheController cc=new CacheController();
+			io.addCache(commentID,null,cc,"indicated",CommentPageActivity.this);
+		}
+	}
 
 	class RecurViewClick implements OnItemClickListener{
 

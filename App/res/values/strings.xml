@@ -28,6 +28,7 @@
     <string name="my_comment">My Comments</string>
     <string name="comment_info">Author TimePosted \nPosted at Location</string>
     <string name="title_activity_comment_page">CommentPageActivity</string>
+    <string name="title_edit_activity_comment_page">EditCommentPageActivity</string>
     <string name="title_activity_sort_page">SortPageActivity</string>
     <string name="sort_by_my_location">Sort By My Location</string>
     <string name="sort_by_other_location">Sort By Ohter Location</string>
