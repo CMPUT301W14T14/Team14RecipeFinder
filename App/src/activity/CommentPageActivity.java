@@ -1,6 +1,7 @@
 package activity;
 
 
+import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
 import model.Comment;
 import model.CommentMap;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CommentPageActivity extends Activity {
@@ -32,6 +34,7 @@ public class CommentPageActivity extends Activity {
 	private CommentMap replies=null;
 	private ListViewAdapter listViewAdapter=null;
 	private IoStreamHandler io=null;
+	private ConnectionChecker connectionChecker=null;
 	
 	private String commentID=null;
 
@@ -50,6 +53,7 @@ public class CommentPageActivity extends Activity {
 		listView = (ListView)findViewById(R.id.reply_list);
 		
 		io=new IoStreamHandler();
+		connectionChecker=new ConnectionChecker();
 		replies=new CommentMap();
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
 		listView.setAdapter(listViewAdapter);
@@ -81,8 +85,13 @@ public class CommentPageActivity extends Activity {
 	}
 	
 	private void refresh(){
-		replies.clear();
-		io.loadAndSetSpecificComment(commentID,title,content,commentInfo,picture,replies,this);
+		if(connectionChecker.isNetworkOnline(this)){
+			replies.clear();
+			io.loadAndSetSpecificComment(commentID,title,content,commentInfo,picture,replies,this);
+		}
+		else{
+			Toast.makeText(getApplicationContext(),"Offline",Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	/**

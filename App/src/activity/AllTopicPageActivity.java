@@ -1,6 +1,7 @@
 package activity;
 
 import user_name.UserNameHandler;
+import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
 import model.Comment;
 import model.CommentMap;
@@ -20,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {
@@ -37,6 +39,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	private ListViewAdapter listViewAdapter=null;
 	private CommentMap topics=null;
 	private IoStreamHandler io=null;
+	private ConnectionChecker connectionChecker=null;
 
 	/**
 	 *  onCreate method. </br>
@@ -54,6 +57,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		listView = (ListView)findViewById(R.id.topic_list);
 		
 		io=new IoStreamHandler();
+		connectionChecker=new ConnectionChecker();
 		//io.clean();
 		topics=new CommentMap();
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,topics.getCurrentList());
@@ -81,8 +85,13 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	}
 	
 	private void refresh(){
-		topics.clear();
-		io.loadTopLevelComments(topics, this);
+		if(connectionChecker.isNetworkOnline(this)){
+			topics.clear();
+			io.loadTopLevelComments(topics, this);
+		}
+		else{
+			Toast.makeText(getApplicationContext(),"Offline",Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	/**

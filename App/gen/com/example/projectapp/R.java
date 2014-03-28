@@ -211,6 +211,7 @@ public final class R {
         public static final int viewedhistory=0x7f050033;
         public static final int viewedhistorybutton=0x7f050039;
         public static final int welcome=0x7f050003;
+        public static final int welcome_image_description=0x7f050057;
     }
     public static final class style {
         /** 

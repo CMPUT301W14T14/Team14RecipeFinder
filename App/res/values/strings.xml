@@ -90,5 +90,6 @@
     <string name="reset_user_name_ins">Enter your new User Name here</string>
     <string name="attached_pic_dis">Preview</string>
     <string name="title_activity_CacheComment">ViewCacheCommentPage</string>
+    <string name="welcome_image_description">Welcome Image</string>
 
 </resources>
