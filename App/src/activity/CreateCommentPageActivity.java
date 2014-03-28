@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class CreateCommentPageActivity extends Activity {
@@ -30,7 +31,8 @@ public class CreateCommentPageActivity extends Activity {
 	private EditText title=null;
 	private EditText content=null;
 	private TextView location=null;
-	private ImageButton picture=null;
+	private ImageView picture=null;
+	private ImageButton pictureButton=null;
 	private ImageButton commit=null;
 	private ImageButton cancel=null;
 	
@@ -54,7 +56,8 @@ public class CreateCommentPageActivity extends Activity {
 		content = (EditText)findViewById(R.id.create_content);
 		
 		location=(TextView)findViewById(R.id.location);
-		picture = (ImageButton)findViewById(R.id.create_image_review);
+		pictureButton = (ImageButton)findViewById(R.id.create_image);
+		picture = (ImageView)findViewById(R.id.create_image_review);
 		commit = (ImageButton)findViewById(R.id.create_commit);
 		cancel = (ImageButton)findViewById(R.id.create_cancel);
 		
@@ -74,7 +77,7 @@ public class CreateCommentPageActivity extends Activity {
 		}
 		//SetClickListener
 		cancel.setOnClickListener(new CancelClick());
-		picture.setOnClickListener(new AttachClick());
+		pictureButton.setOnClickListener(new AttachClick());
 		commit.setOnClickListener(new CommitClick());
 	}
 	
@@ -109,6 +112,12 @@ public class CreateCommentPageActivity extends Activity {
         		io.loadAndUpdateTopLevelIdSet(comment.getId(),CreateCommentPageActivity.this);
         	}
         	io.addOrUpdateComment(comment);
+        	try{
+				Thread.sleep(500);
+			} 
+        	catch (InterruptedException e){
+				e.printStackTrace();
+			}
         	finish();
         }
 	}

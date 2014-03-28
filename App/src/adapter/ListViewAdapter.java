@@ -49,26 +49,10 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		
 		if(c!=null){
 			ImageView comment_pic=(ImageView)convertView.findViewById(R.id.comment_pic);
-			if(c.getPicture()!=null){
-				comment_pic.setImageBitmap(c.getPicture());
-			}
-			else{
-				comment_pic.setImageBitmap(null);
-			}
+			comment_pic.setImageBitmap(c.getPicture());
 			TextView comment_text=(TextView)convertView.findViewById(R.id.comment_text);
 			comment_text.setText(c.getTitle());
 			TextView comment_info=(TextView)convertView.findViewById(R.id.user_name_and_time_posted);
-			//Location l=c.getLocation();
-			//if(l!=null){
-				//double lng=l.getLongitude();
-				//double lat=l.getLatitude();
-				//String lngS=String.valueOf(lng);
-				//String latS=String.valueOf(lat);
-				//comment_info.setText("Posted by: "+c.getUserName()+" At: "+(new Date(c.getTimePosted()).toString())+"\nLocation Longitude: "+lngS+"  Latitude: "+latS);
-			//}
-			//else{
-				//comment_info.setText("Posted by: "+c.getUserName()+" At: "+(new Date(c.getTimePosted()).toString()));
-			//}
 			comment_info.setText("Posted by: "+c.getUserName()+" At: "+(new Date(c.getTimePosted()).toString()));
 		}
 		return convertView;
