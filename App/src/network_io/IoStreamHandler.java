@@ -472,7 +472,7 @@ public class IoStreamHandler {
 							cc.addFav(activity,comment);
 						}
 						else if(tag.equals("indicated")){
-							
+							// TO DO
 						}
 						else{
 							cc.addCacheAsReply(activity,parentID,comment);
