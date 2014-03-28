@@ -31,7 +31,7 @@ public class CommentMap{
 	 * after update if the ArrayAdapter<Comment> has been set.
 	 * @param comment a Comment object.
 	 */
-	public void updateComment(Comment comment){
+	public void addComment(Comment comment){
 		this.comments.put(comment.getId(),comment);
 		this.comments_list.add(comment);
 		if(this.adapter!=null){

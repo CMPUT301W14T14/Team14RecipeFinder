@@ -6,7 +6,6 @@ import com.example.projectapp.R;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,13 +13,10 @@ import android.widget.*;
 
 public class LoginViewActivity extends Activity{
 	
-	public static final String CACHES_KEY="Caches";
-	
 	private EditText userNameInput=null;
 	private Button loginButton=null;
 	
 	private UserNameHandler userNameHandler=null;
-    private SharedPreferences caches=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -29,7 +25,6 @@ public class LoginViewActivity extends Activity{
 		loginButton=(Button)findViewById(R.id.login_button);
 		
 		userNameHandler=new UserNameHandler();
-		caches=getSharedPreferences(CACHES_KEY,0);
 		
 		loginButton.setOnClickListener(new LoginClick());
 	}
@@ -37,8 +32,7 @@ public class LoginViewActivity extends Activity{
 	@Override
 	protected void onResume(){
 		super.onResume();
-		
-		if(userNameHandler.getUserName(caches)!=null){
+		if(userNameHandler.getUserName(this)!=null){
 			Intent pushIntent=new Intent(LoginViewActivity.this,AllTopicPageActivity.class);
 			startActivity(pushIntent);
 			finish();
@@ -53,7 +47,7 @@ public class LoginViewActivity extends Activity{
 		@Override
 		public void onClick(View v){
 			String userName=userNameInput.getText().toString();
-			userNameHandler.setUserName(caches,userName);
+			userNameHandler.setUserName(LoginViewActivity.this,userName);
 			Intent pushIntent=new Intent(LoginViewActivity.this,AllTopicPageActivity.class);
 			startActivity(pushIntent);
 			finish();
