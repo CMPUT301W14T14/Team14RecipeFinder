@@ -21,7 +21,7 @@ import com.google.gson.JsonSerializer;
  * @author zjullion
  */
 
-public class Bitmap_Converter implements JsonDeserializer<Bitmap>,JsonSerializer<Bitmap>{
+public class BitmapConverter implements JsonDeserializer<Bitmap>,JsonSerializer<Bitmap>{
     /**
      * Encode the Bitmap.
      */
