@@ -62,11 +62,11 @@ public final class R {
         public static final int action_refresh=0x7f08002f;
         public static final int action_settings=0x7f080031;
         public static final int biography=0x7f08001c;
-        public static final int comment_bookmark=0x7f080006;
+        public static final int comment_bookmark=0x7f080007;
         public static final int comment_content=0x7f080003;
-        public static final int comment_edit=0x7f080007;
+        public static final int comment_edit=0x7f080008;
         public static final int comment_info=0x7f080004;
-        public static final int comment_like=0x7f080005;
+        public static final int comment_like=0x7f080006;
         public static final int comment_pic=0x7f080025;
         public static final int comment_text=0x7f080024;
         public static final int comment_title=0x7f080002;
@@ -97,7 +97,7 @@ public final class R {
         public static final int sort_by_picture_button=0x7f080020;
         public static final int sort_by_promixity_to_anotion_location_button=0x7f080021;
         public static final int sort_by_promixity_to_me_button=0x7f080022;
-        public static final int topic_image=0x7f080008;
+        public static final int topic_image=0x7f080005;
         public static final int topic_list=0x7f080001;
         public static final int twitter=0x7f08001d;
         public static final int user_name=0x7f08001b;
