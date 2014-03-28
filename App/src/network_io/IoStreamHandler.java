@@ -29,6 +29,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cache.CacheController;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -419,6 +421,68 @@ public class IoStreamHandler {
 					
 				};
 				activity.runOnUiThread(getAndSetEditComment);
+			}
+		};
+		thread.start();
+		return thread;
+	}
+	
+	/**
+	 * Load a comment for cache ,store it in the shared preferences with the key value equals to this comment's parent Id.
+	 * @param commentID a String which is the comment id.
+	 * @param parentID a String which is the parent comment id.
+	 * @param cc a CacheController object.
+	 * @param activity Activity where the function will be called.
+	 */
+	public Thread addCache(final String commentID,final String parentID,final CacheController cc,final String tag,final Activity activity){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+=output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable putCacheReply = new Runnable() {
+					@Override
+					public void run() {
+						Comment comment=Data.getSource();
+						if(tag.equals("fav")){
+							cc.addFav(activity,comment);
+						}
+						else if(tag.equals("indicated")){
+							
+						}
+						else{
+							cc.addCacheAsReply(activity,parentID,comment);
+						}
+						for(String replyID : comment.getReplies()){
+							addCache(replyID,comment.getId(),cc,"reply",activity);
+						}
+					}
+				};
+				activity.runOnUiThread(putCacheReply);
 			}
 		};
 		thread.start();
