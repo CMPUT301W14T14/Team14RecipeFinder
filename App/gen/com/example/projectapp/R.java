@@ -86,7 +86,6 @@ public final class R {
         public static final int login_button=0x7f080024;
         public static final int login_layout=0x7f080021;
         public static final int login_userName_input_ins=0x7f080022;
-        public static final int logout=0x7f08002c;
         public static final int profile_picture=0x7f080014;
         public static final int reply_list=0x7f080006;
         public static final int sort_by_date_button=0x7f08001d;
