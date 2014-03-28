@@ -1,6 +1,11 @@
 package activity;
 
+import network_io.IoStreamHandler;
+import model.CommentMap;
+
 import com.example.projectapp.R;
+
+import adapter.ListViewAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,8 +20,7 @@ import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {
-
-	Spinner spinnerOsversions;
+	
 	static String sortByDate = "Sort By Date";
 	static String sortByMyLocation = "Sort By My Location";
 	static String sortByOtherLocation = "Sort By Ohter Location";
@@ -24,7 +28,12 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	static String[] sortOption = { sortByDate, sortByMyLocation,
 			sortByOtherLocation, sortByPicture };
 	
-	private ListView listView;
+	private ListView listView=null;
+	private Spinner spinnerOsversions=null;
+	
+	private ListViewAdapter listViewAdapter=null;
+	private CommentMap topics=null;
+	private IoStreamHandler io=null;
 
 	/**
 	 *  onCreate method. </br>
@@ -40,7 +49,24 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		initView();
 		
 		listView = (ListView)findViewById(R.id.topic_list);
-
+		
+		io=new IoStreamHandler();
+		
+		topics=new CommentMap();
+		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,topics.getCurrentList());
+		listView.setAdapter(listViewAdapter);
+		topics.setArrayAdapter(listViewAdapter);
+	}
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		refresh();
+	}
+	
+	private void refresh(){
+		topics.clear();
+		io.loadTopLevelComments(topics, this);
 	}
 
 	/**
@@ -55,10 +81,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 
 		// Spinner for sort options
 		spinnerOsversions = (Spinner) findViewById(R.id.welcome_button);
-		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, sortOption);
-		sortArray
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, sortOption);
+		sortArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOsversions.setAdapter(sortArray);
 		spinnerOsversions.setOnItemSelectedListener(this);
 	}
@@ -83,6 +107,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 
 		case R.id.action_create:
 			intent = new Intent(this, CreateCommentPageActivity.class);
+			intent.putExtra("isTopLevel",true);
 			startActivity(intent);
 			return true;
 		case R.id.action_favorite:
@@ -96,6 +121,9 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		case R.id.action_profile:
 			intent = new Intent(this, ProfilePageActivity.class);
 			startActivity(intent);
+			return true;
+		case R.id.action_refresh:
+			refresh();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
