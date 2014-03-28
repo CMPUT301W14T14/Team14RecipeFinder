@@ -1,17 +1,25 @@
 package activity;
 
 
+import network_io.IoStreamHandler;
+import model.Comment;
+import model.CommentMap;
+
 import com.example.projectapp.R;
 
+import adapter.ListViewAdapter;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class CommentPageActivity extends Activity {
 	
@@ -20,6 +28,12 @@ public class CommentPageActivity extends Activity {
 	private TextView commentInfo=null;
 	private ImageView picture=null;
 	private ListView listView=null;
+	
+	private CommentMap replies=null;
+	private ListViewAdapter listViewAdapter=null;
+	private IoStreamHandler io=null;
+	
+	private String commentID=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +46,43 @@ public class CommentPageActivity extends Activity {
 		title = (TextView)findViewById(R.id.comment_title);
 		content = (TextView)findViewById(R.id.comment_content);
 		commentInfo = (TextView)findViewById(R.id.comment_info);
-		picture = (ImageView)findViewById(R.id.comment_pic);
+		picture = (ImageView)findViewById(R.id.topic_image);
 		listView = (ListView)findViewById(R.id.reply_list);
+		
+		io=new IoStreamHandler();
+		replies=new CommentMap();
+		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
+		listView.setAdapter(listViewAdapter);
+		replies.setArrayAdapter(listViewAdapter);
+		
+		commentID=((getIntent()).getStringExtra("commentID"));
+		
+		listView.setOnItemClickListener(new RecurViewClick());
+	}
+	
+	
+	@Override
+	protected void onResume(){
+		super.onResume();
+		refresh();
+	}
+
+
+	class RecurViewClick implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0,View arg1,int pos,long arg3){
+			Comment comment=(Comment)arg0.getItemAtPosition(pos);
+			Intent viewIntent=new Intent(CommentPageActivity.this,CommentPageActivity.class);
+			viewIntent.putExtra("commentID",comment.getId());
+			startActivity(viewIntent);
+		}
+		
 	}
 	
 	private void refresh(){
-		
+		replies.clear();
+		io.loadAndSetSpecificComment(commentID,title,content,commentInfo,picture,replies,this);
 	}
 	
 	/**
@@ -61,6 +106,7 @@ public class CommentPageActivity extends Activity {
 
 		case R.id.action_create:
 			intent = new Intent(this, CreateCommentPageActivity.class);
+			intent.putExtra("parentID",commentID);
 			startActivity(intent);
 			return true;
 		case R.id.action_favorite:

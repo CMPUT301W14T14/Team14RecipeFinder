@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,7 +22,10 @@ import model.CommentMap;
 import model.IdSet;
 
 import android.app.Activity;
+import android.location.Location;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -263,6 +267,107 @@ public class IoStreamHandler {
 		thread.start();
 	}
 	
+	public void loadAndSetSpecificComment(final String commentID,final TextView title,final TextView content,final TextView commentInfo,final ImageView picture,final CommentMap commentMap,final Activity activity){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoadAndSet: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Runnable getAndSetComment = new Runnable() {
+					@Override
+					public void run() {
+						Comment comment=Data.getSource();
+						if(comment!=null){
+							title.setText(comment.getTitle());
+							content.setText(comment.getText());
+							picture.setImageBitmap(comment.getPicture());
+							Location location=comment.getLocation();
+							if(location!=null){
+								double lat=location.getLatitude();
+								double lng=location.getLongitude();
+								String lngS=String.valueOf(lng);
+								String latS=String.valueOf(lat);
+								commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+							}
+							else{
+								commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString()));
+							}
+							for(String commentIDs : comment.getReplies()){
+								loadSpecificComment(commentIDs,commentMap,activity);
+							}
+						}
+					}
+				};
+				activity.runOnUiThread(getAndSetComment);
+			}
+		};
+		thread.start();
+	}
+	
+	/**
+	 * Load a specific Comment by it's id and add an reply Comment's id to this comment's reply IdSet.
+	 * @param commentId a String which is the comment id of the comment has been replied.
+	 * @param replyId a String which is the comment id of the reply comment.
+	 */
+	public void replySpecificComment(final String parentID,final String replyID){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+parentID+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Comment parent=Data.getSource();
+				parent.addReply(replyID);
+				addOrUpdateComment(parent);
+			}
+		};
+		thread.start();
+	}
 	
 	
 	public void clean(){

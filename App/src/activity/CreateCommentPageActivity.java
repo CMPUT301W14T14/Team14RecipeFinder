@@ -111,6 +111,10 @@ public class CreateCommentPageActivity extends Activity {
         	if(isTopLevel){
         		io.loadAndUpdateTopLevelIdSet(comment.getId(),CreateCommentPageActivity.this);
         	}
+        	else{
+        		String parentID=CreateCommentPageActivity.this.getIntent().getStringExtra("parentID");
+        		io.replySpecificComment(parentID,comment.getId());
+        	}
         	io.addOrUpdateComment(comment);
         	try{
 				Thread.sleep(500);
@@ -141,10 +145,9 @@ public class CreateCommentPageActivity extends Activity {
 	 *  Initialize View. Change the title of the ActionBar
 	 */
 	private void initView() {
-		// ActionBar
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayUseLogoEnabled(true);
-		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+		actionBar.setDisplayOptions(0,ActionBar.DISPLAY_SHOW_TITLE);
 	}
 	
 	@Override

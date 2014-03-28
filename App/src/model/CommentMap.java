@@ -32,6 +32,9 @@ public class CommentMap{
 	 * @param comment a Comment object.
 	 */
 	public void addComment(Comment comment){
+		if(comments_list.contains(comment)){
+			return;
+		}
 		this.comments.put(comment.getId(),comment);
 		this.comments_list.add(comment);
 		if(this.adapter!=null){
