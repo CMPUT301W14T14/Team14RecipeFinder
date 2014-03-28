@@ -24,6 +24,8 @@ import model.IdSet;
 import android.app.Activity;
 import android.location.Location;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -221,7 +223,7 @@ public class IoStreamHandler {
 	 * @param activity PublishActivity where the function will be called.
 	 */
 	
-	public void loadAndUpdateTopLevelIdSet(final String commentID,final Activity activity){
+	public Thread loadAndUpdateTopLevelIdSet(final String commentID,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -265,9 +267,10 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
-	public void loadAndSetSpecificComment(final String commentID,final TextView title,final TextView content,final TextView commentInfo,final ImageView picture,final CommentMap commentMap,final Activity activity){
+	public Thread loadAndSetSpecificComment(final String commentID,final TextView title,final TextView content,final TextView commentInfo,final ImageView picture,final CommentMap commentMap,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -325,6 +328,7 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
 	/**
@@ -332,7 +336,7 @@ public class IoStreamHandler {
 	 * @param commentId a String which is the comment id of the comment has been replied.
 	 * @param replyId a String which is the comment id of the reply comment.
 	 */
-	public void replySpecificComment(final String parentID,final String replyID){
+	public Thread replySpecificComment(final String parentID,final String replyID){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -367,6 +371,58 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
+	}
+	
+	public Thread setupEditPage(final String commentID,final EditText title,final EditText content,final EditText latitude,final EditText longitude,final ImageButton picture,final Activity activity){
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
+				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				Runnable getAndSetEditComment = new Runnable(){
+					@Override
+					public void run(){
+						Comment comment=Data.getSource();
+						title.setText(comment.getTitle());
+						content.setText(comment.getText());
+						Location loc=comment.getLocation();
+						if(loc!=null){
+							latitude.setText(String.valueOf(loc.getLatitude()));
+							longitude.setText(String.valueOf(loc.getLongitude()));
+						}
+						picture.setImageBitmap(comment.getPicture());
+					}
+					
+				};
+				activity.runOnUiThread(getAndSetEditComment);
+			}
+		};
+		thread.start();
+		return thread;
 	}
 	
 	
