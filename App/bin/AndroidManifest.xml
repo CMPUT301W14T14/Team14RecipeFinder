@@ -39,6 +39,10 @@
             android:label="@string/title_activity_comment_page" >
         </activity>
         <activity
+            android:name="activity.EditCommentPageActivity"
+            android:label="@string/title_edit_activity_comment_page" >
+        </activity>
+        <activity
             android:name="activity.SortPageActivity"
             android:label="@string/title_activity_sort_page"
             android:theme="@android:style/Theme.Dialog" >
