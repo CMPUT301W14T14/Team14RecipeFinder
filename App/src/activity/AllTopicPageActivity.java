@@ -73,6 +73,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			Comment comment=(Comment)arg0.getItemAtPosition(pos);
 			Intent viewIntent=new Intent(AllTopicPageActivity.this,CommentPageActivity.class);
 			viewIntent.putExtra("commentID",comment.getId());
+			viewIntent.putExtra("authorName",comment.getUserName());
 			startActivity(viewIntent);
 		}
 		

@@ -1,6 +1,7 @@
 package activity;
 
 
+import user_name.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
 import model.Comment;
@@ -44,6 +45,7 @@ public class CommentPageActivity extends Activity {
 	private ConnectionChecker connectionChecker=null;
 	
 	private String commentID=null;
+	private String authorName=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class CommentPageActivity extends Activity {
 		replies.setArrayAdapter(listViewAdapter);
 		
 		commentID=((getIntent()).getStringExtra("commentID"));
+		authorName=((getIntent()).getStringExtra("authorName"));
 		
 		listView.setOnItemClickListener(new RecurViewClick());
 		
@@ -89,9 +92,14 @@ public class CommentPageActivity extends Activity {
 
 		@Override
 		public void onClick(View v){
-			Intent pushIntent=new Intent(CommentPageActivity.this,EditCommentPageActivity.class);
-			pushIntent.putExtra("commentID",commentID);
-			startActivity(pushIntent);
+			if(!authorName.equals((new UserNameHandler()).getUserName(CommentPageActivity.this))){
+				Toast.makeText(getApplicationContext(),"Only author can edit comment.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				Intent pushIntent=new Intent(CommentPageActivity.this,EditCommentPageActivity.class);
+				pushIntent.putExtra("commentID",commentID);
+				startActivity(pushIntent);
+			}
 		}
 		
 	}
@@ -120,6 +128,7 @@ public class CommentPageActivity extends Activity {
 			Comment comment=(Comment)arg0.getItemAtPosition(pos);
 			Intent viewIntent=new Intent(CommentPageActivity.this,CommentPageActivity.class);
 			viewIntent.putExtra("commentID",comment.getId());
+			viewIntent.putExtra("authorName",comment.getUserName());
 			startActivity(viewIntent);
 		}
 		

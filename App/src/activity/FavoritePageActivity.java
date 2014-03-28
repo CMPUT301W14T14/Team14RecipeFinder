@@ -1,7 +1,12 @@
 package activity;
 
+import model.CommentList;
+
+import cache.CacheController;
+
 import com.example.projectapp.R;
 
+import adapter.ListViewAdapter;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -10,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -20,6 +26,9 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	Spinner spinnerOsversions;
 	
 	private ListView listView = null;
+	private CacheController cacheController=null;
+	private CommentList favourites=null;
+	private ListViewAdapter listViewAdapter=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,19 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		initView();
 		
 		listView = (ListView)findViewById(R.id.favorite_list);
+		
+		cacheController=new CacheController();
+		favourites=cacheController.getFav(this);
+		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,favourites.getCurrentList());
+		listView.setAdapter(listViewAdapter);
+	}
+	
+	class FavView implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
+			
+		}
 		
 	}
 	
@@ -45,10 +67,8 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 
 		// Spinner for sort options
 		spinnerOsversions = (Spinner) findViewById(R.id.welcome_button);
-		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, AllTopicPageActivity.sortOption);
-		sortArray
-				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AllTopicPageActivity.sortOption);
+		sortArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOsversions.setAdapter(sortArray);
 		spinnerOsversions.setOnItemSelectedListener(this);
 	}
