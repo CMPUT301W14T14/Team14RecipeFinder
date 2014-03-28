@@ -12,6 +12,8 @@
     <string name="replies">Replies</string>
     <string name="location">Location</string>
     <string name="default_location">Latitude \nLongitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
     <string name="cancel">Cancel</string>
     <string name="commit">Commit</string>
     <string name="logout">Logout</string>
@@ -19,9 +21,12 @@
     <string name="sort">Sort</string>
     <string name="refresh">Refresh</string>
     <string name="create">Create</string>
+    <string name="edit">Edit</string>
+    <string name="like">Like</string>
+    <string name="bookmark">Bookmark</string>
     <string name="favorite">Favorite Comments</string>
     <string name="my_comment">My Comments</string>
-    <string name="comment_info">TimePosted Author posted at Location</string>
+    <string name="comment_info">Author TimePosted \nPosted at Location</string>
     <string name="title_activity_comment_page">CommentPageActivity</string>
     <string name="title_activity_sort_page">SortPageActivity</string>
     <string name="sort_by_my_location">Sort By My Location</string>
@@ -66,7 +71,6 @@
     <string name="userinfopagetitle">The User Name</string>
     <string name="topiccontenttext">comment or topic contents</string>
     <string name="topicTitleText">comment title</string>
-    <string name="like">Like it</string>
     <string name="authorinfo">author/ publish date/ publish location</string>
     <string name="readlater">Read later</string>
     <string name="sortscore">Sort by score</string>

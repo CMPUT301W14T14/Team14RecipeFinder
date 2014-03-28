@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +30,9 @@ public class CommentPageActivity extends Activity {
 	private TextView content=null;
 	private TextView commentInfo=null;
 	private ImageView picture=null;
+	private ImageButton like=null;
+	private ImageButton bookmark=null;
+	private ImageButton edit=null;
 	private ListView listView=null;
 	
 	private CommentMap replies=null;
@@ -43,13 +47,16 @@ public class CommentPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comment_page);
 		
-		// Initialize View
+		// Initialize Menu bar
 		initView();
 		
 		title = (TextView)findViewById(R.id.comment_title);
 		content = (TextView)findViewById(R.id.comment_content);
 		commentInfo = (TextView)findViewById(R.id.comment_info);
 		picture = (ImageView)findViewById(R.id.topic_image);
+		like = (ImageButton)findViewById(R.id.comment_like);
+		bookmark = (ImageButton)findViewById(R.id.comment_bookmark);
+		edit = (ImageButton)findViewById(R.id.comment_edit);
 		listView = (ListView)findViewById(R.id.reply_list);
 		
 		io=new IoStreamHandler();
@@ -95,8 +102,7 @@ public class CommentPageActivity extends Activity {
 	}
 	
 	/**
-	 *  Initialize View. First, get ActionBar to enable title and disable title.
-	 *  Second, initialize spinner for sort options
+	 *  Initialize View. Get ActionBar to enable title and disable title.
 	 */
 	private void initView() {
 		// ActionBar

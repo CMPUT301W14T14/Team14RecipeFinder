@@ -31,12 +31,49 @@
             android:text="@string/content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
-        <TextView 
-            android:id="@+id/comment_info"
-            android:layout_width="wrap_content"
+        <TextView
+                android:id="@+id/comment_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/comment_info" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/comment_info" />
+            android:layout_marginTop="6dp" >
+
+            <ImageButton
+                android:id="@+id/comment_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:background="#000000"
+                android:contentDescription="@string/like"
+                android:src="@drawable/star" />
+
+            <ImageButton
+                android:id="@+id/comment_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="#000000"
+                android:contentDescription="@string/bookmark"
+                android:src="@drawable/bookmark" />
+
+            <ImageButton
+                android:id="@+id/comment_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="#000000"
+                android:contentDescription="@string/edit"
+                android:src="@drawable/edit_2" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/topic_image"

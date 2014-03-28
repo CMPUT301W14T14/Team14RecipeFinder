@@ -95,8 +95,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	}
 
 	/**
-	 *  Initialize View. First, get ActionBar to enable title and disable title.
-	 *  Second, initialize spinner for sort options
+	 *  Initialize View. Get ActionBar to enable title and disable title.
 	 */
 	private void initView() {
 		// ActionBar
