@@ -1,5 +1,6 @@
 package activity;
 
+import user_name.UserNameHandler;
 import network_io.IoStreamHandler;
 import model.Comment;
 import model.CommentMap;
@@ -139,6 +140,12 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			return true;
 		case R.id.action_refresh:
 			refresh();
+			return true;
+		case R.id.action_logout:
+			intent=new Intent(this,LoginViewActivity.class);
+			(new UserNameHandler()).emptyUserName(this);
+			startActivity(intent);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
