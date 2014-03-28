@@ -11,12 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class FavoritePageActivity extends Activity implements OnItemSelectedListener {
 
 	Spinner spinnerOsversions;
+	
+	private ListView listView = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		
 		// Initialize View
 		initView();
+		
+		listView = (ListView)findViewById(R.id.favorite_list);
+		
 	}
 	
 	/**
