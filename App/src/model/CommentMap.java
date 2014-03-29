@@ -1,10 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 import android.widget.ArrayAdapter;
 /**
@@ -57,7 +58,7 @@ public class CommentMap{
 	 */
 	
 	public List<Comment> getCurrentList(){
-		return Collections.unmodifiableList(this.comments_list);
+		return this.comments_list;
 	}
 	/**
 	 * Set this CommentMap's ArrayAdapter.
