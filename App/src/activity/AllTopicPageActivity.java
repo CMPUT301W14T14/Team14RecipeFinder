@@ -1,5 +1,7 @@
 package activity;
 
+import java.util.List;
+
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
@@ -7,6 +9,7 @@ import model.Comment;
 import model.CommentMap;
 
 import com.example.projectapp.R;
+import comparator.MainComparator;
 
 import adapter.ListViewAdapter;
 import android.app.ActionBar;
@@ -175,12 +178,15 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
 		if (sortSelect == sortByDate) {
+			
+		} 
+		else if (sortSelect == sortByMyLocation) {
 
-		} else if (sortSelect == sortByMyLocation) {
+		} 
+		else if (sortSelect == sortByOtherLocation) {
 
-		} else if (sortSelect == sortByOtherLocation) {
-
-		} else if (sortSelect == sortByPicture) {
+		} 
+		else if (sortSelect == sortByPicture) {
 
 		}
 	}
