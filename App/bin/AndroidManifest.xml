@@ -56,10 +56,6 @@
             android:label="@string/title_activity_favorite_page" >
         </activity>
         <activity
-            android:name="activity.MyCommentPageActivity"
-            android:label="@string/title_activity_my_comment_page" >
-        </activity>
-        <activity
             android:name="activity.CreateCommentPageActivity"
             android:label="@string/title_activity_create_comment_page" >
         </activity>

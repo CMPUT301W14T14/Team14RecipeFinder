@@ -314,10 +314,10 @@ public class IoStreamHandler {
 								double lng=location.getLongitude();
 								String lngS=String.valueOf(lng);
 								String latS=String.valueOf(lat);
-								commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+								commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString())+"\nLongitude: "+lngS+"\nLatitude: "+latS);
 							}
 							else{
-								commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString()));
+								commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString()));
 							}
 							for(String commentIDs : comment.getReplies()){
 								loadSpecificComment(commentIDs,commentMap,activity);
@@ -514,11 +514,8 @@ public class IoStreamHandler {
 					@Override
 					public void run() {
 						Comment comment=Data.getSource();
-						if(tag.equals("fav")){
-							cc.addFav(activity,comment);
-						}
-						else if(tag.equals("indicated")){
-							// TO DO
+						if(!tag.equals("reply")){
+							cc.addCacheAsTopLevel(activity,comment,tag);
 						}
 						else{
 							cc.addCacheAsReply(activity,parentID,comment);

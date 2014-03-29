@@ -118,6 +118,7 @@ public class CommentPageActivity extends Activity {
 		public void onClick(View v){
 			CacheController cc=new CacheController();
 			io.addCache(commentID,null,cc,"indicated",CommentPageActivity.this);
+			Toast.makeText(getApplicationContext(),"Marked.",Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -172,7 +173,8 @@ public class CommentPageActivity extends Activity {
 			 startActivity(intent);
 			 return true;
 		case R.id.action_my_comment:
-			intent = new Intent(this, MyCommentPageActivity.class);
+			intent = new Intent(this,FavoritePageActivity.class);
+			intent.putExtra("isFav",false);
 			startActivity(intent);
 			return true;
 		case R.id.action_profile:

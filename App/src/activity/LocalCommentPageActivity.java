@@ -19,7 +19,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -62,10 +61,10 @@ public class LocalCommentPageActivity extends Activity {
 			double lng=location.getLongitude();
 			String lngS=String.valueOf(lng);
 			String latS=String.valueOf(lat);
-			commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+			commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString())+"\nLongitude: "+lngS+"\nLatitude: "+latS);
 		}
 		else{
-			commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString()));
+			commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString()));
 		}
 		CommentList replies=(new CacheController()).getReply(comment.getId(),this);
 		ListViewAdapter listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
@@ -93,30 +92,6 @@ public class LocalCommentPageActivity extends Activity {
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-	}
-	
-	/**
-	 * 
-	 */
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		Intent intent;
-		switch (item.getItemId()) {
-
-		case R.id.action_favorite:
-			 intent = new Intent(this, FavoritePageActivity.class);
-			 startActivity(intent);
-			 return true;
-		case R.id.action_my_comment:
-			intent = new Intent(this, MyCommentPageActivity.class);
-			startActivity(intent);
-			return true;
-		case R.id.action_profile:
-			intent = new Intent(this, ProfilePageActivity.class);
-			startActivity(intent);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

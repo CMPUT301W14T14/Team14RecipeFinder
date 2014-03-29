@@ -31,7 +31,7 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	
 	private ListView listView = null;
 	private CacheController cacheController=null;
-	private CommentList favourites=null;
+	private CommentList list=null;
 	private ListViewAdapter listViewAdapter=null;
 	
 	private Gson gson=(new GsonConstructor()).getGson();
@@ -41,14 +41,19 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_favorite_page);
 		
-		// Initialize View
 		initView();
 		
 		listView = (ListView)findViewById(R.id.favorite_list);
 		
 		cacheController=new CacheController();
-		favourites=cacheController.getFav(this);
-		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,favourites.getCurrentList());
+		Intent intent=getIntent();
+		if(intent.getBooleanExtra("isFav",true)){
+			list=cacheController.getResource(this,"fav");
+		}
+		else{
+			list=cacheController.getResource(this,"indicated");
+		}
+		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,list.getCurrentList());
 		listView.setAdapter(listViewAdapter);
 		listView.setOnItemClickListener(new FavViewClick());
 	}
@@ -95,11 +100,13 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		switch (item.getItemId()) {
 
 		case R.id.action_my_comment:
-			intent = new Intent(this, MyCommentPageActivity.class);
+			intent = new Intent(this,FavoritePageActivity.class);
+			intent.putExtra("isFav",false);
 			startActivity(intent);
+			finish();
 			return true;
 		case R.id.action_profile:
-			intent = new Intent(this, ProfilePageActivity.class);
+			intent = new Intent(this,ProfilePageActivity.class);
 			startActivity(intent);
 			return true;
 		}
@@ -124,7 +131,6 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

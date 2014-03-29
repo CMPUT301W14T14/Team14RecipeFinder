@@ -140,7 +140,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			 startActivity(intent);
 			 return true;
 		case R.id.action_my_comment:
-			intent = new Intent(this, MyCommentPageActivity.class);
+			intent = new Intent(this,FavoritePageActivity.class);
+			intent.putExtra("isFav",false);
 			startActivity(intent);
 			return true;
 		case R.id.action_profile:
