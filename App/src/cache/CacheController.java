@@ -8,70 +8,66 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
-import customlized_gson.Gson_Constructor;
+import customlized_gson.GsonConstructor;
 
 /**
- * A controller which used to add Comment in to the sharedpreferences and load Comment from the sharedPreferences
- * @author xuping
- *
+ * A controller which used to add Comment in to the shared preferences and load Comment from the sharedPreferences
  */
 public class CacheController{
 	
-	public static final String cacheKey="CACHES";
-	public static final String favSubKey="FAVOURITES";
-	private Gson gson=null;
-	/**
-	 * Construct a CacheController object
-	 */
-	public CacheController(){
-		this.gson=(new Gson_Constructor()).getGson();
-	}
-	/**
-	 * @param activity Activity where this function will be called.
-	 * @return a CommentList Contains all comments which local cached as favorite comment(a CommentList pointed by key "FAVOURITES"), if there's no such CommentList,method returns an empty CommentList.
-	 */
-	public CommentList loadFav(Activity activity){
-		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
-		String favJson=caches.getString(favSubKey,null);
+	public static final String CACHES_KEY="cachesKey";
+	public static final String FAV_SUB_KEY="fav";
+	public static final String INDICATED_KEY="indicated";
+	private Gson gson=(new GsonConstructor()).getGson();
+	
+	public CacheController(){}
+	
+	public CommentList getResource(Activity activity,String tag){
+		SharedPreferences caches=activity.getSharedPreferences(CACHES_KEY,0);
+		String Json=null;
+		if(tag.equals("fav")){
+			Json=caches.getString(FAV_SUB_KEY,null);
+		}
+		else if(tag.equals("indicated")){
+			Json=caches.getString(INDICATED_KEY,null);
+		}
 		CommentList cl=null;
-		if(favJson==null){
+		if(Json==null){
 			cl=new CommentList();
 		}
 		else{
-			cl=gson.fromJson(favJson,CommentList.class);
+			cl=gson.fromJson(Json,CommentList.class);
 		}
 		return cl;
 	}
-	/**
-	 * Add a new comment in to sharedpreferences as favorite comment,(into a CommentList pointed by key "FAVOURITES") if the CommentList not exist, a new CommentList will be created and the
-	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by key "FAVOURITES".
-	 * @param activity Activity where this function will be called.
-	 * @param comment a Comment object.
-	 */
-	public void AddFav(Activity activity,Comment comment){
-		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
-		String favJson=caches.getString(favSubKey,null);
+	
+	
+	public void addCacheAsTopLevel(Activity activity,Comment comment,String tag){
+		SharedPreferences caches=activity.getSharedPreferences(CACHES_KEY,0);
+		String key=null;
+		if(tag.equals("fav")){
+			key=FAV_SUB_KEY;
+		}
+		else if(tag.equals("indicated")){
+			key=INDICATED_KEY;
+		}
+		String Json=caches.getString(key,null);
 		CommentList cl=null;
-		if(favJson==null){
+		if(Json==null){
 			cl=new CommentList();
 		}
 		else{
-			cl=gson.fromJson(favJson,CommentList.class);
+			cl=gson.fromJson(Json,CommentList.class);
 		}
 		cl.add(comment);
 		String newJson=gson.toJson(cl);
-		caches.edit().putString(favSubKey,newJson).commit();
+		
+		caches.edit().putString(key,newJson).commit();
 	}
-	/**
-	 * Add a new comment in to sharedpreferences,(into a CommentList pointed by a key which is the same as the given comment's parent's id) if the CommentList not exist, a new CommentList will be created and the
-	 * given Comment will be added, then that CommentList will be stored as a CommentList pointed by a key equals the given comment's parent's id.
-	 * @param activity Activity where this function will be called.
-	 * @param parentId a String which is the parent comment id.
-	 * @param reply a Comment object.
-	 */
-	public void AddCacheReply(Activity activity,String parentId,Comment reply){
-		SharedPreferences caches=activity.getSharedPreferences(cacheKey,0);
-		String replyJson=caches.getString(parentId,null);
+	
+	public void addCacheAsReply(Activity activity,String parentID,Comment reply){
+		SharedPreferences caches=activity.getSharedPreferences(CACHES_KEY,0);
+		String replyJson=caches.getString(parentID,null);
 		CommentList cl=null;
 		if(replyJson==null){
 			cl=new CommentList();
@@ -81,6 +77,19 @@ public class CacheController{
 		}
 		cl.add(reply);
 		String newJson=gson.toJson(cl);
-		caches.edit().putString(parentId,newJson).commit();
+		caches.edit().putString(parentID,newJson).commit();
+	}
+	
+	public CommentList getReply(String commentID,Activity activity){
+		SharedPreferences caches=activity.getSharedPreferences(CACHES_KEY,0);
+		String replyJson=caches.getString(commentID,null);
+		CommentList cl=null;
+		if(replyJson==null){
+			cl=new CommentList();
+		}
+		else{
+			cl=gson.fromJson(replyJson,CommentList.class);
+		}
+		return cl;
 	}
 }

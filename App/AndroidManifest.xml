@@ -9,18 +9,18 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTENRAL_STORGE" />
-    <uses-permission android:name="android.permission.INTERNET" /> 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/applications_internet"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo" 
-        android:name="UserNameInfo">
+        android:theme="@android:style/Theme.Holo" >
         <activity
             android:name="activity.LoginViewActivity"
             android:label="@string/app_name" >
@@ -31,44 +31,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="activity.HomePageActivity"
-            android:label="@string/title_activity_home_page" >
-        </activity>
-        <activity
-            android:name="activity.UserInfoPageActivity"
-            android:label="@string/title_activity_user_info_page" >
-        </activity>
-        <activity
-            android:name="activity.SortOptionActivity"
-            android:label="@string/title_activity_sort_option" >
+            android:name="activity.AllTopicPageActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="activity.CommentPageActivity"
             android:label="@string/title_activity_comment_page" >
         </activity>
         <activity
-            android:name="activity.SortOption"
-            android:label="@string/title_activity_sort_option" >
+            android:name="activity.EditCommentPageActivity"
+            android:label="@string/title_edit_activity_comment_page" >
         </activity>
         <activity
-            android:name="activity.ViewFavActivity"
-            android:label="title_activity_view_fav" >
+            android:name="activity.SortPageActivity"
+            android:label="@string/title_activity_sort_page"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name="activity.PublishActivity"
-            android:label="@string/title_activity_publish" >
+            android:name="activity.ProfilePageActivity"
+            android:label="@string/title_activity_profile_page" >
         </activity>
         <activity
-            android:name="activity.ResetUserNameActivity"
-            android:label="@string/title_activity_ResetUserName" >
+            android:name="activity.FavoritePageActivity"
+            android:label="@string/title_activity_favorite_page" >
         </activity>
         <activity
-            android:name="activity.EditPageActivity"
-            android:label="@string/title_activity_EditPage" >
+            android:name="activity.CreateCommentPageActivity"
+            android:label="@string/title_activity_create_comment_page" >
         </activity>
         <activity
-            android:name="activity.ViewCacheCommentActivity"
-            android:label="@string/title_activity_CacheComment" >
+            android:name="activity.LocalCommentPageActivity"
+            android:label="@string/title_activity_local_comment_page" >
         </activity>
     </application>
 

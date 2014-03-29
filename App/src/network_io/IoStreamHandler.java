@@ -7,10 +7,6 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.Date;
 
-import model.Comment;
-import model.CommentMap;
-import model.IdSet;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -21,22 +17,24 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-//import android.location.Location;
+import model.Comment;
+import model.CommentMap;
+import model.IdSet;
+
 import android.app.Activity;
-import android.content.Intent;
 import android.location.Location;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cache.CacheController;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import customlized_gson.Gson_Constructor;
+import customlized_gson.GsonConstructor;
+
 
 
 /**
@@ -44,25 +42,19 @@ import customlized_gson.Gson_Constructor;
  * Adapted From https://github.com/zjullion/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/network/ElasticSearchOperations.java
  */
 public class IoStreamHandler {
+	
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
-	public static final String favSubKey="FAVOURITES";
 	
-	private static Gson gson=null;
-	/**
-	 * Constructs a IOStreamHandler object.
-	 */
+	private Gson gson=(new GsonConstructor()).getGson();
+	
 	public IoStreamHandler(){}
 	
 	/**
 	 * Update a comment with its own id to the web server, if the comment with the same id doesn't exist, then this comment will be added to the server.
 	 * @param comment a single comment object.
 	 */
-	
-	public void commitUpdateComment(final Comment comment){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread addOrUpdateComment(final Comment comment){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -87,24 +79,23 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
+	
 	/**
-	 * Put a Comment with the specific id into the CommentMap from the web server in the Activity.
-	 * @param commentId a String which is the comment id.
-	 * @param cm a CommentMap to be update.
-	 * @param activity HomePageActivity where the function will be called.
+	 * Put a Comment with the specific id into the CommentMap from the web server in the HomePageActivity(top level).
+	 * @param commentID a String which is the comment id.
+	 * @param commentMap a CommentMap to be update.
+	 * @param activity Activity where the function will be called.
 	 */
 	
-	public void loadSpecificComment(final String commentId,final CommentMap cm,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread loadSpecificComment(final String commentID,final CommentMap commentMap,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -132,8 +123,9 @@ public class IoStreamHandler {
 				Runnable getComment = new Runnable() {
 					@Override
 					public void run() {
-						if(Data.getSource()!=null){
-							cm.updateComment(Data.getSource());
+						Comment comment=Data.getSource();
+						if(comment!=null){
+							commentMap.addComment(comment);
 						}
 					}
 				};
@@ -141,6 +133,7 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
 	/**
@@ -148,17 +141,14 @@ public class IoStreamHandler {
 	 * @param topLevelIdSet top level comment's IdSet.
 	 */
 	
-	public void updateTopLevelIdSet(final IdSet topLevelIdSet){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread updateTopLevelIdSet(final IdSet idSet){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
 				HttpPut request = new HttpPut(SERVER_URL+"IdSet/topLevelId/");
 				try {
-					request.setEntity(new StringEntity(gson.toJson(topLevelIdSet)));
+					request.setEntity(new StringEntity(gson.toJson(idSet)));
 				} 
 				catch (UnsupportedEncodingException e) {
 					Log.w(LOG_TAG, "Error during Encoding: " + e.getMessage());
@@ -179,17 +169,15 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
+	
 	/**
 	 * Load all of the top level comments in to the CommentMap.
-	 * @param topLevelComments a CommentMap.
-	 * @param activity HomePageActivity where the function will be called.
+	 * @param commentMap a CommentMap.
+	 * @param activity Activity where the function will be called.
 	 */
-	
-	public void loadTopLevelComments(final CommentMap topLevelComments,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread loadTopLevelComments(final CommentMap commentMap,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -221,23 +209,22 @@ public class IoStreamHandler {
 				IdSet idSet=Data.getSource();
 				if(idSet!=null){
 					for(String id : idSet.getSet()){
-						loadSpecificComment(id,topLevelComments,activity);
+						loadSpecificComment(id,commentMap,activity);
 					}
 				}
 			}
 		};
 		thread.start();
+		return thread;
 	}
+	
 	/**
 	 * Add a comment id to the top level IdSet and update the IdSet in the server while publish a new top level comment.
-	 * @param id a String which is the comment id to be add to the IdSet.
+	 * @param commentID a String which is the comment id to be add to the IdSet.
 	 * @param activity PublishActivity where the function will be called.
 	 */
 	
-	public void load_update_TopLevelIdSet(final String id,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread loadAndUpdateTopLevelIdSet(final String commentID,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
@@ -252,57 +239,44 @@ public class IoStreamHandler {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
 					while (output != null) {
-						responseJson+= output;
+						responseJson+=output;
 						output = reader.readLine();
 					}
-				} 
+				}
 				catch (ClientProtocolException e) {
 					e.printStackTrace();
 				} 
-				catch (IOException e) {
+				catch (IOException e){
 					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
 					e.printStackTrace();
 				}
 				
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<IdSet>>(){}.getType();
 				final ElasticSearchResponse<IdSet> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				Runnable getIdSet = new Runnable() {
+				Runnable updateIdSet = new Runnable() {
 					@Override
 					public void run() {
 						IdSet idSet=Data.getSource();
 						if(idSet==null){
 							idSet=new IdSet();
 						}
-						idSet.add(id);
+						idSet.add(commentID);
 						updateTopLevelIdSet(idSet);
 					}
 				};
-				activity.runOnUiThread(getIdSet);
+				activity.runOnUiThread(updateIdSet);
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
-	/**
-	 * Load a specific Comment by its own Id ; Set the content of this comment in to a TextView ;Set anthorInfo,time posted and location(if its not null) of this comment.
-	 * into another TextView;Set picture of this comment(if not null) in to an imageView, and all of this comment's replies in to a list view. In the UI: CommentPageActivity.
-	 * @param commentId a String which is the comment id.
-	 * @param commentView a TextView will contain the content of the specific comment.
-	 * @param authorInfo a TextView will contain the author, publish date, location(if not null).
-	 * @param pic a ImageView will contain the picture attached to this comment(if not null).
-	 * @param cm a CommentMap will load all of the replies of the specific comment.
-	 * @param activity CommentPageActivity where the function will be called.
-	 */
-	
-	public void loadAndSetSpecificComment(final String commentId,final TextView commentView,final TextView authorInfo,final ImageView pic,final CommentMap cm,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread loadAndSetSpecificComment(final String commentID,final TextView title,final TextView content,final TextView commentInfo,final ImageView picture,final CommentMap commentMap,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -329,23 +303,24 @@ public class IoStreamHandler {
 				Runnable getAndSetComment = new Runnable() {
 					@Override
 					public void run() {
-						Comment c=Data.getSource();
-						if(c!=null){
-							commentView.setText(c.getText());
-							pic.setImageBitmap(c.getPicture());
-							Location loc=c.getLocation();
-							if(loc!=null){
-								double lat=loc.getLatitude();
-								double lng=loc.getLongitude();
+						Comment comment=Data.getSource();
+						if(comment!=null){
+							title.setText(comment.getTitle());
+							content.setText(comment.getText());
+							picture.setImageBitmap(comment.getPicture());
+							Location location=comment.getLocation();
+							if(location!=null){
+								double lat=location.getLatitude();
+								double lng=location.getLongitude();
 								String lngS=String.valueOf(lng);
 								String latS=String.valueOf(lat);
-								authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+								commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString())+"\nLongitude: "+lngS+"\nLatitude: "+latS);
 							}
 							else{
-								authorInfo.setText("Posted By : "+c.getUserName()+" At : "+((new Date(c.getTimePosted())).toString()));
+								commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString()));
 							}
-							for(String id : c.getReplies()){
-								loadSpecificComment(id,cm,activity);
+							for(String commentIDs : comment.getReplies()){
+								loadSpecificComment(commentIDs,commentMap,activity);
 							}
 						}
 					}
@@ -354,6 +329,7 @@ public class IoStreamHandler {
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
 	/**
@@ -361,15 +337,12 @@ public class IoStreamHandler {
 	 * @param commentId a String which is the comment id of the comment has been replied.
 	 * @param replyId a String which is the comment id of the reply comment.
 	 */
-	public void replySpecificComment(final String commentId,final String replyId){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread replySpecificComment(final String parentID,final String replyID){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+parentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -393,31 +366,21 @@ public class IoStreamHandler {
 				
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
 				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				Comment c=Data.getSource();
-				c.addReply(replyId);
-				commitUpdateComment(c);
+				Comment parent=Data.getSource();
+				parent.addReply(replyID);
+				addOrUpdateComment(parent);
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
-	
-	/**
-	 * Check if the given userName is the same of the author of the comment with the given comment id, if it is, direct the user to the EditPage in the UI thread(CommentPageActivity).
-	 * Otherwise, make a toast tell the user he/she can't edit that comment.
-	 * @param commentId a String which is the comment id.
-	 * @param userName a String which is the user name of the current user.
-	 * @param activity CommentPageActivity where the function will be called.
-	 */
-	public void checkEditSpecificComment(final String commentId,final String userName,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread setupEditPage(final String commentID,final EditText title,final EditText content,final EditText latitude,final EditText longitude,final ImageView picture,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -427,7 +390,7 @@ public class IoStreamHandler {
 					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
 					String output = reader.readLine();
 					while (output != null) {
-						responseJson+=output;
+						responseJson+= output;
 						output = reader.readLine();
 					}
 				} 
@@ -441,101 +404,41 @@ public class IoStreamHandler {
 				
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
 				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				
-				Runnable editCommand = new Runnable() {
+				Runnable getAndSetEditComment = new Runnable(){
 					@Override
-					public void run() {
-						Comment c=Data.getSource();
-						if(c.getUserName().equals(userName)==false){
-							Toast.makeText(activity.getApplicationContext(),"Only Author can edit the comment.",Toast.LENGTH_SHORT).show();
-						}
-						else{
-							Intent edit_intent=new Intent(activity,Activity.class);
-							edit_intent.putExtra("comment_id",commentId);
-							activity.startActivity(edit_intent);
-						}
-						
-					}
-				};
-				activity.runOnUiThread(editCommand);
-			}
-		};
-		thread.start();
-	}
-	/**
-	 * Load a specific comment, Set the content of this comment in to a EditText, Set the title of this comment in to a EditText, set the author info ,time posted,and the location
-	 * (if not null) into a TextView, set the Picture of this comment(if not null) in to an ImageView in the EditPageActivity.
-	 * @param commentId a String which is the comment id.
-	 * @param title an EditText which will contain the title of the comment.
-	 * @param content an EditText which will contain the content of the comment.
-	 * @param pic a ImageView which will contain the attached picture of this comment(if exist).
-	 * @param activity EditPageActivity where the function will be called.
-	 */
-	public void set_up_edit_page(final String commentId,final EditText title,final EditText content,final ImageView pic,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
-		Thread thread=new Thread(){
-			@Override
-			public void run(){
-				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
-				HttpResponse response=null;
-				String responseJson = "";
-				try{
-					response=client.execute(request);
-					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
-					HttpEntity entity = response.getEntity();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-					String output = reader.readLine();
-					while (output != null) {
-						responseJson+= output;
-						output = reader.readLine();
-					}
-				} 
-				catch (ClientProtocolException e){
-					e.printStackTrace();
-				} 
-				catch (IOException e){
-					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
-					e.printStackTrace();
-				}
-				
-				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
-				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				
-				Runnable editSetup = new Runnable(){
-                    @Override
 					public void run(){
-						Comment c=Data.getSource();
-						title.setText(c.getTitle());
-						content.setText(c.getText());
-						if(c.getPicture()!=null){
-							pic.setImageBitmap(c.getPicture());
+						Comment comment=Data.getSource();
+						title.setText(comment.getTitle());
+						content.setText(comment.getText());
+						Location loc=comment.getLocation();
+						if(loc!=null){
+							latitude.setText(String.valueOf(loc.getLatitude()));
+							longitude.setText(String.valueOf(loc.getLongitude()));
 						}
+						picture.setImageBitmap(comment.getPicture());
 					}
 					
 				};
-				
-				activity.runOnUiThread(editSetup);
+				activity.runOnUiThread(getAndSetEditComment);
 			}
 		};
-		
 		thread.start();
+		return thread;
 	}
 	
+
 	/**
 	 * Update a edited comment in to the server.
-	 * @param commentId a String which is commentId
-	 * @param newTitle a String which is the title of the comment after edit.
-	 * @param newContent a String which is the content of the comment after edit.
+	 * @param commentID a String which is commentId
+	 * @param editedTitle a String which is the title of the comment after edit.
+	 * @param editedText a String which is the content of the comment after edit.
 	 */
-	public void commit_edit_comment(final String commentId,final String newTitle,final String newContent){
+	public Thread commitEdit(final String commentID,final String editedTitle,final String editedText,final Location editedLocation,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -559,90 +462,30 @@ public class IoStreamHandler {
 				
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
 				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				Comment c=Data.getSource();
-				c.setTitle(newTitle);
-				c.setText(newContent);
-				commitUpdateComment(c);
+				Comment comment=Data.getSource();
+				comment.setTitle(editedTitle);
+				comment.setText(editedText);
+				comment.setLocation(editedLocation);
+				addOrUpdateComment(comment);
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
 	/**
-	 * Load a comment specified by id as favorite and store the comment and all its replies in to the sharedpreferences. with key "FAVOURITES"
-	 * @param commentId a String which is the comment id.
+	 * Load a comment for cache ,store it in the shared preferences with the key value equals to this comment's parent Id.
+	 * @param commentID a String which is the comment id.
+	 * @param parentID a String which is the parent comment id.
 	 * @param cc a CacheController object.
-	 * @param activity CommentPageActivity where the function will be called.
+	 * @param activity Activity where the function will be called.
 	 */
-	public void loadSpecificCommentForCache(final String commentId,final CacheController cc,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
+	public Thread addCache(final String commentID,final String parentID,final CacheController cc,final String tag,final Activity activity){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
-				HttpResponse response=null;
-				String responseJson = "";
-				try{
-					response=client.execute(request);
-					Log.i(LOG_TAG, "CommentLoad: " + response.getStatusLine().toString());
-					HttpEntity entity = response.getEntity();
-					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-					String output = reader.readLine();
-					while (output != null) {
-						responseJson+= output;
-						output = reader.readLine();
-					}
-				} 
-				catch (ClientProtocolException e){
-					e.printStackTrace();
-				} 
-				catch (IOException e){
-					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
-					e.printStackTrace();
-				}
-				
-				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
-				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
-				
-				Runnable getComment = new Runnable() {
-					@Override
-					public void run() {
-						Comment c=Data.getSource();
-						if(c!=null){
-							cc.AddFav(activity,c);
-							String id=c.getId();
-							for(String replyId : c.getReplies()){
-								loadSpecificCommentForCacheReply(replyId,id,cc,activity);
-							}
-							Toast.makeText(activity.getApplicationContext(),"Like Success.",Toast.LENGTH_SHORT).show();
-						}
-					}
-				};
-				activity.runOnUiThread(getComment);
-			}
-		};
-		thread.start();
-	}
-	
-	/**
-	 * Load a comment for cache ,store it in the sharedpreferences with the key value equals to this comment's parent Id.
-	 * @param commentId a String which is the comment id.
-	 * @param parentId a String which is the parent comment id.
-	 * @param cc a CacheController object.
-	 * @param activity CommentPageActivity where the function will be called.
-	 */
-	public void loadSpecificCommentForCacheReply(final String commentId,final String parentId,final CacheController cc,final Activity activity){
-		if(gson==null){
-			gson=(new Gson_Constructor()).getGson();
-		}
-		Thread thread=new Thread(){
-			@Override
-			public void run(){
-				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentId+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"Comment/"+commentID+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -667,29 +510,30 @@ public class IoStreamHandler {
 				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Comment>>(){}.getType();
 				final ElasticSearchResponse<Comment> Data = gson.fromJson(responseJson,elasticSearchResponseType);
 				
-				Runnable getCacheReply = new Runnable() {
+				Runnable putCacheReply = new Runnable() {
 					@Override
 					public void run() {
-						Comment c=Data.getSource();
-						String id=c.getId();
-						if(c!=null){
-							cc.AddCacheReply(activity,parentId,c);
-							for(String replyId : c.getReplies()){
-								loadSpecificCommentForCacheReply(replyId,id,cc,activity);
-							}
+						Comment comment=Data.getSource();
+						if(!tag.equals("reply")){
+							cc.addCacheAsTopLevel(activity,comment,tag);
+						}
+						else{
+							cc.addCacheAsReply(activity,parentID,comment);
+						}
+						for(String replyID : comment.getReplies()){
+							addCache(replyID,comment.getId(),cc,"reply",activity);
 						}
 					}
 				};
-				activity.runOnUiThread(getCacheReply);
+				activity.runOnUiThread(putCacheReply);
 			}
 		};
 		thread.start();
+		return thread;
 	}
 	
-	/**
-	 * Testing method used to trash all stuff on the server.
-	 */
-	public void Clean(){
+	
+	public void clean(){
 		Thread thread=new Thread(){
 			@Override
 			public void run(){
