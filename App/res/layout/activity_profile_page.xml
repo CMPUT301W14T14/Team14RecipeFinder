@@ -11,6 +11,7 @@
     tools:context=".ProfilePageActivity" >
 
     <TextView
+        android:id="@+id/profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world"
@@ -110,7 +111,7 @@
         android:layout_marginTop="6dp" >
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/cancel_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -120,6 +121,7 @@
             android:src="@drawable/cancel_2" />
 
         <ImageButton
+            android:id="@+id/commit_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
