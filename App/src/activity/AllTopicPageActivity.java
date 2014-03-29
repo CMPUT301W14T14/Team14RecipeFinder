@@ -175,12 +175,15 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
 		if (sortSelect == sortByDate) {
+			
+		} 
+		else if (sortSelect == sortByMyLocation) {
 
-		} else if (sortSelect == sortByMyLocation) {
+		} 
+		else if (sortSelect == sortByOtherLocation) {
 
-		} else if (sortSelect == sortByOtherLocation) {
-
-		} else if (sortSelect == sortByPicture) {
+		} 
+		else if (sortSelect == sortByPicture) {
 
 		}
 	}
