@@ -20,7 +20,7 @@ public class LoginViewActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.welcomeimage);
+		setContentView(R.layout.welcome_page);
 		userNameInput=(EditText)findViewById(R.id.user_name_input);
 		loginButton=(Button)findViewById(R.id.login_button);
 		
