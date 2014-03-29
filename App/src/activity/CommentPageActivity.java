@@ -95,6 +95,9 @@ public class CommentPageActivity extends Activity {
 			if(!authorName.equals((new UserNameHandler()).getUserName(CommentPageActivity.this))){
 				Toast.makeText(getApplicationContext(),"Only author can edit comment.",Toast.LENGTH_SHORT).show();
 			}
+			else if(connectionChecker.isNetworkOnline(CommentPageActivity.this)==false){
+				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+			}
 			else{
 				Intent pushIntent=new Intent(CommentPageActivity.this,EditCommentPageActivity.class);
 				pushIntent.putExtra("commentID",commentID);
@@ -107,6 +110,10 @@ public class CommentPageActivity extends Activity {
 	class LikeClick implements OnClickListener{
 		@Override
 		public void onClick(View v){
+			if(connectionChecker.isNetworkOnline(CommentPageActivity.this)==false){
+				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+				return;
+			}
 			CacheController cc=new CacheController();
 			io.addCache(commentID,null,cc,"fav",CommentPageActivity.this);
 			Toast.makeText(getApplicationContext(),"Liked.",Toast.LENGTH_SHORT).show();
@@ -116,6 +123,10 @@ public class CommentPageActivity extends Activity {
 	class MarkClick implements OnClickListener{
 		@Override
 		public void onClick(View v){
+			if(connectionChecker.isNetworkOnline(CommentPageActivity.this)==false){
+				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+				return;
+			}
 			CacheController cc=new CacheController();
 			io.addCache(commentID,null,cc,"indicated",CommentPageActivity.this);
 			Toast.makeText(getApplicationContext(),"Marked.",Toast.LENGTH_SHORT).show();

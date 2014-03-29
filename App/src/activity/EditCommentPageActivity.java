@@ -1,6 +1,7 @@
 package activity;
 
 import gps.LocationGenerator;
+import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
 
 import com.example.projectapp.R;
@@ -73,6 +74,11 @@ public class EditCommentPageActivity extends Activity {
 
 		@Override
 		public void onClick(View v){
+			ConnectionChecker connectionChecker=new ConnectionChecker();
+			if(connectionChecker.isNetworkOnline(EditCommentPageActivity.this)==false){
+				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+				return;
+			}
 			String editedTitle=title.getText().toString();
 			String editedText=content.getText().toString();
 			Location location=null;
