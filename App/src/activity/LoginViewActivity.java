@@ -1,6 +1,6 @@
 package activity;
 
-import user_name.UserNameHandler;
+import user.UserNameHandler;
 
 import com.example.projectapp.R;
 

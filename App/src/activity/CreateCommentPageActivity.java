@@ -1,7 +1,7 @@
 package activity;
 
 import gps.LocationGenerator;
-import user_name.UserNameHandler;
+import user.UserNameHandler;
 import model.Comment;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;

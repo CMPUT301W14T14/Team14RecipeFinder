@@ -1,4 +1,4 @@
-package user_name;
+package user;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

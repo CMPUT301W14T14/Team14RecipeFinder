@@ -1,7 +1,7 @@
 package activity;
 
 
-import user_name.UserNameHandler;
+import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
 import model.Comment;
