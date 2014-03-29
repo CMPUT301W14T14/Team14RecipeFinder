@@ -1,10 +1,14 @@
 package activity;
 
+import model.Comment;
 import model.CommentList;
 
 import cache.CacheController;
 
 import com.example.projectapp.R;
+import com.google.gson.Gson;
+
+import customlized_gson.GsonConstructor;
 
 import adapter.ListViewAdapter;
 import android.os.Bundle;
@@ -30,6 +34,8 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	private CommentList favourites=null;
 	private ListViewAdapter listViewAdapter=null;
 	
+	private Gson gson=(new GsonConstructor()).getGson();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,13 +50,16 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		favourites=cacheController.getFav(this);
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,favourites.getCurrentList());
 		listView.setAdapter(listViewAdapter);
+		listView.setOnItemClickListener(new FavViewClick());
 	}
 	
-	class FavView implements OnItemClickListener{
+	class FavViewClick implements OnItemClickListener{
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
-			
+			Intent pushIntent=new Intent(FavoritePageActivity.this,LocalCommentPageActivity.class);
+			pushIntent.putExtra("commentJson",gson.toJson((Comment)arg0.getItemAtPosition(pos)));
+			startActivity(pushIntent);
 		}
 		
 	}

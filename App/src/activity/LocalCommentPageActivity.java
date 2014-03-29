@@ -1,16 +1,31 @@
 package activity;
 
-import com.example.projectapp.R;
+import java.util.Date;
 
+import model.Comment;
+import model.CommentList;
+
+import cache.CacheController;
+
+import com.example.projectapp.R;
+import com.google.gson.Gson;
+
+import customlized_gson.GsonConstructor;
+
+import adapter.ListViewAdapter;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class LocalCommentPageActivity extends Activity {
 
@@ -20,6 +35,8 @@ public class LocalCommentPageActivity extends Activity {
 	private ImageView picture=null;
 	private ListView listView=null;
 	
+	private Gson gson=(new GsonConstructor()).getGson();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,11 +45,43 @@ public class LocalCommentPageActivity extends Activity {
 		// Initialize Menu bar
 		initView();
 		
-		title = (TextView)findViewById(R.id.comment_title);
-		content = (TextView)findViewById(R.id.comment_content);
-		commentInfo = (TextView)findViewById(R.id.comment_info);
-		picture = (ImageView)findViewById(R.id.topic_image);
-		listView = (ListView)findViewById(R.id.reply_list);
+		title = (TextView)findViewById(R.id.local_comment_title);
+		content = (TextView)findViewById(R.id.local_comment_content);
+		commentInfo = (TextView)findViewById(R.id.local_comment_info);
+		picture = (ImageView)findViewById(R.id.local_topic_image);
+		listView = (ListView)findViewById(R.id.local_reply_list);
+		
+		Intent intent=getIntent();
+		Comment comment=gson.fromJson(intent.getStringExtra("commentJson"),Comment.class);
+		title.setText(comment.getTitle());
+		content.setText(comment.getText());
+		picture.setImageBitmap(comment.getPicture());
+		Location location=comment.getLocation();
+		if(location!=null){
+			double lat=location.getLatitude();
+			double lng=location.getLongitude();
+			String lngS=String.valueOf(lng);
+			String latS=String.valueOf(lat);
+			commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString())+"\nLocation At: Longitude: "+lngS+"  Latitude: "+latS);
+		}
+		else{
+			commentInfo.setText("Posted By : "+comment.getUserName()+" At : "+((new Date(comment.getTimePosted())).toString()));
+		}
+		CommentList replies=(new CacheController()).getReply(comment.getId(),this);
+		ListViewAdapter listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
+		listView.setAdapter(listViewAdapter);
+		listView.setOnItemClickListener(new RecurLocalView());
+		
+	}
+	
+	class RecurLocalView implements OnItemClickListener{
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
+			Intent pushIntent=new Intent(LocalCommentPageActivity.this,LocalCommentPageActivity.class);
+			pushIntent.putExtra("commentJson",gson.toJson((Comment)arg0.getItemAtPosition(pos)));
+			startActivity(pushIntent);
+		}
 		
 	}
 	
