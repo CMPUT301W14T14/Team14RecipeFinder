@@ -4,13 +4,14 @@ import java.util.List;
 
 import com.example.projectapp.R;
 
+import comparator.LocationComparator;
 import comparator.PictureComparator;
 import comparator.TimeComparator;
 
 import model.Comment;
 
 import android.content.Context;
-//import android.location.Location;
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-// This class is not done.
 /**
  * A List View Adapter which maps information from the comment model to the view
  * Adapted from https://github.com/XUPINGI/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/view/PicPostModelAdapter.java
@@ -26,6 +26,7 @@ import android.widget.TextView;
 public class ListViewAdapter extends ArrayAdapter<Comment>{
 	
 	private String sortingOption="default";
+	private Location center=null;
 	
 	public static final String SORT_BY_TIME="sortByTime";
 	public static final String SORT_BY_PIC="sortByPicture";
@@ -65,6 +66,12 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		}
 		return convertView;
 	}
+	
+	public void setSortingLocation(Location location){
+		this.center=location;
+		this.setSortingOption(SORT_BY_LOC);
+	}
+	
 	@Override
 	public void notifyDataSetChanged(){
 		
@@ -73,9 +80,15 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		if(sortingOption.equals(SORT_BY_TIME)){
 			this.sort(new TimeComparator());
 		}
+		
 		else if(sortingOption.equals(SORT_BY_PIC)){
 			this.sort(new PictureComparator());
 		}
+		
+		else if(sortingOption.equals(SORT_BY_LOC) && center!=null){
+			this.sort(new LocationComparator(center));
+		}
+		
 		this.setNotifyOnChange(true);
 		
 		super.notifyDataSetChanged();

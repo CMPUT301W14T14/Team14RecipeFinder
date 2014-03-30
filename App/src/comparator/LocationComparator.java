@@ -17,7 +17,10 @@ public class LocationComparator implements Comparator<Comment>{
 
 	@Override
 	public int compare(Comment a, Comment b){
-		if(center.distanceTo(a.getLocation())>=center.distanceTo(b.getLocation())){
+		if(a.getLocation()==null || b.getLocation()==null){
+			return -100;
+		}
+		else if(center.distanceTo(a.getLocation())>=center.distanceTo(b.getLocation())){
 			return 1;
 		}
 		else{
