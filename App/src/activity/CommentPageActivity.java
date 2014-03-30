@@ -21,14 +21,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-public class CommentPageActivity extends Activity {
+public class CommentPageActivity extends Activity implements OnItemSelectedListener {
+	
+	Spinner spinnerOsversions;
 	
 	private TextView title=null;
 	private TextView content=null;
@@ -37,6 +42,7 @@ public class CommentPageActivity extends Activity {
 	private ImageButton like=null;
 	private ImageButton bookmark=null;
 	private ImageButton edit=null;
+	private TextView commentNewLocation=null;
 	private ListView listView=null;
 	
 	private CommentMap replies=null;
@@ -62,6 +68,7 @@ public class CommentPageActivity extends Activity {
 		like = (ImageButton)findViewById(R.id.comment_like);
 		bookmark = (ImageButton)findViewById(R.id.comment_bookmark);
 		edit = (ImageButton)findViewById(R.id.comment_edit);
+		commentNewLocation=(TextView)findViewById(R.id.comment_new_location);
 		listView = (ListView)findViewById(R.id.reply_list);
 		
 		io=new IoStreamHandler();
@@ -157,13 +164,21 @@ public class CommentPageActivity extends Activity {
 	}
 	
 	/**
-	 *  Initialize View. Get ActionBar to enable title and disable title.
+	 * Initialize View. First, get ActionBar to enable title and disable title.
+	 * Second, initialize spinner for sort options
 	 */
 	private void initView() {
 		// ActionBar
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayUseLogoEnabled(true);
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+		
+		// Spinner for sort options
+		spinnerOsversions = (Spinner) findViewById(R.id.comment_spinner);
+		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AllTopicPageActivity.sortOption);
+		sortArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerOsversions.setAdapter(sortArray);
+		spinnerOsversions.setOnItemSelectedListener(this);
 	}
 	
 	/**
@@ -204,6 +219,27 @@ public class CommentPageActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.comment_page, menu);
 		return true;
+	}
+	
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		spinnerOsversions.setSelection(position);
+		String sortSelect = (String) spinnerOsversions.getSelectedItem();
+
+		if (sortSelect == AllTopicPageActivity.sortByDate) {
+
+		} else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
+
+		} else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
+
+		} else if (sortSelect == AllTopicPageActivity.sortByPicture) {
+
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
