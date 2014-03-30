@@ -13,3 +13,5 @@ Team 14 Members:
 * [License] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/blob/master/License)
 * [Project] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/tree/master/App)
 * [ProjectTest] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/tree/master/AppTests)
+* [Reuse Statement] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/wiki/Reuse-Statement)
+* [Glossary] (https://github.com/CMPUT301W14T14/Team14RecipeFinder/wiki/Glossary)
