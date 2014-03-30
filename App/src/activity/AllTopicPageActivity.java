@@ -42,9 +42,6 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	static String[] sortOption = { sortByDate, sortByMyLocation,
 			sortByOtherLocation, sortByPicture };
 	
-	// For results from alterDialog
-	private String newLatitude=null;
-	private String newLongitude=null;
 	// TextView to display the new location
 	private TextView newLocation=null;
 	
@@ -196,11 +193,10 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
-
+		
+		newLocation.setText("");
+		
 		if (sortSelect == sortByDate) {
-			// clean TextView
-			newLocation.setText("");
-			
 			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_TIME);
 		} 
 		else if (sortSelect == sortByMyLocation) {
@@ -213,14 +209,10 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			}
 		} 
 		else if (sortSelect == sortByOtherLocation) {
-			// alterDialog to prompt for a location
 			promptForLocation();
-
 		} 
 		else if (sortSelect == sortByPicture) {
 			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
-			// clean TextView
-			newLocation.setText("");
 		}
 		listViewAdapter.notifyDataSetChanged();
 	}
@@ -237,40 +229,51 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	}
 	
 	// method to get prompt_for_location.xml View and prompt for a location
-		public void promptForLocation() {
-			// get prompts.xml view
-			LayoutInflater layoutInflater = LayoutInflater.from(this);
-			View promptsView = layoutInflater.inflate(R.layout.prompt_for_location, null);
+	public void promptForLocation(){
+		// get prompts.xml view
+		LayoutInflater layoutInflater = LayoutInflater.from(this);
+		View promptsView = layoutInflater.inflate(R.layout.prompt_for_location, null);
 
-			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-			// set prompts.xml to alertDialog builder
-			alertDialogBuilder.setView(promptsView);
+		// set prompts.xml to alertDialog builder
+		alertDialogBuilder.setView(promptsView);
 
-			final EditText lat = (EditText) promptsView.findViewById(R.id.new_latitude);
-			final EditText lng = (EditText) promptsView.findViewById(R.id.new_longitude);
+		final EditText lat = (EditText) promptsView.findViewById(R.id.new_latitude);
+		final EditText lng = (EditText) promptsView.findViewById(R.id.new_longitude);
 
-			// set dialog message
-			alertDialogBuilder.setCancelable(false).setPositiveButton("OK",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					// get user input location
-					newLatitude = lat.getText().toString();
-					newLongitude = lng.getText().toString();
-					if (!newLatitude.isEmpty() && !newLongitude.isEmpty()) {
-						newLocation.setText("Location: " + newLatitude + ", " + newLongitude);
+		// set dialog message
+		alertDialogBuilder.setCancelable(false).setPositiveButton("OK",new DialogInterface.OnClickListener() {
+			
+			public void onClick(DialogInterface dialog,int id) {
+				// get user input location
+				String newLatitude = lat.getText().toString();
+				String newLongitude = lng.getText().toString();
+				
+				try{
+					Location customLocation=locationGenerator.getCustomLocation(Double.parseDouble(newLatitude),Double.parseDouble(newLongitude));
+					if(customLocation==null){
+						throw new Exception();
 					}
+					newLocation.setText("Custom sorting location: " + newLatitude + ", " + newLongitude);
+					listViewAdapter.setSortingLocation(customLocation);
 				}
-			}).setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					dialog.cancel();
+				catch(Exception e){
+					Toast.makeText(getApplicationContext(),"GPS is not funtional or invalid input for location, cannot sort.",Toast.LENGTH_SHORT).show();
 				}
-			});
+				
+			}
+		}).setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int id) {
+				dialog.cancel();
+			}
+		});
 
-			// create alert dialog
-			AlertDialog alertDialog = alertDialogBuilder.create();
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
 
-			// show it
-			alertDialog.show();
-		}
+		// show it
+		alertDialog.show();
+	}
 
 }
