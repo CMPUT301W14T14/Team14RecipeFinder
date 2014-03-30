@@ -1,5 +1,6 @@
 package activity;
 
+import pop_up_window.CustomLocationLoader;
 import gps.LocationGenerator;
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
@@ -12,21 +13,17 @@ import com.example.projectapp.R;
 import adapter.ListViewAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -209,7 +206,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			}
 		} 
 		else if (sortSelect == sortByOtherLocation) {
-			promptForLocation();
+			//promptForLocation();
+			(new CustomLocationLoader()).loadWindow(newLocation,listViewAdapter,locationGenerator,this,this);
 		} 
 		else if (sortSelect == sortByPicture) {
 			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
@@ -227,58 +225,4 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
 	}
-	
-	// method to get prompt_for_location.xml View and prompt for a location
-	public void promptForLocation(){
-		// get prompts.xml view
-		LayoutInflater layoutInflater = LayoutInflater.from(this);
-		View promptsView = layoutInflater.inflate(R.layout.prompt_for_location, null);
-
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-		// set prompts.xml to alertDialog builder
-		alertDialogBuilder.setView(promptsView);
-
-		final EditText lat = (EditText) promptsView.findViewById(R.id.new_latitude);
-		final EditText lng = (EditText) promptsView.findViewById(R.id.new_longitude);
-
-		// set dialog message
-		alertDialogBuilder.setCancelable(false).setPositiveButton("OK",new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog,int id) {
-				// get user input location
-				String newLatitude = lat.getText().toString();
-				String newLongitude = lng.getText().toString();
-				
-				try{
-					Location customLocation=locationGenerator.getCustomLocation(Double.parseDouble(newLatitude),Double.parseDouble(newLongitude));
-					if(customLocation==null){
-						throw new Exception();
-					}
-					newLocation.setText("Custom sorting location: " + newLatitude + ", " + newLongitude);
-					listViewAdapter.setSortingLocation(customLocation);
-					listViewAdapter.notifyDataSetChanged();
-				}
-				catch(Exception e){
-					Toast.makeText(getApplicationContext(),"GPS is not functional or invalid input for location, cannot sort.",Toast.LENGTH_SHORT).show();
-				}
-				
-			}
-			
-			
-		}).setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog,int id) {
-				dialog.cancel();
-			}
-			
-		});
-
-		// create alert dialog
-		AlertDialog alertDialog = alertDialogBuilder.create();
-
-		// show it
-		alertDialog.show();
-	}
-
 }
