@@ -1,5 +1,6 @@
 package activity;
 
+import gps.LocationGenerator;
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
@@ -8,10 +9,17 @@ import model.CommentMap;
 
 import com.example.projectapp.R;
 
+import comparator.LocationComparator;
+import comparator.PictureComparator;
+import comparator.TimeComparator;
+
 import adapter.ListViewAdapter;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +48,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	private CommentMap topics=null;
 	private IoStreamHandler io=null;
 	private ConnectionChecker connectionChecker=null;
+	
+	private LocationGenerator locationGenerator=null;
 
 	/**
 	 *  onCreate method. </br>
@@ -56,6 +66,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		
 		listView = (ListView)findViewById(R.id.topic_list);
 		
+		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 		io=new IoStreamHandler();
 		connectionChecker=new ConnectionChecker();
 		//io.clean();
@@ -88,7 +99,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	private void refresh(){
 		if(connectionChecker.isNetworkOnline(this)){
 			topics.clear();
-			io.loadTopLevelComments(topics, this);
+			io.loadTopLevelComments(topics,this);
 		}
 		else{
 			Toast.makeText(getApplicationContext(),"Offline",Toast.LENGTH_SHORT).show();
@@ -175,17 +186,24 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
 		if (sortSelect == sortByDate) {
-			
+			listViewAdapter.sort(new TimeComparator());
 		} 
 		else if (sortSelect == sortByMyLocation) {
-
+			Location center=locationGenerator.getCurrentLocation();
+			if(center==null){
+				Toast.makeText(getApplicationContext(),"GPS is not running, cannot sort.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.sort(new LocationComparator(center));
+			}
 		} 
 		else if (sortSelect == sortByOtherLocation) {
 
 		} 
 		else if (sortSelect == sortByPicture) {
-
+			listViewAdapter.sort(new PictureComparator());
 		}
+		listViewAdapter.notifyDataSetChanged();
 	}
 
 	/**

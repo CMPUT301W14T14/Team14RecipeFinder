@@ -5,12 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 import android.widget.ArrayAdapter;
 /**
  * A class used to store Comment Objects loaded from the server and able to return a list which can used by list view adapter construct
- * @author xuping
  */
 
 public class CommentMap{

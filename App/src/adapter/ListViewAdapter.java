@@ -1,5 +1,4 @@
 package adapter;
-
 import java.util.Date;
 import java.util.List;
 
@@ -57,5 +56,4 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		}
 		return convertView;
 	}
-	
 }
