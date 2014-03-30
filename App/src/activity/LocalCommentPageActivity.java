@@ -1,6 +1,10 @@
 package activity;
 
+import gps.LocationGenerator;
+
 import java.util.Date;
+
+import pop_up_window.CustomLocationLoader;
 
 import model.Comment;
 import model.CommentList;
@@ -14,9 +18,11 @@ import customlized_gson.GsonConstructor;
 
 import adapter.ListViewAdapter;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -26,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -41,6 +48,10 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 	private ListView listView=null;
 	
 	private Gson gson=(new GsonConstructor()).getGson();
+	
+	private LocationGenerator locationGenerator=null;
+	
+	private ListViewAdapter listViewAdapter=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +85,11 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 			commentInfo.setText("Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString()));
 		}
 		CommentList replies=(new CacheController()).getReply(comment.getId(),this);
-		ListViewAdapter listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
+		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,replies.getCurrentList());
 		listView.setAdapter(listViewAdapter);
 		listView.setOnItemClickListener(new RecurLocalView());
 		
+		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 	}
 	
 	class RecurLocalView implements OnItemClickListener{
@@ -119,21 +131,32 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
+		
+		localNewLocation.setText("");
 
 		if (sortSelect == AllTopicPageActivity.sortByDate) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByPicture) {
-
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_TIME);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
+			Location currentLocation=locationGenerator.getCurrentLocation();
+			if(currentLocation==null){
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.setSortingLocation(currentLocation);
+			}
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
+			(new CustomLocationLoader()).loadWindow(localNewLocation,listViewAdapter,locationGenerator,this,this);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByPicture) {
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
 		}
+		listViewAdapter.notifyDataSetChanged();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

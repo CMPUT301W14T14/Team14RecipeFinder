@@ -1,6 +1,8 @@
 package activity;
 
 
+import pop_up_window.CustomLocationLoader;
+import gps.LocationGenerator;
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
@@ -12,9 +14,12 @@ import cache.CacheController;
 import com.example.projectapp.R;
 
 import adapter.ListViewAdapter;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +54,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	private ListViewAdapter listViewAdapter=null;
 	private IoStreamHandler io=null;
 	private ConnectionChecker connectionChecker=null;
+	
+	private LocationGenerator locationGenerator=null;
 	
 	private String commentID=null;
 	private String authorName=null;
@@ -86,6 +93,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		edit.setOnClickListener(new EditClick());
 		like.setOnClickListener(new LikeClick());
 		bookmark.setOnClickListener(new MarkClick());
+		
+		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 	}
 	
 	
@@ -222,23 +231,35 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	}
 	
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		
+		commentNewLocation.setText("");
+		
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
 		if (sortSelect == AllTopicPageActivity.sortByDate) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByPicture) {
-
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_TIME);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
+			Location currentLocation=locationGenerator.getCurrentLocation();
+			if(currentLocation==null){
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.setSortingLocation(currentLocation);
+			}
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
+			(new CustomLocationLoader()).loadWindow(commentNewLocation,listViewAdapter,locationGenerator,this,this);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByPicture) {
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
 		}
+		listViewAdapter.notifyDataSetChanged();
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
