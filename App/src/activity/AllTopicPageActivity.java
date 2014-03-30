@@ -122,7 +122,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
 		// Spinner for sort options
-		spinnerOsversions = (Spinner) findViewById(R.id.welcome_button);
+		spinnerOsversions = (Spinner) findViewById(R.id.all_topic_spinner);
 		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, sortOption);
 		sortArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOsversions.setAdapter(sortArray);

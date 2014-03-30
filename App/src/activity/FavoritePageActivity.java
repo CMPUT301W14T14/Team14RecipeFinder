@@ -1,5 +1,7 @@
 package activity;
 
+import pop_up_window.CustomLocationLoader;
+import gps.LocationGenerator;
 import model.Comment;
 import model.CommentList;
 
@@ -11,9 +13,12 @@ import com.google.gson.Gson;
 import customlized_gson.GsonConstructor;
 
 import adapter.ListViewAdapter;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +28,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class FavoritePageActivity extends Activity implements OnItemSelectedListener {
@@ -33,8 +40,11 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	private CacheController cacheController=null;
 	private CommentList list=null;
 	private ListViewAdapter listViewAdapter=null;
+	private LocationGenerator locationGenerator=null;
 	
 	private Gson gson=(new GsonConstructor()).getGson();
+	
+	private TextView favNewLocation=null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +65,12 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		}
 		listViewAdapter=new ListViewAdapter(this,R.layout.single_comment_layout,list.getCurrentList());
 		listView.setAdapter(listViewAdapter);
+		
 		listView.setOnItemClickListener(new FavViewClick());
+		
+		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
+		
+		favNewLocation=(TextView)findViewById(R.id.fav_new_location);
 	}
 	
 	class FavViewClick implements OnItemClickListener{
@@ -80,7 +95,7 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
 		// Spinner for sort options
-		spinnerOsversions = (Spinner) findViewById(R.id.welcome_button);
+		spinnerOsversions = (Spinner) findViewById(R.id.fav_spinner);
 		ArrayAdapter<String> sortArray = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, AllTopicPageActivity.sortOption);
 		sortArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerOsversions.setAdapter(sortArray);
@@ -99,12 +114,6 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		Intent intent;
 		switch (item.getItemId()) {
 
-		case R.id.action_my_comment:
-			intent = new Intent(this,FavoritePageActivity.class);
-			intent.putExtra("isFav",false);
-			startActivity(intent);
-			finish();
-			return true;
 		case R.id.action_profile:
 			intent = new Intent(this,ProfilePageActivity.class);
 			startActivity(intent);
@@ -119,14 +128,24 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
 		if (sortSelect == AllTopicPageActivity.sortByDate) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
-
-		} else if (sortSelect == AllTopicPageActivity.sortByPicture) {
-
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_TIME);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByMyLocation) {
+			Location currentLocation=locationGenerator.getCurrentLocation();
+			if(currentLocation==null){
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.setSortingLocation(currentLocation);
+			}
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByOtherLocation) {
+			(new CustomLocationLoader()).loadWindow(favNewLocation,listViewAdapter,locationGenerator,this,this);
+		} 
+		else if (sortSelect == AllTopicPageActivity.sortByPicture) {
+			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
 		}
+		listViewAdapter.notifyDataSetChanged();
 	}
 
 	@Override
