@@ -85,7 +85,7 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 			this.sort(new PictureComparator());
 		}
 		
-		else if(sortingOption.equals(SORT_BY_LOC) && center!=null){
+		else if(sortingOption.equals(SORT_BY_LOC)){
 			this.sort(new LocationComparator(center));
 		}
 		

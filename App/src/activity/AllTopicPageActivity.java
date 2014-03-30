@@ -202,7 +202,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		else if (sortSelect == sortByMyLocation) {
 			Location currentLocation=locationGenerator.getCurrentLocation();
 			if(currentLocation==null){
-				Toast.makeText(getApplicationContext(),"GPS is not funtional, cannot sort.",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort.",Toast.LENGTH_SHORT).show();
 			}
 			else{
 				listViewAdapter.setSortingLocation(currentLocation);
@@ -257,16 +257,21 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 					}
 					newLocation.setText("Custom sorting location: " + newLatitude + ", " + newLongitude);
 					listViewAdapter.setSortingLocation(customLocation);
+					listViewAdapter.notifyDataSetChanged();
 				}
 				catch(Exception e){
-					Toast.makeText(getApplicationContext(),"GPS is not funtional or invalid input for location, cannot sort.",Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(),"GPS is not functional or invalid input for location, cannot sort.",Toast.LENGTH_SHORT).show();
 				}
 				
 			}
+			
+			
 		}).setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+			
 			public void onClick(DialogInterface dialog,int id) {
 				dialog.cancel();
 			}
+			
 		});
 
 		// create alert dialog
