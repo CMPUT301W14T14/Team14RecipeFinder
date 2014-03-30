@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.example.projectapp.R;
 
+import comparator.PictureComparator;
+import comparator.TimeComparator;
+
 import model.Comment;
 
 import android.content.Context;
@@ -21,6 +24,12 @@ import android.widget.TextView;
  * Adapted from https://github.com/XUPINGI/PicPosterComplete/blob/master/src/ca/ualberta/cs/picposter/view/PicPostModelAdapter.java
  */
 public class ListViewAdapter extends ArrayAdapter<Comment>{
+	
+	private String sortingOption="default";
+	
+	public static final String SORT_BY_TIME="sortByTime";
+	public static final String SORT_BY_PIC="sortByPicture";
+	public static final String SORT_BY_LOC="sortByLocation";
 	
 	/**
 	 * Construct a ListViewAdapter.
@@ -56,4 +65,24 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		}
 		return convertView;
 	}
+	@Override
+	public void notifyDataSetChanged(){
+		
+		this.setNotifyOnChange(false);
+		
+		if(sortingOption.equals(SORT_BY_TIME)){
+			this.sort(new TimeComparator());
+		}
+		else if(sortingOption.equals(SORT_BY_PIC)){
+			this.sort(new PictureComparator());
+		}
+		this.setNotifyOnChange(true);
+		
+		super.notifyDataSetChanged();
+	}
+	
+	public void setSortingOption(String option){
+		this.sortingOption=option;
+	}
+	
 }
