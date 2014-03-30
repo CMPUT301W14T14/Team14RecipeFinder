@@ -124,6 +124,8 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
+		
+		favNewLocation.setText("");
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
 
