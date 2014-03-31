@@ -1,93 +1,51 @@
 package activity;
 
+import user.UserNameHandler;
+import network_io.ProfileIoHandler;
+
 import com.example.projectapp.R;
 
-import android.os.Bundle;
-import android.provider.MediaStore;
 import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.*;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ProfilePageActivity extends Activity {
-	public static final int OBTAIN_PIC_REQUEST_CODE=252;
 	
-	//private TextView userTitle = null;
+	private TextView profileTitle;
+	private ImageButton photo;
+	private EditText userNameInput;
+	private EditText biographyInput;
+	private EditText twitterInput;
+	private EditText facebookInput;
+	private Button cancel;
+	private Button commit;
 	
-	//private EditText userName = null;
-	//private EditText biography = null;
-	//private EditText twitter = null;
-	//private EditText facebook = null;
-	private ImageButton profilePicture = null;
-	private ImageButton commitProfile=null;
-	private ImageButton cancelProfile=null;
-	
-	//private IoStreamHandler profileIo=null;
-	//private UserNameHandler profileUserNameHandler=null;
+	private ProfileIoHandler profileIoHandler=null;
+	private UserNameHandler userNameHandler=null;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_page);
 		
-		//userName = (EditText)findViewById(R.id.user_name);
-		//biography = (EditText)findViewById(R.id.biography);
-		//twitter = (EditText)findViewById(R.id.twitter);
-		//facebook = (EditText)findViewById(R.id.facebook);
-		profilePicture = (ImageButton)findViewById(R.id.profile_picture);
-		commitProfile = (ImageButton)findViewById(R.id.commit_profile);
-		cancelProfile = (ImageButton)findViewById(R.id.cancel_profile);
-		//userTitle = (TextView)findViewById(R.id.profile_title);
+		profileTitle=(TextView)findViewById(R.id.profile_title);
+		photo=(ImageButton)findViewById(R.id.profile_picture);
+		userNameInput=(EditText)findViewById(R.id.user_name);
+		biographyInput=(EditText)findViewById(R.id.biography);
+		twitterInput=(EditText)findViewById(R.id.twitter);
+		facebookInput=(EditText)findViewById(R.id.facebook);
 		
-		//profileIo=new IoStreamHandler();
-		//profileUserNameHandler=new UserNameHandler();
+		cancel=(Button)findViewById(R.id.cancel_profile);
+		commit=(Button)findViewById(R.id.commit_profile);
 		
-		profilePicture.setOnClickListener(new ProfileAttachClick());
-		cancelProfile.setOnClickListener(new ProfileCancelClick());
-		commitProfile.setOnClickListener(new ProfileCommitClick());
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.profile_page, menu);
-		return true;
+		profileIoHandler=new ProfileIoHandler();
+		userNameHandler=new UserNameHandler();
+		
+		profileTitle.setText("User Profile: ");
+		profileIoHandler.loadSpecificProfileForUpdate(userNameHandler.getUserName(this),this, photo, userNameInput, biographyInput, twitterInput, facebookInput);
 	}
 	
-	/**
-	 * Direct user to camera in order to take the attached photo.
-	 */
-	public void profileTakeAPhoto(){
-		Intent camIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(camIntent,OBTAIN_PIC_REQUEST_CODE);
-	}
-	
-	class ProfileAttachClick implements OnClickListener{
-        @Override
-		public void onClick(View v){
-        	profileTakeAPhoto();
-		}
-	}
-
-	class ProfileCancelClick implements OnClickListener{
-        @Override
-		public void onClick(View v){
-        	finish();
-		}
-	}
-	
-	class ProfileCommitClick implements OnClickListener{
-        @Override
-		public void onClick(View v){
-        	//String userProfileName=userName.getText().toString();
-        	//String profileBiography=biography.getText().toString();
-        	//String profileTwitter=twitter.getText().toString();
-        	//String profileFacebook=facebook.getText().toString();
-        	
-
-        	finish();
-		}
-	}
 }
