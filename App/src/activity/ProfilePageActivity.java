@@ -2,6 +2,7 @@ package activity;
 
 import user.UserNameHandler;
 import model.UserProfile;
+import network_io.ConnectionChecker;
 import network_io.ProfileIoHandler;
 
 import com.example.projectapp.R;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProfilePageActivity extends Activity {
 	
@@ -30,6 +32,8 @@ public class ProfilePageActivity extends Activity {
 	
 	private ProfileIoHandler profileIoHandler=null;
 	private UserNameHandler userNameHandler=null;
+	
+	private ConnectionChecker connectionChecker=null;
 	
 	public static final int OBTAIN_PIC_REQUEST_CODE=252;
 	
@@ -53,8 +57,15 @@ public class ProfilePageActivity extends Activity {
 		profileIoHandler=new ProfileIoHandler();
 		userNameHandler=new UserNameHandler();
 		
+		connectionChecker=new ConnectionChecker();
+		
 		profileTitle.setText("User Profile: ");
-		profileIoHandler.loadSpecificProfileForUpdate(userNameHandler.getUserName(this),this, photo, userNameInput, biographyInput, twitterInput, facebookInput);
+		if(connectionChecker.isNetworkOnline(this)){
+			profileIoHandler.loadSpecificProfileForUpdate(userNameHandler.getUserName(this),this, photo, userNameInput, biographyInput, twitterInput, facebookInput);
+		}
+		else{
+			Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+		}
 		
 		photo.setOnClickListener(new AttachPhotoClick());
 		cancel.setOnClickListener(new CancelClick());
@@ -88,8 +99,13 @@ public class ProfilePageActivity extends Activity {
 		public void onClick(View v){
 			UserProfile newProfile=new UserProfile(userNameInput.getText().toString(),biographyInput.getText().toString(),
 					twitterInput.getText().toString(),facebookInput.getText().toString(),profilePhoto);
-			profileIoHandler.putOrUpdateProfile(newProfile);
-			finish();
+			if(connectionChecker.isNetworkOnline(ProfilePageActivity.this)){
+				profileIoHandler.putOrUpdateProfile(newProfile);
+				finish();
+			}
+			else{
+				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+			}
 		}
 	}
 	
