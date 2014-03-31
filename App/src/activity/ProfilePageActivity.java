@@ -99,12 +99,13 @@ public class ProfilePageActivity extends Activity {
 		public void onClick(View v){
 			UserProfile newProfile=new UserProfile(userNameInput.getText().toString(),biographyInput.getText().toString(),
 					twitterInput.getText().toString(),facebookInput.getText().toString(),profilePhoto);
+			userNameHandler.setUserName(ProfilePageActivity.this,userNameInput.getText().toString());
 			if(connectionChecker.isNetworkOnline(ProfilePageActivity.this)){
 				profileIoHandler.putOrUpdateProfile(newProfile);
 				finish();
 			}
 			else{
-				Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),"Offline, only user name has been reset locally.",Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
