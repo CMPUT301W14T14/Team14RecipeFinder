@@ -152,6 +152,15 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 		else if (sortSelect == AllTopicPageActivity.sortByPicture) {
 			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
 		}
+		else if(sortSelect == AllTopicPageActivity.sortByDefault){
+			Location currentLocation=locationGenerator.getCurrentLocation();
+			if(currentLocation==null){
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by deafult.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.sortByDefault(currentLocation);
+			}
+		}
 		listViewAdapter.notifyDataSetChanged();
 	}
 

@@ -6,12 +6,5 @@
         android:showAsAction="always"
         android:icon="@drawable/user"
         android:title="@string/profile" />
-    
-    <item 
-        android:id="@+id/action_my_comment"
-        android:orderInCategory="10"
-        android:showAsAction="always"
-        android:icon="@drawable/bookmark"
-        android:title="@string/my_comment"/>
 
 </menu>
