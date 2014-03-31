@@ -32,11 +32,12 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {
 	
+	static String sortByDefault="Sort By Default";
 	static String sortByDate = "Sort By Date";
 	static String sortByMyLocation = "Sort By My Location";
 	static String sortByOtherLocation = "Sort By Other Location";
 	static String sortByPicture = "Sort By Picture";
-	static String[] sortOption = { sortByDate, sortByMyLocation,
+	static String[] sortOption = { sortByDefault, sortByDate, sortByMyLocation,
 			sortByOtherLocation, sortByPicture };
 	
 	// TextView to display the new location
@@ -204,14 +205,26 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			else{
 				listViewAdapter.setSortingLocation(currentLocation);
 			}
-		} 
+		}
+		
 		else if (sortSelect == sortByOtherLocation) {
-			//promptForLocation();
 			(new CustomLocationLoader()).loadWindow(newLocation,listViewAdapter,locationGenerator,this,this);
-		} 
+		}
+		
 		else if (sortSelect == sortByPicture) {
 			listViewAdapter.setSortingOption(ListViewAdapter.SORT_BY_PIC);
 		}
+		
+		else if(sortSelect == sortByDefault){
+			Location currentLocation=locationGenerator.getCurrentLocation();
+			if(currentLocation==null){
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by deafult.",Toast.LENGTH_SHORT).show();
+			}
+			else{
+				listViewAdapter.sortByDefault(currentLocation);
+			}
+		}
+		
 		listViewAdapter.notifyDataSetChanged();
 	}
 

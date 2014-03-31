@@ -6,6 +6,7 @@ import com.example.projectapp.R;
 
 import comparator.LocationComparator;
 import comparator.PictureComparator;
+import comparator.ScoreSystem;
 import comparator.TimeComparator;
 
 import model.Comment;
@@ -31,6 +32,8 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 	public static final String SORT_BY_TIME="sortByTime";
 	public static final String SORT_BY_PIC="sortByPicture";
 	public static final String SORT_BY_LOC="sortByLocation";
+	
+	public static final String SORT_BY_DEF="sortByDefault";
 	
 	/**
 	 * Construct a ListViewAdapter.
@@ -72,6 +75,11 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		this.setSortingOption(SORT_BY_LOC);
 	}
 	
+	public void sortByDefault(Location location){
+		this.center=location;
+		this.setSortingOption(SORT_BY_DEF);
+	}
+	
 	@Override
 	public void notifyDataSetChanged(){
 		
@@ -87,6 +95,10 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		
 		else if(sortingOption.equals(SORT_BY_LOC)){
 			this.sort(new LocationComparator(center));
+		}
+		
+		else if(sortingOption.equals(SORT_BY_DEF)){
+			this.sort(new ScoreSystem(center));
 		}
 		
 		this.setNotifyOnChange(true);
