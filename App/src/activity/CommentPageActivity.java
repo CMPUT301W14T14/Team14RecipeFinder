@@ -6,6 +6,7 @@ import gps.LocationGenerator;
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
+import network_io.NetworkObserver;
 import model.Comment;
 import model.CommentMap;
 
@@ -59,6 +60,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	
 	private String commentID=null;
 	private String authorName=null;
+	
+	private NetworkObserver netObs=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		bookmark.setOnClickListener(new MarkClick());
 		
 		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
+		
+		netObs=new NetworkObserver();
 	}
 	
 	
@@ -162,13 +167,15 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		
 	}
 	
-	private void refresh(){
+	public void refresh(){
 		if(connectionChecker.isNetworkOnline(this)){
 			replies.clear();
 			io.loadAndSetSpecificComment(commentID,title,content,commentInfo,picture,replies,this);
+			netObs.setObserver(this);
 		}
 		else{
 			Toast.makeText(getApplicationContext(),"Offline",Toast.LENGTH_SHORT).show();
+			netObs.startObservation(this);
 		}
 	}
 	
