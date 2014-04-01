@@ -48,6 +48,7 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	private ImageButton like=null;
 	private ImageButton bookmark=null;
 	private ImageButton edit=null;
+	private ImageButton viewAuthorProfile=null;
 	private TextView commentNewLocation=null;
 	private ListView listView=null;
 	
@@ -78,6 +79,7 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		like = (ImageButton)findViewById(R.id.comment_like);
 		bookmark = (ImageButton)findViewById(R.id.comment_bookmark);
 		edit = (ImageButton)findViewById(R.id.comment_edit);
+		viewAuthorProfile = (ImageButton)findViewById(R.id.view_other_profile);
 		commentNewLocation=(TextView)findViewById(R.id.comment_new_location);
 		listView = (ListView)findViewById(R.id.reply_list);
 		

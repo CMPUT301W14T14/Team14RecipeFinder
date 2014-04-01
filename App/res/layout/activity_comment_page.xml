@@ -31,12 +31,30 @@
             android:text="@string/content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
-        <TextView
+        <RelativeLayout 
+            android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="6dp">
+
+            <TextView
                 android:id="@+id/comment_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
                 android:text="@string/comment_info" />
+
+            <ImageButton
+                android:id="@+id/view_other_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="#000000"
+                android:contentDescription="@string/view_other_profile"
+                android:src="@drawable/book_2" />
+
+        </RelativeLayout>
         
         <ImageView
             android:id="@+id/topic_image"
