@@ -5,6 +5,7 @@ import gps.LocationGenerator;
 import user.UserNameHandler;
 import network_io.ConnectionChecker;
 import network_io.IoStreamHandler;
+import network_io.NetworkObserver;
 import model.Comment;
 import model.CommentMap;
 
@@ -53,6 +54,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	private ConnectionChecker connectionChecker=null;
 	
 	private LocationGenerator locationGenerator=null;
+	
+	private NetworkObserver netObs=null;
 
 	/**
 	 *  onCreate method. </br>
@@ -82,6 +85,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		listView.setAdapter(listViewAdapter);
 		topics.setArrayAdapter(listViewAdapter);
 		listView.setOnItemClickListener(new ViewClick());
+		
+		netObs=new NetworkObserver();
 	}
 	
 	
@@ -104,13 +109,15 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		refresh();
 	}
 	
-	private void refresh(){
+	public void refresh(){
 		if(connectionChecker.isNetworkOnline(this)){
 			topics.clear();
 			io.loadTopLevelComments(topics,this);
+			netObs.setObserver(this);
 		}
 		else{
 			Toast.makeText(getApplicationContext(),"Offline",Toast.LENGTH_SHORT).show();
+			netObs.startObservation(this);
 		}
 	}
 
