@@ -54,27 +54,27 @@ public final class R {
         public static final int user=0x7f02001e;
     }
     public static final class id {
-        public static final int action_create=0x7f08003e;
-        public static final int action_favorite=0x7f08003f;
-        public static final int action_logout=0x7f080044;
-        public static final int action_my_comment=0x7f080040;
-        public static final int action_profile=0x7f080042;
-        public static final int action_refresh=0x7f080041;
-        public static final int action_settings=0x7f080043;
+        public static final int action_create=0x7f080043;
+        public static final int action_favorite=0x7f080044;
+        public static final int action_logout=0x7f080049;
+        public static final int action_my_comment=0x7f080045;
+        public static final int action_profile=0x7f080047;
+        public static final int action_refresh=0x7f080046;
+        public static final int action_settings=0x7f080048;
         public static final int all_topic_spinner=0x7f080000;
-        public static final int biography=0x7f08002a;
-        public static final int cancel_profile=0x7f08002d;
+        public static final int biography=0x7f08002f;
+        public static final int cancel_profile=0x7f080032;
         public static final int comment_bookmark=0x7f080008;
         public static final int comment_content=0x7f080004;
         public static final int comment_edit=0x7f080009;
         public static final int comment_info=0x7f080005;
         public static final int comment_like=0x7f080007;
         public static final int comment_new_location=0x7f08000b;
-        public static final int comment_pic=0x7f080038;
+        public static final int comment_pic=0x7f08003d;
         public static final int comment_spinner=0x7f08000a;
-        public static final int comment_text=0x7f080037;
+        public static final int comment_text=0x7f08003c;
         public static final int comment_title=0x7f080003;
-        public static final int commit_profile=0x7f08002e;
+        public static final int commit_profile=0x7f080033;
         public static final int create_cancel=0x7f080014;
         public static final int create_commit=0x7f080013;
         public static final int create_content=0x7f08000e;
@@ -89,11 +89,11 @@ public final class R {
         public static final int edit_longitude=0x7f080019;
         public static final int edit_picture=0x7f08001a;
         public static final int edit_title=0x7f080015;
-        public static final int facebook=0x7f08002c;
+        public static final int facebook=0x7f080031;
         public static final int fav_new_location=0x7f08001e;
         public static final int fav_spinner=0x7f08001d;
         public static final int favorite_list=0x7f08001f;
-        public static final int layout_root=0x7f080033;
+        public static final int layout_root=0x7f080038;
         public static final int local_comment_content=0x7f080021;
         public static final int local_comment_info=0x7f080022;
         public static final int local_comment_new_location=0x7f080025;
@@ -103,26 +103,31 @@ public final class R {
         public static final int local_topic_image=0x7f080023;
         public static final int location=0x7f080010;
         public static final int location_button=0x7f08000f;
-        public static final int login_button=0x7f08003d;
-        public static final int login_layout=0x7f08003a;
-        public static final int login_userName_input_ins=0x7f08003b;
-        public static final int new_latitude=0x7f080035;
+        public static final int login_button=0x7f080042;
+        public static final int login_layout=0x7f08003f;
+        public static final int login_userName_input_ins=0x7f080040;
+        public static final int new_latitude=0x7f08003a;
         public static final int new_location=0x7f080001;
-        public static final int new_longitude=0x7f080036;
-        public static final int profile_picture=0x7f080028;
-        public static final int profile_title=0x7f080027;
+        public static final int new_longitude=0x7f08003b;
+        public static final int other_profile_biography=0x7f080029;
+        public static final int other_profile_facebook=0x7f08002b;
+        public static final int other_profile_picture=0x7f080028;
+        public static final int other_profile_twitter=0x7f08002a;
+        public static final int other_profile_user_name=0x7f080027;
+        public static final int profile_picture=0x7f08002d;
+        public static final int profile_title=0x7f08002c;
         public static final int reply_list=0x7f08000c;
-        public static final int sort_by_date_button=0x7f080032;
-        public static final int sort_by_picture_button=0x7f08002f;
-        public static final int sort_by_promixity_to_anotion_location_button=0x7f080030;
-        public static final int sort_by_promixity_to_me_button=0x7f080031;
-        public static final int textView1=0x7f080034;
+        public static final int sort_by_date_button=0x7f080037;
+        public static final int sort_by_picture_button=0x7f080034;
+        public static final int sort_by_promixity_to_anotion_location_button=0x7f080035;
+        public static final int sort_by_promixity_to_me_button=0x7f080036;
+        public static final int textView1=0x7f080039;
         public static final int topic_image=0x7f080006;
         public static final int topic_list=0x7f080002;
-        public static final int twitter=0x7f08002b;
-        public static final int user_name=0x7f080029;
-        public static final int user_name_and_time_posted=0x7f080039;
-        public static final int user_name_input=0x7f08003c;
+        public static final int twitter=0x7f080030;
+        public static final int user_name=0x7f08002e;
+        public static final int user_name_and_time_posted=0x7f08003e;
+        public static final int user_name_input=0x7f080041;
     }
     public static final class layout {
         public static final int activity_all_topic_page=0x7f030000;
@@ -131,12 +136,13 @@ public final class R {
         public static final int activity_edit_comment_page=0x7f030003;
         public static final int activity_favorite_page=0x7f030004;
         public static final int activity_local_comment_page=0x7f030005;
-        public static final int activity_profile_page=0x7f030006;
-        public static final int activity_sort_page=0x7f030007;
-        public static final int prompt_for_location=0x7f030008;
-        public static final int single_comment_layout=0x7f030009;
-        public static final int welcome_page=0x7f03000a;
-        public static final int welcomeimage=0x7f03000b;
+        public static final int activity_other_profile_page=0x7f030006;
+        public static final int activity_profile_page=0x7f030007;
+        public static final int activity_sort_page=0x7f030008;
+        public static final int prompt_for_location=0x7f030009;
+        public static final int single_comment_layout=0x7f03000a;
+        public static final int welcome_page=0x7f03000b;
+        public static final int welcomeimage=0x7f03000c;
     }
     public static final class menu {
         public static final int comment_page=0x7f070000;
@@ -146,8 +152,9 @@ public final class R {
         public static final int local_comment_page=0x7f070004;
         public static final int main=0x7f070005;
         public static final int my_comment_page=0x7f070006;
-        public static final int profile_page=0x7f070007;
-        public static final int sort_page=0x7f070008;
+        public static final int other_profile_page=0x7f070007;
+        public static final int profile_page=0x7f070008;
+        public static final int sort_page=0x7f070009;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -219,6 +226,7 @@ public final class R {
         public static final int title_activity_home_page=0x7f050033;
         public static final int title_activity_local_comment_page=0x7f05005d;
         public static final int title_activity_my_comment_page=0x7f05002c;
+        public static final int title_activity_other_profile_page=0x7f05005f;
         public static final int title_activity_profile_page=0x7f050021;
         public static final int title_activity_publish=0x7f050052;
         public static final int title_activity_sort_option=0x7f05004b;

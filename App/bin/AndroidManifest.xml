@@ -63,6 +63,10 @@
             android:name="activity.LocalCommentPageActivity"
             android:label="@string/title_activity_local_comment_page" >
         </activity>
+        <activity
+            android:name="activity.OtherProfilePageActivity"
+            android:label="@string/title_activity_other_profile_page" >
+        </activity>
     </application>
 
 </manifest>

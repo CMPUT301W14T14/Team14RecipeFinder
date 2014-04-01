@@ -7,6 +7,7 @@ import network_io.ProfileIoHandler;
 
 import com.example.projectapp.R;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -43,6 +44,11 @@ public class ProfilePageActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile_page);
+		
+		// Prepare content of ActionBar
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayUseLogoEnabled(true);
+		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 		
 		profileTitle=(TextView)findViewById(R.id.profile_title);
 		photo=(ImageButton)findViewById(R.id.profile_picture);

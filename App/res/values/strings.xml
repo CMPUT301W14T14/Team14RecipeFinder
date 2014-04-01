@@ -96,5 +96,6 @@
     <string name="welcome_image_description">Welcome Image</string>
     <string name="title_activity_local_comment_page">LocalCommentPageActivity</string>
     <string name="prompt_for_location">Enter a desired location:</string>
+    <string name="title_activity_other_profile_page">OtherProfilePageActivity</string>
 
 </resources>

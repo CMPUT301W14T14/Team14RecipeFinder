@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:hint="@string/title"
         android:maxLength="30" >
-
-        <requestFocus />
     </EditText>
 
     <EditText
