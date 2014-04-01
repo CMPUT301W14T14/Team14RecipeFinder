@@ -21,6 +21,8 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -107,6 +109,59 @@ public class ProfileIoHandler{
 							biographyInput.setText(loadedProfile.getBiography());
 							twitterInput.setText(loadedProfile.getTwitter());
 							facebookInput.setText(loadedProfile.getFacebook());
+						}
+					}
+				};
+				activity.runOnUiThread(getProfile);
+			}
+		};
+		thread.start();
+		return thread;
+	}
+	
+	
+	public Thread loadSpecificProfileForView(final String userNameValue,final Activity activity,final ImageView photo,
+			final TextView userName,final TextView biography,final TextView twitter,final TextView facebook){
+		
+		Thread thread=new Thread(){
+			@Override
+			public void run(){
+				HttpClient client=new DefaultHttpClient();
+				HttpGet request = new HttpGet(SERVER_URL+"UserProfile/"+userNameValue+"/");
+				HttpResponse response=null;
+				String responseJson = "";
+				try{
+					response=client.execute(request);
+					Log.i(LOG_TAG, "ProfileLoad: " + response.getStatusLine().toString());
+					HttpEntity entity = response.getEntity();
+					BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+					String output = reader.readLine();
+					while (output != null) {
+						responseJson+= output;
+						output = reader.readLine();
+					}
+				} 
+				catch (ClientProtocolException e){
+					e.printStackTrace();
+				} 
+				catch (IOException e){
+					Log.w(LOG_TAG, "Error receiving query response: " + e.getMessage());
+					e.printStackTrace();
+				}
+				
+				Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<UserProfile>>(){}.getType();
+				final ElasticSearchResponse<UserProfile> Data = gson.fromJson(responseJson,elasticSearchResponseType);
+				
+				Runnable getProfile = new Runnable() {
+					@Override
+					public void run() {
+						UserProfile loadedProfile=Data.getSource();
+						userName.setText(userNameValue);
+						if(loadedProfile!=null){
+							photo.setImageBitmap(loadedProfile.getPhoto());
+							biography.setText(loadedProfile.getBiography());
+							twitter.setText(loadedProfile.getTwitter());
+							facebook.setText(loadedProfile.getFacebook());
 						}
 					}
 				};

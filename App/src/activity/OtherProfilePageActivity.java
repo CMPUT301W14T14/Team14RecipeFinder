@@ -1,21 +1,28 @@
 package activity;
 
+import network_io.ProfileIoHandler;
+
 import com.example.projectapp.R;
 
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class OtherProfilePageActivity extends Activity {
 	
+	private String userNameValue=null;
+	
 	private TextView userName=null;
 	private TextView biography=null;
 	private TextView twitter=null;
 	private TextView facebook=null;
 	private ImageView profilePicture=null;
+	
+	private ProfileIoHandler profileIoHandler=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,10 @@ public class OtherProfilePageActivity extends Activity {
 		twitter = (TextView)findViewById(R.id.other_profile_twitter);
 		facebook = (TextView)findViewById(R.id.other_profile_facebook);
 		profilePicture = (ImageView)findViewById(R.id.other_profile_picture);
+		
+		Intent intent=getIntent();
+		userNameValue=intent.getStringExtra("userName");
+		profileIoHandler.loadSpecificProfileForView(userNameValue,this,profilePicture,userName,biography,twitter,facebook);
 	}
 
 	@Override
