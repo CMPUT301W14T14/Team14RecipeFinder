@@ -84,6 +84,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		listView.setOnItemClickListener(new ViewClick());
 	}
 	
+	
 	class ViewClick implements OnItemClickListener{
 
 		@Override
