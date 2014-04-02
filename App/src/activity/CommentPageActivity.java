@@ -98,6 +98,7 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		edit.setOnClickListener(new EditClick());
 		like.setOnClickListener(new LikeClick());
 		bookmark.setOnClickListener(new MarkClick());
+		viewAuthorProfile.setOnClickListener(new ViewProfileClick());
 		
 		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 		
@@ -109,6 +110,17 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	protected void onResume(){
 		super.onResume();
 		refresh();
+	}
+	
+	class ViewProfileClick implements OnClickListener{
+
+		@Override
+		public void onClick(View v){
+			Intent pushIntent=new Intent(CommentPageActivity.this,OtherProfilePageActivity.class);
+			pushIntent.putExtra("userName",authorName);
+			startActivity(pushIntent);
+		}
+		
 	}
 	
 	class EditClick implements OnClickListener{

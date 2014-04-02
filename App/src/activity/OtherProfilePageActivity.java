@@ -40,6 +40,8 @@ public class OtherProfilePageActivity extends Activity {
 		facebook = (TextView)findViewById(R.id.other_profile_facebook);
 		profilePicture = (ImageView)findViewById(R.id.other_profile_picture);
 		
+		profileIoHandler=new ProfileIoHandler();
+		
 		Intent intent=getIntent();
 		userNameValue=intent.getStringExtra("userName");
 		profileIoHandler.loadSpecificProfileForView(userNameValue,this,profilePicture,userName,biography,twitter,facebook);
