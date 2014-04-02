@@ -1,5 +1,6 @@
 package activity;
 
+import network_io.ConnectionChecker;
 import network_io.ProfileIoHandler;
 
 import com.example.projectapp.R;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OtherProfilePageActivity extends Activity {
 	
@@ -23,6 +25,8 @@ public class OtherProfilePageActivity extends Activity {
 	private ImageView profilePicture=null;
 	
 	private ProfileIoHandler profileIoHandler=null;
+	
+	private ConnectionChecker connectionChecker=null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +45,17 @@ public class OtherProfilePageActivity extends Activity {
 		profilePicture = (ImageView)findViewById(R.id.other_profile_picture);
 		
 		profileIoHandler=new ProfileIoHandler();
+		connectionChecker=new ConnectionChecker();
 		
 		Intent intent=getIntent();
 		userNameValue=intent.getStringExtra("userName");
-		profileIoHandler.loadSpecificProfileForView(userNameValue,this,profilePicture,userName,biography,twitter,facebook);
+		
+		if(connectionChecker.isNetworkOnline(this)){
+			profileIoHandler.loadSpecificProfileForView(userNameValue,this,profilePicture,userName,biography,twitter,facebook);
+		}
+		else{
+			Toast.makeText(getApplicationContext(),"Offline.",Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override

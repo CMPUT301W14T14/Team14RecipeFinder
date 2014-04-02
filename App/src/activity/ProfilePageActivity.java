@@ -66,6 +66,7 @@ public class ProfilePageActivity extends Activity {
 		connectionChecker=new ConnectionChecker();
 		
 		profileTitle.setText("User Profile: ");
+		
 		if(connectionChecker.isNetworkOnline(this)){
 			profileIoHandler.loadSpecificProfileForUpdate(userNameHandler.getUserName(this),this, photo, userNameInput, biographyInput, twitterInput, facebookInput);
 		}
