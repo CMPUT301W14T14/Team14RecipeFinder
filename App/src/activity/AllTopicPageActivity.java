@@ -31,6 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * An activity which will Load and show all top-level comments to the user from the Internet(with 5 different sorting options),it also allow user to publish
+ * a new top level comment, view a comment, and provide the access to the local comment which stored as favorites or indicated comment and logout option.
+ */
+
 public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {
 	
 	static String sortByDefault="Sort By Default";
@@ -58,9 +63,9 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	private NetworkObserver netObs=null;
 
 	/**
-	 *  onCreate method. </br>
+	 *  onCreate method.
 	 *  Once the activity is created, first set the content view, and initialize ActionBat and a Spinner for sort options. 
-	 *  Then, load all the topics and adapt to the ListView.
+	 *  Then, load all the topics and adapt to the ListView and set all the click listeners.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +94,9 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		netObs=new NetworkObserver();
 	}
 	
-	
+	/**
+	 * A click listener which direct user to view the details of a specific comment after user click on that comment in the ListView.
+	 */
 	class ViewClick implements OnItemClickListener{
 
 		@Override
@@ -103,12 +110,20 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		
 	}
 	
+	/**
+	 * onResme method.
+	 * This method only calls refresh when the activity calls this method.
+	 */
 	@Override
 	protected void onResume(){
 		super.onResume();
 		refresh();
 	}
 	
+	/**
+	 * When the Internet is on : reload all new top level comments in to the ListView and let the NetworkObserver keep checking if the network goes off.
+	 * When the Internet is off: notify user cannot reload data and let the NetworkObserver keep checking if the network is back online.
+	 */
 	public void refresh(){
 		if(connectionChecker.isNetworkOnline(this)){
 			topics.clear();
