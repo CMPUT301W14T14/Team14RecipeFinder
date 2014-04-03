@@ -1,12 +1,12 @@
 /**
  * 
  */
-package ca.ualberta.cs.app.test;
+package ca.ualberta.cs.app.testPart4;
 
-import activity.PublishActivity;
-import android.test.ActivityInstrumentationTestCase2;
 import model.Comment;
 import model.CommentList;
+import activity.AllTopicPageActivity;
+import android.test.ActivityInstrumentationTestCase2;
 
 /**
  * JUnit test cases for CommentList model.
@@ -14,17 +14,16 @@ import model.CommentList;
  * @author Yilu Su
  * 
  */
-public class CommentListModelTest extends ActivityInstrumentationTestCase2<PublishActivity> {
-	
+public class CommentListModelTest extends ActivityInstrumentationTestCase2<AllTopicPageActivity> {
+
 	/**
 	 * Constructor
 	 */
-    public CommentListModelTest() {
-		super(PublishActivity.class);
-		// TODO Auto-generated constructor stub
+	public CommentListModelTest() {
+		super(AllTopicPageActivity.class);
 	}
-    
-    /**
+	
+	/**
      * Test cases for CommentList model. <br>
      * Create a commentList and some comments. 
      * First, add comments to the commentList and check the content. 
@@ -32,9 +31,9 @@ public class CommentListModelTest extends ActivityInstrumentationTestCase2<Publi
      */
     public void testCommentListModel() {
     	CommentList commentList = new CommentList();
-        Comment comment1 = new Comment("title1", "text1", null, "userName1");
-        Comment comment2 = new Comment("title2", "text2", null, "userName2");
-        Comment comment3 = new Comment("title3", "text3", null, "userName3");
+        Comment comment1 = new Comment("title1", "text1", null, null, "userName1");
+        Comment comment2 = new Comment("title2", "text2", null, null, "userName2");
+        Comment comment3 = new Comment("title3", "text3", null, null, "userName3");
         
         commentList.add(comment1);
         commentList.add(comment2);

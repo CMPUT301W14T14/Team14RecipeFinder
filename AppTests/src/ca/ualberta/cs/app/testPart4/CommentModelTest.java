@@ -1,15 +1,15 @@
 /**
  * 
  */
-package ca.ualberta.cs.app.test;
-
+package ca.ualberta.cs.app.testPart4;
 
 import java.util.Date;
-import activity.PublishActivity;
+
+import model.Comment;
+import activity.AllTopicPageActivity;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.test.ActivityInstrumentationTestCase2;
-import model.Comment;
 
 /**
  * JUnit test cases for Comment model.
@@ -17,14 +17,13 @@ import model.Comment;
  * @author Yilu Su
  *
  */
-public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishActivity> {
+public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicPageActivity> {
 
 	/**
 	 * Constructor 
 	 */
 	public CommentModelTest() {
-		super(PublishActivity.class);
-		// TODO Auto-generated constructor stub
+		super(AllTopicPageActivity.class);
 	}
 
 	/**
@@ -32,7 +31,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * Create a comment, and check if the Id retrieved by getId method is correct.
 	 */
 	public void testGetId() {
-		Comment comment = new Comment("title","text", null,"userName");
+		Comment comment = new Comment("title","text", null, null, "userName");
 		Long timestamp = (new Date()).getTime();
 		// This may fail sometime, but the expected and actual are pretty close.
 		// If failed, see failure trace for detail.
@@ -47,7 +46,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * Then, use the setTitle method to change the title and check if the new title is correct. 
 	 */
 	public void testGetAndSetTitle(){
-		Comment comment = new Comment("title","text", null,"userName");
+		Comment comment = new Comment("title","text", null, null, "userName");
 		assertEquals(comment.getTitle(), "title");
 		
 		comment.setTitle("new title");
@@ -60,7 +59,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * Then, use the setText method to change the text and check if the new text is correct. 
 	 */
 	public void testGetAndSetText(){
-		Comment comment = new Comment("title","text", null,"userName");
+		Comment comment = new Comment("title","text", null, null, "userName");
 		assertEquals(comment.getText(), "text");
 		
 		comment.setText("new text");
@@ -79,7 +78,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 		Location location1 = new Location("mock");
 		location1.setLatitude(10);
 		location1.setLongitude(20);
-		Comment comment = new Comment("title","text", location1,"userName");
+		Comment comment = new Comment("title","text", location1, null, "userName");
 		assertEquals(comment.getLocation(), location1);
 		assertTrue(comment.getLocation().getLatitude()==10 
 				&& comment.getLocation().getLongitude()==20);
@@ -112,7 +111,7 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 		
 		assertEquals(comment.getUserName(), "userName");
 	}
-	
+
 	/**
 	 * Test whether comments can be added as replies of another comment,
 	 * and whether the replies of a comment can be retrieved.  <br>
@@ -121,9 +120,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * Then, use the getReplies method to retrieve the replies and check the correctness. 
 	 */
 	public void testGetAndAddReplies(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Comment rp1 = new Comment("title1","text1", null,"userName1");
-		Comment rp2 = new Comment("title2","text2", null,"userName2");
+		Comment comment = new Comment("title","text", null, null, "userName");
+		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
+		Comment rp2 = new Comment("title2","text2", null, null, "userName2");
 		comment.addReply(rp1);
 		comment.addReply(rp2);
 		assertEquals(comment.getReplies().get(0), rp1.getId());
@@ -138,12 +137,12 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * check both cases by comparing the Id.
 	 */
 	public void testSetParent(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Comment rp1 = new Comment("title1","text1", null,"userName1");
+		Comment comment = new Comment("title","text", null, null, "userName");
+		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
 		rp1.setParent(comment);
 		assertEquals(rp1.getParentId(), comment.getId());
 		
-		Comment rp2 = new Comment("title2","text2", null,"userName2");
+		Comment rp2 = new Comment("title2","text2", null, null, "userName2");
 		rp2.setParent(comment.getId());
 		assertEquals(rp2.getParentId(), comment.getId());
 	}
@@ -157,12 +156,14 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<PublishAc
 	 * from the getParentId method.
 	 */
 	public void testGetParentId(){
-		Comment comment = new Comment("title","text", null,"userName");
-		Comment rp1 = new Comment("title1","text1", null,"userName1");
+		Comment comment = new Comment("title","text", null, null, "userName");
+		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
 		rp1.setParent(comment);
 		assertEquals("equal", rp1.getParentId(), comment.getId());
 	}
 
+//	public void testEqualsObject() {
+//		fail("Not yet implemented");
+//	}
+
 }
-
-
