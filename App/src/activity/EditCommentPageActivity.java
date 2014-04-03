@@ -85,7 +85,7 @@ public class EditCommentPageActivity extends Activity {
 			String latString=latitude.getText().toString();
 			String lngString=longitude.getText().toString();
 			if(latString.trim().length()==0 && lngString.trim().length()==0){
-				io.commitEdit(commentID, editedTitle, editedText, location, EditCommentPageActivity.this);
+				io.commitEdit(commentID, editedTitle, editedText, location);
 				try{
 					Thread.sleep(500);
 				} 
@@ -107,7 +107,7 @@ public class EditCommentPageActivity extends Activity {
 					Toast.makeText(getApplicationContext(),"Error, location can not set.",Toast.LENGTH_SHORT).show();
 				}
 				else{
-					io.commitEdit(commentID, editedTitle, editedText, location, EditCommentPageActivity.this);
+					io.commitEdit(commentID, editedTitle, editedText, location);
 					try{
 						Thread.sleep(500);
 					} 

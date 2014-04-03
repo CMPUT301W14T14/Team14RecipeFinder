@@ -48,6 +48,10 @@ public class IoStreamHandler {
 	
 	private Gson gson=(new GsonConstructor()).getGson();
 	
+	/**
+	 * Construct a IoStreamHandler object.
+	 */
+	
 	public IoStreamHandler(){}
 	
 	/**
@@ -507,6 +511,7 @@ public class IoStreamHandler {
 	 * @param cc : a CacheController object.
 	 * @param tag : a String which indicates how the comment will be stored
 	 * @param activity : an Activity where the function will be called.
+	 * @return a Thread which perform the loading operation.
 	 */
 	public Thread addCache(final String commentID,final String parentID,final CacheController cc,final String tag,final Activity activity){
 		Thread thread=new Thread(){

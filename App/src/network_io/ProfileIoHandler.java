@@ -29,15 +29,25 @@ import com.google.gson.reflect.TypeToken;
 
 import customlized_gson.GsonConstructor;
 
-
+/**
+ * A network controller which controls the upload/download of UserProfile.
+ */
 public class ProfileIoHandler{
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";
 	public static final String LOG_TAG="Elastic Search";
 	
 	private Gson gson=(new GsonConstructor()).getGson();
 	
+	/**
+	 * Construct a ProfileIoHandler object.
+	 */
 	public ProfileIoHandler(){}
 	
+	/**
+	 * Update a UserProfile to the server, if the UserProfile with the same userName not exist, it will be add to the server.
+	 * @param profile : a UserProfile which will be update/upload.
+	 * @return a Thread which perform the upload operation.
+	 */
 	public Thread putOrUpdateProfile(final UserProfile profile){
 		Thread thread=new Thread(){
 			@Override
@@ -66,7 +76,17 @@ public class ProfileIoHandler{
 		return thread;
 	}
 	
-	
+	/**
+	 * Load and display the UserProfile in the UI and allow the user to edit.
+	 * @param userName : a String which is the user name linked to the profile.
+	 * @param activity : an Activity where the function will be called.
+	 * @param photo
+	 * @param userNameInput
+	 * @param biographyInput
+	 * @param twitterInput
+	 * @param facebookInput
+	 * @return
+	 */
 	public Thread loadSpecificProfileForUpdate(final String userName,final Activity activity,final ImageButton photo,
 			final EditText userNameInput,final EditText biographyInput,final EditText twitterInput,final EditText facebookInput){
 		
