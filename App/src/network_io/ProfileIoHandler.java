@@ -77,15 +77,15 @@ public class ProfileIoHandler{
 	}
 	
 	/**
-	 * Load and display the UserProfile in the UI and allow the user to edit.
+	 * Load and display the UserProfile in the UI and allow the user to edit.(if there are no such profile, then the only userNameInput EditText will be filled with the current user name);
 	 * @param userName : a String which is the user name linked to the profile.
 	 * @param activity : an Activity where the function will be called.
-	 * @param photo
-	 * @param userNameInput
-	 * @param biographyInput
-	 * @param twitterInput
-	 * @param facebookInput
-	 * @return
+	 * @param photo : an ImageButton where will display the user profile image.
+	 * @param userNameInput : an EditText will display the user name after calling this function.
+	 * @param biographyInput : an EditText will display the biography(if the UserProfile is founded on the server) after calling this function.
+	 * @param twitterInput : an EditText will display the twitter(if the UserProfile is founded on the server) after calling this function.
+	 * @param facebookInput : an EditText will display the face book(if the UserProfile is founded on the server) after calling this function.
+	 * @return a Thread which will perform the loading operation.
 	 */
 	public Thread loadSpecificProfileForUpdate(final String userName,final Activity activity,final ImageButton photo,
 			final EditText userNameInput,final EditText biographyInput,final EditText twitterInput,final EditText facebookInput){
@@ -139,7 +139,17 @@ public class ProfileIoHandler{
 		return thread;
 	}
 	
-	
+	/**
+	 * Load and display the UserProfile in the UI and allow the user to view.(if there are no such profile, then the only userName TextView will be filled with the comment author name);
+	 * @param userNameValue : a String which is the user name linked to the profile.
+	 * @param activity : an Activity where the function will be called.
+	 * @param photo : an ImageView where will display the user profile image.
+	 * @param userName : an TextView will display the user name after calling this function.
+	 * @param biography : an TextView will display the biography(if the UserProfile is founded on the server) after calling this function.
+	 * @param twitter : an TextView will display the twitter(if the UserProfile is founded on the server) after calling this function.
+	 * @param facebook : an TextView will display the face book(if the UserProfile is founded on the server) after calling this function.
+	 * @return a Thread which will perform the loading operation.
+	 */
 	public Thread loadSpecificProfileForView(final String userNameValue,final Activity activity,final ImageView photo,
 			final TextView userName,final TextView biography,final TextView twitter,final TextView facebook){
 		
