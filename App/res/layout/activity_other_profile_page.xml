@@ -15,7 +15,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="@string/user_name" />
+        android:text="@string/user_name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <ImageView
         android:id="@+id/other_profile_picture"
@@ -38,7 +39,8 @@
     <TextView
         android:id="@+id/other_profile_biography"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <View
         android:layout_width="fill_parent"
@@ -55,7 +57,8 @@
     <TextView
         android:id="@+id/other_profile_twitter"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <View
         android:layout_width="fill_parent"
@@ -72,7 +75,8 @@
     <TextView
         android:id="@+id/other_profile_facebook"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <View
         android:layout_width="fill_parent"
