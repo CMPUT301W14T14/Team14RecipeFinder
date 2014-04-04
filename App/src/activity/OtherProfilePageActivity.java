@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * An Activity allows user to view Comment author's profile (if it exists).
+ */
 public class OtherProfilePageActivity extends Activity {
 	
 	private String userNameValue=null;
@@ -28,6 +31,11 @@ public class OtherProfilePageActivity extends Activity {
 	
 	private ConnectionChecker connectionChecker=null;
 
+	/**
+	 * onCreate Method
+	 * Set content view, then set Action bar and views used to display the profile content, then check if the network
+	 * is online, if it is, load the profile and display it, otherwise, notify user it is off line.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,6 +66,9 @@ public class OtherProfilePageActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -20,6 +20,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * An Activity which allows user to reset user name, add/edit his profile to the server.
+ */
 public class ProfilePageActivity extends Activity {
 	
 	private TextView profileTitle;
@@ -40,6 +43,11 @@ public class ProfilePageActivity extends Activity {
 	
 	private Bitmap profilePhoto;
 	
+	/**
+	 *  onCreate method.
+	 *  Once the activity is created, first set the content view, and initialize ActionBar 
+	 *  Then, load each content of the profile to the corresponding EditText for edit(if exist) and set all the click listeners.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -79,11 +87,20 @@ public class ProfilePageActivity extends Activity {
 		commit.setOnClickListener(new UpdateProfileClick());
 	}
 	
+	/**
+	 * Direct user to the camera and take a photo for profile picture.
+	 */
 	public void takeAPhoto(){
 		Intent camIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(camIntent,OBTAIN_PIC_REQUEST_CODE);
 	}
 	
+	/**
+	 * Set the image preview if the photo has been taken and put the image Bitmap in to an attribute.
+	 * @param requestCode : a request code which allows user to take a photo.
+	 * @param data : an Intent object which contains the photo if the photo has been taken.
+	 * @param resultCode: a resultCode which shows the status of the photo.
+	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == OBTAIN_PIC_REQUEST_CODE && resultCode == RESULT_OK) {
 			profilePhoto = (Bitmap)data.getExtras().get("data");
@@ -91,8 +108,14 @@ public class ProfilePageActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * A click listener which allows user to attach a photo to the profile after click.
+	 */
 	class AttachPhotoClick implements OnClickListener{
 
+		/**
+		 * After click call the takeAPhoto function.
+		 */
 		@Override
 		public void onClick(View v){
 			takeAPhoto();
@@ -100,8 +123,16 @@ public class ProfilePageActivity extends Activity {
 		
 	}
 	
+	/**
+	 * A click listener will update/add a user profile to the server after click and reset the user name locally
+	 * if the network is online, other wise only the user name will be reset locally.
+	 */
 	class UpdateProfileClick implements OnClickListener{
 
+		/**
+		 * update/add a user profile to the server after click and reset the user name locally then finish the activity
+	     * if the network is online, other wise only the user name will be reset locally, and user will be notify.
+		 */
 		@Override
 		public void onClick(View v){
 			UserProfile newProfile=new UserProfile(userNameInput.getText().toString(),biographyInput.getText().toString(),
@@ -116,9 +147,14 @@ public class ProfilePageActivity extends Activity {
 			}
 		}
 	}
-	
+	/**
+	 * A click listener will finish the current Activity after click on the button.
+	 */
 	class CancelClick implements OnClickListener{
 
+		/**
+		 * finish the current activity
+		 */
 		@Override
 		public void onClick(View v){
 			finish();
