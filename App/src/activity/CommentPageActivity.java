@@ -371,6 +371,12 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		listViewAdapter.notifyDataSetChanged();
 	}
 
+	/**
+	 * Callback method to be invoked when the selection disappears from this view. 
+	 * The selection can disappear for instance when touch is activated or when the 
+	 * adapter becomes empty.
+	 * @param	arg0	The AdapterView that now contains no selected item. 
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		

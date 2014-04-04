@@ -118,6 +118,9 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		spinnerOsversions.setOnItemSelectedListener(this);
 	}
 
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
