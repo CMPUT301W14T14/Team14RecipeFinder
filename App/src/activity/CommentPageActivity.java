@@ -38,7 +38,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 /**
- * An Activity which display a specific Comment's Content, which allows user to edit, read/sort browse replies,
+ * An Activity which display a specific Comment's Content, which allows user choose to edit, read/sort browse replies,
  * add a reply, add Comment as favorite, add Comment as indicated comment.
  * view author's profile (if exist).
  * @author Xuping Fang,Yilu Su

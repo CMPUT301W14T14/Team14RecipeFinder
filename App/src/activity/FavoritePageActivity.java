@@ -32,6 +32,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * An activity which will Load and show all comments which has been marked as favorite 
+ * or indicated Comment to the user from the shared preferences 
+ * (with 5 different sorting options) in a ListView, user is able to
+ *  view a comment, and provide the access to the local comment 
+ *  which stored as favorites or indicated comment.
+ * @author Xuping Fang, Yilu Su
+ */
 public class FavoritePageActivity extends Activity implements OnItemSelectedListener {
 
 	Spinner spinnerOsversions;
@@ -46,6 +54,12 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 	
 	private TextView favNewLocation=null;
 	
+	/**
+	 *  onCreate method.
+	 *  Once the activity is created, first set the content view, and initialize ActionBar and a Spinner for sort options. 
+	 *  Then, load the Comment been marked as favorite or indicated depends on the intent extra, and adapt to the ListView with the Comment
+	 *  and set all the click listeners.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,7 +86,9 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		
 		favNewLocation=(TextView)findViewById(R.id.fav_new_location);
 	}
-	
+	/**
+	 * A click listener will show the content of a Comment if user clicked on that Comment in the ListView.
+	 */
 	class FavViewClick implements OnItemClickListener{
 
 		@Override
@@ -109,6 +125,12 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		return true;
 	}
 
+	/**
+	 * Set ActionBar's click listener, which allows user to create a new Comment,
+	 * view favorite Comment,view indicated Comment,view his own profile,refresh the list view
+	 * and logout due to which button user clicked on.
+	 * @param item : MenuItem which contains the menu item.
+	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
 		Intent intent;
@@ -122,6 +144,15 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		return super.onOptionsItemSelected(item);
 	}
 	
+	/**
+	 * Callback method to be invoked when an item in this view has been selected. 
+	 * This callback is invoked only when the newly selected position is different 
+	 * from the previously selected position or if there was no selected item.
+	 * @param	parent		The AdapterView where the selection happened.
+	 * @param	view		The view within the AdapterView that was clicked
+	 * @param	position	The position of the view in the adapter
+	 * @param	id			The row id of the item that is selected 
+	 */
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
 		
@@ -159,6 +190,12 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		listViewAdapter.notifyDataSetChanged();
 	}
 
+	/**
+	 * Callback method to be invoked when the selection disappears from this view. 
+	 * The selection can disappear for instance when touch is activated or when the 
+	 * adapter becomes empty.
+	 * @param	arg0	The AdapterView that now contains no selected item. 
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 
