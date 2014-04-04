@@ -8,6 +8,7 @@ import android.os.Bundle;
 /**
  * A class produce current or custom Location.
  * Adapted from https://github.com/baoliangwang/CurrentLocation
+ * @author xuping
  */
 public class LocationGenerator{
 	private LocationManager lm = null;

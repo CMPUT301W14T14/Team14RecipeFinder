@@ -15,6 +15,7 @@ import com.google.gson.JsonSerializer;
 /**
  * Provides custom serialization / deserialization for Location
  * Adapted from http://stackoverflow.com/questions/13944346/runtimeexception-in-gson-parsing-json-failed-to-invoke-protected-java-lang-class
+ * @author xuping
  */
 public class LocationConverter implements JsonSerializer<Location>,JsonDeserializer<Location>{
 	/**

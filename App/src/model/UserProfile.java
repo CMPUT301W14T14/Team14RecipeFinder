@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 /**
  * A class which stores all the information of the user.
+ * @author xuping
  */
 public class UserProfile{
 	

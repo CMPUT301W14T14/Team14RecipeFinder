@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 /**
  * A controller which controls the locally cached user name.
+ * @author xuping
  */
 public class UserNameHandler{
 	

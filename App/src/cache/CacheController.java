@@ -12,6 +12,7 @@ import customlized_gson.GsonConstructor;
 
 /**
  * A controller which used to add Comment in to the shared preferences and load Comment from the sharedPreferences.
+ * @author xuping
  */
 public class CacheController{
 	

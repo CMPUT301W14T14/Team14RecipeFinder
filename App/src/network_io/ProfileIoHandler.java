@@ -31,6 +31,7 @@ import customlized_gson.GsonConstructor;
 
 /**
  * A network controller which controls the upload/download of UserProfile.
+ * @author xuping
  */
 public class ProfileIoHandler{
 	public static final String SERVER_URL="http://cmput301.softwareprocess.es:8080/cmput301w14t14/";

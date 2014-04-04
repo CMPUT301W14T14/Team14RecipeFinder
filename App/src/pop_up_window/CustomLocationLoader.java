@@ -17,6 +17,7 @@ import com.example.projectapp.R;
 
 /**
  * A helper class will pop up a window for entering custom location.
+ * @author xuping
  */
 public class CustomLocationLoader{
 	/**

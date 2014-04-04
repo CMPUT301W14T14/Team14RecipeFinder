@@ -34,6 +34,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 /**
  * An activity which will Load and show all top-level comments to the user from the Internet(with 5 different sorting options),it also allow user to publish
  * a new top level comment, view a comment, and provide the access to the local comment which stored as favorites or indicated comment and logout option.
+ * @author Xuping Fang, Yilu Su
  */
 
 public class AllTopicPageActivity extends Activity implements OnItemSelectedListener {

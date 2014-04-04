@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 
 /**
  * A Class which major task is to check the Internet is connected or not.
+ * @author xuping
  */
 public class ConnectionChecker{
 	

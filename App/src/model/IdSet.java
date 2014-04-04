@@ -5,6 +5,7 @@ import java.util.Collection;
 
 /**
  * A class which used to store all of the top level comment id.
+ * @author xuping
  */
 public class IdSet{
 	private ArrayList<String> set=null;
