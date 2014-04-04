@@ -57,29 +57,38 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 			LayoutInflater inflater = LayoutInflater.from(this.getContext());
 			convertView = inflater.inflate(R.layout.single_comment_layout, null);
 		}
-		Comment c = this.getItem(position);
+		Comment comment = this.getItem(position);
 		
-		if(c!=null){
+		if(comment!=null){
 			ImageView comment_pic=(ImageView)convertView.findViewById(R.id.comment_pic);
-			comment_pic.setImageBitmap(c.getPicture());
+			comment_pic.setImageBitmap(comment.getPicture());
 			TextView comment_text=(TextView)convertView.findViewById(R.id.comment_text);
-			comment_text.setText(c.getTitle());
+			comment_text.setText(comment.getTitle());
 			TextView comment_info=(TextView)convertView.findViewById(R.id.user_name_and_time_posted);
-			comment_info.setText("Posted by: "+c.getUserName()+" At: "+(new Date(c.getTimePosted()).toString()));
+			comment_info.setText("Posted by: "+comment.getUserName()+" At: "+(new Date(comment.getTimePosted()).toString()));
 		}
 		return convertView;
 	}
 	
+	/**
+	 * Sort the ListView by the location provided(Comment more close to this location will appear at front).
+	 * @param location : a Location object which will be used as the sorting reference.
+	 */
 	public void setSortingLocation(Location location){
 		this.center=location;
 		this.setSortingOption(SORT_BY_LOC);
 	}
-	
+	/**
+	 * Sort the ListView by the location provided and the ScoreSystem (Comment more close to this location and more fresh will appear at front).
+	 * @param location : a Location object which will be used as the sorting reference.
+	 */
 	public void sortByDefault(Location location){
 		this.center=location;
 		this.setSortingOption(SORT_BY_DEF);
 	}
-	
+	/**
+	 * Overrides the notifyDateSetChanged method, Before display the new content of the ListView, sort the Data with current sorting option.
+	 */
 	@Override
 	public void notifyDataSetChanged(){
 		
@@ -106,6 +115,10 @@ public class ListViewAdapter extends ArrayAdapter<Comment>{
 		super.notifyDataSetChanged();
 	}
 	
+	/**
+	 * Set the current sorting option.
+	 * @param option : a String which is one of the sorting options.
+	 */
 	public void setSortingOption(String option){
 		this.sortingOption=option;
 	}

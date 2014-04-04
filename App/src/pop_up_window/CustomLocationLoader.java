@@ -15,11 +15,23 @@ import android.widget.Toast;
 
 import com.example.projectapp.R;
 
-
+/**
+ * A helper class will pop up a window for entering custom location.
+ */
 public class CustomLocationLoader{
-	
+	/**
+	 * Construct a CustomLocationLoader.
+	 */
 	public CustomLocationLoader(){}
 	
+	/**
+	 * Load and show the window, then set the click listener of the button on the window.
+	 * @param newLocation :  a TextView which will display the custom location after input and commit the custom location.
+	 * @param listViewAdapter : a ListViewAdapter which is the adapter of the ListView will be sorted.
+	 * @param locationGenerator : a LocationGenerator object which will help construct the custom location.
+	 * @param context : a Context.
+	 * @param activity : The Activity where the function will be called.
+	 */
 	public void loadWindow(final TextView newLocation,final ListViewAdapter listViewAdapter,final LocationGenerator locationGenerator,final Context context,final Activity activity){
 		// get prompts.xml view
 		LayoutInflater layoutInflater = LayoutInflater.from(context);

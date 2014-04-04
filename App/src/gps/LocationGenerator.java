@@ -58,7 +58,7 @@ public class LocationGenerator{
 	 * 
 	 * @param latitude custom latitude in double.
 	 * @param longitude custom longitude in double.
-	 * @return the custom setted location by given latitude, and the given longitude.
+	 * @return the custom set location by given latitude, and the given longitude.
 	 */
 	
 	public Location getCustomLocation(double latitude,double longitude){
