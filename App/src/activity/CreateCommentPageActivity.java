@@ -26,6 +26,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * An Activity which provide user option to create/reply a Comment with a location if GPS is enabled,
+ * attach a picture to the Comment or cancel the publish.
+ * @author Xuping Fang,Yilu Su
+ */
 public class CreateCommentPageActivity extends Activity {
 	
 	public static final int OBTAIN_PIC_REQUEST_CODE=252;
@@ -46,6 +51,13 @@ public class CreateCommentPageActivity extends Activity {
 	
 	private Bitmap attachedPic=null;
 
+	
+	/**
+	 *  onCreate method.
+	 *  Once the activity is created, first set the content view, and initialize ActionBar. 
+	 *  Then, load the view objects which allows user to publish or reply to a Comment, at last,set the click
+	 *  listeners.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -84,14 +96,17 @@ public class CreateCommentPageActivity extends Activity {
 	}
 	
 	/**
-	 * Direct user to camera in order to take the attached photo.
+	 * Direct user to the camera in order to take the attached photo.
 	 */
 	public void takeAPhoto(){
 		Intent camIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		startActivityForResult(camIntent,OBTAIN_PIC_REQUEST_CODE);
 	}
 	/**
-	 * Set the image preview if the photo has been taken.
+	 * Set the image preview if the photo has been taken and put the image Bitmap in to an attribute.
+	 * @param requestCode : a request code which allows user to take a photo.
+	 * @param data : an Intent object which contains the photo if the photo has been taken.
+	 * @param resultCode: a resultCode which shows the status of the photo.
 	 */
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == OBTAIN_PIC_REQUEST_CODE && resultCode == RESULT_OK) {
@@ -102,7 +117,7 @@ public class CreateCommentPageActivity extends Activity {
 	/**
 	 * This click listener creates a new comment and commit it to the server,
 	 * if this comment is a top level comment,add its id to the topLevelIdSet.
-	 * Otherwise add its id to the comment it replies to.
+	 * Otherwise add its id to the Comment's reply set which it replies to.
 	 */
 	class CommitClick implements OnClickListener{
         @Override

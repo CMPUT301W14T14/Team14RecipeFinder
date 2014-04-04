@@ -151,7 +151,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	class EditClick implements OnClickListener{
 		
 		/**
-		 * Start EditCommentPageActivity with the comment id attached to the Intent if the Comment author name is the current user name
+		 * Start EditCommentPageActivity with the comment id attached to the Intent 
+		 * if the Comment author name is the current user name
 		 * otherwise notify user that he cannot edit this Comment (After Click).
 		 */
 		@Override
@@ -172,7 +173,8 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	}
 	
 	/**
-	 * A click listener will save the Comment as favorite locally if network is connected, otherwise notify user that network is not connected.
+	 * A click listener will save the Comment as favorite locally if network is connected,
+	 * otherwise notify user that network is not connected.
 	 */
 	class LikeClick implements OnClickListener{
 		
