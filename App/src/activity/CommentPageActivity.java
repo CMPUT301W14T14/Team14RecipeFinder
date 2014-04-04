@@ -312,7 +312,10 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

@@ -115,11 +115,17 @@ public class CreateCommentPageActivity extends Activity {
 		}
 	}
 	/**
-	 * This click listener creates a new comment and commit it to the server,
+	 * This click listener creates a new comment and commit it to the server after click,
 	 * if this comment is a top level comment,add its id to the topLevelIdSet.
 	 * Otherwise add its id to the Comment's reply set which it replies to.
 	 */
 	class CommitClick implements OnClickListener{
+		/**
+		 * After user click the button, first check the network state, if the network is off line
+		 * notify user that he cannot publish a Comment at this time. Otherwise, check if this new Comment
+		 * should be a reply or a top level comment and perform operation due to different ,then add the new Comment
+		 * to the server, and finish the Activity.
+		 */
         @Override
 		public void onClick(View v){
         	ConnectionChecker connectionChecker=new ConnectionChecker();
@@ -147,16 +153,26 @@ public class CreateCommentPageActivity extends Activity {
         	finish();
         }
 	}
-	
+	/**
+	 * A click listener which will direct user to take a photo for Comment's attached picture after click.
+	 */
 	class AttachClick implements OnClickListener{
+		/**
+		 * Call takeAPhoto function after click.
+		 */
         @Override
 		public void onClick(View v){
         	takeAPhoto();
 		}
 	}
 	
-	
+	/**
+	 * A click listener which will finish the current Activity after click.
+	 */
 	class CancelClick implements OnClickListener{
+		/**
+		 * Finish the current Activity.
+		 */
         @Override
 		public void onClick(View v){
         	finish();
@@ -172,6 +188,9 @@ public class CreateCommentPageActivity extends Activity {
 		actionBar.setDisplayOptions(0,ActionBar.DISPLAY_SHOW_TITLE);
 	}
 	
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
 		getMenuInflater().inflate(R.menu.create_comment_page, menu);
