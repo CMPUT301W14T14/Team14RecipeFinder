@@ -87,10 +87,13 @@ public class FavoritePageActivity extends Activity implements OnItemSelectedList
 		favNewLocation=(TextView)findViewById(R.id.fav_new_location);
 	}
 	/**
-	 * A click listener will show the content of a Comment if user clicked on that Comment in the ListView.
+	 * A click listener will direct user to view the content of a Comment if user clicked on that Comment in the ListView.
 	 */
 	class FavViewClick implements OnItemClickListener{
 
+		/**
+		 * Start the LocalCommentPageActivity with Intent attached with the Json String of that Comment.
+		 */
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
 			Intent pushIntent=new Intent(FavoritePageActivity.this,LocalCommentPageActivity.class);

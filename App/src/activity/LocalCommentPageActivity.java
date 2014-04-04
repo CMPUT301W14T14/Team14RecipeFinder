@@ -36,6 +36,10 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+/**
+ * An Activity will display the content of a locally cached Comment to the user with the option to sort the Comment replies.
+ * @author Xuping Fang, Yilu Su
+ */
 public class LocalCommentPageActivity extends Activity implements OnItemSelectedListener {
 	
 	Spinner spinnerOsversions;
@@ -53,6 +57,11 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 	
 	private ListViewAdapter listViewAdapter=null;
 	
+	/**
+	 *  onCreate method.
+	 *  Once the activity is created, first set the content view, and initialize ActionBar and a Spinner for sort options. 
+	 *  Then, load the content of the Comment and adapt to the ListView with the Comment replies and set all the click listeners.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,8 +101,14 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 		locationGenerator=new LocationGenerator((LocationManager)getSystemService(Context.LOCATION_SERVICE));
 	}
 	
+	/**
+	 * A click listener will direct user to view the content of a Comment if user clicked on that Comment in the ListView.
+	 */
 	class RecurLocalView implements OnItemClickListener{
 
+		/**
+		 * Start the LocalCommentPageActivity with Intent attached with the Json String of that Comment.
+		 */
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int pos,long arg3){
 			Intent pushIntent=new Intent(LocalCommentPageActivity.this,LocalCommentPageActivity.class);
@@ -121,6 +136,9 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 		spinnerOsversions.setOnItemSelectedListener(this);
 	}
 
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -128,6 +146,15 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 		return true;
 	}
 
+	/**
+	 * Callback method to be invoked when an item in this view has been selected. 
+	 * This callback is invoked only when the newly selected position is different 
+	 * from the previously selected position or if there was no selected item.
+	 * @param	parent		The AdapterView where the selection happened.
+	 * @param	view		The view within the AdapterView that was clicked
+	 * @param	position	The position of the view in the adapter
+	 * @param	id			The row id of the item that is selected 
+	 */
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		spinnerOsversions.setSelection(position);
 		String sortSelect = (String) spinnerOsversions.getSelectedItem();
@@ -164,6 +191,12 @@ public class LocalCommentPageActivity extends Activity implements OnItemSelected
 		listViewAdapter.notifyDataSetChanged();
 	}
 
+	/**
+	 * Callback method to be invoked when the selection disappears from this view. 
+	 * The selection can disappear for instance when touch is activated or when the 
+	 * adapter becomes empty.
+	 * @param	arg0	The AdapterView that now contains no selected item. 
+	 */
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
