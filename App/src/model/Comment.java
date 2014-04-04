@@ -26,7 +26,7 @@ public class Comment {
 	
 	//Constructor:
 	/**
-	 * Construct a Comment object.
+	 * Construct a Comment object with given parameters as attribute.
 	 * @param title : a String which is the title of the comment.
 	 * @param text : a String which is the content of the comment.
 	 * @param location : a Location object which is the location of this comment.

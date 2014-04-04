@@ -268,7 +268,9 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 	}
 	
 	/**
-	 * Set ActionBar's click listener.
+	 * Set ActionBar's click listener, which allows user to create a new reply,
+	 * view favorite Comment,view indicated Comment,view his own profile,refresh the reply list view
+	 * due to which button user clicked on.
 	 * @param item : MenuItem which contains the menu item.
 	 */
 	@Override

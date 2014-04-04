@@ -22,7 +22,7 @@ public class CacheController{
 	private Gson gson=(new GsonConstructor()).getGson();
 	
 	/**
-	 * Construct a CacheController object.
+	 * Construct a CacheController controller.
 	 */
 	public CacheController(){}
 	

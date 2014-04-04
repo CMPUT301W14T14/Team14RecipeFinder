@@ -13,7 +13,7 @@ import com.google.gson.GsonBuilder;
  */
 public class GsonConstructor {
 	/**
-	 * Construct a Gson_Constructor object.
+	 * Construct a Gson_Constructor contructor.
 	 */
 	public GsonConstructor(){}
 	/**
