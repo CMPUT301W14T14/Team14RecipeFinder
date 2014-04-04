@@ -47,6 +47,7 @@ public class ProfilePageActivity extends Activity {
 	 *  onCreate method.
 	 *  Once the activity is created, first set the content view, and initialize ActionBar 
 	 *  Then, load each content of the profile to the corresponding EditText for edit(if exist) and set all the click listeners.
+	 *  if the network is off, then nothing will be loaded, and user will be notify.
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
