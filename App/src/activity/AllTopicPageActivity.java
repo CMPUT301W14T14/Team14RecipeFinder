@@ -250,7 +250,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		else if(sortSelect == sortByDefault){
 			Location currentLocation=locationGenerator.getCurrentLocation();
 			if(currentLocation==null){
-				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by deafult.",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by default.",Toast.LENGTH_SHORT).show();
 			}
 			else{
 				listViewAdapter.sortByDefault(currentLocation);
