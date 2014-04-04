@@ -54,7 +54,7 @@ public class ProfileIoHandler{
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpPut request = new HttpPut(SERVER_URL+"UserProfile/"+profile.getUserName()+"/");
+				HttpPut request = new HttpPut(SERVER_URL+"UserProfile/"+profile.getUserName().replaceAll("\\s","")+"/");
 				try{
 					request.setEntity(new StringEntity(gson.toJson(profile)));
 				}
@@ -95,7 +95,7 @@ public class ProfileIoHandler{
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"UserProfile/"+userName+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"UserProfile/"+userName.replaceAll("\\s","")+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
@@ -158,7 +158,7 @@ public class ProfileIoHandler{
 			@Override
 			public void run(){
 				HttpClient client=new DefaultHttpClient();
-				HttpGet request = new HttpGet(SERVER_URL+"UserProfile/"+userNameValue+"/");
+				HttpGet request = new HttpGet(SERVER_URL+"UserProfile/"+userNameValue.replaceAll("\\s","")+"/");
 				HttpResponse response=null;
 				String responseJson = "";
 				try{
