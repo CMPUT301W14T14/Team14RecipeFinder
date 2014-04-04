@@ -101,7 +101,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	class ViewClick implements OnItemClickListener{
 		/**
 		 * Get the Comment in the position which user clicked on, and start CommentPageActivity 
-		 * ,Intent is attached with the Comment's id and the name of the Comment's author.
+		 * ,Intent is attached with the Comment's id and the name of the Comment's author after click.
 		 */
 		@Override
 		public void onItemClick(AdapterView<?> arg0,View arg1,int pos,long arg3){
