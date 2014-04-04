@@ -65,7 +65,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 
 	/**
 	 *  onCreate method.
-	 *  Once the activity is created, first set the content view, and initialize ActionBat and a Spinner for sort options. 
+	 *  Once the activity is created, first set the content view, and initialize ActionBar and a Spinner for sort options. 
 	 *  Then, load all the topics and adapt to the ListView and set all the click listeners.
 	 */
 	@Override
@@ -99,7 +99,10 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	 * A click listener which direct user to view the details of a specific comment after user click on that comment in the ListView.
 	 */
 	class ViewClick implements OnItemClickListener{
-
+		/**
+		 * Get the Comment in the position which user clicked on, and start CommentPageActivity 
+		 * ,Intent is attached with the Comment's id and the name of the Comment's author.
+		 */
 		@Override
 		public void onItemClick(AdapterView<?> arg0,View arg1,int pos,long arg3){
 			Comment comment=(Comment)arg0.getItemAtPosition(pos);
@@ -139,6 +142,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 
 	/**
 	 *  Initialize View. Get ActionBar to enable title and disable title.
+	 *  setup spinner with sorting options.
 	 */
 	private void initView() {
 		// ActionBar
@@ -154,9 +158,6 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		spinnerOsversions.setOnItemSelectedListener(this);
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -165,7 +166,8 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	}
 
 	/**
-	 * 
+	 * Set ActionBar's click listener.
+	 * @param item : MenuItem which contains the menu item.
 	 */
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
