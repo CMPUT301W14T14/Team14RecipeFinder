@@ -122,8 +122,9 @@ public class CreateCommentPageActivity extends Activity {
 	class CommitClick implements OnClickListener{
 		/**
 		 * After user click the button, first check the network state, if the network is off line
-		 * notify user that he cannot publish a Comment at this time. Otherwise, check if this new Comment
-		 * should be a reply or a top level comment and perform operation due to different ,then add the new Comment
+		 * notify user that he cannot publish a Comment at this time. Otherwise, get the user input from different views 
+		 * to create a new Comment object, then check if this new Comment
+		 * should be a reply or a top level comment and perform operation due to different ,at last add the new Comment
 		 * to the server, and finish the Activity.
 		 */
         @Override

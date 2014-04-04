@@ -21,6 +21,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+/**
+ * An Activity which will load an 
+ * existing comment and provide the Comment 
+ * author option to edit the Comment and update it 
+ * on the server.
+ * @author Xuping Fang, Yilu Su
+ */
 public class EditCommentPageActivity extends Activity {
 	
 	private EditText title=null;
@@ -35,6 +42,12 @@ public class EditCommentPageActivity extends Activity {
 	private IoStreamHandler io=null;
 	private LocationGenerator locationGenerator=null;
 
+	/**
+	 *  onCreate method.
+	 *  Once the activity is created, first set the content view, and initialize ActionBar. 
+	 *  Then, load the view objects which allows user to edit a Comment, at last,set the click
+	 *  listeners.
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,15 +76,33 @@ public class EditCommentPageActivity extends Activity {
 		
 	}
 	
+	/**
+	 * A click listener will finish the current Activity after click on the button.
+	 */
 	class CancelClick implements OnClickListener{
+		/**
+		 * Finish the current Activity.
+		 */
         @Override
 		public void onClick(View v){
         	finish();
 		}
 	}
 	
+	/**
+	 * A click listener will updated the edited Comment to the server after click on the button if network
+	 * is connected and the user input is correct.
+	 */
 	class CommitEditClick implements OnClickListener{
 
+		/**
+		 * After user click on this button, check the Internet connection first, if the Internet is off,
+		 * notify user that he cannot commit his edit at this time.
+		 * Otherwise, check the location input from the EditText, if there's nothing, set location to null and get other 
+		 * user input(title,content) then commit it to the server then finish the activity. else if there is something in the location input, first check
+		 * if the format is correct and GPS is functional,notify user if the location input format is wrong or GPS is not functional.
+		 * otherwise commit the edited Comment with location to the server then finish the activity.
+		 */
 		@Override
 		public void onClick(View v){
 			ConnectionChecker connectionChecker=new ConnectionChecker();
@@ -131,6 +162,9 @@ public class EditCommentPageActivity extends Activity {
 		actionBar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 	}
 
+	/**
+	 * Inflate the menu; this adds items to the action bar if it is present.
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
