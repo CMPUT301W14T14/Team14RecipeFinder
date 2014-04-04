@@ -220,6 +220,10 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		switch (item.getItemId()) {
 
 		case R.id.action_create:
+			if((new UserNameHandler()).getUserName(this).equals("")){
+				Toast.makeText(getApplicationContext(),"Guest cannot reply to comment.",Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			intent = new Intent(this, CreateCommentPageActivity.class);
 			intent.putExtra("parentID",commentID);
 			startActivity(intent);
@@ -234,6 +238,10 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 			startActivity(intent);
 			return true;
 		case R.id.action_profile:
+			if((new UserNameHandler()).getUserName(this).equals("")){
+				Toast.makeText(getApplicationContext(),"Guest cannot create/edit profile.",Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			intent = new Intent(this, ProfilePageActivity.class);
 			startActivity(intent);
 			return true;
@@ -279,7 +287,7 @@ public class CommentPageActivity extends Activity implements OnItemSelectedListe
 		else if(sortSelect == AllTopicPageActivity.sortByDefault){
 			Location currentLocation=locationGenerator.getCurrentLocation();
 			if(currentLocation==null){
-				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by deafult.",Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(),"GPS is not functional, cannot sort by default.",Toast.LENGTH_SHORT).show();
 			}
 			else{
 				listViewAdapter.sortByDefault(currentLocation);

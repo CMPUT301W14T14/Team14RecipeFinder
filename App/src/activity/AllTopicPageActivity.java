@@ -111,7 +111,7 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 	}
 	
 	/**
-	 * onResme method.
+	 * onResume method.
 	 * This method only calls refresh when the activity calls this method.
 	 */
 	@Override
@@ -172,6 +172,10 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 		switch (item.getItemId()) {
 
 		case R.id.action_create:
+			if((new UserNameHandler()).getUserName(this).equals("")){
+				Toast.makeText(getApplicationContext(),"Guest cannot publish comment.",Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			intent = new Intent(this, CreateCommentPageActivity.class);
 			intent.putExtra("isTopLevel",true);
 			startActivity(intent);
@@ -186,6 +190,10 @@ public class AllTopicPageActivity extends Activity implements OnItemSelectedList
 			startActivity(intent);
 			return true;
 		case R.id.action_profile:
+			if((new UserNameHandler()).getUserName(this).equals("")){
+				Toast.makeText(getApplicationContext(),"Guest cannot create/edit profile.",Toast.LENGTH_SHORT).show();
+				return true;
+			}
 			intent = new Intent(this, ProfilePageActivity.class);
 			startActivity(intent);
 			return true;
