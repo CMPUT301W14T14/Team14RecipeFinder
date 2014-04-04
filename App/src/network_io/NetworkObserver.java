@@ -7,7 +7,7 @@ import activity.AllTopicPageActivity;
 import activity.CommentPageActivity;
 
 /**
- * A class which provides the tracking of Internet state and allowing the current Activity to repose the changing of Internet state
+ * A class which provides the tracking of Internet state and allowing the current Activity to repose the changing of Internet state.
  */
 public class NetworkObserver{
 	

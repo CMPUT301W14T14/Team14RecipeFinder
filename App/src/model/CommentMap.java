@@ -25,7 +25,9 @@ public class CommentMap{
 	}
 	
 	/**
-	 * Update a Comment object in the CommentMap with its own id, if no Comment with the same ID exists, then added the Comment object to the CommentMap, notify the ArrayAdapter<Comment> the data set has changed
+	 * Add a Comment object in the CommentMap with its own id,
+	 * if Comment with the same ID exists,do nothing,
+	 * notify the ArrayAdapter<Comment> the data set has changed
 	 * after update if the ArrayAdapter<Comment> has been set.
 	 * @param comment a Comment object.
 	 */
@@ -51,7 +53,7 @@ public class CommentMap{
 	}
 	
 	/**
-	 * @return a unmodifiable list which contains all Comment objects in this CommentMap which can be used to construct a list view adapter.
+	 * @return a list which contains all Comment objects in this CommentMap which can be used to construct a ListView adapter.
 	 */
 	
 	public List<Comment> getCurrentList(){

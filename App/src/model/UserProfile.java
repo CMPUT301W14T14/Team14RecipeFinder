@@ -2,7 +2,9 @@ package model;
 
 import android.graphics.Bitmap;
 
-
+/**
+ * A class which stores all the information of the user.
+ */
 public class UserProfile{
 	
 	private String userName=null;
@@ -11,6 +13,14 @@ public class UserProfile{
 	private String facebook=null;
 	private Bitmap photo=null;
 	
+	/**
+	 * Construct a UserProfile object which contains the user information.
+	 * @param userName : a String which is the user name.
+	 * @param biography : a String which is the user biography.
+	 * @param twitter : a String which is the user's twitter.
+	 * @param facebook : a String which is the user's facebook.
+	 * @param photo : a Bitmap which is the user's profile picture.
+	 */
 	public UserProfile(String userName,String biography,String twitter,String facebook,Bitmap photo){
 		this.userName=userName;
 		this.biography=biography;

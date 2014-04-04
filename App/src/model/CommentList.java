@@ -6,7 +6,7 @@ import java.util.List;
 
 
 /**
- * A list class used to store locally cached Comment objects in shared preferences in Json format and able to return a list for the listView adapter construction.
+ * A list class used to store locally cached Comment objects in shared preferences with Json format and able to return a list for the listView adapter construction.
  */
 public class CommentList{
 	
@@ -21,7 +21,7 @@ public class CommentList{
 	}
 	/**
 	 * Add a Comment object to the CommentList, if a Comment with a same id already exists, then the old one will be removed before the new one been added. 
-	 * @param comment a Comment object.
+	 * @param comment : a Comment object.
 	 */
 	public void add(Comment comment){
 		this.comments.remove(comment);
@@ -35,7 +35,7 @@ public class CommentList{
 		this.comments.clear();
 	}
 	/**
-	 * @return a unmodifiable list which can be used to construct a list view adapter
+	 * @return a list which can be used to construct a ListView adapter.
 	 */
 	public List<Comment> getCurrentList(){
 		return this.comments;
