@@ -50,7 +50,7 @@ public class IoStreamHandler {
 	private Gson gson=(new GsonConstructor()).getGson();
 	
 	/**
-	 * Construct a IoStreamHandler object.
+	 * Construct a IoStreamHandler controller object.
 	 */
 	
 	public IoStreamHandler(){}
