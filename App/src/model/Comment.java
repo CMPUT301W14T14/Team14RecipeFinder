@@ -41,7 +41,7 @@ public class Comment {
 		this.picture=picture;
 		this.timePosted=(new Date()).getTime();
 		this.userName=userName;
-		this.id=this.userName+this.timePosted;
+		this.id=(this.userName+this.timePosted).replaceAll("\\s","");
 		this.replyIdSet=new ArrayList<String>();
 	}
 	
