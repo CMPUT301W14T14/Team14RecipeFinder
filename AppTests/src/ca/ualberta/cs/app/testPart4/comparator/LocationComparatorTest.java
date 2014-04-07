@@ -28,7 +28,8 @@ public class LocationComparatorTest extends ActivityInstrumentationTestCase2<All
 	 * Test whether the compare method returns the correct value. <br>
 	 * First, create two comments and a locationComparator with a center location.
 	 * Then, check if the compare method returns the correct value when comments with 
-	 * different location are passed in.
+	 * different location are passed in. <br>
+	 * Methods tested: compare
 	 */
 	public void testCompare() {
 		Location location0 = new Location("mock");

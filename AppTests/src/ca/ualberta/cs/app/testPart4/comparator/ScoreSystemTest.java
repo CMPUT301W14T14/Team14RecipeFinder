@@ -27,7 +27,8 @@ public class ScoreSystemTest extends ActivityInstrumentationTestCase2<AllTopicPa
 	 * Test whether the compare method returns the correct value. <br>
 	 * First, create two comments and a scoreSystem with a center location.
 	 * Then, check if the compare method returns the correct value when comments with 
-	 * different scores are passed in.
+	 * different scores are passed in. <br>
+	 * Methods tested: compare
 	 */
 	public void testCompare() {
 		Location location0 = new Location("mock");

@@ -27,7 +27,8 @@ public class CommentListModelTest extends ActivityInstrumentationTestCase2<AllTo
      * Test cases for CommentList model. <br>
      * Create a commentList and some comments. 
      * First, add comments to the commentList and check the content. 
-     * Then, clear the commentList and check the content again.
+     * Then, clear the commentList and check the content again. <br>
+     * Methods tested: add, clear, and getCurrentList.
      */
     public void testCommentListModel() {
     	CommentList commentList = new CommentList();

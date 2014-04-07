@@ -27,7 +27,8 @@ public class IdSetModelTest extends ActivityInstrumentationTestCase2<AllTopicPag
      * Test cases for IdSet model. <br>
      * Create a idSet and some strings.
      * First, add strings to the idSet and check the content. 
-     * Then, clear the idSet and check the content again.
+     * Then, clear the idSet and check the content again. <br>
+     * Methods tested: add, getSet, and clear.
      */
 	public void testIdSetModel() {
 		String string1 = "id 1";

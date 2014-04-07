@@ -24,7 +24,8 @@ public class BitmapConverterTest extends ActivityInstrumentationTestCase2<AllTop
 
 	/**
 	 * Test whether the BitmapConverter can properly serialize and deserialize a bitmap <br>
-	 * First, create a mockup bitmap. Serialize followed by deserialize, and then check.
+	 * First, create a mockup bitmap. Serialize followed by deserialize, and then check. <br>
+	 * Methods tested: serialize and deserialize.
 	 */
 	public void testLBitmapConverter() {
 		Bitmap bitmap = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);

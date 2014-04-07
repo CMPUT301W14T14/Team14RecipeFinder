@@ -28,7 +28,8 @@ public class CommentMapModelTest extends ActivityInstrumentationTestCase2<AllTop
      * Create a commentMap and some comments. 
      * First, use updateComment method to update the comments to the commentMap, 
      * and then verify the content using getComment and getCurrentList method. 
-     * Finally, clear the commentMap and check the content again.
+     * Finally, clear the commentMap and check the content again. <br>
+	 * Methods tested: addComment, getComment, getCurrentList and clear.
      */
 	public void testCommentMapModel() {
 		CommentMap commentMap = new CommentMap();

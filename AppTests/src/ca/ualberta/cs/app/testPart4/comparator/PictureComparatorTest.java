@@ -28,7 +28,8 @@ public class PictureComparatorTest extends ActivityInstrumentationTestCase2<AllT
 	 * Test whether the compare method returns the correct value. <br>
 	 * First, create two comments and a pictureComparator.
 	 * Then, check if the compare method returns the correct value when comments with 
-	 * or without a picture are passed in.
+	 * or without a picture are passed in.<br>
+	 * Methods tested: compare
 	 */
 	public void testCompare() {
 		PictureComparator pictureComparator = new PictureComparator();

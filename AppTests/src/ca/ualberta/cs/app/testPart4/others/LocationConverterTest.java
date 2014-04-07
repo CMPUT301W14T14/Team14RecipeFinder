@@ -23,7 +23,8 @@ public class LocationConverterTest extends ActivityInstrumentationTestCase2<AllT
 
 	/**
 	 * Test whether the LocationConverter can properly serialize and deserialize a location <br>
-	 * First, create a mockup location. Serialize followed by deserialize, and then check.
+	 * First, create a mockup location. Serialize followed by deserialize, and then check. <br>
+	 * Methods tested: serialize and deserialize.
 	 */
 	public void testLocationConverter() {
 		Location location = new Location("mock");

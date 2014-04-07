@@ -28,7 +28,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 
 	/**
 	 * Test whether the Id of a comment can be retrieved.
-	 * Create a comment, and check if the Id retrieved by getId method is correct.
+	 * Create a comment, and check if the Id retrieved by getId method is correct. <br>
+	 * Methods tested: getId
 	 */
 	public void testGetId() {
 		Comment comment = new Comment("title","text", null, null, "userName");
@@ -43,7 +44,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	/**
 	 * Test whether the title of a comment can be retrieved and edited. <br>
 	 * First, create a comment and check if the title retrieved by getTitle method is correct. 
-	 * Then, use the setTitle method to change the title and check if the new title is correct. 
+	 * Then, use the setTitle method to change the title and check if the new title is correct. <br>
+	 * Methods tested: getTitle and setTitle
 	 */
 	public void testGetAndSetTitle(){
 		Comment comment = new Comment("title","text", null, null, "userName");
@@ -56,7 +58,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	/**
 	 * Test whether the text of a comment can be retrieved and edited. <br>
 	 * First, create a comment and check if the text retrieved by getText method is correct. 
-	 * Then, use the setText method to change the text and check if the new text is correct. 
+	 * Then, use the setText method to change the text and check if the new text is correct. <br>
+	 * Methods tested: getText and setText.
 	 */
 	public void testGetAndSetText(){
 		Comment comment = new Comment("title","text", null, null, "userName");
@@ -72,7 +75,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * method is correct by comparing both latitude and longitude. 
 	 * Then, use the setLocation method to change the location of the comment to a 
 	 * different place and check if the new text is correct by comparing both 
-	 * latitude and longitude. 
+	 * latitude and longitude. <br>
+	 * Methods tested: getLocation and setLocation.
 	 */
 	public void testGetAndSetLocation(){
 		Location location1 = new Location("mock");
@@ -95,7 +99,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	/**
 	 * Test whether the picture, timePosted, and userName of a comment can be retrieved. <br>
 	 * First, create a comment with picture, and then check if the retrieved picture, 
-	 * timePosted, and userName by their corresponding getter methods are correct. 
+	 * timePosted, and userName by their corresponding getter methods are correct. <br>
+	 * Methods tested: getPicture, getTimePosted and getUserName
 	 */
 	public void testMoreGetters(){
 		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
@@ -117,7 +122,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * and whether the replies of a comment can be retrieved.  <br>
 	 * First, create three comments and use addReply method to add two of them as replies 
 	 * of the other comment. 
-	 * Then, use the getReplies method to retrieve the replies and check the correctness. 
+	 * Then, use the getReplies method to retrieve the replies and check the correctness. <br>
+	 * Methods tested: getReplies and setReplies
 	 */
 	public void testGetAndAddReplies(){
 		Comment comment = new Comment("title","text", null, null, "userName");
@@ -134,7 +140,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * using either comment or comment id as the parameter. <br>
 	 * First, create some comments and assign a comment as parent of another 
 	 * comment using both comment and comment id as the parameter, and then 
-	 * check both cases by comparing the Id.
+	 * check both cases by comparing the Id.<br>
+	 * Methods tested: setParent
 	 */
 	public void testSetParent(){
 		Comment comment = new Comment("title","text", null, null, "userName");
@@ -147,13 +154,13 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 		assertEquals(rp2.getParentId(), comment.getId());
 	}
 	
-	
 	/**
 	 * Test whether the parentId of a comment can be retrieved.
 	 * First, assign a comment as parent of another comment, 
 	 * and then check if the Id retrieved by getParentId method is correct 
 	 * by comparing the Id of the parent comment and the parentId returned 
-	 * from the getParentId method.
+	 * from the getParentId method. <br>
+	 * Methods tested: getParentId.
 	 */
 	public void testGetParentId(){
 		Comment comment = new Comment("title","text", null, null, "userName");

@@ -26,7 +26,8 @@ public class UserNameHandlerTest extends ActivityInstrumentationTestCase2<LoginV
 	 * Test whether the string for user name can be saved, retrieved 
 	 * and edited using sharedPreference. <br>
 	 * First, set a user name and check it. 
-     * Then, clear the user name and check it again.
+     * Then, clear the user name and check it again. <br>
+	 * Methods tested: getUserName, setUserName and emptyUserName.
 	 */
 	public void testUserNameHandler() {
 		UserNameHandler userNameHandler = new UserNameHandler();

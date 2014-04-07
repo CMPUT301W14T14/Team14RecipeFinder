@@ -27,7 +27,8 @@ public class TimeComparatorTest extends ActivityInstrumentationTestCase2<AllTopi
 	 * Test whether the compare method returns the correct value. <br>
 	 * First, create two comments and a timeComparator with a center location.
 	 * Then, check if the compare method returns the correct value when comments created 
-	 * at different time are passed in.
+	 * at different time are passed in. <br>
+	 * Methods tested: compare
 	 */
 	public void testCompare() {
 		TimeComparator timeComparator = new TimeComparator();

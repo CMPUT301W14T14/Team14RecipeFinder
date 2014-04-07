@@ -26,7 +26,8 @@ public class UserProfileModelTest extends ActivityInstrumentationTestCase2<AllTo
 	/**
 	 * Test whether the user name of a profile can be retrieved and edited. <br>
 	 * First, create a profile and check if the user name retrieved by getUserName method is correct. 
-	 * Then, use the setUserName method to change the user name and check if the new user name is correct. 
+	 * Then, use the setUserName method to change the user name and check if the new user name is correct. <br>
+	 * Methods tested: getName and setName.
 	 */
 	public void testGetAndSetUserName() {
 		UserProfile profile = new UserProfile("userName", "biography", "twitter", "facebook", null);
@@ -39,7 +40,8 @@ public class UserProfileModelTest extends ActivityInstrumentationTestCase2<AllTo
 	/**
 	 * Test whether the biography of a profile can be retrieved and edited. <br>
 	 * First, create a profile and check if the biography retrieved by getBiography method is correct. 
-	 * Then, use the setBiography method to change the user biography check if the new biography is correct. 
+	 * Then, use the setBiography method to change the user biography check if the new biography is correct. <br>
+	 * Methods tested: getBiography and setBiography.
 	 */
 	public void testGetAndSetBiography() {
 		UserProfile profile = new UserProfile("userName", "biography", "twitter", "facebook", null);
@@ -52,7 +54,8 @@ public class UserProfileModelTest extends ActivityInstrumentationTestCase2<AllTo
 	/**
 	 * Test whether the twitter of a profile can be retrieved and edited. <br>
 	 * First, create a profile and check if the twitter retrieved by getTwitter method is correct. 
-	 * Then, use the setTwitter method to change the twitter and check if the new twitter is correct. 
+	 * Then, use the setTwitter method to change the twitter and check if the new twitter is correct. <br>
+	 * Methods tested: getTwitter and setTwitter.
 	 */
 	public void testGetAndSetTwitter() {
 		UserProfile profile = new UserProfile("userName", "biography", "twitter", "facebook", null);
@@ -65,7 +68,8 @@ public class UserProfileModelTest extends ActivityInstrumentationTestCase2<AllTo
 	/**
 	 * Test whether the facebook of a profile can be retrieved and edited. <br>
 	 * First, create a profile and check if the facebook retrieved by getFacebook method is correct. 
-	 * Then, use the setFacebook method to change the facebook and check if the new facebook is correct. 
+	 * Then, use the setFacebook method to change the facebook and check if the new facebook is correct. <br>
+	 * Methods tested: getFacebook and setFacebook.
 	 */
 	public void testGetAndSetFacebook() {
 		UserProfile profile = new UserProfile("userName", "biography", "twitter", "facebook", null);
@@ -78,7 +82,8 @@ public class UserProfileModelTest extends ActivityInstrumentationTestCase2<AllTo
 	/**
 	 * Test whether the photo of a profile can be retrieved and edited. <br>
 	 * First, create a profile and check if the photo retrieved by getPhoto method is correct. 
-	 * Then, use the setPhoto method to change the photo and check if the new photo is correct. 
+	 * Then, use the setPhoto method to change the photo and check if the new photo is correct. <br>
+	 * Methods tested: getPhoto and setPhoto.
 	 */
 	public void testGetAndSetPhoto() {
 		UserProfile profile = new UserProfile("userName", "biography", "twitter", "facebook", null);

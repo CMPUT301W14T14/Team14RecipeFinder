@@ -25,7 +25,8 @@ public class ConnectionCheckerTest extends
 	}
 
 	/**
-	 * Test whether the network connection is detectable. By default, the connection is enabled.
+	 * Test whether the network connection is detectable. By default, the connection is enabled. <br>
+	 * Methods tested: isNetworkOnline
 	 * @throws Exception
 	 */
 	public void testIsNetworkOnline() throws Exception {

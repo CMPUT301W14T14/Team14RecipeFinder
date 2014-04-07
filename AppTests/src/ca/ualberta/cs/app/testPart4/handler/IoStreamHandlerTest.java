@@ -36,7 +36,7 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 	/**
 	 * Test whether a comment can be pushed to the server and the pulled from the serve later. <br>
 	 * Create a comment and update to the server. Then load it and check. <br>
-	 * Methods tested: addOrUpdateComment and loadSpecificComment.
+	 * Methods tested: addOrUpdateComment and loadSpecificComment. 
 	 * @throws InterruptedException 
 	 */
 	public void testAddOrUpdateComment() throws InterruptedException {
