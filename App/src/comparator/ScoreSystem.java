@@ -42,7 +42,7 @@ public class ScoreSystem implements Comparator<Comment>{
 	 * @return a Long integer which is the Comment's score.
 	 */
 	private long getScore(Comment comment){
-		long timeScore=comment.getTimePosted()/1000000;
+		long timeScore=comment.getTimePosted()/1000;
 		long locationScore=0;
 		
 		if(comment.getLocation()!=null){
