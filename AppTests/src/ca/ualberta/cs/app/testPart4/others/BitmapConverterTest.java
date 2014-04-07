@@ -11,7 +11,7 @@ import android.graphics.Bitmap;
 import android.test.ActivityInstrumentationTestCase2;
 
 /**
- * JUnit test cases for LocationConverter.
+ * JUnit test cases for BitmapConverter.
  * 
  * @author Yilu Su
  *
