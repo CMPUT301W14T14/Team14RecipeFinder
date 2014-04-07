@@ -9,6 +9,7 @@ import user.UserNameHandler;
 import activity.AllTopicPageActivity;
 import activity.CreateCommentPageActivity;
 import adapter.ListViewAdapter;
+import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
@@ -22,42 +23,78 @@ import android.widget.TextView;
 
 public class AllTopicPageActivityUITest extends
 		ActivityInstrumentationTestCase2<AllTopicPageActivity> {
+	
+	Activity activity;
+	IoStreamHandler ioStreamHandler;
+	Thread thread;
+	CommentMap commentMap;
 
 	public AllTopicPageActivityUITest() {
 		super(AllTopicPageActivity.class);
 	}
 	
-	@UiThreadTest
-	public void testListViewUpdate() throws InterruptedException {
-		getActivity();
-		Comment comment = new Comment("Title", "Content", null, null, "User");
-		IoStreamHandler ioStreamHandler = new IoStreamHandler();
-		Thread thread = new Thread();
-		CommentMap commentMap = new CommentMap();
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		Comment comment1 = new Comment("Title1", "Content1", null, null, "User1");
+		Comment comment2 = new Comment("Title2", "Content2", null, null, "User2");
+		ioStreamHandler = new IoStreamHandler();
+		thread = new Thread();
+//		commentMap = new CommentMap();
 		
-//		ArrayAdapter<Comment> adapter = get
-		ListViewAdapter listViewAdapter=new ListViewAdapter(getInstrumentation().getTargetContext(),R.layout.single_comment_layout,commentMap.getCurrentList());
-		
-		ListView listView = (ListView) getActivity().findViewById(com.example.projectapp.R.id.topic_list);
-		int before = listView.getChildCount();
-		
-		ioStreamHandler.addOrUpdateComment(comment);
+		thread = ioStreamHandler.addOrUpdateComment(comment1);
 		thread.join();
-		ioStreamHandler.loadAndUpdateTopLevelIdSet(comment.getId(), getActivity());
+		thread = ioStreamHandler.addOrUpdateComment(comment2);
 		thread.join();
-		ioStreamHandler.loadTopLevelComments(commentMap, getActivity());
+		thread = ioStreamHandler.loadAndUpdateTopLevelIdSet(comment1.getId(), getActivity());
 		thread.join();
-		
+		thread = ioStreamHandler.loadAndUpdateTopLevelIdSet(comment2.getId(), getActivity());
+		thread.join();
 		Thread.sleep(1000);
 		
-		getActivity().refresh();
+//		Intent intent = new Intent();
+//		intent.putExtra("CommentID", comment.getId());
+//		setActivityIntent(intent);
+//		activity = getActivity();
+	}
+	
+	@UiThreadTest
+	public void testListViewUpdate() throws InterruptedException {
+		activity = getActivity();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		getActivity();
+//		Comment comment = new Comment("Title", "Content", null, null, "User");
+//		ArrayAdapter<Comment> adapter = get
+//		ListViewAdapter listViewAdapter=new ListViewAdapter(getInstrumentation().getTargetContext(),R.layout.single_comment_layout,commentMap.getCurrentList());
+//		
+//		ListView listView = (ListView) getActivity().findViewById(com.example.projectapp.R.id.topic_list);
+//		int before = listView.getChildCount();
+//		
+//		ioStreamHandler.addOrUpdateComment(comment);
+//		thread.join();
+//		ioStreamHandler.loadAndUpdateTopLevelIdSet(comment.getId(), getActivity());
+//		thread.join();
+//		ioStreamHandler.loadTopLevelComments(commentMap, getActivity());
+//		thread.join();
+//		
+//		Thread.sleep(1000);
+//		
+//		getActivity().refresh();
 		
 		
 //		ListView listView = (ListView) getActivity().findViewById(com.example.projectapp.R.id.topic_list);
-		int after = listView.getChildCount();
+//		int after = listView.getChildCount();
 		
 //		Comment newComment = (Comment) listView.;
-		assertEquals(before + 1, after);
+//		assertEquals(before + 1, after);
 		
 //		ListViewAdapter<Comment> = getActivity().getAd
 	}

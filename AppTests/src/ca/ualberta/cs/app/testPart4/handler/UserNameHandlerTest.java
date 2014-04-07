@@ -28,8 +28,9 @@ public class UserNameHandlerTest extends ActivityInstrumentationTestCase2<LoginV
 	 * First, set a user name and check it. 
      * Then, clear the user name and check it again. <br>
 	 * Methods tested: getUserName, setUserName and emptyUserName.
+	 * @throws Exception 
 	 */
-	public void testUserNameHandler() {
+	public void testUserNameHandler() throws Exception {
 		UserNameHandler userNameHandler = new UserNameHandler();
 		String userName = "user name";
 		
@@ -38,6 +39,8 @@ public class UserNameHandlerTest extends ActivityInstrumentationTestCase2<LoginV
 		
 		userNameHandler.emptyUserName(getActivity());
 		assertEquals(null, userNameHandler.getUserName(getActivity()));
+		
+		tearDown();
 	}
 
 }

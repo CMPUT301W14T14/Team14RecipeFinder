@@ -29,8 +29,9 @@ public class ScoreSystemTest extends ActivityInstrumentationTestCase2<AllTopicPa
 	 * Then, check if the compare method returns the correct value when comments with 
 	 * different scores are passed in. <br>
 	 * Methods tested: compare
+	 * @throws Exception 
 	 */
-	public void testCompare() {
+	public void testCompare() throws Exception {
 		Location location0 = new Location("mock");
 		location0.setLatitude(0);
 		location0.setLongitude(0);
@@ -51,6 +52,8 @@ public class ScoreSystemTest extends ActivityInstrumentationTestCase2<AllTopicPa
 		
 		assertEquals(-1, scoreSystem.compare(comment1, comment2));
 		assertEquals(1, scoreSystem.compare(comment2, comment1));
+		
+		tearDown();
 	}
 
 }

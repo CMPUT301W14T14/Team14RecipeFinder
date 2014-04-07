@@ -37,6 +37,8 @@ public class ConnectionCheckerTest extends
 
 		ConnectionChecker connectionChecker = new ConnectionChecker();
 		assertTrue(connectionChecker.isNetworkOnline(getActivity()));
+		
+		tearDown();
 	}
 
 //	private void setMobileDataEnabled(Context context, boolean enabled)

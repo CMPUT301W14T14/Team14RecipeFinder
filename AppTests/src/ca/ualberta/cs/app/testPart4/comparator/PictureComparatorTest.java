@@ -30,8 +30,9 @@ public class PictureComparatorTest extends ActivityInstrumentationTestCase2<AllT
 	 * Then, check if the compare method returns the correct value when comments with 
 	 * or without a picture are passed in.<br>
 	 * Methods tested: compare
+	 * @throws Exception 
 	 */
-	public void testCompare() {
+	public void testCompare() throws Exception {
 		PictureComparator pictureComparator = new PictureComparator();
 		Bitmap pic1 = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
 		Bitmap pic2 = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
@@ -44,6 +45,8 @@ public class PictureComparatorTest extends ActivityInstrumentationTestCase2<AllT
 		assertEquals(0, pictureComparator.compare(comment3, comment4));
 		assertEquals(-1, pictureComparator.compare(comment3, comment1));
 		assertEquals(1, pictureComparator.compare(comment2, comment4));
+		
+		tearDown();
 	}
 
 }

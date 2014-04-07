@@ -25,8 +25,9 @@ public class LocationConverterTest extends ActivityInstrumentationTestCase2<AllT
 	 * Test whether the LocationConverter can properly serialize and deserialize a location <br>
 	 * First, create a mockup location. Serialize followed by deserialize, and then check. <br>
 	 * Methods tested: serialize and deserialize.
+	 * @throws Exception 
 	 */
-	public void testLocationConverter() {
+	public void testLocationConverter() throws Exception {
 		Location location = new Location("mock");
 		location.setAccuracy(10);
 		location.setAltitude(20);
@@ -41,6 +42,8 @@ public class LocationConverterTest extends ActivityInstrumentationTestCase2<AllT
 		assertEquals(location.getAltitude(), newLocation.getAltitude());
 		assertEquals(location.getLatitude(), newLocation.getLatitude());
 		assertEquals(location.getLongitude(), newLocation.getLongitude());
+		
+		tearDown();
 	}
 
 }

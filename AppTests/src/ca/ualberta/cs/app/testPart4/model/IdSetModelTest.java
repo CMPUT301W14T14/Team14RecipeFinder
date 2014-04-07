@@ -29,8 +29,9 @@ public class IdSetModelTest extends ActivityInstrumentationTestCase2<AllTopicPag
      * First, add strings to the idSet and check the content. 
      * Then, clear the idSet and check the content again. <br>
      * Methods tested: add, getSet, and clear.
+	 * @throws Exception 
      */
-	public void testIdSetModel() {
+	public void testIdSetModel() throws Exception {
 		String string1 = "id 1";
 		String string2 = "id 2";
 		IdSet idSet = new IdSet();
@@ -41,6 +42,8 @@ public class IdSetModelTest extends ActivityInstrumentationTestCase2<AllTopicPag
 		
 		idSet.clear();
 		assertEquals(true, idSet.getSet().isEmpty());
+		
+		tearDown();
 	}
 
 }

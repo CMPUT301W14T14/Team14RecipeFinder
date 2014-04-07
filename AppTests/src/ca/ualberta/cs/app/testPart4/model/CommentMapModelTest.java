@@ -30,8 +30,9 @@ public class CommentMapModelTest extends ActivityInstrumentationTestCase2<AllTop
      * and then verify the content using getComment and getCurrentList method. 
      * Finally, clear the commentMap and check the content again. <br>
 	 * Methods tested: addComment, getComment, getCurrentList and clear.
+     * @throws Exception 
      */
-	public void testCommentMapModel() {
+	public void testCommentMapModel() throws Exception {
 		CommentMap commentMap = new CommentMap();
 		Comment comment1 = new Comment("title1", "text1", null, null, "userName1");
 		Comment comment2 = new Comment("title2", "text2", null, null, "userName2");
@@ -52,6 +53,8 @@ public class CommentMapModelTest extends ActivityInstrumentationTestCase2<AllTop
 		
 		commentMap.clear();
 		assertTrue(commentMap.getCurrentList().isEmpty());
+		
+		tearDown();
 	}
 
 }

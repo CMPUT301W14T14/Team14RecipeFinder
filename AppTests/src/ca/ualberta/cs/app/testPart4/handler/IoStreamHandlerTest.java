@@ -37,9 +37,9 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 	 * Test whether a comment can be pushed to the server and the pulled from the serve later. <br>
 	 * Create a comment and update to the server. Then load it and check. <br>
 	 * Methods tested: addOrUpdateComment and loadSpecificComment. 
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testAddOrUpdateComment() throws InterruptedException {
+	public void testAddOrUpdateComment() throws Exception {
 		Location location = new Location("mock");
 		location.setLatitude(10);
 		location.setLongitude(10);
@@ -64,15 +64,17 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertEquals("User", commentMap.getComment(comment.getId()).getUserName());
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 	
 	/**
 	 * Test whether a top level IdSet can be pushed to the server and the pulled from the serve later. <br>
 	 * Update two comment and add them to the top level IdSet. Then load the top level comments and check. <br>
 	 * Methods tested: updateTopLevelIdSet and loadTopLevelComments.
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testUpdateTopLevelIdSet() throws InterruptedException {
+	public void testUpdateTopLevelIdSet() throws Exception {
 		Comment comment1 = new Comment("Title1", "Content1", null, null, "User1");
 		Comment comment2 = new Comment("Title2", "Content2", null, null, "User2");
 		IdSet idSet = new IdSet();
@@ -95,15 +97,17 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertEquals(comment2, commentMap.getComment(comment2.getId()));
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 
 	/**
 	 * Test whether a comment can be pushed to the server as top level comment and the pulled from the serve later. <br>
 	 * Update a comment as top level comment. Then load top level IdSet and check if the IdSet contains the comment. <br>
 	 * Methods tested: loadAndUpdateTopLevelIdSet and loadTopLevelComments.
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testLoadAndUpdateTopLevelIdSet() throws InterruptedException {
+	public void testLoadAndUpdateTopLevelIdSet() throws Exception {
 		Comment comment = new Comment("Title", "Content", null, null, "User");
 		IoStreamHandler ioStreamHandler = new IoStreamHandler();
 		CommentMap commentMap = new CommentMap();
@@ -120,6 +124,8 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertEquals(comment, commentMap.getComment(comment.getId()));
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 
 	/**
@@ -127,9 +133,9 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 	 * First, use the method to load the comment from the serve and add a reply to its reply IdSet. 
 	 * Then load the comment and check.
 	 * Methods tested: replySpecificComment
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testReplySpecificComment() throws InterruptedException {
+	public void testReplySpecificComment() throws Exception {
 		Comment comment1 = new Comment("Title1", "Content1", null, null, "User1");
 		Comment comment2 = new Comment("Title2", "Content2", null, null, "User2");
 		IoStreamHandler ioStreamHandler = new IoStreamHandler();
@@ -149,6 +155,8 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertTrue(commentMap.getComment(comment1.getId()).getReplies().contains(comment2.getId()));
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 
 	/**
@@ -156,9 +164,9 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 	 * First, create a comment and update to the server. Edit the comment and update the edits 
 	 * to the server. Then load the comment and check.
 	 * Methods tested: commitEdit
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testCommitEdit() throws InterruptedException {
+	public void testCommitEdit() throws Exception {
 		Comment comment = new Comment("Title", "Content", null, null, "User");
 		IoStreamHandler ioStreamHandler = new IoStreamHandler();
 		CommentMap commentMap = new CommentMap();
@@ -183,6 +191,8 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertEquals(location.getLongitude(), commentMap.getComment(comment.getId()).getLocation().getLongitude());
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 
 	/**
@@ -190,9 +200,9 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 	 * First create two comments and add them to the server. Add them as favorite and indicated, respectively. 
 	 * Then, load them from local and check.
 	 * Methods tested: addCache, gerResource
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testAddCache() throws InterruptedException {
+	public void testAddCache() throws Exception {
 		Comment comment1 = new Comment("Title1", "Content1", null, null, "User1");
 		Comment comment2 = new Comment("Title2", "Content2", null, null, "User2");
 		comment1.addReply(comment2);
@@ -219,15 +229,17 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		assertTrue(commentList2.getCurrentList().contains(comment2));
 		ioStreamHandler.clean();
 		Thread.sleep(500);
+		
+		tearDown();
 	}
 
 	/**
 	 * Test whether the clean method can remove data saved in the server. <br>
 	 * First create a comment and update to the server. Then, use clean method to clean the server and check.
 	 * Methods tested: clean
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public void testClean() throws InterruptedException {
+	public void testClean() throws Exception {
 		Comment comment = new Comment("Title", "Content", null, null, "User");
 		Thread thread = new Thread();
 		CommentMap commentMap = new CommentMap();
@@ -248,6 +260,8 @@ public class IoStreamHandlerTest extends ActivityInstrumentationTestCase2<AllTop
 		Thread.sleep(500);
 		
 		assertNull(commentMap);
+		
+		tearDown();
 	}
 
 }

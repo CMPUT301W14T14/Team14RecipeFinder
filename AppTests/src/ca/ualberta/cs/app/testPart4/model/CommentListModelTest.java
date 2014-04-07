@@ -29,8 +29,9 @@ public class CommentListModelTest extends ActivityInstrumentationTestCase2<AllTo
      * First, add comments to the commentList and check the content. 
      * Then, clear the commentList and check the content again. <br>
      * Methods tested: add, clear, and getCurrentList.
+	 * @throws Exception 
      */
-    public void testCommentListModel() {
+    public void testCommentListModel() throws Exception {
     	CommentList commentList = new CommentList();
         Comment comment1 = new Comment("title1", "text1", null, null, "userName1");
         Comment comment2 = new Comment("title2", "text2", null, null, "userName2");
@@ -46,6 +47,8 @@ public class CommentListModelTest extends ActivityInstrumentationTestCase2<AllTo
         
         commentList.clear();
         assertEquals("cleared", true, commentList.getCurrentList().isEmpty());
+        
+        tearDown();
     }
 
 }

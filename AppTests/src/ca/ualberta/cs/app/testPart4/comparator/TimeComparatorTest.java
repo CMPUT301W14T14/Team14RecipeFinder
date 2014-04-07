@@ -29,8 +29,9 @@ public class TimeComparatorTest extends ActivityInstrumentationTestCase2<AllTopi
 	 * Then, check if the compare method returns the correct value when comments created 
 	 * at different time are passed in. <br>
 	 * Methods tested: compare
+	 * @throws Exception 
 	 */
-	public void testCompare() {
+	public void testCompare() throws Exception {
 		TimeComparator timeComparator = new TimeComparator();
 		Comment comment2 = new Comment("title2", "content2", null, null, "userName2");
 		try {
@@ -42,6 +43,8 @@ public class TimeComparatorTest extends ActivityInstrumentationTestCase2<AllTopi
 		
 		assertEquals(-1, timeComparator.compare(comment1, comment2));
 		assertEquals(1, timeComparator.compare(comment2, comment1));
+		
+		tearDown();
 	}
 
 }

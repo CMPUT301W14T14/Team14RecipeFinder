@@ -26,8 +26,9 @@ public class BitmapConverterTest extends ActivityInstrumentationTestCase2<AllTop
 	 * Test whether the BitmapConverter can properly serialize and deserialize a bitmap <br>
 	 * First, create a mockup bitmap. Serialize followed by deserialize, and then check. <br>
 	 * Methods tested: serialize and deserialize.
+	 * @throws Exception 
 	 */
-	public void testLBitmapConverter() {
+	public void testLBitmapConverter() throws Exception {
 		Bitmap bitmap = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
 		BitmapConverter bitmapConverter = new BitmapConverter();
 		JsonElement jsonElement = bitmapConverter.serialize(bitmap, null, null);
@@ -37,6 +38,8 @@ public class BitmapConverterTest extends ActivityInstrumentationTestCase2<AllTop
 		assertEquals(bitmap.getHeight(), newBitmap.getHeight());
 		assertEquals(bitmap.getDensity(), newBitmap.getDensity());
 		assertEquals(bitmap.getRowBytes(), newBitmap.getRowBytes());
+		
+		tearDown();
 	}
 
 }

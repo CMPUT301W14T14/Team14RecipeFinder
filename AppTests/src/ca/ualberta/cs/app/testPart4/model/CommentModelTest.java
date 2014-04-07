@@ -30,8 +30,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * Test whether the Id of a comment can be retrieved.
 	 * Create a comment, and check if the Id retrieved by getId method is correct. <br>
 	 * Methods tested: getId
+	 * @throws Exception 
 	 */
-	public void testGetId() {
+	public void testGetId() throws Exception {
 		Comment comment = new Comment("title","text", null, null, "userName");
 		Long timestamp = (new Date()).getTime();
 		// This may fail sometime, but the expected and actual are pretty close.
@@ -39,6 +40,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 		// I suspect it is due to the time difference between implementing the comment
 		// creation and the assertEquals
 		assertEquals(comment.getId(), "userName"+timestamp);
+		
+		tearDown();
 	}
 	
 	/**
@@ -46,13 +49,16 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * First, create a comment and check if the title retrieved by getTitle method is correct. 
 	 * Then, use the setTitle method to change the title and check if the new title is correct. <br>
 	 * Methods tested: getTitle and setTitle
+	 * @throws Exception 
 	 */
-	public void testGetAndSetTitle(){
+	public void testGetAndSetTitle() throws Exception{
 		Comment comment = new Comment("title","text", null, null, "userName");
 		assertEquals(comment.getTitle(), "title");
 		
 		comment.setTitle("new title");
 		assertEquals(comment.getTitle(), "new title");
+		
+		tearDown();
 	}
 	
 	/**
@@ -60,13 +66,16 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * First, create a comment and check if the text retrieved by getText method is correct. 
 	 * Then, use the setText method to change the text and check if the new text is correct. <br>
 	 * Methods tested: getText and setText.
+	 * @throws Exception 
 	 */
-	public void testGetAndSetText(){
+	public void testGetAndSetText() throws Exception{
 		Comment comment = new Comment("title","text", null, null, "userName");
 		assertEquals(comment.getText(), "text");
 		
 		comment.setText("new text");
 		assertEquals(comment.getText(), "new text");
+		
+		tearDown();
 	}
 	
 	/**
@@ -77,8 +86,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * different place and check if the new text is correct by comparing both 
 	 * latitude and longitude. <br>
 	 * Methods tested: getLocation and setLocation.
+	 * @throws Exception 
 	 */
-	public void testGetAndSetLocation(){
+	public void testGetAndSetLocation() throws Exception{
 		Location location1 = new Location("mock");
 		location1.setLatitude(10);
 		location1.setLongitude(20);
@@ -94,6 +104,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 		assertEquals(comment.getLocation(), location2);
 		assertTrue(comment.getLocation().getLatitude()==100 
 				&& comment.getLocation().getLongitude()==200);
+		
+		tearDown();
 	}
 	
 	/**
@@ -101,8 +113,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * First, create a comment with picture, and then check if the retrieved picture, 
 	 * timePosted, and userName by their corresponding getter methods are correct. <br>
 	 * Methods tested: getPicture, getTimePosted and getUserName
+	 * @throws Exception 
 	 */
-	public void testMoreGetters(){
+	public void testMoreGetters() throws Exception{
 		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
 		Comment comment = new Comment("title","text", null, pic,"userName");
 		
@@ -115,6 +128,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 //		assertEquals((long)comment.getTimePosted(), (new Date()).getTime());
 		
 		assertEquals(comment.getUserName(), "userName");
+		
+		tearDown();
 	}
 
 	/**
@@ -124,8 +139,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * of the other comment. 
 	 * Then, use the getReplies method to retrieve the replies and check the correctness. <br>
 	 * Methods tested: getReplies and setReplies
+	 * @throws Exception 
 	 */
-	public void testGetAndAddReplies(){
+	public void testGetAndAddReplies() throws Exception{
 		Comment comment = new Comment("title","text", null, null, "userName");
 		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
 		Comment rp2 = new Comment("title2","text2", null, null, "userName2");
@@ -133,6 +149,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 		comment.addReply(rp2);
 		assertEquals(comment.getReplies().get(0), rp1.getId());
 		assertEquals(comment.getReplies().get(1), rp2.getId());
+		
+		tearDown();
 	}
 	
 	/**
@@ -142,8 +160,9 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * comment using both comment and comment id as the parameter, and then 
 	 * check both cases by comparing the Id.<br>
 	 * Methods tested: setParent
+	 * @throws Exception 
 	 */
-	public void testSetParent(){
+	public void testSetParent() throws Exception{
 		Comment comment = new Comment("title","text", null, null, "userName");
 		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
 		rp1.setParent(comment);
@@ -152,6 +171,8 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 		Comment rp2 = new Comment("title2","text2", null, null, "userName2");
 		rp2.setParent(comment.getId());
 		assertEquals(rp2.getParentId(), comment.getId());
+		
+		tearDown();
 	}
 	
 	/**
@@ -161,12 +182,15 @@ public class CommentModelTest extends ActivityInstrumentationTestCase2<AllTopicP
 	 * by comparing the Id of the parent comment and the parentId returned 
 	 * from the getParentId method. <br>
 	 * Methods tested: getParentId.
+	 * @throws Exception 
 	 */
-	public void testGetParentId(){
+	public void testGetParentId() throws Exception{
 		Comment comment = new Comment("title","text", null, null, "userName");
 		Comment rp1 = new Comment("title1","text1", null, null, "userName1");
 		rp1.setParent(comment);
 		assertEquals("equal", rp1.getParentId(), comment.getId());
+		
+		tearDown();
 	}
 
 //	public void testEqualsObject() {
