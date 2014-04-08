@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+/**
+ * Junit test cases for ProfilePageActivity.
+ * @author yilu
+ *
+ */
 public class ProfilePageActivityTest extends
 		ActivityInstrumentationTestCase2<ProfilePageActivity> {
 	
