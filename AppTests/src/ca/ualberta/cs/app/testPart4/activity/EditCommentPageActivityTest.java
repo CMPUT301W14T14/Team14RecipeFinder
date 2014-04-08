@@ -46,11 +46,13 @@ public class EditCommentPageActivityTest extends
 
         mActivity = getActivity();
         
-		title = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_title);
-		content = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_content);
-		latitude = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_latitude);
-		longitude = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_longitude);
-		picture = (ImageView)this.getActivity().findViewById(com.example.projectapp.R.id.edit_picture);
+		title = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_title);
+		content = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_content);
+		latitude = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_latitude);
+		longitude = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_longitude);
+		picture = (ImageView)mActivity.findViewById(com.example.projectapp.R.id.edit_picture);
+		commit = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_commit);
+		cancel = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_cancel);
 	}
 	
 	/**

@@ -1,38 +1,35 @@
 package ca.ualberta.cs.app.testPart4.activity;
-import activity.OtherProfilePageActivity;
-import android.annotation.SuppressLint;
+
+import activity.ProfilePageActivity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-/**
- * Junit test cases for OtherProfilePageActivity.
- * @author yilu
- *
- */
-@SuppressLint("NewApi")
-public class OtherProfilePageActivityTest extends
-		ActivityInstrumentationTestCase2<OtherProfilePageActivity> {
+public class ProfilePageActivityTest extends
+		ActivityInstrumentationTestCase2<ProfilePageActivity> {
 	
-	OtherProfilePageActivity mActivity;
-	TextView userName;
-	TextView biography;
-	TextView twitter;
-	TextView facebook;
+	ProfilePageActivity mActivity;
+	EditText userName;
+	EditText biography;
+	EditText twitter;
+	EditText facebook;
 	ImageView photo;
+	ImageButton commit;
+	ImageButton cancel;
 
 	/**
 	 * Constructor 
 	 */
-	public OtherProfilePageActivityTest() {
-		super(OtherProfilePageActivity.class);
+	public ProfilePageActivityTest() {
+		super(ProfilePageActivity.class);
 	}
-	
+
 	/**
      * Sets up the test environment before each test.
      * @see android.test.ActivityInstrumentationTestCase2#setUp()
@@ -45,11 +42,13 @@ public class OtherProfilePageActivityTest extends
 
         mActivity = getActivity();
         
-        userName = (TextView) mActivity.findViewById(com.example.projectapp.R.id.other_profile_user_name);
-        biography = (TextView) mActivity.findViewById(com.example.projectapp.R.id.other_profile_biography);
-        twitter = (TextView) mActivity.findViewById(com.example.projectapp.R.id.other_profile_twitter);
-        facebook = (TextView) mActivity.findViewById(com.example.projectapp.R.id.other_profile_facebook);
-        photo = (ImageView) mActivity.findViewById(com.example.projectapp.R.id.other_profile_picture);
+        userName = (EditText) mActivity.findViewById(com.example.projectapp.R.id.user_name);
+        biography = (EditText) mActivity.findViewById(com.example.projectapp.R.id.biography);
+        twitter = (EditText) mActivity.findViewById(com.example.projectapp.R.id.twitter);
+        facebook = (EditText) mActivity.findViewById(com.example.projectapp.R.id.facebook);
+        photo = (ImageView) mActivity.findViewById(com.example.projectapp.R.id.profile_picture);
+        commit = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_commit);
+		cancel = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_cancel);
 	}
 	
 	/**
@@ -121,5 +120,41 @@ public class OtherProfilePageActivityTest extends
 	    assertNotNull(layoutParams);
 	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
 	}
+	
+	/**
+	 * Verify CommitButton Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testCommitLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
 
+	    ViewAsserts.assertOnScreen(decorView, commit);
+
+	    final ViewGroup.LayoutParams layoutParams = commit.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify CancelButton Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testCancleLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, cancel);
+
+	    final ViewGroup.LayoutParams layoutParams = cancel.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
 }
