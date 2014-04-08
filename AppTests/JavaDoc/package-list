@@ -1,2 +1,7 @@
-ca.ualberta.cs.app.test
+ca.ualberta.cs.app.oldTest
+ca.ualberta.cs.app.testPart4.activity
+ca.ualberta.cs.app.testPart4.comparator
+ca.ualberta.cs.app.testPart4.handler
+ca.ualberta.cs.app.testPart4.model
+ca.ualberta.cs.app.testPart4.others
 com.example.projectapp.test
