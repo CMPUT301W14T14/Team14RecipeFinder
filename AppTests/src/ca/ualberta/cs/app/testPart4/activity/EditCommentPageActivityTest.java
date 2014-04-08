@@ -3,7 +3,11 @@
  */
 package ca.ualberta.cs.app.testPart4.activity;
 
+import network_io.IoStreamHandler;
+import model.Comment;
 import activity.EditCommentPageActivity;
+import android.content.Intent;
+import android.location.Location;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -39,12 +43,28 @@ public class EditCommentPageActivityTest extends
 		super(EditCommentPageActivity.class);
 	}
 	
+	/**
+     * Sets up the test environment before each test.
+     * @see android.test.ActivityInstrumentationTestCase2#setUp()
+     */
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 
         setActivityInitialTouchMode(true);
+        Location location = new Location("mock");
+        location.setLatitude(5.5);
+        location.setLongitude(10.5);
+        Comment comment = new Comment("title", "content", location, null, "user");
+        IoStreamHandler ioStreamHandler = new IoStreamHandler();
+        ioStreamHandler.addOrUpdateComment(comment);
+        Thread.sleep(1000);
+        Intent intent = new Intent();
+        intent.putExtra("commentID", comment.getId());
+        setActivityIntent(intent);
 
         mActivity = getActivity();
+        Thread.sleep(1000);
         
 		title = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_title);
 		content = (EditText)mActivity.findViewById(com.example.projectapp.R.id.edit_content);
@@ -181,6 +201,18 @@ public class EditCommentPageActivityTest extends
 	    tearDown();
 	}
 	
+	/**
+	 * Test whether the content of the Views are correct.
+	 * @throws Exception
+	 */
+	public void testSetupEditPage() throws Exception {
+		assertEquals("title", title.getText().toString());
+		assertEquals("content", content.getText().toString());
+		assertEquals(5.5, Double.parseDouble(latitude.getText().toString()));
+		assertEquals(10.5, Double.parseDouble(longitude.getText().toString()));
+
+		tearDown();
+	}
 	
 	
 	

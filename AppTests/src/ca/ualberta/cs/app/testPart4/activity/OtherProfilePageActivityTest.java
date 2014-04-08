@@ -1,6 +1,9 @@
 package ca.ualberta.cs.app.testPart4.activity;
+import model.UserProfile;
+import network_io.ProfileIoHandler;
 import activity.OtherProfilePageActivity;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -42,6 +45,13 @@ public class OtherProfilePageActivityTest extends
 		super.setUp();
 
         setActivityInitialTouchMode(true);
+        UserProfile userProfile = new UserProfile("user", null, null, null, null);
+        ProfileIoHandler io = new ProfileIoHandler();
+        io.putOrUpdateProfile(userProfile);
+        Thread.sleep(1000);
+        Intent intent = new Intent();
+        intent.putExtra("userName", "user");
+        setActivityIntent(intent);
 
         mActivity = getActivity();
         

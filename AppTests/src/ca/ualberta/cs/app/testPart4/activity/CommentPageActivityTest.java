@@ -75,7 +75,7 @@ public class CommentPageActivityTest extends ActivityInstrumentationTestCase2<Co
 		Thread.sleep(500);
 		
 		Intent intent = new Intent();
-		intent.putExtra("CommentId", comment.getId());
+		intent.putExtra("commentId", comment.getId());
 		setActivityIntent(intent);
 		
 		mActivity = getActivity();

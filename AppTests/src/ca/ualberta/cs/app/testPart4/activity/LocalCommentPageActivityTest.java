@@ -1,6 +1,11 @@
 package ca.ualberta.cs.app.testPart4.activity;
 
+import com.google.gson.Gson;
+
+import customlized_gson.GsonConstructor;
+import model.Comment;
 import activity.LocalCommentPageActivity;
+import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -16,8 +21,10 @@ import android.widget.TextView;
  * @author Yilu Su
  *
  */
-public class LocalCommentPageActivityTese extends
+public class LocalCommentPageActivityTest extends
 		ActivityInstrumentationTestCase2<LocalCommentPageActivity> {
+	
+	private Gson gson=(new GsonConstructor()).getGson();
 	
 	LocalCommentPageActivity mActivity;
 	TextView title;
@@ -28,7 +35,7 @@ public class LocalCommentPageActivityTese extends
 	/**
 	 * Constructor 
 	 */
-	public LocalCommentPageActivityTese() {
+	public LocalCommentPageActivityTest() {
 		super(LocalCommentPageActivity.class);
 	}
 	
@@ -41,12 +48,16 @@ public class LocalCommentPageActivityTese extends
 		super.setUp();
 
         setActivityInitialTouchMode(true);
+        Comment comment = new Comment("title", "content", null, null, "user");
+        Intent intent = new Intent();
+        intent.putExtra("commentJson",gson.toJson(comment));
+        setActivityIntent(intent);
 
         mActivity = getActivity();
-		title = (TextView)mActivity.findViewById(com.example.projectapp.R.id.comment_title);
-		content = (TextView)mActivity.findViewById(com.example.projectapp.R.id.comment_content);
-		commentInfo = (TextView)mActivity.findViewById(com.example.projectapp.R.id.comment_info);
-		picture = (ImageView)mActivity.findViewById(com.example.projectapp.R.id.topic_image);
+		title = (TextView)mActivity.findViewById(com.example.projectapp.R.id.local_comment_title);
+		content = (TextView)mActivity.findViewById(com.example.projectapp.R.id.local_comment_content);
+		commentInfo = (TextView)mActivity.findViewById(com.example.projectapp.R.id.local_comment_info);
+		picture = (ImageView)mActivity.findViewById(com.example.projectapp.R.id.local_topic_image);
 	}
 	
 	/**
@@ -63,6 +74,7 @@ public class LocalCommentPageActivityTese extends
 	    assertNotNull(layoutParams);
 	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
 	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals("title", title.getText().toString());
 	    
 	    tearDown();
 	}
@@ -81,6 +93,7 @@ public class LocalCommentPageActivityTese extends
 	    assertNotNull(layoutParams);
 	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
 	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals("content", content.getText().toString());
 	    
 	    tearDown();
 	}

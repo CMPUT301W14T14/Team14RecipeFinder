@@ -73,7 +73,6 @@ public class LoginViewActivityTest extends ActivityInstrumentationTestCase2<Logi
 
 	    final ViewGroup.LayoutParams layoutParams = mEditText.getLayoutParams();
 	    assertNotNull(layoutParams);
-	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
 	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
 	}
 	
@@ -88,7 +87,6 @@ public class LoginViewActivityTest extends ActivityInstrumentationTestCase2<Logi
 
 	    final ViewGroup.LayoutParams layoutParams = mButton.getLayoutParams();
 	    assertNotNull(layoutParams);
-	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
 	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
 	}
 

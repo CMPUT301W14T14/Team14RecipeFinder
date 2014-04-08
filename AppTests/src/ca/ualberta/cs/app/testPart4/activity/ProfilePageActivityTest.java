@@ -1,6 +1,9 @@
 package ca.ualberta.cs.app.testPart4.activity;
 
+import user.UserNameHandler;
+import activity.LoginViewActivity;
 import activity.ProfilePageActivity;
+import android.content.SharedPreferences;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.ViewAsserts;
 import android.test.suitebuilder.annotation.MediumTest;
@@ -45,15 +48,19 @@ public class ProfilePageActivityTest extends
 
         setActivityInitialTouchMode(true);
 
+        SharedPreferences caches=this.getInstrumentation().getTargetContext().getSharedPreferences("cachesKey",0);
+		caches.edit().putString("userNameKey","user").commit();
         mActivity = getActivity();
+        
+        Thread.sleep(1000);
         
         userName = (EditText) mActivity.findViewById(com.example.projectapp.R.id.user_name);
         biography = (EditText) mActivity.findViewById(com.example.projectapp.R.id.biography);
         twitter = (EditText) mActivity.findViewById(com.example.projectapp.R.id.twitter);
         facebook = (EditText) mActivity.findViewById(com.example.projectapp.R.id.facebook);
         photo = (ImageView) mActivity.findViewById(com.example.projectapp.R.id.profile_picture);
-        commit = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_commit);
-		cancel = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.edit_cancel);
+        commit = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.commit_profile);
+		cancel = (ImageButton) mActivity.findViewById(com.example.projectapp.R.id.cancel_profile);
 	}
 	
 	/**
