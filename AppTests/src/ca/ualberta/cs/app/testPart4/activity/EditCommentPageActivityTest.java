@@ -1,29 +1,15 @@
+/**
+ * 
+ */
 package ca.ualberta.cs.app.testPart4.activity;
 
-//import model.Comment;
-//import network_io.IoStreamHandler;
-import java.util.Date;
-
-import network_io.IoStreamHandler;
-import model.Comment;
-import model.CommentMap;
-import activity.CommentPageActivity;
 import activity.EditCommentPageActivity;
-//import android.app.Activity;
-//import android.app.Instrumentation;
-//import android.content.Intent;
-//import android.graphics.Bitmap;
-//import android.location.Location;
-import android.app.Activity;
-import android.app.Instrumentation;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.location.Location;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
-//import android.widget.EditText;
-//import android.widget.ImageView;
-import android.widget.Button;
+import android.test.ViewAsserts;
+import android.test.suitebuilder.annotation.MediumTest;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -37,10 +23,14 @@ import android.widget.ImageView;
 public class EditCommentPageActivityTest extends
 		ActivityInstrumentationTestCase2<EditCommentPageActivity> {
 	
-	private Comment comment;
-	private Thread thread;
-	private IoStreamHandler ioStreamHandler;
-	private Location location;
+	EditCommentPageActivity mActivity;
+	EditText title;
+	EditText content;
+	EditText latitude;
+	EditText longitude;
+	ImageView picture;
+	ImageButton commit;
+	ImageButton cancel;
 
 	/**
 	 * Constructor 
@@ -51,63 +41,142 @@ public class EditCommentPageActivityTest extends
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		ioStreamHandler = new IoStreamHandler();
-		thread = new Thread();
-		location = new Location("mock");
-		location.setLatitude(10);
-		location.setLongitude(20);
-		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
-		comment = new Comment("Title", "Content", location, null, "User");
-		thread = ioStreamHandler.addOrUpdateComment(comment);
-		thread.join();
-		Thread.sleep(500);
-		
-		Intent intent = new Intent();
-		intent.putExtra("CommentId", comment.getId());
-		setActivityIntent(intent);
+
+        setActivityInitialTouchMode(true);
+
+        mActivity = getActivity();
+        
+		title = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_title);
+		content = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_content);
+		latitude = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_latitude);
+		longitude = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_longitude);
+		picture = (ImageView)this.getActivity().findViewById(com.example.projectapp.R.id.edit_picture);
 	}
 	
 	/**
-	 * Test whether a comment can be pulled from the server and displayed in views used in CommentPageActivity <br>
-	 * Update a comment to the server. Then run the method and check content of the views in CommentPageActivity. <br>
-	 * Methods tested: addOrUpdateComment and loadAndSetSpecificComment.
-	 * @throws InterruptedException 
+	 * Verify Title Layout Parameters
+	 * @throws Exception 
 	 */
-	@UiThreadTest
-	public void testSetupEditPage() throws InterruptedException {
-		
-		EditText title = (EditText) getActivity().findViewById(com.example.projectapp.R.id.edit_title);
-		EditText content = (EditText) getActivity().findViewById(com.example.projectapp.R.id.edit_content);
-		EditText latitude = (EditText) getActivity().findViewById(com.example.projectapp.R.id.edit_latitude);
-		EditText longitude = (EditText) getActivity().findViewById(com.example.projectapp.R.id.edit_longitude);
-		ImageView picture = (ImageView) getActivity().findViewById(com.example.projectapp.R.id.edit_picture);
-		
-		
-		thread = ioStreamHandler.setupEditPage(comment.getId(), title, content, latitude, longitude, picture, getActivity());
-		thread.join();
-		Thread.sleep(1000);
-		
-		assertEquals("Title", title.getText());
-		assertEquals("Content", content.getText());
-		assertEquals(String.valueOf(location.getLatitude()), latitude.getEditableText().toString());
-		assertEquals(String.valueOf(location.getLongitude()), longitude.getEditableText().toString());
-		assertNotNull(picture.getDrawable());
-		ioStreamHandler.clean();
-		Thread.sleep(500);
-		
-		getActivity().finish();
-		
-//		String lat=String.valueOf(location.getLatitude());
-//		String lng=String.valueOf(location.getLongitude());
-//		String info = "Posted By : "+comment.getUserName()+"\nAt : "+((new Date(comment.getTimePosted())).toString())+"\nLongitude: "+lng+"\nLatitude: "+lat; 
-//		assertEquals("Title", title.getText());
-//		assertEquals("Content", content.getText());
-//		assertNotNull(picture.getDrawable());
-//		assertEquals(info, commentInfo.getText());
-////		ioStreamHandler.clean();
-//		Thread.sleep(500);
-		
-		
+	@MediumTest
+	public void testTitleLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, title);
+
+	    final ViewGroup.LayoutParams layoutParams = title.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.MATCH_PARENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify Content Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testContentLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, content);
+
+	    final ViewGroup.LayoutParams layoutParams = content.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.MATCH_PARENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify Picture Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testPictureLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, picture);
+
+	    final ViewGroup.LayoutParams layoutParams = picture.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify Latitude Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testLatitudeLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, latitude);
+
+	    final ViewGroup.LayoutParams layoutParams = latitude.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify Longitude Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testLongitudeLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, longitude);
+
+	    final ViewGroup.LayoutParams layoutParams = longitude.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify CommitButton Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testCommitLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, commit);
+
+	    final ViewGroup.LayoutParams layoutParams = commit.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
+	}
+	
+	/**
+	 * Verify CancelButton Layout Parameters
+	 * @throws Exception 
+	 */
+	@MediumTest
+	public void testCancleLayout() throws Exception {
+	    final View decorView = mActivity.getWindow().getDecorView();
+
+	    ViewAsserts.assertOnScreen(decorView, cancel);
+
+	    final ViewGroup.LayoutParams layoutParams = cancel.getLayoutParams();
+	    assertNotNull(layoutParams);
+	    assertEquals(layoutParams.width, WindowManager.LayoutParams.WRAP_CONTENT);
+	    assertEquals(layoutParams.height, WindowManager.LayoutParams.WRAP_CONTENT);
+	    
+	    tearDown();
 	}
 	
 	
@@ -120,18 +189,10 @@ public class EditCommentPageActivityTest extends
 //	 * @throws InterruptedException 
 //	 */
 //	public void testSetupEditPage() throws InterruptedException {
-////		Location location = new Location("mock");
-////		location.setLatitude(10);
-////		location.setLongitude(20);
-////		Bitmap pic = Bitmap.createBitmap(10,10 ,Bitmap.Config.ARGB_8888);
-////		Comment comment = new Comment("Title", "Content", location, pic, "User");
 //		Comment comment = new Comment("Title", "Content", null, null, "User");
 //		IoStreamHandler ioStreamHandler = new IoStreamHandler();
 //		Thread thread = new Thread();
 //		
-//		
-//		
-//		assertTrue("ahahahahahahahahahahahaha!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", true);
 //		EditText title = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_title);
 //		EditText content = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_content);
 //		EditText latitude = (EditText)this.getActivity().findViewById(com.example.projectapp.R.id.edit_latitude);
@@ -147,12 +208,9 @@ public class EditCommentPageActivityTest extends
 //		
 //		assertEquals("Title", title.getText());
 //		assertEquals("Content", content.getText());
-////		assertEquals(String.valueOf(location.getLatitude()), latitude.getEditableText().toString());
-////		assertEquals(String.valueOf(location.getLongitude()), longitude.getEditableText().toString());
 //		assertNotNull(picture.getDrawable());
 //		ioStreamHandler.clean();
 //		Thread.sleep(500);
 //	}
-
 
 }
